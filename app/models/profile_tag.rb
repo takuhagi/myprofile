@@ -1,0 +1,2 @@
+class ProfileTag < ApplicationRecord
+end
