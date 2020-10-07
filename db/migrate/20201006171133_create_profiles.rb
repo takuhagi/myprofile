@@ -8,7 +8,7 @@ class CreateProfiles < ActiveRecord::Migration[6.0]
       t.string :city, null: false
       t.integer :post_code, null: false, null: false
       t.string :address_number, null: false
-      t.string :building, null: false
+      t.string :building
       t.references :user, foreign_key: true
       t.integer :prefecture_id,foreign_key: true
       t.string :primary_school
