@@ -1,9 +1,10 @@
 .container
   .alert.alert-secondary.mt-4
-    %h1 ニックネームさんのMy Profile情報入力画面
+    %h1
+      #{current_user.nickname}さんのMy Profile情報入力画面
 
   %label.mt-3.mb-4(for="") ---プロフィール---
-  = form_with(model: @profile, class: "form-horizontal mb-3") do |f|
+  = form_with(model: @profile, class: "form-horizontal mb-3", local: true) do |f|
     .form-group
       = f.label "メイン写真を設定する"
       %input.form-control-file(type="file")/
@@ -29,7 +30,7 @@
     .form-group
       = f.label "郵便番号 ※半角数字のみ（ハイフンなし）"
       -# 半角数字のみ（ハイフンなし）
-      = f.text_field :first_name, class: "form-control", pattern: "^[0-9]+$"
+      = f.text_field :post_code, class: "form-control", pattern: "^[0-9]+$"
     .form-group
       = f.label "都道府県"
       = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: "---"}, {class: "form-control"}
@@ -37,11 +38,14 @@
       = f.label "市区町村"
       = f.text_field :city, class: "form-control"
     .form-group
+      = f.label "以降の住所"
+      = f.text_field :address_number, class: "form-control"
+    .form-group
       = f.label "電話番号 ※半角数字のみ（ハイフンなし）"
       = f.text_field :phone, class: "form-control", pattern: "^[0-9]+$"
     .form-group
       = f.label "生年月日"
-      = f.date_field :birth_date, class: "form-control", name: "calendar", max: "9999-12-31", value: "1990-01-01"
+      = f.date_select :birth_date, {year_format: ->year { "#{Date.new(year, 12, 31).jisx0301.split('.').first}(#{year})" },use_month_numbers: true, start_year: 1950, end_year: Time.now.year, prompt: "---"}, {class: "form-control"}
     .form-group
       = f.label "小学校"
       = f.text_field :primary_school, class: "form-control"

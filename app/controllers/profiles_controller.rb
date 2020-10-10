@@ -11,7 +11,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(profile_params)
     if @profile.save
       # flash[:success] = "Profile successfully created"
-      redirect_to @profile
+      redirect_to root_path
     else
       # flash[:error] = "Something went wrong"
       render 'new'

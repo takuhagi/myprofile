@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2020_10_06_171217) do
+ActiveRecord::Schema.define(version: 2020_10_10_143924) do
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -108,7 +107,7 @@ ActiveRecord::Schema.define(version: 2020_10_06_171217) do
     t.text "introduction"
     t.date "birth_date", null: false
     t.string "avatar"
-    t.integer "phone"
+    t.string "phone"
     t.string "image"
     t.string "hp"
     t.string "facebook"
@@ -147,5 +146,4 @@ ActiveRecord::Schema.define(version: 2020_10_06_171217) do
   add_foreign_key "profile_tags", "profiles"
   add_foreign_key "profile_tags", "tags"
   add_foreign_key "profiles", "users"
-
 end
