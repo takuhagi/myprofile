@@ -50,7 +50,12 @@ class ProfilesController < ApplicationController
       :image,                # 写真※どこのか？
       :hp,                   # HP
       :facebook,             # Facebook
-      :twitter               # Twitter
+      :twitter,              # Twitter
+      :sub_image,            # サブ写真
+      :catch_copy,           # キャッチコピー
+      :avatar_title,         # アバター写真のタイトル
+      :avatar_catch_copy,    # アバター写真のキャッチコピー
+      :avatar_about          # アバター写真の説明文
     ).merge(user_id: current_user.id)
   end
   

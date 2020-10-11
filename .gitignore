@@ -32,3 +32,4 @@ yarn-debug.log*
 
 /vender/*
 /vendor/*
+public/uploads/*

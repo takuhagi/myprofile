@@ -5,16 +5,17 @@
 
   %label.mt-3.mb-4(for="") ---プロフィール---
   = form_with(model: @profile, class: "form-horizontal mb-3", local: true) do |f|
+    = render 'layouts/error_messages', model: f.object
     .form-group
       = f.label "メイン写真を設定する"
-      %input.form-control-file(type="file")/
+      = f.file_field :image, class: "form-control-file"
     .form-group
       = f.label "サブ写真を設定する"
-      %input.form-control-file(type="file")/
+      = f.file_field :sub_image, class: "form-control-file"
     .form-group
-      -# 要カラム追加
+      -# カラム追加済み
       = f.label "キャッチコピー"
-      %input.form-control(type="text")/
+      = f.text_field :catch_copy, class: "form-control"
     .form-group
       = f.label "名字"
       = f.text_field :first_name, class: "form-control"
@@ -40,6 +41,9 @@
     .form-group
       = f.label "以降の住所"
       = f.text_field :address_number, class: "form-control"
+    .form-group
+      = f.label "建物"
+      = f.text_field :building, class: "form-control"
     .form-group
       = f.label "電話番号 ※半角数字のみ（ハイフンなし）"
       = f.text_field :phone, class: "form-control", pattern: "^[0-9]+$"
@@ -83,35 +87,35 @@
       = f.label "職歴５"
       = f.text_field :last_career, class: "form-control"
     .form-group
-      = f.label "FaceBookのURL"
+      = f.label "FaceBook"
       = f.text_field :facebook, class: "form-control"
     .form-group
-      = f.label "TwitterのURL"
+      = f.label "Twitter"
       = f.text_field :twitter, class: "form-control"
     .form-group
-      = f.label "ホームページのURL"
+      = f.label "ホームページ"
       = f.text_field :hp, class: "form-control"
 
     %label.mt-3.mb-4(for="") ---自己紹介---
 
     .form-group
       = f.label "タイトル"
-      -# 要カラム追加
-      %input.form-control(type="text")/
+      -# カラム追加済み
+      = f.text_field :avatar_title, class: "form-control"
     .form-group
       = f.label "キャッチコピー"
-      -# 要カラム追加
-      %input.form-control(type="text")/
+      -# カラム追加済み
+      = f.text_field :avatar_catch_copy, class: "form-control"
     .form-group
       = f.label "紹介文"
-      = f.text_area :introduction, class: "form-control", name: "introduction", cols: "30", rows: "5", maxlength: "500", placeholder: "500文字まで"
+      = f.text_area :introduction, class: "form-control", row: 5, maxlength: "500", placeholder: "500文字まで"
     .form-group
       = f.label "アバター写真"
       = f.file_field :avatar, class: "form-control-file"
     .form-group
       = f.label "写真についての説明文"
-      -# ↓この項目が必要な場合は要カラム追加
-      %textarea.form-control(name="introduction" cols="30" rows="5" maxlength="500" placeholder="500文字まで")
+      -# カラム追加済み
+      = f.text_area :avatar_about, class: "form-control", row: 5, maxlength: "500", placeholder: "500文字まで"
 
     %button.btn.btn-secondary.mt-3.mb-4 自己紹介を追加する
 
@@ -119,5 +123,5 @@
       = f.label "タグ"
       -# ↓バックエンドに取り掛かったら設定
       %input.form-control(type="text")/
-    -# ↓現時点ではログインユーザーとの絡みができていないので送信不可
+    -# ↓送信OK
     = f.submit class: "btn btn-primary"
