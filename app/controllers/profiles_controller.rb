@@ -18,13 +18,26 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def edit
+    # profiles/:id/edit
+    # binding.pry
+    @profile = Profile.find(params[:id])
+  end
+
 
   def update
-    @profiles = Profile.find(1)
-    @profiles.update(profile_params)
+    @profile = Profile.find(params[:id])
+    if @profile.update(profile_params)
+      # 詳細画面へリダイレクト
+      # redirect_to profile_path(params[:id])
+      redirect_to root_path
+    else
+      render "profiles/edit"
+    end
   end
 
   private
+
 
   def profile_params
     params.require(:profile).permit(
@@ -58,7 +71,7 @@ class ProfilesController < ApplicationController
       :facebook,             # Facebook
       :twitter,              # Twitter
 
-      :color
+      :color,
 
       :sub_image,            # サブ写真
       :catch_copy,           # キャッチコピー
