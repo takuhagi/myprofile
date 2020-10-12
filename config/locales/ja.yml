@@ -1,6 +1,43 @@
 ---
 ja:
   activerecord:
+    attributes:
+      profile:
+        first_name: 名字
+        family_name: 名前
+        first_name_kana: 名字（ふりがな）
+        family_name_kana: 名前（ふりがな）
+        city: 市区町村
+        post_code: 郵便番号
+        address_number: 以降の住所
+        building: 建物
+        prefecture_id: 都道府県
+        primary_school: 小学校
+        Junior_high_school: 中学校
+        high_school: 高校
+        vocational_school: 専門学校
+        university: 大学
+        graduate_school: 大学院
+        other_school: その他学歴
+        first_career: 職歴１
+        second_career: 職歴２
+        third_career: 職歴３
+        fourth_career: 職歴４
+        last_career: 職歴５
+        introduction: 紹介文
+        birth_date: 生年月日
+        avatar: アバター写真
+        phone: 電話番号
+        image: メイン写真
+        hp: ホームページ
+        facebook: FaceBook
+        twitter: Twitter
+        sub_image: サブ写真
+        catch_copy: キャッチコピー
+        avatar_title: アバター写真のタイトル
+        avatar_catch_copy: アバター写真のキャッチコピー
+        avatar_about: アバター写真の説明文
+       
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

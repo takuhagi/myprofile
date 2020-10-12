@@ -1,0 +1,77 @@
+.all
+  .d-flex.bd-highlight.bg-light.header
+    .p-2.pl-5.flex-grow-1.bd-highlight.title 
+      %img{:height => "auto", :src => "logo.png"}
+    .p-3.bd-highlight.m-auto.top_page
+      %a{:href => "#"} TOP
+    .p-3.bd-highlight.m-auto.log_out
+      %a{:href => "#"} ログアウト
+    %span.nav_toggle
+      %i
+      %i
+      %i
+    %nav.nav
+      %ul.nav_menu_ul.d-flex
+        %li.nav_menu_li
+          %a{:href => "#"} TOP
+        %li.nav_menu_li.ml-3.mr-2
+          %a{:href => "#"} ログアウト
+    .mt-2.mobile_profile.shadow-sm
+      .d-flex.justify-content-center.mt-2
+        %button.btn.btn-primary.mobile_btn{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
+          email
+        = link_to "Facabook", @profiles.facebook, class: 'btn btn-primary ml-2 mobile_btn'
+        = link_to "Twitter", @profiles.twitter, class: 'btn btn-primary ml-2 mobile_btn'
+        = link_to "HP", @profiles.hp, class: 'btn btn-primary ml-2 mobile_btn'
+          
+      #exampleModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
+        .modal-dialog{:role => "document"}
+          .modal-content
+            .modal-header
+              %h5#exampleModalLabel.modal-title e-mail address
+              %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                %span{"aria-hidden" => "true"}
+            .modal-body
+              = @users.email
+            .modal-footer
+              %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
+      %h3.d-flex.justify-content-center.mt-3.mobile_name
+        = @users.nickname
+      %h5.d-flex.justify-content-center.mt-3.mobile_birth
+        = @profiles.birth_date
+      %img.prof_image.mt-2.mobile_img{:height => "auto", :src => "avatar.png", :width => "70%"}
+        %p.text-break.ml-5.mr-5.pt-5.mobile_text 
+          = @profiles.introduction
+  .image_box.mt-5.d-flex.justify-content-center
+    %img.top_image{:height => "auto", :src => "bg_mv.png", :width => "80%"}
+    
+  .d-flex.justify-content-center
+    .mt-5.text_area.shadow-sm
+      %p.text-break.ml-5.mr-5.pt-5 mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+
+
+    .mt-5.mb-5.profile.shadow-sm
+      .d-flex.justify-content-center.mt-2
+        %button.btn.btn-primary{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
+          email
+        = link_to "Facabook", @profiles.facebook, class: 'btn btn-primary ml-2'
+        = link_to "Twitter", @profiles.twitter, class: 'btn btn-primary ml-2'
+        = link_to "HP", @profiles.hp, class: 'btn btn-primary ml-2 '
+          
+      
+      %h3.d-flex.justify-content-center.mt-3
+        = @users.nickname
+      %h5.d-flex.justify-content-center.mt-3
+        = @profiles.birth_date
+      %img.prof_image.mt-3{:height => "auto", :src => "avatar.png", :width => "70%"}
+        %p.text-break.ml-5.mr-5.pt-5 
+          = @profiles.introduction
+  .d-flex.justify-content-center.comment_field.shadow
+  %form.was-validated
+    .form-group
+      %label{:for => "exampleFormControlTextarea1"}
+      = succeed "" do
+        %textarea#exampleFormControlTextarea1.form-control.form-control-lg.col-sm-10.m-auto{:placeholder => "コメント"}
+  .col-auto.d-flex.justify-content-center
+    %button.btn.btn-primary.mb-2{:type => "submit"} Submit
+  .container

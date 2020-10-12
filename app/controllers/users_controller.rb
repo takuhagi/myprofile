@@ -18,5 +18,10 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email)
+
+  def index
+    @users = User.find(1)
+    @profiles = Profile.find(1)
+
   end
 end
