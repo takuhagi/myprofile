@@ -37,7 +37,7 @@ ja:
         avatar_title: アバター写真のタイトル
         avatar_catch_copy: アバター写真のキャッチコピー
         avatar_about: アバター写真の説明文
-        
+       
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
