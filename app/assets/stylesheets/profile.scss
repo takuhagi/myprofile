@@ -1,5 +1,5 @@
 .TopPage {
-  width: 1200px;
+  max-width: 1200px;
   margin: 0 auto;
   color: grey;
   &--container {
@@ -10,11 +10,11 @@
       border-right: 1px solid lightgray;
       border-left: 1px solid lightgray;
       .wrap-content {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-content: space-between;
+        // width: 720px;
+        // display: flex;
+        // flex-wrap: wrap;
+        // justify-content: space-between;
+        // align-content: space-between;
         margin-bottom: 1rem;
         padding: 1rem 0;
         .large-content {
@@ -22,14 +22,14 @@
           width: 100%;
           .large-photo {
             height: 480px;
-            width: 720px;
+            max-width: 720px;
             margin: 0 auto 1rem;
             background-color: azure;
             box-shadow: 0 2px 5px rgba(0,0,0,0.26);
           }
           .large-text {
-            height: 72px;
-            width: 720px;
+            min-height: 72px;
+            max-width: 720px;
             margin: 0 auto;
             font-size: 20px; 
             box-shadow: 0 2px 5px rgba(0,0,0,0.26);
@@ -40,14 +40,14 @@
           margin: 0 auto 1rem;
           .middle-photo {
             height: 147px;
-            width: 220px;
+            max-width: 220px;
             margin: 0 auto 0.5rem;
             background-color: azure;
             box-shadow: 0 2px 5px rgba(0,0,0,0.26);
           }
           .middle-text {
-            height: 80px;
-            width: 220px;
+            min-height: 80px;
+            max-width: 220px;
             margin: 0 auto;
             box-shadow: 0 2px 5px rgba(0,0,0,0.26);
           }
@@ -57,14 +57,14 @@
           margin: 0 auto 1rem;
           .small-photo {
             height: 107px;
-            width: 160px;
+            max-width: 160px;
             margin: 0 auto 0.5rem;
             background-color: azure;
             box-shadow: 0 2px 5px rgba(0,0,0,0.26);
           }
           .small-text {
-            height: 80px;
-            width: 160px;
+            min-height: 80px;
+            max-width: 160px;
             margin: 0 auto;
             box-shadow: 0 2px 5px rgba(0,0,0,0.26);
           }
