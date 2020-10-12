@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_06_171217) do
+ActiveRecord::Schema.define(version: 2020_10_11_124509) do
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id"
@@ -107,13 +107,18 @@ ActiveRecord::Schema.define(version: 2020_10_06_171217) do
     t.text "introduction"
     t.date "birth_date", null: false
     t.string "avatar"
-    t.integer "phone"
+    t.string "phone"
     t.string "image"
     t.string "hp"
     t.string "facebook"
     t.string "twitter"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "sub_image"
+    t.string "catch_copy"
+    t.string "avatar_title"
+    t.string "avatar_catch_copy"
+    t.text "avatar_about"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
