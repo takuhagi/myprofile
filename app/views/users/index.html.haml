@@ -1,4 +1,4 @@
-.all
+.all{style: "#{@profiles.color}"}
   .d-flex.bd-highlight.bg-light.header
     .p-2.pl-5.flex-grow-1.bd-highlight.title 
       %img{:height => "auto", :src => "logo.png"}
@@ -6,6 +6,32 @@
       %a{:href => "#"} TOP
     .p-3.bd-highlight.m-auto.log_out
       %a{:href => "#"} ログアウト
+    .p-3.bd-highlight.m-auto.log_out
+      %a{"data-target" => "#exampleModalLong", "data-toggle" => "modal", :type => "button"} color
+      #exampleModalLong.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLongTitle", role: "dialog", tabindex: "-1"}
+        .modal-dialog{role: "document"}
+          .modal-content
+            .modal-header
+              %h5#exampleModalLongTitle.modal-title Select Color 
+              %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
+                %span{"aria-hidden" => "true"} ×
+            = form_with(model: @profiles, class: "modal-body") do |f|
+              #app{":style" => "bindStyle"}
+                %p
+                  %span.text-white.mt-1.ml-1 赤：
+                  %input{max: "255", min: "0", type: "range", "v-model" => "red"}/
+                %p
+                  %span.text-white.ml-1 緑：
+                  %input{max: "255", min: "0", type: "range", "v-model" => "green"}/
+                %p
+                  %span.text-white.ml-1 青：
+                  %input{max: "255", min: "0", type: "range", "v-model" => "blue"}/
+                  = f.text_field :color,  "v-model" => "bindStyle"
+                  
+                .modal-footer
+                  %button.btn.btn-secondary{"data-dismiss" => "modal", type: "button"} Close
+                  
+                  = f.submit class: "btn btn-primary" 
     %span.nav_toggle
       %i
       %i

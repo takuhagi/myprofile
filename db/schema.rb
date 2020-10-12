@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_11_124509) do
+
+ActiveRecord::Schema.define(version: 2020_10_10_170350) do
+
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -114,11 +116,15 @@ ActiveRecord::Schema.define(version: 2020_10_11_124509) do
     t.string "twitter"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+
+    t.string "color"
+
     t.string "sub_image"
     t.string "catch_copy"
     t.string "avatar_title"
     t.string "avatar_catch_copy"
     t.text "avatar_about"
+
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 

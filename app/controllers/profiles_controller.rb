@@ -18,6 +18,12 @@ class ProfilesController < ApplicationController
     end
   end
 
+
+  def update
+    @profiles = Profile.find(1)
+    @profiles.update(profile_params)
+  end
+
   private
 
   def profile_params
@@ -51,11 +57,15 @@ class ProfilesController < ApplicationController
       :hp,                   # HP
       :facebook,             # Facebook
       :twitter,              # Twitter
+
+      :color
+
       :sub_image,            # サブ写真
       :catch_copy,           # キャッチコピー
       :avatar_title,         # アバター写真のタイトル
       :avatar_catch_copy,    # アバター写真のキャッチコピー
       :avatar_about          # アバター写真の説明文
+
     ).merge(user_id: current_user.id)
   end
   

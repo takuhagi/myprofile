@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     @profiles = Profile.find(1)
 
   end
+
   
   def edit
   end
@@ -27,4 +28,5 @@ class UsersController < ApplicationController
   end  
 
   
+
 end
