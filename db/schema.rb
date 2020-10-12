@@ -10,9 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2020_10_10_170350) do
 
-  create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+
+  create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.string "credit_card_id", null: false
     t.string "customer_id", null: false
@@ -21,7 +23,7 @@ ActiveRecord::Schema.define(version: 2020_10_10_170350) do
     t.index ["user_id"], name: "index_cards_on_user_id"
   end
 
-  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.string "comment", null: false
     t.integer "check"
@@ -30,7 +32,7 @@ ActiveRecord::Schema.define(version: 2020_10_10_170350) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "contents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "contents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "text"
     t.string "image"
     t.bigint "profile_id"
@@ -39,7 +41,7 @@ ActiveRecord::Schema.define(version: 2020_10_10_170350) do
     t.index ["profile_id"], name: "index_contents_on_profile_id"
   end
 
-  create_table "follows", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "follows", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.integer "followed_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -47,7 +49,7 @@ ActiveRecord::Schema.define(version: 2020_10_10_170350) do
     t.index ["user_id"], name: "index_follows_on_user_id"
   end
 
-  create_table "genre_profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "genre_profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "genre_id"
     t.bigint "profile_id"
     t.datetime "created_at", precision: 6, null: false
@@ -56,13 +58,13 @@ ActiveRecord::Schema.define(version: 2020_10_10_170350) do
     t.index ["profile_id"], name: "index_genre_profiles_on_profile_id"
   end
 
-  create_table "genres", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "genres", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "genre_name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.string "src"
     t.string "title"
@@ -72,7 +74,7 @@ ActiveRecord::Schema.define(version: 2020_10_10_170350) do
     t.index ["user_id"], name: "index_images_on_user_id"
   end
 
-  create_table "profile_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "profile_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "tag_id"
     t.bigint "profile_id"
     t.datetime "created_at", precision: 6, null: false
@@ -81,7 +83,7 @@ ActiveRecord::Schema.define(version: 2020_10_10_170350) do
     t.index ["tag_id"], name: "index_profile_tags_on_tag_id"
   end
 
-  create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name", null: false
     t.string "family_name", null: false
     t.string "first_name_kana", null: false
@@ -107,26 +109,35 @@ ActiveRecord::Schema.define(version: 2020_10_10_170350) do
     t.text "introduction"
     t.date "birth_date", null: false
     t.string "avatar"
-    t.integer "phone"
+    t.string "phone"
     t.string "image"
     t.string "hp"
     t.string "facebook"
     t.string "twitter"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+
     t.string "color"
+
+    t.string "sub_image"
+    t.string "catch_copy"
+    t.string "avatar_title"
+    t.string "avatar_catch_copy"
+    t.text "avatar_about"
+
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
-  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "tag_name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "name", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -134,6 +145,7 @@ ActiveRecord::Schema.define(version: 2020_10_10_170350) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "nickname", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["name"], name: "index_users_on_name", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

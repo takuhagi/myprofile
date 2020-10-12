@@ -63,3 +63,10 @@ gem "haml-rails", ">= 1.0", '<= 2.0.1'
 
 gem 'devise'
 
+gem 'active_hash'
+
+gem 'rails-i18n'
+
+gem 'carrierwave'
+
+gem 'mini_magick'
