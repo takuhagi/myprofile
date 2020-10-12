@@ -18,6 +18,12 @@ class ProfilesController < ApplicationController
     end
   end
 
+
+  def update
+    @profiles = Profile.find(1)
+    @profiles.update(profile_params)
+  end
+
   private
 
   def profile_params
@@ -50,7 +56,8 @@ class ProfilesController < ApplicationController
       :image,                # 写真※どこのか？
       :hp,                   # HP
       :facebook,             # Facebook
-      :twitter               # Twitter
+      :twitter,              # Twitter
+      :color
     ).merge(user_id: current_user.id)
   end
   
