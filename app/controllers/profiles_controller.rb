@@ -58,7 +58,7 @@ class ProfilesController < ApplicationController
       :facebook,             # Facebook
       :twitter,              # Twitter
 
-      :color
+      :color,
 
       :sub_image,            # サブ写真
       :catch_copy,           # キャッチコピー
