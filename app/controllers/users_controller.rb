@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.find(1)
-    @profiles = Profile.find(1)
+    @users = User.find(current_user.id) #あとで変更
+    @profiles = @users.profile
 
   end
 

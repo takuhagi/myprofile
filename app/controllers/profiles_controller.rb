@@ -1,7 +1,7 @@
 class ProfilesController < ApplicationController
 
   def index
-  
+    
   end
 
   def new
@@ -20,7 +20,7 @@ class ProfilesController < ApplicationController
 
 
   def update
-    @profiles = Profile.find(1)
+    @profiles = Profile.find(current_user.id)
     @profiles.update(profile_params)
   end
 
@@ -58,7 +58,7 @@ class ProfilesController < ApplicationController
       :facebook,             # Facebook
       :twitter,              # Twitter
 
-      :color
+      :color,
 
       :sub_image,            # サブ写真
       :catch_copy,           # キャッチコピー
