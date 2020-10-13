@@ -15,6 +15,10 @@
 -#       %li.nav_menu_li.ml-3.mr-2
 -#         %a{:href => "#"} ログアウト
 
+
+= link_to "ログアウト",destroy_user_session_path, method: :delete #ログアウト 仮置き
+- if current_user.profile.present?  #ログインユーザーがプロフページを持っているか(有料会員か？)
+  = link_to "マイページ",users_path  #マイページへのリンク 仮置き
 .TopPage
   .TopPage--container.row
     .TopPage--container__center.col-lg-8.col-md-12

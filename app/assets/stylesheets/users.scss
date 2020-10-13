@@ -1,7 +1,9 @@
-.all {
-  
-}
+
 @media (min-width: 980px){
+  .header {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
   .title {
     font-size: 50px;
   }
@@ -159,6 +161,7 @@
   .mobile_btn {
     height: 30px;
   }
+  
 }
 
 

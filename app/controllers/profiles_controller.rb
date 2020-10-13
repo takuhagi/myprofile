@@ -1,7 +1,7 @@
 class ProfilesController < ApplicationController
 
   def index
-  
+    
   end
 
   def new
@@ -26,6 +26,10 @@ class ProfilesController < ApplicationController
 
 
   def update
+
+    @profiles = Profile.find(current_user.id)
+    @profiles.update(profile_params)
+
     @profile = Profile.find(params[:id])
     if @profile.update(profile_params)
       # 詳細画面へリダイレクト
@@ -34,6 +38,7 @@ class ProfilesController < ApplicationController
     else
       render "profiles/edit"
     end
+
   end
 
   private
