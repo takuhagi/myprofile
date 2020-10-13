@@ -1,4 +1,4 @@
-.all{style: "#{@profiles.color}"}
+.all{style: "#{@profile.color}"}
   .d-flex.bd-highlight.bg-light.header
     .p-2.pl-5.flex-grow-1.bd-highlight.title 
       %img{:height => "auto", :src => "logo.png"}
@@ -6,9 +6,9 @@
       = link_to "TOP",root_path
     .p-3.bd-highlight.m-auto.log_out
       = link_to "ログアウト",destroy_user_session_path, method: :delete
-    -# - if current_user.id == @users.id  #色変更は本人のみ コントローラー変更後に
-    .p-3.bd-highlight.m-auto.log_out
-      %a{"data-target" => "#exampleModalLong", "data-toggle" => "modal", :type => "button"} color
+    - if current_user.id == @user.id 
+      .p-3.bd-highlight.m-auto.log_out
+        %a{"data-target" => "#exampleModalLong", "data-toggle" => "modal", :type => "button"} color
       #exampleModalLong.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLongTitle", role: "dialog", tabindex: "-1"}
         .modal-dialog{role: "document"}
           .modal-content
@@ -16,7 +16,7 @@
               %h5#exampleModalLongTitle.modal-title Select Color 
               %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
                 %span{"aria-hidden" => "true"} ×
-            = form_with(model: @profiles, class: "modal-body") do |f|
+            = form_with(model: @profile, class: "modal-body") do |f|
               #app{":style" => "bindStyle"}
                 %p
                   %span.text-white.mt-1.ml-1 赤：
@@ -47,12 +47,12 @@
       .d-flex.justify-content-center.mt-2
         %button.btn.btn-primary.mobile_btn{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
           email
-        - if @profiles.facebook.present?
-          = link_to "Facabook", @profiles.facebook, class: 'btn btn-primary ml-2 mobile_btn', rel: "noopener noreferrer", target: "_blank"
-        - if @profiles.twitter.present?
-          = link_to "Twitter", @profiles.twitter, class: 'btn btn-primary ml-2 mobile_btn',  rel: "noopener noreferrer", target: "_blank"
-        - if @profiles.hp.present?
-          = link_to "HP", @profiles.hp, class: 'btn btn-primary ml-2 mobile_btn',  rel: "noopener noreferrer", target: "_blank"
+        - if @profile.facebook.present?
+          = link_to "Facabook", @profile.facebook, class: 'btn btn-primary ml-2 mobile_btn', rel: "noopener noreferrer", target: "_blank"
+        - if @profile.twitter.present?
+          = link_to "Twitter", @profile.twitter, class: 'btn btn-primary ml-2 mobile_btn',  rel: "noopener noreferrer", target: "_blank"
+        - if @profile.hp.present?
+          = link_to "HP", @profile.hp, class: 'btn btn-primary ml-2 mobile_btn',  rel: "noopener noreferrer", target: "_blank"
           
       #exampleModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
         .modal-dialog{:role => "document"}
@@ -62,18 +62,18 @@
               %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
                 %span{"aria-hidden" => "true"}
             .modal-body
-              = @users.email
+              = @user.email
             .modal-footer
               %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
       %h3.d-flex.justify-content-center.mt-3.mobile_name
-        = @users.nickname
+        = @user.nickname
       %h5.d-flex.justify-content-center.mt-3.mobile_birth
-        = @profiles.birth_date
-      %img.prof_image.mt-2.mobile_img{:height => "auto", :src => "#{@profiles.sub_image}", :width => "40%"}
+        = @profile.birth_date
+      %img.prof_image.mt-2.mobile_img{:height => "auto", :src => "#{@profile.sub_image}", :width => "40%"}
         %p.text-break.ml-5.mr-5.pt-5.mobile_text 
-          = @profiles.introduction
+          = @profile.introduction
   .image_box.mt-5.d-flex.justify-content-center
-    %img.top_image{:height => "auto", :src => "#{@profiles.image}", :width => "80%"}
+    %img.top_image{:height => "auto", :src => "#{@profile.image}", :width => "80%"}
     
   .d-flex.justify-content-center
     .mt-5.text_area.shadow-sm
@@ -84,21 +84,21 @@
       .d-flex.justify-content-center.mt-2
         %button.btn.btn-primary{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
           email
-        - if @profiles.facebook.present?
-          = link_to "Facabook", @profiles.facebook, class: 'btn btn-primary ml-2',  rel: "noopener noreferrer", target: "_blank"
-        - if @profiles.twitter.present?
-          = link_to "Twitter", @profiles.twitter, class: 'btn btn-primary ml-2',  rel: "noopener noreferrer", target: "_blank"
-        - if @profiles.hp.present?
-          = link_to "HP", @profiles.hp, class: 'btn btn-primary ml-2 ',  rel: "noopener noreferrer", target: "_blank"
+        - if @profile.facebook.present?
+          = link_to "Facabook", @profile.facebook, class: 'btn btn-primary ml-2',  rel: "noopener noreferrer", target: "_blank"
+        - if @profile.twitter.present?
+          = link_to "Twitter", @profile.twitter, class: 'btn btn-primary ml-2',  rel: "noopener noreferrer", target: "_blank"
+        - if @profile.hp.present?
+          = link_to "HP", @profile.hp, class: 'btn btn-primary ml-2 ',  rel: "noopener noreferrer", target: "_blank"
           
       
       %h3.d-flex.justify-content-center.mt-3
-        = @users.nickname
+        = @user.nickname
       %h5.d-flex.justify-content-center.mt-3
-        = @profiles.birth_date
-      %img.prof_image.mt-3{:height => "auto", :src => "#{@profiles.sub_image}", :width => "40%"}
+        = @profile.birth_date
+      %img.prof_image.mt-3{:height => "auto", :src => "#{@profile.sub_image}", :width => "40%"}
         %p.text-break.ml-5.mr-5.pt-5 
-          = @profiles.introduction
+          = @profile.introduction
   .d-flex.justify-content-center.comment_field.shadow
   %form.was-validated
     .form-group
