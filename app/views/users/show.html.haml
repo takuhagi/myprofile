@@ -1,0 +1,64 @@
+.jumbotron.jumbotron-fluid.p-4
+  .container
+    -# トップへ戻るボタン
+    .col.text-right
+      = link_to root_path  do
+        BACK to TOP
+      
+    -# ニックネーム、キャッチコピー、紹介文が表示されるようにしています
+    %h1.display-4
+      #{@user.nickname}
+    %p.lead
+      #{@profile.catch_copy}
+    %hr.my-4
+    %p
+      #{@profile.introduction}
+.container
+  -# タブ切り替え（プロフ、学歴、職歴）にしています
+  %ul.nav.nav-tabs.nav-justified{role: "tablist"}
+    %li.nav-item
+      %a#item1-tab.nav-link.active{"aria-controls" => "item1", "aria-selected" => "true", "data-toggle" => "tab", href: "#item1", role: "tab"} プロフィール
+    %li.nav-item
+      %a#item2-tab.nav-link{"aria-controls" => "item2", "aria-selected" => "false", "data-toggle" => "tab", href: "#item2", role: "tab"} 学歴
+    %li.nav-item
+      %a#item3-tab.nav-link{"aria-controls" => "item3", "aria-selected" => "false", "data-toggle" => "tab", href: "#item3", role: "tab"} 職歴
+  .tab-content
+    #item1.tab-pane.fade.show.active{"aria-labelledby" => "item1-tab", role: "tabpanel"}
+      %p.text-center.mt-4.mb-0.small.text-muted
+        #{@profile.first_name_kana} #{@profile.family_name_kana}
+      %p.h4.text-center.mb-4
+        #{@profile.first_name} #{@profile.family_name}
+      %p.text-center.m-4
+        〒#{@profile.post_code.to_s.insert(3, "-")}
+      %p.h5.text-center.m-4
+        #{@profile.prefecture.name}#{@profile.city}#{@profile.address_number}
+      %p.h5.text-center.m-4
+        #{@profile.building}
+      %p.h5.text-center.m-4
+        #{@profile.phone}
+    #item2.tab-pane.fade{"aria-labelledby" => "item2-tab", role: "tabpanel"}
+      %p.h5.text-center.m-4
+        #{@profile.primary_school}
+      %p.h5.text-center.m-4
+        #{@profile.Junior_high_school}
+      %p.h5.text-center.m-4
+        #{@profile.high_school}
+      %p.h5.text-center.m-4
+        #{@profile.university}
+      %p.h5.text-center.m-4
+        #{@profile.graduate_school}
+      %p.h5.text-center.m-4
+        #{@profile.vocational_school}
+      %p.h5.text-center.m-4
+        #{@profile.other_school}
+    #item3.tab-pane.fade{"aria-labelledby" => "item3-tab", role: "tabpanel"}
+      %p.h5.text-center.m-4
+        #{@profile.first_career}
+      %p.h5.text-center.m-4
+        #{@profile.second_career}
+      %p.h5.text-center.m-4
+        #{@profile.third_career}
+      %p.h5.text-center.m-4
+        #{@profile.fourth_career}
+      %p.h5.text-center.m-4
+        #{@profile.last_career}

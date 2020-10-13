@@ -6,6 +6,11 @@ class UsersController < ApplicationController
 
   end
 
+  def show
+    @user = User.find(1)
+    @profile = @user.profile
+  end
+  
   
   def edit
   end
