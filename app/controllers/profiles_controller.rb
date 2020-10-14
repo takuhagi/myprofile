@@ -2,6 +2,7 @@ class ProfilesController < ApplicationController
 
   def index
     @profiles = Profile.all
+    @user = User.all
   end
 
   def new
@@ -9,6 +10,7 @@ class ProfilesController < ApplicationController
   end
   def create
     @profile = Profile.new(profile_params)
+    @profile[:color] = "background: rgb(255, 255, 255)"  #デフォルト背景色
     if @profile.save
       # flash[:success] = "Profile successfully created"
       redirect_to root_path
@@ -26,9 +28,6 @@ class ProfilesController < ApplicationController
 
 
   def update
-
-    @profiles = Profile.find(current_user.id)
-    @profiles.update(profile_params)
 
     @profile = Profile.find(params[:id])
     if @profile.update(profile_params)
