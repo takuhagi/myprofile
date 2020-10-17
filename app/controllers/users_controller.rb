@@ -7,8 +7,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(1)
+    @user = User.find(params[:id])
     @profile = @user.profile
+    # タグ全部取ってきます
+    @tag_list = Tag.all
   end
   
   
