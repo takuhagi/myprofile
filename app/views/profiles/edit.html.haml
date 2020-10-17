@@ -120,7 +120,7 @@
     %button.btn.btn-secondary.mt-3.mb-4 自己紹介を追加する
 
     .form-group
-      = f.label "タグ"
-      = f.text_field :tag_ids, class: "form-control", id: "tag_ids", value: @tag_list, placeholder: "タグをつける。複数つけるには半角のカンマで区切ること。"
+      = f.label "タグ（複数つける場合は半角カンマで区切ってください）"
+      = f.text_field :tag_ids, class: "form-control", id: "tag_ids", value: @tag_list, data: {role: "tagsinput"} 
     -# ↓送信OK
     = f.submit class: "btn btn-primary"
