@@ -11,6 +11,7 @@ class ProfilesController < ApplicationController
   def create
     @profile = Profile.new(profile_params)
     @profile[:color] = "background: rgb(255, 255, 255)"  #デフォルト背景色
+    # profilesテーブルのタグを抽出してカンマ区切りする
     tag_list = params[:profile][:tag_ids].split(',')
     if @profile.save
       @profile.save_tags(tag_list)
@@ -27,6 +28,7 @@ class ProfilesController < ApplicationController
     # profiles/:id/edit
     # binding.pry
     @profile = Profile.find(params[:id])
+    # すでに存在しているタグをtag_nameカラムで抽出して配列にし、カンマ区切りで結合
     @tag_list = @profile.tags.pluck(:tag_name).join(",")
   end
 
