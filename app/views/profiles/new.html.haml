@@ -121,7 +121,6 @@
 
     .form-group
       = f.label "タグ"
-      -# ↓バックエンドに取り掛かったら設定
-      %input.form-control(type="text")/
+      = f.text_field :tag_ids, class: "form-control", id: "tag_ids", placeholder: "タグをつける。複数つけるには半角のカンマで区切ること。"
     -# ↓送信OK
     = f.submit class: "btn btn-primary"
