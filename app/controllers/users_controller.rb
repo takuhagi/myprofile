@@ -9,6 +9,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @profile = @user.profile
+    @profile.pv_count += 1
+    @profile.update(pv_count: @profile.pv_count)
     # タグ全部取ってきます
     @tag_list = Tag.all
   end
