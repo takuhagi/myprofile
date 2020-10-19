@@ -1,16 +1,20 @@
-.Header
-  .Header__title
+.container.mt-3.mb-5.col-md-12.d-flex.align-items-center.text-center
+  
+
+
+.Header.mt-3.mb-5.d-flex.align-items-center.text-center
+  .Header__title.d-flex.align-items-center
     %h1 MyProfile
     %h5 
     = link_to "トップページに戻る", :back, class: 'Button'
 
 
-.AccountPage
-  .AccountPage__title
+.AccountPage.mt-3.mb-5.col-md-12.text-center
+  .AccountPage__title.d-flex.align-items-center.text-center
     %h2 Log in
     %h5 登録しているユーザーでログイン
     = render "devise/shared/links"
-  .AccountPage__form
+  .AccountPage__form.col-md-12.mt-3.mb-5.d-flex.align-items-center.text-center
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .FormField
         .FormField__label--normal
@@ -26,7 +30,7 @@
         .actions
           = f.submit "Log in", class: 'Button UserButton'
 
-.Footer
+.Footer.mt-3.mb-4.col-md-12.d-flex.align-items-center.text-center
   .Copyright
-    Copyright © 2020 MyProfile, All Rights Reserved.
+    %h4  Copyright © 2020 MyProfile, All Rights Reserved.
  

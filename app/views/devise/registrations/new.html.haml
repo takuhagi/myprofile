@@ -1,17 +1,22 @@
-.Header
-  .Header__title
+.container.mt-3.mb-4.col-md-12
+  .alert
+
+
+.Header.d-flex.align-items-center.text-center.mt-3.mb-4.col-md-12
+  .Header__title.d-flex.align-items-center
     %h1 MyProfile
     %h5 
     = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'Button'
     = link_to "トップページに戻る", :back, class: 'Button'
 
 
-.AccountPage
-  .AccountPage__title
+.AccountPage.mt-3.mb-4.d-flex.align-items-center
+  = render 'layouts/notifications'
+  .AccountPage__title.d-flex.align-items-center
     %h2 Create Account
     %h5 新規アカウントの作成
     = render "devise/shared/links"
-  .AccountPage__form
+  .AccountPage__form.mt-3.mb-4.col-lg-3.col-md-3.col-xs-4
     = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
       = devise_error_messages!
       .FormField
@@ -42,7 +47,8 @@
           = f.password_field :password_confirmation, autocomplete: "off"
       .actions
         = f.submit "Create Account", class: 'Button UserButton'
-.Footer
+
+.Footer.col-md-13.d-flex.align-items-center
   .Copyright
-    Copyright © 2020 MyProfile, All Rights Reserved.
+    %h3 Copyright © 2020 MyProfile, All Rights Reserved.
  
