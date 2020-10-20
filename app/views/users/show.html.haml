@@ -10,6 +10,16 @@
       #{@user.nickname}
     %p.lead
       #{@profile.catch_copy}
+    -# つけたタグが表示されます
+    %div
+      -# タグの一覧を取得して、タグにprofile_idがついている、かつ、プロフィールのuser_idがログインユーザーのidと同じかどうかで分岐
+      - @tag_list.each do |tag|
+        - if tag.profile_ids.present? && @profile.user_id == current_user.id
+          -# spanタグでひとつずつ表示されるようにしています
+          %span.show_tag
+            -# tagsテーブルのtag_nameカラム
+            #{tag.tag_name}
+
     %hr.my-4
     %p
       #{@profile.introduction}
