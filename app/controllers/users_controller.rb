@@ -3,7 +3,10 @@ class UsersController < ApplicationController
   def index
     @user = User.find(params[:id])
     @profile = @user.profile
-
+    @comment = Comment.new
+    @comments = @user.comments.includes(:user).all
+    @check = @comments.where(check: [nil])
+    # binding.pry
   end
 
   def show

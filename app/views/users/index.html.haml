@@ -2,6 +2,11 @@
   .d-flex.bd-highlight.bg-light.header
     .p-2.pl-5.flex-grow-1.bd-highlight.title 
       %img{:height => "auto", :src => "logo.png"}
+    .p-3.bd-highlight.m-auto
+    
+    - if current_user.id == @user.id && @check.present?
+      = link_to user_comment_path(current_user.id,@user.id) do
+        %img.message{:height => "auto", :src => "message.png"}
     .p-3.bd-highlight.m-auto.top_page
       = link_to "TOP",root_path
     .p-3.bd-highlight.m-auto.log_out
@@ -16,7 +21,7 @@
               %h5#exampleModalLongTitle.modal-title Select Color 
               %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
                 %span{"aria-hidden" => "true"} ×
-            = form_with(model: @profile, class: "modal-body") do |f|
+            = form_with model: @profile, class: "modal-body" do |f|
               #app{":style" => "bindStyle"}
                 %p
                   %span.text-white.mt-1.ml-1 赤：
@@ -40,9 +45,16 @@
     %nav.nav
       %ul.nav_menu_ul.d-flex
         %li.nav_menu_li
+        - if current_user.id == @user.id && @check.present?
+          = link_to user_comment_path(current_user.id,@user.id) do
+            %img.mobile_message{:height => "auto", :src => "message.png"}
+        %li.nav_menu_li.mt-1
           = link_to "TOP",root_path
-        %li.nav_menu_li.ml-3.mr-2
+        %li.nav_menu_li.ml-3.mr-2.mt-1
           = link_to "ログアウト",destroy_user_session_path, method: :delete
+        %li.nav_menu_li.ml-2.mobile_color
+          - if current_user.id == @user.id 
+            %a{"data-target" => "#exampleModalLong", "data-toggle" => "modal", :type => "button"} color
     .mt-2.mobile_profile.shadow-sm
       .d-flex.justify-content-center.mt-2
         %button.btn.btn-primary.mobile_btn{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
@@ -73,7 +85,7 @@
         %p.text-break.ml-5.mr-5.pt-5.mobile_text 
           = @profile.introduction
   .image_box.mt-5.d-flex.justify-content-center
-    %img.top_image{:height => "auto", :src => "#{@profile.image}", :width => "80%"}
+    %img.top_image{:src => "#{@profile.image}", :width => "80%"}
     
   .d-flex.justify-content-center
     .mt-5.text_area.shadow-sm
@@ -100,11 +112,9 @@
         %p.text-break.ml-5.mr-5.pt-5 
           = @profile.introduction
   .d-flex.justify-content-center.comment_field.shadow
-  %form.was-validated
-    .form-group
-      %label{:for => "exampleFormControlTextarea1"}
-      = succeed "" do
-        %textarea#exampleFormControlTextarea1.form-control.form-control-lg.col-sm-10.m-auto{:placeholder => "コメント"}
-  .col-auto.d-flex.justify-content-center
-    %button.btn.btn-primary.mb-2{:type => "submit"} Submit
-  .container
+
+    -# - @comment.each do |comment|
+    -#   = comment.name
+  = render "comments/form"
+    
+  
