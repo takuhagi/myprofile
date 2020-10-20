@@ -23,11 +23,11 @@
     = link_to users_path(id: user.id) do
       = user.nickname
 
--# -# ログイン中のユーザーのプロフィールがない場合は登録画面へ、プロフィールのuser_idがログイン中のユーザーのidと一致する場合は編集画面へ
--# - if current_user.profile.nil?
--#   = link_to "プロフィール登録", new_profile_path
--# - elsif current_user.profile.user_id == current_user.id
--#   = link_to "プロフィール編集", edit_profile_path(current_user.profile.id)
+-# ログイン中のユーザーのプロフィールがない場合は登録画面へ、プロフィールのuser_idがログイン中のユーザーのidと一致する場合は編集画面へ
+- if current_user.profile.nil?
+  = link_to "プロフィール登録", new_profile_path
+- elsif current_user.profile.user_id == current_user.id
+  = link_to "プロフィール編集", edit_profile_path(current_user.profile.id)
 
 
 = link_to "ログアウト",destroy_user_session_path, method: :delete #ログアウト 仮置き

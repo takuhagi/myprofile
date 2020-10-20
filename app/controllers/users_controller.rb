@@ -9,8 +9,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @profile = @user.profile
-    # タグ全部取ってきます
-    @tag_list = Tag.all
+    # 該当ユーザーのタグ名をpluckメソッドを使ってtag_nameカラムで取得。
+    @tags = @profile.tags.pluck(:tag_name)
+    @tag = Tag.find(params[:id])
   end
   
   
