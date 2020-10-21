@@ -7,7 +7,9 @@ class ProfilesController < ApplicationController
 
   def new
     @profile = Profile.new
+    @profile.images.new
   end
+
   def create
     @profile = Profile.new(profile_params)
     @profile[:color] = "background: rgb(255, 255, 255)"  #デフォルト背景色
@@ -89,8 +91,9 @@ class ProfilesController < ApplicationController
       :catch_copy,           # キャッチコピー
       :avatar_title,         # アバター写真のタイトル
       :avatar_catch_copy,    # アバター写真のキャッチコピー
-      :avatar_about          # アバター写真の説明文
+      :avatar_about,         # アバター写真の説明文
 
+      images_attributes: [:src]
     ).merge(user_id: current_user.id)
   end
   
