@@ -126,9 +126,18 @@
 
     .form-group
       = f.label "複数枚画像投稿"
-      = f.fields_for :item_images do |i|
-        = i.file_field :src, type: 'file', name: "item[item_images_attributes][][src]", value:""
-
+      #image-box
+        = f.fields_for :images do |i|
+          .input-group
+            .js-file_group.custom-file( data-index = "#{i.index}" )
+              = i.file_field :src, class: 'js-file custom-file-input', id:"inputFile"
+              %label.custom-file-label{ for: "inputFile" }( data-browse="参照" )
+                ファイルを選択
+            .input-group-append
+              %button.btn.btn-outline-secondary.input-group-text.js-remove(type="button")
+                削除
+              -# .js-remove.btn.btn-secondary
+              -#   削除
 
 
     -# ↓送信OK
