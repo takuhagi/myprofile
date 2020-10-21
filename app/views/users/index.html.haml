@@ -11,6 +11,9 @@
     - elsif current_user.profile.user_id == current_user.id
       .p-3.bd-highlight.m-auto.edit_profile_page
         = link_to "プロフィール編集", edit_profile_path(current_user.profile.id)
+    -# 検索画面へのリンク
+    .p-3.bd-highlight.m-auto.search
+      = link_to "ユーザー検索",search_users_path
     .p-3.bd-highlight.m-auto.log_out
       = link_to "ログアウト",destroy_user_session_path, method: :delete
     - if current_user.id == @user.id 
