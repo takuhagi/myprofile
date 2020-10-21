@@ -63,12 +63,12 @@ ActiveRecord::Schema.define(version: 2020_10_21_072412) do
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "profile_id"
     t.string "src"
     t.string "title"
     t.text "caption"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "profile_id"
     t.index ["profile_id"], name: "index_images_on_profile_id"
   end
 
@@ -151,7 +151,6 @@ ActiveRecord::Schema.define(version: 2020_10_21_072412) do
   add_foreign_key "follows", "users"
   add_foreign_key "genre_profiles", "genres"
   add_foreign_key "genre_profiles", "profiles"
-  add_foreign_key "images", "users", column: "profile_id"
   add_foreign_key "profile_tags", "profiles"
   add_foreign_key "profile_tags", "tags"
   add_foreign_key "profiles", "users"

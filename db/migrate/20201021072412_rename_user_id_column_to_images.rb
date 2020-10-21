@@ -1,5 +1,6 @@
 class RenameUserIdColumnToImages < ActiveRecord::Migration[6.0]
   def change
-    rename_column :images, :user_id, :profile_id
+    add_reference :images, :profile, index: true
+    remove_column :images, :user_id, :string
   end
 end

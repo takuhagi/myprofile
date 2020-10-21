@@ -15,6 +15,7 @@ class ProfilesController < ApplicationController
     @profile[:color] = "background: rgb(255, 255, 255)"  #デフォルト背景色
     # profilesテーブルのタグを抽出してカンマ区切りする
     tag_list = params[:profile][:tag_ids].split(',')
+    @profile.pv_count = 0
     if @profile.save
       @profile.save_tags(tag_list)
       # flash[:success] = "Profile successfully created"

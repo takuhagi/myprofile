@@ -125,12 +125,12 @@
 
 
     .form-group
-      = f.label "複数枚画像投稿"
+      = f.label "複数枚画像投稿（同時に5枚までアップロードできます）"
       #image-box
         = f.fields_for :images do |i|
           .input-group
             .js-file_group.custom-file( data-index = "#{i.index}" )
-              = i.file_field :src, class: 'js-file custom-file-input', id:"inputFile"
+              = i.file_field :src, class: 'js-file custom-file-input' #, id:"inputFile "
               %label.custom-file-label{ for: "inputFile" }( data-browse="参照" )
                 ファイルを選択
             .input-group-append
