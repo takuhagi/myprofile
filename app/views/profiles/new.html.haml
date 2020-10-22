@@ -122,5 +122,23 @@
     .form-group
       = f.label "タグ（複数つける場合は半角カンマで区切ってください）"
       = f.text_field :tag_ids, class: "form-control", id: "tag_ids", data: {role: "tagsinput"} 
+
+
+    .form-group
+      = f.label "複数枚画像投稿（同時に5枚までアップロードできます）"
+      #image-box
+        = f.fields_for :images do |i|
+          .input-group
+            .js-file_group.custom-file( data-index = "#{i.index}" )
+              = i.file_field :src, class: 'js-file custom-file-input' #, id:"inputFile "
+              %label.custom-file-label{ for: "inputFile" }( data-browse="参照" )
+                ファイルを選択
+            .input-group-append
+              %button.btn.btn-outline-secondary.input-group-text.js-remove(type="button")
+                削除
+              -# .js-remove.btn.btn-secondary
+              -#   削除
+
+
     -# ↓送信OK
     = f.submit class: "btn btn-primary"
