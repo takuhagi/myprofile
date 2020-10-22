@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       # searchアクションへのパス
       get 'search'
     end
+    resources :comments, only: [:create, :show, :update]
   end
   resources :profiles
   
