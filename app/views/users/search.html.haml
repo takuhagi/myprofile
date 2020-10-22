@@ -1,0 +1,45 @@
+.jumbotron.jumbotron-fluid.p-4
+  .container
+    -# トップへ戻るボタン
+    .col.text-right
+      = link_to root_path  do
+        TOP
+      
+    -# ニックネーム、キャッチコピー、紹介文が表示されるようにしています
+    %h1.display-4
+      ユーザー検索画面
+    -# %p.lead
+    -#   #{@profile.catch_copy}
+    -# -# つけたタグが表示されます。配列で取得したタグをspanでひとつずつ分けて表示。
+    -# %div
+    -#   - @tags.each do |tag|
+    -#     %span.show_tag
+    -#       = tag
+    
+
+    %hr.my-4
+    %p
+      検索窓をここに作る感じで
+    = search_form_for(@user_search, url: search_users_path) do |f|
+      .form-group
+        = f.label :nickname, "キーワード"
+        = f.text_field :nickname_cont, class: "form-control"
+      .form-group.mt-4.mb-4
+        = f.submit "検索", class: "btn btn-primary"
+.container
+  .row
+    - @users.each do |user|
+      %div.col-4.col-sm-2
+        = image_tag user.profile.avatar.url, size: '100x100', style: 'object-fit: cover'
+      %div.col-8.col-sm-10{style: "cursor:pointer;"}
+        = link_to user_path(user.id), style:"text-decoration:none" do
+          
+          %div.ml-2.h4
+            = user.nickname
+          %div.ml-2
+            = user.profile.catch_copy
+      %div.col-xs-12.col-sm-12.mt-2
+        - user.profile.tags.pluck(:tag_name).each do |tag|
+          %span.show_tag
+            = tag
+      %hr.my-4{style: "width:97%; height:1px; background-color:#fefefe;"}/
