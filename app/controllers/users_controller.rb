@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     @re_array1 = @re_array.flatten
     @re_array2 = @re_array1.uniq
     # binding.pry
-    
+    @images = @profile.images
   end
 
   def show

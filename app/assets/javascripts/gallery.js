@@ -32,7 +32,7 @@ $(function(){
   $('#image-box').on('change', '.js-file', function(e) {
     $(document).ready(function(){
       let SelectedImg = $('.input-group').length
-      if (SelectedImg < 5){
+      if (SelectedImg <= 9){
         $('#image-box').append(buildFileField(fileIndex[0]));
         fileIndex.shift();
         // 末尾の数に1足した数を追加する
