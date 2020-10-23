@@ -60,9 +60,19 @@
             %img.mobile_message{:height => "auto", :src => "message.png"}
         %li.nav_menu_li.mt-1
           = link_to "TOP",root_path
-        %li.nav_menu_li.ml-3.mr-2.mt-1
+        -# ログイン中のユーザーのプロフィールがない場合は登録画面へ、プロフィールのuser_idがログイン中のユーザーのidと一致する場合は編集画面へ
+        - if current_user.profile.nil?
+          %li.nav_menu_li.mt-1.ml-2
+            = link_to "プロフィール登録", new_profile_path
+        - elsif current_user.profile.user_id == current_user.id
+          %li.nav_menu_li.mt-1.ml-2
+            = link_to "プロフィール編集", edit_profile_path(current_user.profile.id)
+        -# 検索画面へのリンク
+        %li.nav_menu_li.mt-1.ml-2
+          = link_to "ユーザー検索",search_users_path
+        %li.nav_menu_li.ml-2.mt-1
           = link_to "ログアウト",destroy_user_session_path, method: :delete
-        %li.nav_menu_li.ml-2.mobile_color
+        %li.nav_menu_li.mt-1.ml-2.mr-2.mobile_color
           - if current_user.id == @user.id 
             %a{"data-target" => "#exampleModalLong", "data-toggle" => "modal", :type => "button"} color
     .mt-2.mobile_profile.shadow-sm
@@ -147,7 +157,6 @@
                       .modal-footer
                         %button.btn.btn-secondary{"data-dismiss" => "modal", type: "button"} Close
                         = f.submit "Send", class: "btn btn-primary"
-
         .comment_content
           = comment.comment
           
