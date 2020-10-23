@@ -1,7 +1,7 @@
-.PhotoGallery
+#PhotoGallery
   .PhotoGallery__title
     %h1 Photo Gallery
   %ul.PhotoGallery__list
     - @images.each do |img|
-      %li.item
-        = image_tag img.src.url 
+      %li.picture-box
+        = image_tag img.src.url, class: 'picture'

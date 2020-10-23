@@ -3,7 +3,6 @@ class ProfilesController < ApplicationController
   def index
     @profiles = Profile.all
     @user = User.all
-    @images = Image.all
   end
 
   def new
