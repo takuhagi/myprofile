@@ -191,10 +191,50 @@
 
 .comment_field {
   width: 70%;
-  height: 400px;
+  height: 700px;
   margin: 30px auto 0;
   background-color: white;
+  overflow: scroll;
+  word-wrap: break-word;
+}
+.comment_info {
+  display: flex;
+  
+  padding: 20px 0 0 20px;
+  .comment_name {
+    padding-right: 20px;
+    font-size: 20px;
+    line-height: 25px;
+  }
+  .comment_date {
+    font-size: 15px;
+    
+  }
+  .reply_btn {
+    margin-left: 20px;
+    height: 30px;
+    line-height: 10px;
+  }
+  
+}
+.comment_content {
+  font-size: 20px;
+  padding: 10px 20px 0 20px;
 }
 
-
-
+.comment_reply_info {
+  display: flex;
+  padding: 20px 0 0 60px;
+  .comment_reply_name {
+    padding-right: 20px;
+    font-size: 20px;
+    line-height: 20px;
+  }
+  .comment_reply_date {
+    font-size: 15px;
+  }
+}
+.comment_reply_content {
+  font-size: 20px;
+  padding: 10px 20px 0 60px;
+}

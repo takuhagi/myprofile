@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2020_10_18_101705) do
+ActiveRecord::Schema.define(version: 2020_10_21_141823) do
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -29,6 +28,7 @@ ActiveRecord::Schema.define(version: 2020_10_18_101705) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "commenter_id"
+    t.integer "reply_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -116,12 +116,12 @@ ActiveRecord::Schema.define(version: 2020_10_18_101705) do
     t.string "twitter"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "color"
     t.string "sub_image"
     t.string "catch_copy"
     t.string "avatar_title"
     t.string "avatar_catch_copy"
     t.text "avatar_about"
-    t.string "color"
     t.integer "pv_count", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
@@ -135,6 +135,7 @@ ActiveRecord::Schema.define(version: 2020_10_18_101705) do
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "name", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -142,6 +143,7 @@ ActiveRecord::Schema.define(version: 2020_10_18_101705) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "nickname", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["name"], name: "index_users_on_name", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
