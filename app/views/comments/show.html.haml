@@ -1,4 +1,6 @@
 .comment_select.mt-5
+  新着コメントがあります
+  %br
   ※ 公開するコメントにチェックして下さい。
 .d-flex.justify-content-center.mt-5
   = form_with model: @comment,url: user_comment_path, method: "patch", class: "comment_check ",local: true do |f|

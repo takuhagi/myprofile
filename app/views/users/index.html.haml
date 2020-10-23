@@ -121,10 +121,50 @@
       %img.prof_image.mt-3{:height => "auto", :src => "#{@profile.sub_image}", :width => "40%"}
         %p.text-break.ml-5.mr-5.pt-5 
           = @profile.introduction
-  .d-flex.justify-content-center.comment_field.shadow
+  .comment_field.shadow
+    
+    - @comments.each do |comment|
+      - if comment.check == (1) && comment.reply_id.blank?
+        .comment_info
+          - user = User.find(comment.commenter_id)
+          .comment_name
+            = comment.id
+            = user.name
+          .comment_date
+            = comment.created_at.strftime("%Y-%m-%d %H:%M")
+            %button.btn.btn-outline-dark.reply_btn{"data-toggle" => "modal", "data-target" => "#exampleModalMessage","data-whatever" => "@mdo", type: "button"} 返信
+            #exampleModalMessage.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", tabindex: "-1"}
+              .modal-dialog{role: "document"}
+                .modal-content
+                  .modal-header
+                    %h5#exampleModalLabel.modal-title New message
+                    %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
+                      %span{"aria-hidden" => "true"} ×
+                  .modal-body
+                    = form_with model: @comment,url: user_comment_reply_path(user_id: (params[:id]),comment_id: comment.id), class: "form-group",local: true do |f|
+                      .form-group
+                        %label.col-form-label{for: "message-text"} 返信:
+                        = f.text_area :comment, id: "message-text", class: "form-control"
+                      .modal-footer
+                        %button.btn.btn-secondary{"data-dismiss" => "modal", type: "button"} Close
+                        = f.submit "Send", class: "btn btn-primary"
 
-    -# - @comment.each do |comment|
-    -#   = comment.name
+        .comment_content
+          = comment.comment
+          
+      - @reply_array2.first(1).each do |re|
+        - @re_array2.each do |re2|
+          - if re2.reply_id == comment.id
+            -# = binding.pry
+            .comment_reply_info
+              .comment_reply_name
+                = re2.id
+                = user.name
+              .comment_reply_date
+                = re2.created_at.strftime("%Y-%m-%d %H:%M")
+            .comment_reply_content
+              = re2.comment
+    
   = render "comments/form"
     
   
