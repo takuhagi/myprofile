@@ -32,10 +32,16 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @profile = @user.profile
+
+    # 該当ユーザーのタグ名をpluckメソッドを使ってtag_nameカラムで取得。
+    @tags = @profile.tags.pluck(:tag_name)
+    @tag = Tag.find(params[:id])
+
     @profile.pv_count += 1
     @profile.update(pv_count: @profile.pv_count)
     # タグ全部取ってきます
     @tag_list = Tag.all
+
   end
   
   
@@ -53,10 +59,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def search
+    @user_search = User.ransack(params[:q])
+    @users = @user_search.result
+    @profile_search = Profile.ransack()
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:name, :email)
+    params.require(:user).permit(:nickname, :email)
   end  
 
   

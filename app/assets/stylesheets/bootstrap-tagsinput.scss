@@ -12,7 +12,8 @@
   cursor: text;
   display: block;
   width: 100%;
-  height: calc(1.5em + .75rem + 2px);
+  // height: calc(1.5em + .75rem + 2px);
+  height: auto;
   padding: .375rem .75rem;
   font-size: 1rem;
   font-weight: 400;
