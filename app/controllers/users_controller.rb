@@ -43,12 +43,12 @@ class UsersController < ApplicationController
     if params[:q].present?
       # 検索フォームからアクセスした時の処理
       @user_search = User.ransack(search_params)
-      @users = @user_search.result
+      @users = @user_search.result.includes(:profile)
     else
       # 検索フォーム外からアクセスした時の処理
       params[:q] = { sorts: 'id desc' }
       @user_search = User.ransack()
-      @users = User.all
+      @users = User.all.includes(:profile)
     end
     # @user_search = User.ransack(params[:q])
     # @users = @user_search.result
