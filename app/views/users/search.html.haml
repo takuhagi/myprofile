@@ -18,12 +18,21 @@
     
 
     %hr.my-4
-    %p
-      検索窓をここに作る感じで
-    = search_form_for(@user_search, url: search_users_path) do |f|
+    -# %p
+      -# 検索結果が下に表示されます
+    = search_form_for(@user_search, url: search_users_path, html: {method: :post}) do |f|
       .form-group
-        = f.label :nickname, "キーワード"
-        = f.text_field :nickname_cont, class: "form-control"
+        -# 並び替え
+        = f.select( :sorts, { '並び替え': 'id desc', 'ニックネーム順': 'nickname asc', 'ニックネーム逆順': 'nickname desc', '更新の古い順': 'updated_at asc', '更新の新しい順': 'updated_at desc' } , { selected: params[:q][:sorts] }, { onchange: 'this.form.submit()', class: 'form-control'} ) 
+      .form-group
+        = f.label :nickname_or_profile_first_name_or_profile_family_name_or_profile_first_name_kana_or_profile_family_name_kana, "ニックネーム・名字・名前で検索"
+        = f.text_field :nickname_or_profile_first_name_or_profile_family_name_or_profile_first_name_kana_or_profile_family_name_kana_cont, class: "form-control"
+      .form-group
+        = f.label :profile_primary_school_or_profile_Junior_high_school_or_profile_high_school_or_profile_vocational_school_or_profile_university_or_profile_graduate_school_or_profile_other_school, "学校で検索"
+        = f.text_field :profile_primary_school_or_profile_Junior_high_school_or_profile_high_school_or_profile_vocational_school_or_profile_university_or_profile_graduate_school_or_profile_other_school_cont, class: "form-control"
+      .form-group
+        = f.label :profile_first_career_or_profile_second_career_or_profile_third_career_or_profile_fourth_career_or_profile_last_career, "仕事で検索"
+        = f.text_field :profile_first_career_or_profile_second_career_or_profile_third_career_or_profile_fourth_career_or_profile_last_career_cont, class: "form-control"
       .form-group.mt-4.mb-4
         = f.submit "検索", class: "btn btn-primary"
 .container

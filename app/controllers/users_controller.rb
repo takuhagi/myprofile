@@ -40,9 +40,19 @@ class UsersController < ApplicationController
   end
 
   def search
-    @user_search = User.ransack(params[:q])
-    @users = @user_search.result
-    @profile_search = Profile.ransack()
+    if params[:q].present?
+      # 検索フォームからアクセスした時の処理
+      @user_search = User.ransack(search_params)
+      @users = @user_search.result
+    else
+      # 検索フォーム外からアクセスした時の処理
+      params[:q] = { sorts: 'id desc' }
+      @user_search = User.ransack()
+      @users = User.all
+    end
+    # @user_search = User.ransack(params[:q])
+    # @users = @user_search.result
+    # @profile_search = Profile.ransack()
   end
 
   private
@@ -51,6 +61,9 @@ class UsersController < ApplicationController
     params.require(:user).permit(:nickname, :email)
   end  
 
+  def search_params
+    params.require(:q).permit(:sorts)
+  end
   
 
 end
