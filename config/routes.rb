@@ -15,7 +15,9 @@ Rails.application.routes.draw do
       post 'reply'
     end
   end
-  resources :profiles
+  resources :profiles do
+    patch 'color'
+  end
   
 
 

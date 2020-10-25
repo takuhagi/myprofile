@@ -51,6 +51,16 @@ class ProfilesController < ApplicationController
 
   end
 
+  def color
+    @profile = Profile.find(params[:profile_id])
+    if @profile.update(profile_params)
+      redirect_to users_path(id: current_user.id)
+    else
+      render "profiles/edit"
+    end
+
+  end
+
   private
 
 

@@ -7,11 +7,23 @@
   .title {
     font-size: 50px;
   }
-  img.message {
-    margin: 30px 10px 0 0;
+  .notice {
+    margin: auto 10px;
+    position: relative;
   }
+  
   img.mobile_message {
     display: none;
+  }
+  .notice_count {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    text-align: center;
+    background-color: red;
+    color: white;
+    width: 20px;
+    border-radius: 10px;
   }
   .nav_menu_li {
     display: none;
@@ -76,6 +88,26 @@
     margin-top: 7px;
     overflow-x: scroll;
     white-space: nowrap;
+  }
+  .notice {
+    display: none;
+  }
+  .notice_count {
+    display: none;
+  }
+  .mobile_notice {
+    margin: auto 10px;
+    position: relative;
+  }
+  .mobile_notice_count {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    text-align: center;
+    background-color: red;
+    color: white;
+    width: 20px;
+    border-radius: 10px;
   }
   img.message {
     display: none;
@@ -164,7 +196,7 @@
     text-align: center;
     position: absolute;
     right: 0;
-    top: 100px;
+    top: 110px;
     opacity: 0;
     animation: slideOut .5s;
     visibility: hidden;
