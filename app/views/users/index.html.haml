@@ -2,11 +2,12 @@
   .d-flex.bd-highlight.bg-light.header
     .p-2.pl-5.flex-grow-1.bd-highlight.title 
       %img{:height => "auto", :src => "logo.png"}
-    .p-3.bd-highlight.m-auto
-    
-    - if current_user.id == @user.id && @check.present?
-      = link_to user_comment_path(current_user.id,@user.id) do
-        %img.message{:height => "auto", :src => "message.png"}
+    .notice
+      - if current_user.id == @user.id && @check.present?
+        = link_to user_comment_path(current_user.id,@user.id) do
+          %img.message{:height => "auto", :src => "info.png"}
+          .notice_count
+            = @check.length
     .p-3.bd-highlight.m-auto.top_page
       = link_to "TOP",root_path
     -# ログイン中のユーザーのプロフィールがない場合は登録画面へ、プロフィールのuser_idがログイン中のユーザーのidと一致する場合は編集画面へ
@@ -31,7 +32,7 @@
               %h5#exampleModalLongTitle.modal-title Select Color 
               %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
                 %span{"aria-hidden" => "true"} ×
-            = form_with model: @profile, class: "modal-body" do |f|
+            = form_with model: @profile, url: profile_color_path(profile_id: current_user.id), class: "modal-body", local: true do |f|
               #app{":style" => "bindStyle"}
                 %p
                   %span.text-white.mt-1.ml-1 赤：
@@ -55,9 +56,12 @@
     %nav.nav
       %ul.nav_menu_ul.d-flex
         %li.nav_menu_li
-        - if current_user.id == @user.id && @check.present?
-          = link_to user_comment_path(current_user.id,@user.id) do
-            %img.mobile_message{:height => "auto", :src => "message.png"}
+          .mobile_notice
+            - if current_user.id == @user.id && @check.present?
+              = link_to user_comment_path(current_user.id,@user.id) do
+                %img.mobile_message{:height => "auto", :src => "info.png"}
+                .mobile_notice_count
+                  = @check.length
         %li.nav_menu_li.mt-1
           = link_to "TOP",root_path
         -# ログイン中のユーザーのプロフィールがない場合は登録画面へ、プロフィールのuser_idがログイン中のユーザーのidと一致する場合は編集画面へ
