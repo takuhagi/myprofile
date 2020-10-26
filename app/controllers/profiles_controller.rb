@@ -56,7 +56,7 @@ class ProfilesController < ApplicationController
     if @profile.update(profile_params)
       redirect_to users_path(id: current_user.id)
     else
-      render "profiles/edit"
+      render root_path
     end
 
   end

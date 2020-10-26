@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
     if 
       @comments.update(check_params) #1いれる
       
-      redirect_to root_path
+      redirect_to users_path(id: current_user.id)
     else
       render root_path
     end
@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     
     if @comment.save
-      redirect_to root_path
+      redirect_back(fallback_location: users_path)
     else
       render root_path
     end
@@ -46,7 +46,7 @@ class CommentsController < ApplicationController
     
     
     if @comment.save
-      redirect_to root_path
+      redirect_back(fallback_location: users_path)
     else
       render root_path
     end
