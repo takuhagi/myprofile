@@ -1,32 +1,34 @@
-.Header
-  .Header__title
-    %h1 MyProfile
-    %h5 
-    = link_to "トップページに戻る", :back, class: 'Button'
+.container.align-items-center.text-center.mt-5.mb-5
+  
+  .Header
+    .Header__title
+      %h1 MyProfile
+      %h5 
+      = link_to "トップページに戻る", :back, class: 'Button'
 
 
-.AccountPage
-  .AccountPage__title
-    %h2 Log in
-    %h5 登録しているユーザーでログイン
-    = render "devise/shared/links"
-  .AccountPage__form
-    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      .FormField
-        .FormField__label--normal
-          = f.label :email
-        .FormField__input--normal
-          = f.email_field :email, autofocus: true
-        .FormField
-          .FormField__label--normal
-            = f.label :password
-            %i (英数字8文字以上)
-          .FormField__input--normal
-            = f.password_field :password, autocomplete: "off"
-        .actions
-          = f.submit "Log in", class: 'Button UserButton'
+  .AccountPage.text-center.mt-3.mb-3
+    .AccountPage__title.mt-3.mb-3
+      %h2 Log in
+      %h5 登録しているユーザーでログイン
+      = render "devise/shared/links"
+    .AccountPage__form.mt-3.mb-3
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .FormField.mt-3.mb-3
+          .FormField__label--normal.mt-3.mb-3
+            = f.label :email
+          .FormField__input--normal.mt-3.mb-3
+            = f.email_field :email, autofocus: true
+          .FormField.mt-5.mb-5
+            .FormField__label--normal.mt-3.mb-3
+              = f.label :password
+              %i (英数字8文字以上)
+            .FormField__input--normal.mt-3.mb-3
+              = f.password_field :password, autocomplete: "off"
+          .actions.mt-3.mb-3
+            = f.submit "Log in", class: 'Button UserButton'
 
-.Footer
-  .Copyright
-    Copyright © 2020 MyProfile, All Rights Reserved.
+  .Footer.mt-3.mb-3
+    .Copyright
+      %h4  Copyright © 2020 MyProfile, All Rights Reserved.
  
