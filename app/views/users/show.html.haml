@@ -10,6 +10,13 @@
       #{@user.nickname}
     %p.lead
       #{@profile.catch_copy}
+    -# つけたタグが表示されます。配列で取得したタグをspanでひとつずつ分けて表示。
+    %div
+      - @tags.each do |tag|
+        %span.show_tag
+          = tag
+    
+
     %hr.my-4
     %p
       #{@profile.introduction}

@@ -55,7 +55,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'jquery-rails'
 
-
+gem 'jquery-ui-rails'
 
 gem 'pry-rails'
 
@@ -70,3 +70,8 @@ gem 'rails-i18n'
 gem 'carrierwave'
 
 gem 'mini_magick'
+
+gem 'ransack'
+
+gem 'rqrcode'
+gem 'chunky_png'

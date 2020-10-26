@@ -6,8 +6,18 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  resources :users
-  resources :profiles
+  resources :users do
+    collection do
+      # searchアクションへのパス
+      get 'search'
+    end
+    resources :comments, only: [:create, :show, :update] do
+      post 'reply'
+    end
+  end
+  resources :profiles do
+    patch 'color'
+  end
   
 
 

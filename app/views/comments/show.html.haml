@@ -1,0 +1,19 @@
+.comment_select.mt-5
+  新着コメントがあります
+  %br
+  ※ 公開するコメントにチェックして下さい。
+.d-flex.justify-content-center.mt-5
+  = form_with model: @comment,url: user_comment_path, method: "patch", class: "comment_check ",local: true do |f|
+    %label{for: "all"}
+    %input#all{name: "allChecked", type: "checkbox"}>/
+    全選択
+    .boxes.d-flex.flex-column.bd-highlight.mb-3.mt-3
+      - @check.each do |comment|
+        
+      - if current_user.id == comment.user_id
+        .checked_comment
+          = f.check_box :check_ids, { multiple: true, checked: comment[:checked], disabled: comment[:disabled]}, comment[:id]
+            = comment.comment
+      .d-flex.justify-content-center.mt-5
+        = f.submit class: "btn btn-primary mt-3 release_btn", value: "公開"
+

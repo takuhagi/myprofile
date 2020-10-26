@@ -2,8 +2,24 @@
   .d-flex.bd-highlight.bg-light.header
     .p-2.pl-5.flex-grow-1.bd-highlight.title 
       %img{:height => "auto", :src => "logo.png"}
+    .notice
+      - if current_user.id == @user.id && @check.present?
+        = link_to user_comment_path(current_user.id,@user.id) do
+          %img.message{:height => "auto", :src => "info.png"}
+          .notice_count
+            = @check.length
     .p-3.bd-highlight.m-auto.top_page
       = link_to "TOP",root_path
+    -# ログイン中のユーザーのプロフィールがない場合は登録画面へ、プロフィールのuser_idがログイン中のユーザーのidと一致する場合は編集画面へ
+    - if current_user.profile.nil?
+      .p-3.bd-highlight.m-auto.new_profile_page
+        = link_to "プロフィール登録", new_profile_path
+    - elsif current_user.profile.user_id == current_user.id
+      .p-3.bd-highlight.m-auto.edit_profile_page
+        = link_to "プロフィール編集", edit_profile_path(current_user.profile.id)
+    -# 検索画面へのリンク
+    .p-3.bd-highlight.m-auto.search
+      = link_to "ユーザー検索",search_users_path
     .p-3.bd-highlight.m-auto.log_out
       = link_to "ログアウト",destroy_user_session_path, method: :delete
     - if current_user.id == @user.id 
@@ -16,7 +32,7 @@
               %h5#exampleModalLongTitle.modal-title Select Color 
               %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
                 %span{"aria-hidden" => "true"} ×
-            = form_with(model: @profile, class: "modal-body") do |f|
+            = form_with model: @profile, url: profile_color_path(profile_id: current_user.id), class: "modal-body", local: true do |f|
               #app{":style" => "bindStyle"}
                 %p
                   %span.text-white.mt-1.ml-1 赤：
@@ -32,7 +48,13 @@
                 .modal-footer
                   %button.btn.btn-secondary{"data-dismiss" => "modal", type: "button"} Close
                   
-                  = f.submit class: "btn btn-primary" 
+                  = f.submit class: "btn btn-primary"
+      - url = request.url
+      .p-3.bd-highlight.m-auto.qr_code
+        = link_to "#qr_img", class:"modaal" do
+          QRコード
+        .modal-hidden(id = "qr_img")
+          = image_tag qrcode_tag "#{url}"
     %span.nav_toggle
       %i
       %i
@@ -40,9 +62,34 @@
     %nav.nav
       %ul.nav_menu_ul.d-flex
         %li.nav_menu_li
+          .mobile_notice
+            - if current_user.id == @user.id && @check.present?
+              = link_to user_comment_path(current_user.id,@user.id) do
+                %img.mobile_message{:height => "auto", :src => "info.png"}
+                .mobile_notice_count
+                  = @check.length
+        %li.nav_menu_li.mt-1
           = link_to "TOP",root_path
-        %li.nav_menu_li.ml-3.mr-2
+        -# ログイン中のユーザーのプロフィールがない場合は登録画面へ、プロフィールのuser_idがログイン中のユーザーのidと一致する場合は編集画面へ
+        - if current_user.profile.nil?
+          %li.nav_menu_li.mt-1.ml-2
+            = link_to "プロフィール登録", new_profile_path
+        - elsif current_user.profile.user_id == current_user.id
+          %li.nav_menu_li.mt-1.ml-2
+            = link_to "プロフィール編集", edit_profile_path(current_user.profile.id)
+        -# 検索画面へのリンク
+        %li.nav_menu_li.mt-1.ml-2
+          = link_to "ユーザー検索",search_users_path
+        %li.nav_menu_li.ml-2.mt-1
           = link_to "ログアウト",destroy_user_session_path, method: :delete
+        %li.nav_menu_li.mt-1.ml-2.mr-2.mobile_color
+          - if current_user.id == @user.id 
+            %a{"data-target" => "#exampleModalLong", "data-toggle" => "modal", :type => "button"} color
+
+        - url = request.url
+        %li.nav_menu_li.mt-1.ml-2.mr-2.mobile_qr
+          = link_to "#qr_img", class:"modaal" do
+            QRコード
     .mt-2.mobile_profile.shadow-sm
       .d-flex.justify-content-center.mt-2
         %button.btn.btn-primary.mobile_btn{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
@@ -73,7 +120,7 @@
         %p.text-break.ml-5.mr-5.pt-5.mobile_text 
           = @profile.introduction
   .image_box.mt-5.d-flex.justify-content-center
-    %img.top_image{:height => "auto", :src => "#{@profile.image}", :width => "80%"}
+    %img.top_image{:src => "#{@profile.image}", :width => "80%"}
     
   .d-flex.justify-content-center
     .mt-5.text_area.shadow-sm
@@ -99,12 +146,46 @@
       %img.prof_image.mt-3{:height => "auto", :src => "#{@profile.sub_image}", :width => "40%"}
         %p.text-break.ml-5.mr-5.pt-5 
           = @profile.introduction
-  .d-flex.justify-content-center.comment_field.shadow
-  %form.was-validated
-    .form-group
-      %label{:for => "exampleFormControlTextarea1"}
-      = succeed "" do
-        %textarea#exampleFormControlTextarea1.form-control.form-control-lg.col-sm-10.m-auto{:placeholder => "コメント"}
-  .col-auto.d-flex.justify-content-center
-    %button.btn.btn-primary.mb-2{:type => "submit"} Submit
-  .container
+  .comment_field
+    
+    - @comments.each do |comment|
+      - if comment.check == (1) && comment.reply_id.blank?
+        .comment_info
+          - user = User.find(comment.commenter_id)
+          .comment_name
+            = user.name
+          .comment_date
+            = comment.created_at.strftime("%Y-%m-%d %H:%M")
+        .comment_content
+          = comment.comment
+        %button.btn.btn-outline-dark.reply_btn{"data-toggle" => "modal", "data-target" => "#exampleModalMessage#{comment.id}", type: "button"} 返信
+        .modal.fade{id: "exampleModalMessage#{comment.id}", "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", tabindex: "-1"}
+          .modal-dialog{role: "document"}
+            .modal-content
+              .modal-header
+                %h5#exampleModalLabel.modal-title New message
+                %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
+                  %span{"aria-hidden" => "true"} ×
+              .modal-body
+                = form_with model: @comment,url: user_comment_reply_path(user_id: (params[:id]),comment_id: comment.id), class: "form-group",local: true do |f|
+                  .form-group
+                    %label.col-form-label{for: "message-text"} 返信:
+                    = f.text_area :comment, id: "message-text", class: "form-control"
+                  .modal-footer
+                    %button.btn.btn-secondary{"data-dismiss" => "modal", type: "button"} Close
+                    = f.submit "Send", class: "btn btn-primary"
+          
+      - @reply_array2.first(1).each do |re|
+        - @re_array2.each do |re2|
+          - if re2.reply_id == comment.id
+            .comment_reply_info
+              .comment_reply_name
+                = user.name
+              .comment_reply_date
+                = re2.created_at.strftime("%Y-%m-%d %H:%M")
+            .comment_reply_content
+              = re2.comment
+    
+  = render "comments/form"
+    
+  = render "photogallery"

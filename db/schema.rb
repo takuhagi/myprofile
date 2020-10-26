@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_11_124509) do
+ActiveRecord::Schema.define(version: 2020_10_21_141823) do
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 2020_10_11_124509) do
     t.integer "check"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "commenter_id"
+    t.integer "reply_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -63,13 +65,13 @@ ActiveRecord::Schema.define(version: 2020_10_11_124509) do
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
     t.string "src"
     t.string "title"
     t.text "caption"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_images_on_user_id"
+    t.bigint "profile_id"
+    t.index ["profile_id"], name: "index_images_on_profile_id"
   end
 
   create_table "profile_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -120,6 +122,7 @@ ActiveRecord::Schema.define(version: 2020_10_11_124509) do
     t.string "avatar_title"
     t.string "avatar_catch_copy"
     t.text "avatar_about"
+    t.integer "pv_count", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
@@ -150,7 +153,6 @@ ActiveRecord::Schema.define(version: 2020_10_11_124509) do
   add_foreign_key "follows", "users"
   add_foreign_key "genre_profiles", "genres"
   add_foreign_key "genre_profiles", "profiles"
-  add_foreign_key "images", "users"
   add_foreign_key "profile_tags", "profiles"
   add_foreign_key "profile_tags", "tags"
   add_foreign_key "profiles", "users"
