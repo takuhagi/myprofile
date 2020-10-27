@@ -33,6 +33,15 @@
       .form-group
         = f.label :profile_first_career_or_profile_second_career_or_profile_third_career_or_profile_fourth_career_or_profile_last_career, "仕事で検索"
         = f.text_field :profile_first_career_or_profile_second_career_or_profile_third_career_or_profile_fourth_career_or_profile_last_career_cont, class: "form-control"
+      .form-group
+        = f.label :profile_tags_id_eq_any, "タグで検索（複数チェック可）"
+        %br/
+        -# = f.text_field :profile_tags_tag_name_cont, class: "form-control"
+        -# タグ検索
+        - Tag.all.each do |tag|
+          = f.check_box :profile_tags_id_eq_any, {multiple: true, checked: tag[:checked], disabled: tag[:disabled], include_hidden: false}, tag[:id]
+          %span.show_tag{style: "vertical-align: text-top"}
+            = tag.tag_name
       .form-group.mt-4.mb-4
         = f.submit "検索", class: "btn btn-primary"
 .container
