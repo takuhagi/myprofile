@@ -60,9 +60,17 @@ class UsersController < ApplicationController
   end
 
   def search
-    @user_search = User.ransack(params[:q])
-    @users = @user_search.result
-    @profile_search = Profile.ransack()
+    if params[:q].present?
+      # 検索フォームからアクセスした時の処理
+      @user_search = User.ransack(search_params)
+      @users = @user_search.result(distinct: true).includes(:profile)
+    else
+      # 検索フォーム外からアクセスした時の処理
+      params[:q] = { sorts: 'id desc' }
+      @user_search = User.ransack()
+      @users = User.all.includes(:profile)
+    end
+
   end
 
   def vr
@@ -77,6 +85,9 @@ class UsersController < ApplicationController
     params.require(:user).permit(:nickname, :email)
   end  
 
+  def search_params
+    params.require(:q).permit(:sorts, :nickname_or_profile_first_name_or_profile_family_name_or_profile_first_name_kana_or_profile_family_name_kana_cont, :profile_primary_school_or_profile_Junior_high_school_or_profile_high_school_or_profile_vocational_school_or_profile_university_or_profile_graduate_school_or_profile_other_school_cont, :profile_first_career_or_profile_second_career_or_profile_third_career_or_profile_fourth_career_or_profile_last_career_cont, :profile_tags_tag_name_cont, profile_tags_id_eq_any:[], tag_ids:[])
+  end
   
 
 end

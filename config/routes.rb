@@ -9,8 +9,12 @@ Rails.application.routes.draw do
   resources :users do
     collection do
       # searchアクションへのパス
-      get 'search'
+
+      # 検索フォーム以外からのアクセスはGETになるため、GETでもPOSTでも表示できるようにルーティングを設定
+      match 'search' => 'users#search', via: [:get, :post], as: :search
+
       get 'vr'
+
     end
     resources :comments, only: [:create, :show, :update] do
       post 'reply'
