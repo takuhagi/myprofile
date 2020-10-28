@@ -65,6 +65,12 @@ class UsersController < ApplicationController
     @profile_search = Profile.ransack()
   end
 
+  def vr
+    @user = User.find(params[:user_id])
+    @profile = @user.profile
+    @images = @profile.images
+  end
+
   private
 
   def user_params
