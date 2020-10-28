@@ -120,8 +120,10 @@
         %p.text-break.ml-5.mr-5.pt-5.mobile_text 
           = @profile.introduction
   .image_box.mt-5.d-flex.justify-content-center
+    -# vr用の仮リンク
+    -# = link_to vr_users_path(user_id: params[:id]) do
     %img.top_image{:src => "#{@profile.image}", :width => "80%"}
-    
+      
   .d-flex.justify-content-center
     .mt-5.text_area.shadow-sm
       %p.text-break.ml-5.mr-5.pt-5 mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm

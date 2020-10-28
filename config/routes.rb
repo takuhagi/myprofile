@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     collection do
       # searchアクションへのパス
       get 'search'
+      get 'vr'
     end
     resources :comments, only: [:create, :show, :update] do
       post 'reply'
