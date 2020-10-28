@@ -7,12 +7,15 @@ class ProfilesController < ApplicationController
 
   def new
     @profile = Profile.new
+    @profile.images.new
   end
+
   def create
     @profile = Profile.new(profile_params)
     @profile[:color] = "background: rgb(255, 255, 255)"  #デフォルト背景色
     # profilesテーブルのタグを抽出してカンマ区切りする
     tag_list = params[:profile][:tag_ids].split(',')
+    @profile.pv_count = 0
     if @profile.save
       @profile.save_tags(tag_list)
       # flash[:success] = "Profile successfully created"
@@ -44,6 +47,16 @@ class ProfilesController < ApplicationController
       redirect_to root_path
     else
       render "profiles/edit"
+    end
+
+  end
+
+  def color
+    @profile = Profile.find(params[:profile_id])
+    if @profile.update(profile_params)
+      redirect_to users_path(id: current_user.id)
+    else
+      render root_path
     end
 
   end
@@ -89,8 +102,9 @@ class ProfilesController < ApplicationController
       :catch_copy,           # キャッチコピー
       :avatar_title,         # アバター写真のタイトル
       :avatar_catch_copy,    # アバター写真のキャッチコピー
-      :avatar_about          # アバター写真の説明文
+      :avatar_about,         # アバター写真の説明文
 
+      images_attributes: [:src]
     ).merge(user_id: current_user.id)
   end
   

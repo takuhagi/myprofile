@@ -1,0 +1,10 @@
+#PhotoGallery
+  .PhotoGallery__title
+    %h1 Photo Gallery
+  %ul.PhotoGallery__list
+    - @images.each_with_index do |img, i|
+      %li.picture-box
+        = link_to "#img-num-#{i}", class:"modaal" do
+          = image_tag img.src.url, class: 'picture'
+        .modal-hidden(id = "img-num-#{i}")
+          = image_tag img.src.url

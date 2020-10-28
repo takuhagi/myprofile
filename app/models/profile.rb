@@ -4,6 +4,7 @@ class Profile < ApplicationRecord
   has_many :tags, through: :profile_tags, dependent: :destroy
   has_many :genres, through: :genre_profiles
   has_many :content
+  has_many :images, dependent: :destroy
   belongs_to :user
 #  アクティブハッシュ（都道府県）
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -47,6 +48,8 @@ class Profile < ApplicationRecord
   mount_uploader :image, ImageUploader
   # メイン写真
   mount_uploader :sub_image, ImageUploader
+  # fields_forメソッドを利用するため
+  accepts_nested_attributes_for :images, allow_destroy: true
 
   # ここからタグ関連
   # save_tagsクラスメソッド。引数には今回入力されたタグが入る

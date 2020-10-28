@@ -17,31 +17,48 @@ class CommentsController < ApplicationController
     @check.update(check0_params) #一旦全てに0
     @comments = Comment.where(id: params[:check_ids]) #チェックされたid
     
-    # binding.pry
+    
     if 
       @comments.update(check_params) #1いれる
       
-      redirect_to root_path
+      redirect_to users_path(id: current_user.id)
     else
       render root_path
     end
-
+    
   end
 
   def create
     @comment = Comment.new(comment_params)
     
     if @comment.save
-      redirect_to root_path
+      redirect_back(fallback_location: users_path)
     else
       render root_path
+    end
+    if @comment.user_id == current_user.id #自身へのコメントに"1"
+      @comment.update(check_params)
+    end
+  end
+
+  def reply
+    @comment = Comment.new(comment_params)
+    
+    
+    if @comment.save
+      redirect_back(fallback_location: users_path)
+    else
+      render root_path
+    end
+    if @comment.user_id == current_user.id #自身へのコメントに"1"
+      @comment.update(check_params)
     end
   end
 
   private
 
   def comment_params
-    params.require(:comment).permit(:user_id, :comment,:commenter_id).merge(user_id: (params[:user_id]), commenter_id: current_user.id)
+    params.require(:comment).permit(:user_id, :comment,:commenter_id,:reply_id).merge(user_id: (params[:user_id]), commenter_id: current_user.id, reply_id: params[:comment_id])
   end
 
   def check_params

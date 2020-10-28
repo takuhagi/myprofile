@@ -6,7 +6,27 @@ class UsersController < ApplicationController
     @comment = Comment.new
     @comments = @user.comments.includes(:user).all
     @check = @comments.where(check: [nil])
+    @reply_array = []
+    @re_array = []
+    @comments.each do |com|
+      if com.reply_id != nil
+        @reply_array << Comment.where(id: com.reply_id)
+        
+      end
+    end
+    @reply_array1 = @reply_array.flatten
+    @reply_array2 = @reply_array1.uniq
+    
+    @comments.each do |com|
+      if com.reply_id != nil
+        @re_array << Comment.where(reply_id: com.reply_id)
+        
+      end
+    end
+    @re_array1 = @re_array.flatten
+    @re_array2 = @re_array1.uniq
     # binding.pry
+    @images = @profile.images
   end
 
   def show
@@ -51,6 +71,12 @@ class UsersController < ApplicationController
       @users = User.all.includes(:profile)
     end
 
+  end
+
+  def vr
+    @user = User.find(params[:user_id])
+    @profile = @user.profile
+    @images = @profile.images
   end
 
   private

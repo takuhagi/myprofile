@@ -1,5 +1,5 @@
 = form_with model: [@user,@comment], class: "was-validated",local: true do |f|
   .form-group.mt-4
-    = f.text_area :comment, id: "exampleFormControlTextarea1", class: "form-control form-control-lg col-sm-10 m-auto"
+    = f.text_area :comment, id: "exampleFormControlTextarea1", class: "form-control form-control-lg col-sm-10 m-auto", placeholder: "新規コメントはこちら"
   .col-auto.d-flex.justify-content-center.mt-3
     = f.submit "コメント", class: "btn btn-primary mb-4"
