@@ -37,16 +37,25 @@
     object-fit: cover;
   }
   .text_area {
-    width: 50%;
+    width: 70%;
     height: 500px;
     background-color: white;
-    margin-left: auto;
+    margin: 0 auto;
   }
   .profile {
-    width: 30%;
+    width: 70%;
     background-color: white;
-    margin-right: auto;
-    text-align: center;
+    margin: 0 auto;
+    .introduction {
+      width: 50vw;
+      word-wrap: break-word;
+    }
+  }
+  
+  
+  img.prof_image {
+    width: 15%;
+    
   }
   
   .mobile_btn {
