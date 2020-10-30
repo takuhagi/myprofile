@@ -16,12 +16,11 @@
     .AccountPage__form
       = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
         = devise_error_messages!
-        -# .FormField.mt-3.mb-3
-        -#   user登録時はnicknameのみ。一旦コメントアウト
-        -#   .FormField__label--normal
-        -#     = f.label :name
-        -#   .FormField__input--normal
-        -#     = f.text_field :name, autofocus: true
+        .FormField.mt-3.mb-3
+          .FormField__label--normal
+            = f.label :name
+          .FormField__input--normal
+            = f.text_field :name, autofocus: true
         .FormField.mt-3.mb-3
           .FormField__label--normal
             = f.label :nickname
