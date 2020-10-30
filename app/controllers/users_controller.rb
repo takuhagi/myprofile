@@ -35,7 +35,10 @@ class UsersController < ApplicationController
     
     # 該当ユーザーのタグ名をpluckメソッドを使ってtag_nameカラムで取得。
     @tags = @profile.tags.pluck(:tag_name)
-    @tag = Tag.find(params[:id])
+    
+    # profileのtagを持ってくるように修正しました（もしかして@tagは使っていない？）
+    # @tag = Tag.find(params[:id])
+    @tag = @profile.tags
     
     # pvカウント
     if params[:pv_link] == "pv++" && @user.id != current_user.id
