@@ -1,8 +1,13 @@
+.jumbotron.jumbotron-fluid.p-4
+  .container
+    -# .alert.alert-secondary.mt-4
+    %h1.display-4
+      #{current_user.nickname}
+      %span.h5
+        さん
+    %p
+      My Profile 情報編集画面
 .container
-  .alert.alert-secondary.mt-4
-    %h1
-      #{current_user.nickname}さんのMy Profile編集画面
-
   %label.mt-3.mb-4(for="") ---プロフィール---
   = form_with(model: @profile, class: "form-horizontal mb-3", local: true) do |f|
     = render 'layouts/error_messages', model: f.object
