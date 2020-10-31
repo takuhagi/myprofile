@@ -22,7 +22,7 @@
         = f.check_box :remove_image #画像を削除するチェックボックスremove_カラム名
         画像を削除する
     .form-group
-      = f.label "サブ写真を設定する"
+      = f.label :VR, "VR画像を設定する"
       %br/
       -# 編集前に画像が存在していれば編集画面に表示
       - if current_user.profile.sub_image?

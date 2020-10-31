@@ -98,7 +98,7 @@ class ProfilesController < ApplicationController
 
       :color,
 
-      :sub_image,            # サブ写真
+      :sub_image,            # VR画像
       :catch_copy,           # キャッチコピー
       :avatar_title,         # アバター写真のタイトル
       :avatar_catch_copy,    # アバター写真のキャッチコピー
