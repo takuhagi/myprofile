@@ -102,11 +102,14 @@ class ProfilesController < ApplicationController
 
       :color,
 
-      :sub_image,            # サブ写真
+      :sub_image,            # VR画像
       :catch_copy,           # キャッチコピー
       :avatar_title,         # アバター写真のタイトル
       :avatar_catch_copy,    # アバター写真のキャッチコピー
       :avatar_about,         # アバター写真の説明文
+      :remove_image,
+      :remove_sub_image,
+      :remove_avatar,
 
       images_attributes: [:src]
     ).merge(user_id: current_user.id)

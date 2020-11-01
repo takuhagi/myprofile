@@ -47,17 +47,19 @@
 .container
   .row
     - @users.each do |user|
-      %div.col-4.col-sm-2
-        = image_tag user.profile.avatar.url, size: '100x100', style: 'object-fit: cover'
-      %div.col-8.col-sm-10{style: "cursor:pointer;"}
-        -# 勝手にpv_linkを追加しました
-        = link_to user_path(id: user.id, pv_link: "pv++"), style:"text-decoration:none" do
-          %div.ml-2.h4
-            = user.nickname
-          %div.ml-2
-            = user.profile.catch_copy
-      %div.col-xs-12.col-sm-12.mt-2
-        - user.profile.tags.pluck(:tag_name).each do |tag|
-          %span.show_tag
-            = tag
-      %hr.my-4{style: "width:97%; height:1px; background-color:#fefefe;"}/
+      -# プロフィールが存在するユーザーのみ検索対象になります
+      - if user.profile.present?
+        %div.col-4.col-sm-2
+          = image_tag user.profile.avatar.url, size: '100x100', style: 'object-fit: cover', class: 'avatar'
+        %div.col-8.col-sm-10{style: "cursor:pointer;"}
+          -# 勝手にpv_linkを追加しました
+          = link_to user_path(id: user.id, pv_link: "pv++"), style:"text-decoration:none" do
+            %div.ml-2.h4
+              = user.nickname
+            %div.ml-2
+              = user.profile.catch_copy
+        %div.col-xs-12.col-sm-12.mt-2
+          - user.profile.tags.pluck(:tag_name).each do |tag|
+            %span.show_tag
+              = tag
+        %hr.my-4{style: "width:97%; height:1px; background-color:#fefefe;"}/
