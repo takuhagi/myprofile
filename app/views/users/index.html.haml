@@ -112,15 +112,17 @@
               = @user.email
             .modal-footer
               %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
-      %h3.d-flex.justify-content-center.mt-3.mobile_name
-        = @profile.family_name
-      %h3.d-flex.justify-content-center.mt-3.mobile_name
-        = @profile.first_name
-      %h5.d-flex.justify-content-center.mt-3.mobile_birth
-        = @profile.prefecture.name
-      %img.prof_image.mt-2.mobile_img{:height => "auto", :src => "#{@profile.avatar}", :width => "40%"}
-        %p.text-break.ml-5.mr-5.pt-5.mobile_text 
-          = @profile.introduction
+      = link_to profile_pass_path(params[:id]) do
+        %h3.d-flex.justify-content-center.mt-3.mobile_name
+          = @profile.family_name
+        %h3.d-flex.justify-content-center.mt-3.mobile_name
+          = @profile.first_name
+        %h5.d-flex.justify-content-center.mt-3.mobile_birth
+          = @profile.prefecture.name
+        %img.prof_image.mt-2.mobile_img{:height => "auto", :src => "#{@profile.avatar}", :width => "40%"}
+          %p.text-break.ml-5.mr-5.mb-3.pt-5.mobile_text 
+            = @profile.avatar_about
+          
   .slider.mt-5.d-flex.justify-content-center
   
     
@@ -142,27 +144,32 @@
       - if @profile.hp.present?
         = link_to "HP", @profile.hp, class: 'btn btn-primary ml-2 mt-1',  rel: "noopener noreferrer", target: "_blank"
         
-    .prof_all.d-flex
-      %img.prof_image.mt-3.ml-2.mb-2{:src => "#{@profile.avatar}"}
-      .prof_contents
-        .prof.d-flex
-          %h3.mt-3.ml-3
-            = @profile.family_name
-          %h3.mt-3.ml-1
-            = @profile.first_name
-          %h5.mt-3.ml-3
-            = @profile.prefecture.name
-          %h5.mt-3.ml-3
-            = @profile.birth_date
-        .introduction
-          %p.ml-5.mr-5.pt-3 
-            = @profile.introduction
+    = link_to profile_pass_path(params[:id]) do
+      .prof_all.d-flex
+        %img.prof_image.mt-3.ml-2.mb-2{:src => "#{@profile.avatar}"}
+        .prof_contents
+          .prof.d-flex
+            %h3.mt-3.ml-3
+              = @profile.family_name
+            %h3.mt-3.ml-1
+              = @profile.first_name
+            %h5.mt-3.ml-3
+              = @profile.prefecture.name
+            %h5.mt-3.ml-3
+              = @profile.birth_date
+          .introduction
+            %p.ml-5.mr-5.pt-3 
+              = @profile.avatar_about
 
   .mt-5.text_area
-    %p.text-break.ml-5.mr-5.pt-5 mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+    %p.text-break.ml-5.mr-5.pt-3.pb-3
+      = @profile.introduction
   
   .comment_field
-    
+    コメント
+    - if @comments.blank?
+      %br
+      まだコメントはありません。
     - @comments.each do |comment|
       - if comment.check == (1) && comment.reply_id.blank?
         .comment_info

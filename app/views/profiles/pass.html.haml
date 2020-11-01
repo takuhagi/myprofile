@@ -1,0 +1,11 @@
+.form-group
+  = form_with url: users_show_path(id: params[:profile_id]), class: "form-group",local: true do |f|
+    .form-group
+      %label.col-form-label{for: "pass-text"} pass:
+      -#仮でプロフィールのphoneにしてあります,パスワードカラム作成プロフィール登録にパスワード項目の追加が必要です。
+      = f.text_field :phone, id: "pass-text" 
+    .form_submit
+      = f.submit "Send", class: "btn btn-primary"
+.back.mt-3
+  = link_to '戻る', 'javascript:history.back()'
+  

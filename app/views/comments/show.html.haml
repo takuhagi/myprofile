@@ -2,6 +2,8 @@
   新着コメントがあります
   %br
   ※ 公開するコメントにチェックして下さい。
+  .back.mt-3
+    = link_to '戻る', :back
 .d-flex.justify-content-center.mt-5
   = form_with model: @comment,url: user_comment_path, method: "patch", class: "comment_check ",local: true do |f|
     %label{for: "all"}
