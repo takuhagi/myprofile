@@ -32,21 +32,41 @@
   a {
     color: black;
   }
-  .top_image {
+  img.top_image {
+    width: 100vw;
     height: 600px;
     object-fit: cover;
   }
+  .slick-dots {
+    li {
+      font-size: 20px !important;
+      button:before {
+        content: "●" !important;
+        font-size: 14px !important;
+        color: rgb(60, 60, 60) !important;
+      }
+    }
+  }
   .text_area {
-    width: 50%;
+    width: 70%;
     height: 500px;
     background-color: white;
-    margin-left: auto;
+    margin: 0 auto;
   }
   .profile {
-    width: 30%;
+    width: 70%;
     background-color: white;
-    margin-right: auto;
-    text-align: center;
+    margin: 0 auto;
+    .introduction {
+      width: 50vw;
+      word-wrap: break-word;
+    }
+  }
+  
+  
+  img.prof_image {
+    width: 15%;
+    
   }
   
   .mobile_btn {
@@ -167,6 +187,21 @@
   a {
     color: black;
   }
+  img.top_image {
+    width: 100vw;
+    height: 300px;
+    object-fit: cover;
+  }
+  .slick-dots {
+    li {
+      font-size: 20px !important;
+      button:before {
+        content: "●" !important;
+        font-size: 14px !important;
+        color: rgb(60, 60, 60) !important;
+      }
+    }
+  }
   .new_profile_page {
     display: none;
   }
@@ -243,6 +278,7 @@
     display: none;
   }
   .mobile_profile {
+    z-index: 1;
     width: 100%;
     background-color: white;
     text-align: center;

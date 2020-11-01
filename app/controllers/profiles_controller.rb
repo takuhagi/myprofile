@@ -11,12 +11,15 @@ class ProfilesController < ApplicationController
   end
 
   def create
+    @user = User.find(current_user.id)
     @profile = Profile.new(profile_params)
     @profile[:color] = "background: rgb(255, 255, 255)"  #デフォルト背景色
     # profilesテーブルのタグを抽出してカンマ区切りする
     tag_list = params[:profile][:tag_ids].split(',')
     @profile.pv_count = 0
     if @profile.save
+      # メール送信
+      # ContactMailer.send_when_signup(@user).deliver
       @profile.save_tags(tag_list)
       # flash[:success] = "Profile successfully created"
       redirect_to root_path
@@ -52,7 +55,8 @@ class ProfilesController < ApplicationController
   end
 
   def color
-    @profile = Profile.find(params[:profile_id])
+    @user = User.find(params[:profile_id])
+    @profile = @user.profile
     if @profile.update(profile_params)
       redirect_to users_path(id: current_user.id)
     else

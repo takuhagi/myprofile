@@ -51,11 +51,9 @@
       - if user.profile.present?
         %div.col-4.col-sm-2
           = image_tag user.profile.avatar.url, size: '100x100', style: 'object-fit: cover', class: 'avatar'
-        -# %div.col-4.col-sm-2
-        -#   = image_tag user.profile.avatar.url, size: '100x100', style: 'object-fit: cover', class: 'avatar' unless user.profile.nil?
         %div.col-8.col-sm-10{style: "cursor:pointer;"}
-          = link_to user_path(user.id), style:"text-decoration:none" do
-            
+          -# 勝手にpv_linkを追加しました
+          = link_to user_path(id: user.id, pv_link: "pv++"), style:"text-decoration:none" do
             %div.ml-2.h4
               = user.nickname
             %div.ml-2
