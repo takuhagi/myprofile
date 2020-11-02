@@ -66,7 +66,10 @@ class ProfilesController < ApplicationController
   end
 
   def pass
-    
+    @user = User.find(params[:profile_id])
+    if @user.id == current_user.id
+      redirect_to user_path(current_user.id)
+    end
   end
 
   private
