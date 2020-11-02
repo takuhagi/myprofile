@@ -32,21 +32,26 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @profile = @user.profile
-    
-    # 該当ユーザーのタグ名をpluckメソッドを使ってtag_nameカラムで取得。
-    @tags = @profile.tags.pluck(:tag_name)
-    
-    # profileのtagを持ってくるように修正しました（もしかして@tagは使っていない？）
-    # @tag = Tag.find(params[:id])
-    @tag = @profile.tags
-    
-    # pvカウント
-    if params[:pv_link] == "pv++" && @user.id != current_user.id
-      @profile.pv_count += 1
-      @profile.update(pv_count: @profile.pv_count)
-      redirect_to user_path(@user.id)
+    # パスワードが一致するか。パスワードカラム追加後変更
+    if @profile.phone == params[:phone]
+      # 該当ユーザーのタグ名をpluckメソッドを使ってtag_nameカラムで取得。
+      @tags = @profile.tags.pluck(:tag_name)
+      
+      # profileのtagを持ってくるように修正しました（もしかして@tagは使っていない？）
+      # @tag = Tag.find(params[:id])
+      @tag = @profile.tags
+      
+      # pvカウント
+      if params[:pv_link] == "pv++" && @user.id != current_user.id
+        @profile.pv_count += 1
+        @profile.update(pv_count: @profile.pv_count)
+        redirect_to user_path(@user.id)
+      end
+    else
+      # 何故かusers_pathなのにpass画面のままですが、それでもいいかなと思います
+      redirect_back(fallback_location: users_path)
+      flash[:notice] = "パスワードが一致しませんでした。" 
     end
-
     # タグ全部取ってきます
     @tag_list = Tag.all
 

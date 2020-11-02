@@ -22,8 +22,10 @@ Rails.application.routes.draw do
   end
   resources :profiles do
     patch 'color'
+    get 'pass'
   end
-  
+
+  post "users/show" => "users#show"
 
 
 end

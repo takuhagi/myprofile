@@ -65,6 +65,10 @@ class ProfilesController < ApplicationController
 
   end
 
+  def pass
+    
+  end
+
   private
 
 
