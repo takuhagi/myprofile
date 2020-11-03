@@ -10,7 +10,6 @@
   = form_with url: users_show_path(id: params[:profile_id]), class: "form-group",local: true do |f|
     .form-group.row
       %label.col-form-label{for: "pass-text"} password:
-      -#仮でプロフィールのphoneにしてあります,パスワードカラム作成プロフィール登録にパスワード項目の追加が必要です。
-      = f.text_field :phone, id: "pass-text", class: "form-control input-lg "
+      = f.text_field :password, id: "pass-text", class: "form-control input-lg "
     .form_submit.text-center
       = f.submit "Send", class: "btn btn-primary"

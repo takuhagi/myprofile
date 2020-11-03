@@ -124,15 +124,11 @@
             = @profile.avatar_about
           
   .slider.mt-5.d-flex.justify-content-center
-  
-    
     %img.top_image{:src => "#{@profile.image}"}
     - if @profile.sub_image.present?
       = link_to vr_users_path(user_id: params[:id]) do
         %img.top_image{:src => "#{@profile.sub_image}"}
-  
-  
-    
+
   .mt-5.mb-5.profile
     .d-flex.justify-content-center
       %button.btn.btn-primary.mt-1{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
