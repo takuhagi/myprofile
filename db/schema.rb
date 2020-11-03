@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_21_141823) do
+ActiveRecord::Schema.define(version: 2020_11_02_131034) do
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(version: 2020_10_21_141823) do
     t.text "avatar_about"
     t.string "color"
     t.integer "pv_count", null: false
+    t.string "password_digest"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 

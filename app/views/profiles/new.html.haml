@@ -33,6 +33,13 @@
     .form-group
       = f.label "名前（ふりがな）"
       = f.text_field :family_name_kana, class: "form-control"
+    -# passwordの暗号化。password_confirmationはあってもなくてもOK。
+    .form-group
+      = f.label "password"
+      = f.text_field :password, class: "form-control"
+    -# .form-group
+    -#   = f.label "password確認"
+    -#   = f.text_field :password_confirmation, class: "form-control"
     .form-group
       = f.label "郵便番号 ※半角数字のみ（ハイフンなし）"
       -# 半角数字のみ（ハイフンなし）
