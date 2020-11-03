@@ -117,6 +117,8 @@ class ProfilesController < ApplicationController
       :remove_image,
       :remove_sub_image,
       :remove_avatar,
+      :password,
+      :password_confirmation,
 
       images_attributes: [:src]
     ).merge(user_id: current_user.id)
