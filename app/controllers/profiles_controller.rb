@@ -67,7 +67,7 @@ class ProfilesController < ApplicationController
 
   def pass
     @user = User.find(params[:profile_id])
-    if @user.id == current_user.id
+    if @user.id == current_user.id || @user.profile.password_digest.blank?
       redirect_to user_path(current_user.id)
     end
   end
