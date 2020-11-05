@@ -89,7 +89,6 @@ class UsersController < ApplicationController
   def vr
     @user = User.find(params[:user_id])
     @profile = @user.profile
-    @images = @profile.images
   end
 
   private

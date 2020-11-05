@@ -14,7 +14,8 @@ Rails.application.routes.draw do
       match 'search' => 'users#search', via: [:get, :post], as: :search
 
       get 'vr'
-
+      get 'rule'
+      get 'privacy'
     end
     resources :comments, only: [:create, :show, :update] do
       post 'reply'

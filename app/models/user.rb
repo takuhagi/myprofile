@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   # validates :name, presence: true, uniqueness: true
-
+  validates_acceptance_of :agreement, allow_nil: false, on: :create
   has_one :profile, dependent: :destroy
   has_many :follows, dependent: :destroy
   has_many :comments, dependent: :destroy
