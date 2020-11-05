@@ -73,5 +73,7 @@ class Profile < ApplicationRecord
     
   end
 
+  # gem bcrypt関連
+  has_secure_password
 
 end

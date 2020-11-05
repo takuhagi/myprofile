@@ -39,9 +39,11 @@
         -# = f.text_field :profile_tags_tag_name_cont, class: "form-control"
         -# タグ検索
         - Tag.all.each do |tag|
-          = f.check_box :profile_tags_id_eq_any, {multiple: true, checked: tag[:checked], disabled: tag[:disabled], include_hidden: false}, tag[:id]
-          %span.show_tag{style: "vertical-align: text-top"}
-            = tag.tag_name
+          -# 使われていないタグを表示しないよう、profile_idが存在するかどうかでif分岐
+          - if tag.profile_ids.present?
+            = f.check_box :profile_tags_id_eq_any, {multiple: true, checked: tag[:checked], disabled: tag[:disabled], include_hidden: false}, tag[:id]
+            %span.show_tag{style: "vertical-align: text-top"}
+              = tag.tag_name 
       .form-group.mt-4.mb-4
         = f.submit "検索", class: "btn btn-primary"
 .container

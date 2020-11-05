@@ -32,8 +32,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @profile = @user.profile
-    # パスワードが一致するか。パスワードカラム追加後変更
-    if @profile.phone == params[:phone]
+    # パスワードが一致するか。 パスワード設定してないのも追加予定
+    if @user.id == current_user.id || @profile.password_digest.blank? || @profile.authenticate(params[:password])
       # 該当ユーザーのタグ名をpluckメソッドを使ってtag_nameカラムで取得。
       @tags = @profile.tags.pluck(:tag_name)
       

@@ -66,7 +66,10 @@ class ProfilesController < ApplicationController
   end
 
   def pass
-    
+    @user = User.find(params[:profile_id])
+    if @user.id == current_user.id || @user.profile.password_digest.blank?
+      redirect_to user_path(current_user.id)
+    end
   end
 
   private
@@ -114,6 +117,8 @@ class ProfilesController < ApplicationController
       :remove_image,
       :remove_sub_image,
       :remove_avatar,
+      :password,
+      :password_confirmation,
 
       images_attributes: [:src]
     ).merge(user_id: current_user.id)

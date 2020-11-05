@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(version: 2020_11_03_030314) do
     t.string "avatar_catch_copy"
     t.text "avatar_about"
     t.integer "pv_count", null: false
+    t.string "password_digest"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
