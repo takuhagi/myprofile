@@ -155,13 +155,25 @@
 
     .form-group
       = f.label "ギャラリー写真（同時に10枚までアップロードできます）"
+      #image-previews
+        - @profile.images.each_with_index do |image, i|
+          .preview( data-index = "#{i}" )
+            .preview__photo
+              = image_tag image.src.url, data: { index: i }, class: "image-size"
+            .preview__button
+              .preview__button--edit
+                %button.btn.btn-outline-secondary.change-img(type="button")
+                  変更
+              .preview__button--delete
+                %button.btn.btn-outline-secondary.delete-img(type="button")
+                  削除
       #image-box
         = f.fields_for :images do |i|
-          .input-group
+          .input-group.hiddenEdit( data-index = "#{i.index}" )
             .js-file_group.custom-file( data-index = "#{i.index}" )
-              = i.file_field :src, class: 'js-file custom-file-input' #, id:"inputFile "
+              = i.file_field :src, class: 'js-file custom-file-input'
               %label.custom-file-label{ for: "inputFile" }( data-browse="参照" )
-                ファイルを選択
+                ここにファイル名
             .input-group-append
               %button.btn.btn-outline-secondary.input-group-text.js-remove(type="button")
                 削除
