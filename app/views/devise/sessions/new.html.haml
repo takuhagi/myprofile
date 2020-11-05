@@ -12,6 +12,11 @@
       %h2 Log in
       %h5 登録しているユーザーでログイン
       = render "devise/shared/links"
+      
+      
+      = link_to new_user_password_path do
+        "パスワードを忘れてしまった方はこちら"  
+    
     .AccountPage__form.mt-3.mb-3
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .FormField.mt-3.mb-3
@@ -28,8 +33,10 @@
           .actions.mt-3.mb-3
             = f.submit "Log in", class: 'Button UserButton'
 
+
+
   .Footer.mt-3.mb-3
     .Copyright
       %h4  Copyright © 2020 MyProfile, All Rights Reserved.
-      = link_to edit_user_password_path do
-        "edit"
+      
+      

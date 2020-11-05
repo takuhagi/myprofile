@@ -74,4 +74,9 @@ gem 'mini_magick'
 gem 'ransack'
 
 gem 'rqrcode'
+
 gem 'chunky_png'
+
+gem 'figaro'
+
+gem 'config'
