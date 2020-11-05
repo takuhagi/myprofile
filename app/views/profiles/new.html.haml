@@ -148,8 +148,8 @@
             .input-group-append
               %button.btn.btn-outline-secondary.input-group-text.js-remove(type="button")
                 削除
-              -# .js-remove.btn.btn-secondary
-              -#   削除
+            - if @profile.persisted?
+              = i.check_box :_destroy, data: { index: i.index }
 
 
     -# ↓送信OK

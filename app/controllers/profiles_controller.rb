@@ -1,4 +1,7 @@
 class ProfilesController < ApplicationController
+  # リファクタリング（いったんコメントアウト中）
+  # before_action :set_profile, except: [:index, :new, :create, :color, :pass]
+  # before_action :set_user, except: [:index, :new, :create, :edit, :update]
 
   def index
     @profiles = Profile.all
@@ -120,8 +123,16 @@ class ProfilesController < ApplicationController
       :password,
       :password_confirmation,
 
-      images_attributes: [:src]
+      images_attributes: [:src, :_destroy, :id]
     ).merge(user_id: current_user.id)
   end
+
+  # リファクタリング（いったんコメントアウト中）
+  # def set_profile
+  #   @profile = Profile.find(params[:id])
+  # end
+  # def set_user
+  #   @user = User.find(params[:profile_id])
+  # end
   
 end

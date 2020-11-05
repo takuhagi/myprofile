@@ -48,6 +48,9 @@
       = f.label "名前（ふりがな）"
       = f.text_field :family_name_kana, class: "form-control"
     .form-group
+      = f.label "password"
+      = f.text_field :password, class: "form-control"
+    .form-group
       = f.label "郵便番号 ※半角数字のみ（ハイフンなし）"
       -# 半角数字のみ（ハイフンなし）
       = f.text_field :post_code, class: "form-control", pattern: "^[0-9]+$"
@@ -149,4 +152,24 @@
       = f.label "タグ（複数つける場合は半角カンマで区切ってください）"
       = f.text_field :tag_ids, class: "form-control", id: "tag_ids", value: @tag_list, data: {role: "tagsinput"} 
     -# ↓送信OK
+
+    .form-group
+      = f.label "ギャラリー写真（同時に10枚までアップロードできます）"
+      #image-box
+        = f.fields_for :images do |i|
+          .input-group
+            .js-file_group.custom-file( data-index = "#{i.index}" )
+              = i.file_field :src, class: 'js-file custom-file-input' #, id:"inputFile "
+              %label.custom-file-label{ for: "inputFile" }( data-browse="参照" )
+                ファイルを選択
+            .input-group-append
+              %button.btn.btn-outline-secondary.input-group-text.js-remove(type="button")
+                削除
+            - if @profile.persisted?
+              = i.check_box :_destroy, data: { index: i.index }
+
+          -# - if @profile.persisted?
+          -#   .js-file_group( data-index = "#{@profile.images.count}" )
+          -#     = file_field_tag :src, name: "product[images_attributes][#{@profile.images.count}][src]", class: 'js-file'
+          -#     .js-remove 削除
     = f.submit class: "btn btn-primary"
