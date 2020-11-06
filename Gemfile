@@ -75,3 +75,4 @@ gem 'ransack'
 
 gem 'rqrcode'
 gem 'chunky_png'
+gem 'font-awesome-sass'
