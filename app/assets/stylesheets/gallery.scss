@@ -3,6 +3,8 @@
 }
 
 #image-previews {
+  margin: 0 auto;
+  max-width: 960px;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -12,8 +14,8 @@
     &__photo{
       margin-bottom: 8px;
       .image-size {
-        height: 144px;
-        width: 144px;
+        height: 152px;
+        width: 152px;
         object-fit: cover;
       }
     }
@@ -23,11 +25,15 @@
     }
   }
 }
-
-.test {
-  height: 100%;
-  width: 144px;
-  font-size: large;
+.preview-add {
+  height: 198px;
+  width: 152px;
+  margin: 8px 8px 16px;
+  .add-img {
+    height: 100%;
+    width: 100%;
+    font-size: large;
+  }
 }
 
 #image-box {
