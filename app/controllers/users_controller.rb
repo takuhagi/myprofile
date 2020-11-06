@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @profile = @user.profile
     # パスワードが一致するか。 パスワード設定してないのも追加予定
-    if @user.id == current_user.id || @profile.password_digest.blank? || @profile.authenticate(params[:password])
+    if @user.id == current_user.id || @profile.authenticate(params[:password])
       # 該当ユーザーのタグ名をpluckメソッドを使ってtag_nameカラムで取得。
       @tags = @profile.tags.pluck(:tag_name)
       
@@ -48,8 +48,7 @@ class UsersController < ApplicationController
         redirect_to user_path(@user.id)
       end
     else
-      # 何故かusers_pathなのにpass画面のままですが、それでもいいかなと思います
-      redirect_back(fallback_location: users_path)
+      redirect_back(fallback_location: profile_pass_path(params[:id]))
       flash[:notice] = "パスワードが一致しませんでした。" 
     end
     # タグ全部取ってきます
@@ -89,7 +88,6 @@ class UsersController < ApplicationController
   def vr
     @user = User.find(params[:user_id])
     @profile = @user.profile
-    @images = @profile.images
   end
 
   private
