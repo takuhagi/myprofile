@@ -287,7 +287,7 @@
     top: 110px;
     opacity: 0;
     animation: slideOut .5s;
-    visibility: hidden;
+    visibility: collapse;
   }
   .mobile_profile.slide {
     animation: slide .5s;
