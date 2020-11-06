@@ -146,7 +146,7 @@
     -#           %label.custom-file-label{ for: "inputFile" }( data-browse="参照" )
     -#             ファイルを選択
     -#         .input-group-append
-    -#           %button.btn.btn-outline-secondary.input-group-text.js-remove(type="button")
+    -#           %button.btn.btn-outline-secondary.input-group-text(type="button")
     -#             削除
     -#         - if @profile.persisted?
     -#           = i.check_box :_destroy, data: { index: i.index }
@@ -176,7 +176,7 @@
           -#       %label.custom-file-label{ for: "inputFile" }( data-browse="参照" )
           -#         ここにファイル名
           -#     .input-group-append
-          -#       %button.btn.btn-outline-secondary.input-group-text.js-remove(type="button")
+          -#       %button.btn.btn-outline-secondary.input-group-text(type="button")
           -#         削除
           -#     - if @profile.persisted?
           -#       = i.check_box :_destroy, data: { index: i.index }

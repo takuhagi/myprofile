@@ -2,50 +2,6 @@
   background-color: white;
 }
 
-#image-previews {
-  margin: 0 auto;
-  max-width: 960px;
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  .preview {
-    margin: 8px 8px 16px;
-    align-items: center;
-    &__photo{
-      margin-bottom: 8px;
-      .image-size {
-        height: 152px;
-        width: 152px;
-        object-fit: cover;
-      }
-    }
-    &__button {
-      display: flex;
-      justify-content: space-between;
-    }
-  }
-}
-.preview-add {
-  height: 198px;
-  width: 152px;
-  margin: 8px 8px 16px;
-  .add-img {
-    height: 100%;
-    width: 100%;
-    font-size: large;
-  }
-}
-
-#image-box {
-  display: none;
-  .input-group {
-    margin-bottom: 1rem;
-  }
-
-}
-// .hiddenEdit {
-//   display: none;
-// }
 .modal-hidden {
   display: none;
 }
