@@ -2,7 +2,7 @@ $(function(){
   bsCustomFileInput.init();
 
   // 画像用のinputを生成する関数
-  const buildFileField = (index)=> {
+  const buildFileField = ( index ) => {
     const html = `<div class="input-group">
                     <div class="js-file_group custom-file" data-index="${index}">
                       <input class="js-file custom-file-input" type="file"
@@ -21,17 +21,19 @@ $(function(){
                   `;
     return html;
   }
+
   // 画像用のinputに対応するボタンを生成する関数
-  const buildFileField2 = (index)=> {
+  const buildAddButton = ( index )=> {
     const html = `<div class="preview-add" data-index="${index}">
                     <button type="button" class="btn btn-outline-secondary add-img" >
-                      画像を追加 data-index=${index}
+                      <i class="fa fa-plus"></i>
                     </button>
                   </div>
                   `;
     return html;
   }
 
+  // プレビューを作成する関数
   const buildPreview = ( index, url ) => {
     const html = `<div class="preview" data-index="${index}">
                     <div class="preview__photo">
@@ -44,7 +46,7 @@ $(function(){
                         </button>
                       </div>
                       <div class="preview__button--delete">
-                        <button class="btn btn-outline-secondary delete-img" type="button">
+                        <button class="btn btn-outline-secondary delete-img cancel-img" type="button">
                           取消
                         </button>
                       </div>
@@ -58,60 +60,95 @@ $(function(){
   // file_fieldのnameに動的なindexをつける為の配列
   let fileIndex = [1,2,3,4,5,6,7,8,9,10];
 
-  // 編集画面に初回アクセス時、「プレビュー画像 + 画像追加ボタン = 10」
+
+  // 初回アクセス時、「プレビュー画像 + 画像追加ボタン = 10個」
   // となるように画像追加ボタンを作成する
   let PreviewLength = $('.preview').length
   for (let i = 0; i < 10 - PreviewLength; i++) {
-    $('#image-previews').append(buildFileField2(fileIndex[PreviewLength - 1]));
-    $('#image-box').append(buildFileField(fileIndex[PreviewLength - 1]));
-    fileIndex.shift();
-    fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
+    if (PreviewLength === 0) {
+      console.log("true");
+      $('#image-previews').append(buildAddButton(fileIndex[PreviewLength]));
+      $('#image-box').append(buildFileField(fileIndex[PreviewLength]));
+      fileIndex.shift();
+      fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
+    } else {
+      console.log("false");
+      $('#image-previews').append(buildAddButton(fileIndex[PreviewLength - 1]));
+      $('#image-box').append(buildFileField(fileIndex[PreviewLength - 1]));
+      fileIndex.shift();
+      fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
+    }
   }
 
 
   // 選択された画像が10枚未満の場合に、
   // fileIndexの先頭の数字を使って画像用のinputを生成する
-  $('#image-box').on('change', '.js-file', function(e) {
-    $(document).ready(function(){
-      let SelectedImg = $('.input-group').length
-      if (SelectedImg <= 9) {
-        $('#image-box').append(buildFileField(fileIndex[0]));
-        fileIndex.shift();
-        // 末尾の数に1足した数を追加する
-        fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
-      }
-    });
-    // ファイルボックス内のファイル名を表示する
-    bsCustomFileInput.init();
-  });
+  // $('#image-box').on('change', '.js-file', function(e) {
+  //   $(document).ready(function(){
+  //     let SelectedImg = $('.input-group').length
+  //     if (SelectedImg <= 9) {
+  //       $('#image-box').append(buildFileField(fileIndex[0]));
+  //       fileIndex.shift();
+  //       // 末尾の数に1足した数を追加する
+  //       fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
+  //     }
+  //   });
+  //   // ファイルボックス内のファイル名を表示する
+  //   bsCustomFileInput.init();
+  // });
 
 
   // 削除ボタンを押したら該当のinputを削除する
-  $('#image-box').on('click', '.js-remove', function() {
-    $(this).parent().parent().remove();
-    // 画像入力欄が0個にならないようにしておく
-    if ($('.js-file').length == 0) {
-      $('#image-box').append(buildFileField(fileIndex[0]));
+  // $('#image-box').on('click', '.js-remove', function() {
+  //   $(this).parent().parent().remove();
+  //   // 画像入力欄が0個にならないようにしておく
+  //   if ($('.js-file').length == 0) {
+  //     $('#image-box').append(buildFileField(fileIndex[0]));
+  //   }
+  // });
+
+
+  // 削除・取消ボタンをクリックした際に行う処理
+  $('#image-previews').on('click', '.delete-img', function() {
+    console.log(this);
+    const targetIndex = $(this).parent().parent().parent().data('index');
+
+    // 該当indexを振られているチェックボックスを取得する
+    const destroyCheck = $(`input[data-index="${targetIndex}"]`);
+
+    // もしチェックボックスが存在すればチェックを入れる
+    if (destroyCheck) {
+      destroyCheck.prop('checked', true);
+    }
+
+    $(this).parent().parent().parent().remove();
+    $(`img[data-index="${targetIndex}"]`).remove();
+
+    // 削除ボタンをクリックした分、追加ボタンを増やす
+    if (PreviewLength === 0) {
+      console.log("true");
+      $('#image-previews').append(buildAddButton(fileIndex[PreviewLength]));
+      $('#image-box').append(buildFileField(fileIndex[PreviewLength]));
+      fileIndex.shift();
+      fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
+    } else {
+      console.log("false");
+      $('#image-previews').append(buildAddButton(fileIndex[PreviewLength - 1]));
+      $('#image-box').append(buildFileField(fileIndex[PreviewLength - 1]));
+      fileIndex.shift();
+      fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
     }
   });
 
 
-  // 編集画面の削除ボタンをクリックした際に行う処理
-  $('#image-previews').on('click', '.delete-img', function() {
-    const targetIndex = $(this).parent().parent().parent().data('index');
-    // 該当indexを振られているチェックボックスを取得する
-    const hiddenCheck = $(`input[data-index="${targetIndex}"]`);
-    // もしチェックボックスが存在すればチェックを入れる
-    if (hiddenCheck) hiddenCheck.prop('checked', true);
-    $(this).parent().parent().parent().remove();
-    $(`img[data-index="${targetIndex}"]`).remove();
-    // 削除ボタンをクリックした分、追加ボタンを増やす
-    $('#image-previews').append(buildFileField2(fileIndex[PreviewLength - 1]));
-    $('#image-box').append(buildFileField(fileIndex[PreviewLength - 1]));
-    fileIndex.shift();
-    fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
-  });
+// 取消ボタンをクリックした際に行う処理
+$('#image-previews').on('click', '.cancel-img', function() {
+  const targetIndex = $(this).parent().parent().parent().data('index');
 
+  // クリックされた追加ボタンに対応したインプットを取得する
+  const relatedInput = document.getElementById(`profile_images_attributes_${targetIndex}_src`);
+  $(relatedInput).parent().parent().remove();
+});
 
 
 
@@ -127,16 +164,10 @@ $(function(){
     if (relatedInput) {
       relatedInput.click();
     }
-    console.log(relatedInput);
-  
     // ファイルが選択されたときの処理（プレビュー画像を作成する）
     $('#image-box').on('change', '.js-file', function() {
       const file = relatedInput.files[0];
-      console.log(file);
       const blobUrl = window.URL.createObjectURL(file);
-      console.log(blobUrl);
-
-      console.log(clickedButton);
       // クリックした追加ボタンの位置にプレビューを挿入
       $(clickedButton).parent().before(buildPreview(targetIndex, blobUrl));
       // クリックした追加ボタンをremove
@@ -148,21 +179,34 @@ $(function(){
 
 
   // 変更ボタン
-  $('#image-previews').on('click', '.change-img', function() {
-    const targetIndex = $(this).parent().parent().parent().data('index');
-    // 該当indexを振られているチェックボックスを取得する
-    const hiddenChange = $(`input[id="profile_images_attributes_${targetIndex}_src"]`);
-    console.log(hiddenChange);
-    // もしチェックボックスが存在すればチェックを入れる
-    if (hiddenChange) hiddenChange.click();
+  $('#image-previews').on('click', '.change-img', function(e) {
+    // クリックされた追加ボタンを取得
+    const clickedButton = e.target;
 
-    // $(this).parent().parent().remove();
-    // $(`img[data-index="${targetIndex}"]`).remove();
+    // クリックされた追加ボタンに関するindexを取得
+    const targetIndex = $(this).parent().parent().parent().data('index');
+    
+    // クリックされた追加ボタンに対応したインプットを取得する
+    const relatedInput = document.getElementById(`profile_images_attributes_${targetIndex}_src`);
+    // inputが存在すればクリックする（画像選択画面が表示される）
+    if (relatedInput) {
+      relatedInput.click();
+    }
 
     // 画像入力欄が0個にならないようにしておく
-    if ($('.js-file').length == 0) {
-      $('#image-box').append(buildFileField(fileIndex[0]))
-    };
+    // if ($('.js-file').length == 0) {
+    //   $('#image-box').append(buildFileField(fileIndex[0]))
+    // };
+
+    // 実際にファイルが選択されたときの処理（プレビュー画像を作成する）
+    $('#image-box').on('change', '.js-file', function() {
+      const file = relatedInput.files[0];
+      const blobUrl = window.URL.createObjectURL(file);
+      // クリックした追加ボタンの位置にプレビューを挿入
+      $(clickedButton).parent().parent().parent().before(buildPreview(targetIndex, blobUrl));
+      // クリックした追加ボタンをremove
+      $(clickedButton).parent().parent().parent().remove();
+    })
   });
 });
 
