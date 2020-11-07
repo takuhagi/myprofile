@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_02_131034) do
+ActiveRecord::Schema.define(version: 2020_11_07_144803) do
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -39,6 +39,32 @@ ActiveRecord::Schema.define(version: 2020_11_02_131034) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["profile_id"], name: "index_contents_on_profile_id"
+  end
+
+  create_table "event_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "event_profile_id"
+    t.string "src"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_profile_id"], name: "index_event_images_on_event_profile_id"
+  end
+
+  create_table "event_profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "title", null: false
+    t.text "explanation"
+    t.string "prefecture"
+    t.string "city"
+    t.string "prace"
+    t.datetime "start"
+    t.datetime "end"
+    t.string "profile_link"
+    t.string "store_link"
+    t.string "item_link"
+    t.string "service_link"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_event_profiles_on_user_id"
   end
 
   create_table "follows", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -72,6 +98,27 @@ ActiveRecord::Schema.define(version: 2020_11_02_131034) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "profile_id"
     t.index ["profile_id"], name: "index_images_on_profile_id"
+  end
+
+  create_table "item_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "item_profile_id"
+    t.string "src"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_profile_id"], name: "index_item_images_on_item_profile_id"
+  end
+
+  create_table "item_profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "name", null: false
+    t.text "explanation"
+    t.string "profile_link"
+    t.string "store_link"
+    t.string "service_link"
+    t.string "event_link"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_item_profiles_on_user_id"
   end
 
   create_table "profile_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -127,6 +174,48 @@ ActiveRecord::Schema.define(version: 2020_11_02_131034) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
+  create_table "service_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "service_profile_id"
+    t.string "src"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["service_profile_id"], name: "index_service_images_on_service_profile_id"
+  end
+
+  create_table "service_profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "name", null: false
+    t.text "explanation"
+    t.string "profile_link"
+    t.string "store_link"
+    t.string "item_link"
+    t.string "event_link"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_service_profiles_on_user_id"
+  end
+
+  create_table "store_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "store_profile_id"
+    t.string "src"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["store_profile_id"], name: "index_store_images_on_store_profile_id"
+  end
+
+  create_table "store_profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "name", null: false
+    t.text "explanation"
+    t.string "profile_link"
+    t.string "item_link"
+    t.string "service_link"
+    t.string "event_link"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_store_profiles_on_user_id"
+  end
+
   create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "tag_name", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -151,10 +240,18 @@ ActiveRecord::Schema.define(version: 2020_11_02_131034) do
   add_foreign_key "cards", "users"
   add_foreign_key "comments", "users"
   add_foreign_key "contents", "profiles"
+  add_foreign_key "event_images", "event_profiles"
+  add_foreign_key "event_profiles", "users"
   add_foreign_key "follows", "users"
   add_foreign_key "genre_profiles", "genres"
   add_foreign_key "genre_profiles", "profiles"
+  add_foreign_key "item_images", "item_profiles"
+  add_foreign_key "item_profiles", "users"
   add_foreign_key "profile_tags", "profiles"
   add_foreign_key "profile_tags", "tags"
   add_foreign_key "profiles", "users"
+  add_foreign_key "service_images", "service_profiles"
+  add_foreign_key "service_profiles", "users"
+  add_foreign_key "store_images", "store_profiles"
+  add_foreign_key "store_profiles", "users"
 end

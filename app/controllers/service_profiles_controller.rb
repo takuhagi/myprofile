@@ -1,0 +1,2 @@
+class ServiceProfilesController < ApplicationController
+end
