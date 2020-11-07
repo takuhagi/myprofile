@@ -80,3 +80,5 @@ gem 'chunky_png'
 gem 'figaro'
 
 gem 'config'
+
+gem 'dotenv-rails'

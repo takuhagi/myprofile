@@ -3,16 +3,12 @@
   .Header
     .Header__title
       %h1 MyProfile
-      %h5 
-      = link_to "トップページに戻る", :back, class: 'Button'
-
-
+      
   .AccountPage.text-center.mt-3.mb-3
     .AccountPage__title.mt-3.mb-3
-      %h2 Log in
+      
       %h5 登録しているユーザーでログイン
       = render "devise/shared/links"
-      
       
       = link_to new_user_password_path do
         "パスワードを忘れてしまった方はこちら"  
@@ -33,10 +29,8 @@
           .actions.mt-3.mb-3
             = f.submit "Log in", class: 'Button UserButton'
 
-
-
   .Footer.mt-3.mb-3
     .Copyright
-      %h4  Copyright © 2020 MyProfile, All Rights Reserved.
+      %h3  Copyright © 2020 MyProfile, All Rights Reserved.
       
       

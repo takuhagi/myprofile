@@ -2,15 +2,14 @@
 
   .Header.mt-3.mb-3
     .Header__title
-      %h1 MyProfile
+      %h2 MyProfile
       %h5 
       = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'Button'
-      = link_to "トップページに戻る", :back, class: 'Button'
-
+     
   .AccountPage.mt-3.mb-3
     = render 'layouts/notifications'
     .AccountPage__title.mt-3.mb-3
-      %h2 Create Account
+      %h1 Create Account
       %h5 新規アカウントの作成
       = render "devise/shared/links"
     .AccountPage__form
@@ -47,5 +46,5 @@
 
   .Footer
     .Copyright
-      %h3 Copyright © 2020 MyProfile, All Rights Reserved.
+      %h2 Copyright © 2020 MyProfile, All Rights Reserved.
   
