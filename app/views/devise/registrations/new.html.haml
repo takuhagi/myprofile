@@ -1,11 +1,9 @@
-.container.align-items-center.text-center.mt-5.mb-5
+.Header
+  .Header__title
+    %h1 MyProfile
+    
 
-  .Header.mt-3.mb-3
-    .Header__title
-      %h2 MyProfile
-      %h5 
-      = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'Button'
-     
+.container.align-items-center.text-center.mt-5.mb-5
   .AccountPage.mt-3.mb-3
     = render 'layouts/notifications'
     .AccountPage__title.mt-3.mb-3
@@ -41,10 +39,18 @@
             = f.label :password_confirmation
           .FormField__input--normal
             = f.password_field :password_confirmation, autocomplete: "off"
-        .actions
+          .actions
+            = f.check_box :agreement, :as => :boolean, checked:false
+            = link_to rule_users_path, style:"text-decoration:none" do
+              利用規約
+            と
+            = link_to privacy_users_path, style:"text-decoration:none" do
+              プライバシーポリシー
+            に同意する
+
+        .actions.mt-3
           = f.submit "Create Account", class: 'Button UserButton'
 
-  .Footer
-    .Copyright
-      %h2 Copyright © 2020 MyProfile, All Rights Reserved.
-  
+.Footer
+  .Copyright
+    %h3 Copyright © 2020 MyProfile, All Rights Reserved.

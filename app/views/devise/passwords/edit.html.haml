@@ -1,0 +1,33 @@
+.Header
+  .Header__title
+    %h1 MyProfile
+    %h4 
+      = link_to new_user_password_path do
+        "パスワードを忘れてしまった方はこちら" 
+
+
+%h2 パスワードの変更
+= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+  = render "devise/shared/error_messages", resource: resource
+  = f.hidden_field :reset_password_token
+  .field
+    = f.label :password, "新しいパスワード"
+    %br/
+    - if @minimum_password_length
+      %em
+        (#{@minimum_password_length} 文字以上入れてください)
+      %br/
+    = f.password_field :password, autofocus: true, autocomplete: "新しいパスワード"
+  .field
+    = f.label :password_confirmation, "確認のためもう一度新しいパスワードを入れてください"
+    %br/
+    = f.password_field :password_confirmation, autocomplete: "new-password"
+  .actions
+    = f.submit "パスワード変更"
+
+= render "devise/shared/links"
+
+
+.Footer
+  .Copyright
+    %h3 Copyright © 2020 MyProfile, All Rights Reserved.
