@@ -82,3 +82,5 @@ gem 'figaro'
 gem 'config'
 
 gem 'dotenv-rails'
+
+gem 'font-awesome-sass'

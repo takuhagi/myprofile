@@ -1,0 +1,2 @@
+class ServiceImagesController < ApplicationController
+end

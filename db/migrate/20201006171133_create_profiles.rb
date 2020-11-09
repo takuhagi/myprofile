@@ -19,7 +19,7 @@ class CreateProfiles < ActiveRecord::Migration[6.0]
       t.string :graduate_school
       t.string :other_school
 
-      # 職歴の数を指定しない場合、careerテーブル作成　１体多
+      # 職歴の数を指定しない場合、careerテーブル作成 １体多
       t.string :first_career
       t.string :second_career
       t.string :third_career

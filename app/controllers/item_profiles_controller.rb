@@ -1,0 +1,2 @@
+class ItemProfilesController < ApplicationController
+end
