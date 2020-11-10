@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @profile = @user.profile
     @comment = Comment.new
-    @comments = @user.comments.includes(:user).all
+    @comments = @user.comments.includes(:user).all.order("id DESC")
     @check = @comments.where(check: [nil])
     @reply_array = []
     @re_array = []
@@ -25,14 +25,13 @@ class UsersController < ApplicationController
     end
     @re_array1 = @re_array.flatten
     @re_array2 = @re_array1.uniq
-    # binding.pry
     @images = @profile.images
   end
 
   def show
     @user = User.find(params[:id])
     @profile = @user.profile
-    # パスワードが一致するか。 パスワード設定してないのも追加予定
+    # パスワードが一致するか。 
     if @user.id == current_user.id || @profile.authenticate(params[:password])
       # 該当ユーザーのタグ名をpluckメソッドを使ってtag_nameカラムで取得。
       @tags = @profile.tags.pluck(:tag_name)
