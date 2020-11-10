@@ -4,10 +4,11 @@
     
 
 .container.align-items-center.text-center.mt-5.mb-5
-  .AccountPage.mt-3.mb-3
+  .AccountPage.text-center
     = render 'layouts/notifications'
-    .AccountPage__title.mt-3.mb-3
-      %h1 Create Account
+    .AccountPage__title
+      %h2 Create Account
+      
       %h5 新規アカウントの作成
       = render "devise/shared/links"
     .AccountPage__form
