@@ -26,6 +26,9 @@ Rails.application.routes.draw do
     get 'pass'
   end
 
+  resources :cards, only: [:new, :index, :create, :destroy] do
+  end
+
   post "users/show" => "users#show"
 
 
