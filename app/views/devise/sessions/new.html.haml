@@ -1,34 +1,63 @@
-.Header
-  .Header__title
-    %h1 MyProfile
-    %h4 
-      = link_to new_user_password_path do
-        "パスワードを忘れてしまった方はこちら" 
+-# .Header
+-#   .Header__title
+-#     %h1 MyProfile
+-#     %h4 
+-#       = link_to new_user_password_path do
+-#         "パスワードを忘れてしまった方はこちら" 
 
-.container.align-items-center.text-center.mt-5.mb-5      
-  .AccountPage.text-center
-    .AccountPage__title
-      %h2 Log in
-      %h6 登録しているユーザーでログイン
-      = render "devise/shared/links"
-       
+-# .container.align-items-center.text-center.mt-5.mb-5
+-#   .AccountPage.text-center
+-#     .AccountPage__title
+-#       %h2 Log in
+-#       %h6 登録しているユーザーでログイン
+-#       = render "devise/shared/links"
 
-    .AccountPage__form
+
+-# .AccountPage__form
+-#   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+-#     .FormField.mt-3.mb-3
+-#       .FormField__label--normal
+-#         = f.label :email
+-#       .FormField__input--normal
+-#         = f.email_field :email, autofocus: true
+-#       .FormField.mt-5.mb-5
+-#         .FormField__label--normal
+-#           = f.label :password
+-#           %i (英数字8文字以上)
+-#         .FormField__input--normal
+-#           = f.password_field :password, autocomplete: "off"
+-#       .actions.mt-3.mb-3
+-#         = f.submit "Login"
+
+-# .Footer
+-#   .Copyright
+-#     %h4  Copyright © 2020 MyProfile, All Rights Reserved.
+
+
+.LoginPage
+  .Title-container
+    .SiteLogo
+      ここにロゴ
+    .Title
+      Login
+  .Login-container
+    -# #output
+    -# .avatar
+    .FormBox
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-        .FormField.mt-3.mb-3
-          .FormField__label--normal
-            = f.label :email
-          .FormField__input--normal
-            = f.email_field :email, autofocus: true
-          .FormField.mt-5.mb-5
-            .FormField__label--normal
-              = f.label :password
-              %i (英数字8文字以上)
-            .FormField__input--normal
-              = f.password_field :password, autocomplete: "off"
-          .actions.mt-3.mb-3
-            = f.submit "Log in", class: 'Button UserButton'
+        .FormField
+          .InputField
+            = f.email_field :email, autofocus: true, placeholder: "email"
+            = f.password_field :password, autocomplete: "off", placeholder: "password"
+          .SubmitField
+            = f.submit "Login", class: "btn btn-primary"
+  .Link-container
+    .Link
+      パスワードを忘れた方は
+      = link_to new_user_password_path do
+        こちら
+    .Link
+      アカウント登録がまだの方は
+      = link_to new_user_registration_path do
+        こちら
 
-.Footer
-  .Copyright
-    %h4  Copyright © 2020 MyProfile, All Rights Reserved.
