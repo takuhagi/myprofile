@@ -70,7 +70,6 @@ class CommentsController < ApplicationController
   end
 
   def check_params
-    # params.permit(check:[])
     params.permit(:check).merge(check: "1")
   end
   def check0_params

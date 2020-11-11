@@ -84,3 +84,8 @@ gem 'config'
 gem 'dotenv-rails'
 
 gem 'font-awesome-sass'
+
+gem 'font-awesome-sass'
+
+gem 'payjp'
+

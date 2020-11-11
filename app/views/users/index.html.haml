@@ -55,6 +55,9 @@
         QRコード
       .modal-hidden(id = "qr_img")
         = image_tag qrcode_tag "#{url}"
+    .p-3.bd-highlight.m-auto.payjp
+      = link_to cards_path do
+        会員登録
     %span.nav_toggle
       %i
       %i
@@ -87,9 +90,12 @@
             %a{"data-target" => "#exampleModalLong", "data-toggle" => "modal", :type => "button"} color
 
         - url = request.url
-        %li.nav_menu_li.mt-1.ml-2.mr-2.mobile_qr
+        %li.nav_menu_li.mt-1.ml-2.mobile_qr
           = link_to "#qr_img", class:"modaal" do
             QRコード
+        %li.nav_menu_li.mt-1.ml-2.mr-2.mobile_payjp
+          = link_to cards_path do
+            会員登録
     .mt-2.mobile_profile.shadow-sm
       .d-flex.justify-content-center.mt-2
         %button.btn.btn-primary.mobile_btn{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
@@ -162,10 +168,11 @@
       = @profile.introduction
   
   .comment_field
-    コメント
-    - if @comments.blank?
-      %br
-      まだコメントはありません。
+    .pt-2.pl-2.pb-2
+      コメント
+      - if @comments.blank?
+        %br
+        まだコメントはありません。
     - @comments.each do |comment|
       - if comment.check == (1) && comment.reply_id.blank?
         .comment_info
