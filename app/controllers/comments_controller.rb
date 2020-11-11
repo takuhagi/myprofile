@@ -33,9 +33,9 @@ class CommentsController < ApplicationController
     @user = User.find(params[:user_id]) #メール用
     if @comment.save
       # コメント通知
-      # if @comment.user_id != current_user.id
-      #   ContactMailer.send_when_comment(@user).deliver
-      # end
+      if @comment.user_id != current_user.id
+        ContactMailer.send_when_comment(@user).deliver
+      end
       redirect_back(fallback_location: users_path)
     else
       render root_path
@@ -51,9 +51,9 @@ class CommentsController < ApplicationController
     
     if @comment.save
       # コメント通知
-      # if @comment.user_id != current_user.id
-      #   ContactMailer.send_when_comment(@user).deliver
-      # end
+      if @comment.user_id != current_user.id
+        ContactMailer.send_when_comment(@user).deliver
+      end
       redirect_back(fallback_location: users_path)
     else
       render root_path
