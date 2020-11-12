@@ -1,3 +1,30 @@
+.SigninPage
+  .Title-container
+    .SiteLogo
+      ここにロゴ
+    .Title
+      Login
+    .Caption
+      メールアドレスとパスワードでログイン
+  .Signin-container
+    .FormBox
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .FormField
+          .InputField
+            = f.email_field :email, autofocus: true, placeholder: "email"
+            = f.password_field :password, autocomplete: "off", placeholder: "password"
+          .SubmitField
+            = f.submit "Login", class: "btn btn-primary submit"
+  .Link-container
+    .Link
+      パスワードを忘れた方は
+      = link_to new_user_password_path do
+        こちら
+    .Link
+      アカウント登録がまだの方は
+      = link_to new_user_registration_path do
+        こちら
+
 -# .Header
 -#   .Header__title
 -#     %h1 MyProfile
@@ -27,37 +54,8 @@
 -#         .FormField__input--normal
 -#           = f.password_field :password, autocomplete: "off"
 -#       .actions.mt-3.mb-3
--#         = f.submit "Login"
+-#         = f.submit "Signin"
 
 -# .Footer
 -#   .Copyright
 -#     %h4  Copyright © 2020 MyProfile, All Rights Reserved.
-
-
-.LoginPage
-  .Title-container
-    .SiteLogo
-      ここにロゴ
-    .Title
-      Login
-  .Login-container
-    -# #output
-    -# .avatar
-    .FormBox
-      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-        .FormField
-          .InputField
-            = f.email_field :email, autofocus: true, placeholder: "email"
-            = f.password_field :password, autocomplete: "off", placeholder: "password"
-          .SubmitField
-            = f.submit "Login", class: "btn btn-primary"
-  .Link-container
-    .Link
-      パスワードを忘れた方は
-      = link_to new_user_password_path do
-        こちら
-    .Link
-      アカウント登録がまだの方は
-      = link_to new_user_registration_path do
-        こちら
-

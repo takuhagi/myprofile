@@ -1,3 +1,45 @@
+.SignupPage
+  .Title-container
+    .SiteLogo
+      ここにロゴ
+    .Title
+      Reset Password
+    .Caption
+      パスワード再設定
+  .Signup-container
+    .FormBox
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .FormField
+          .InputField
+            = f.text_field :name, autofocus: true, placeholder: "Name"
+            = f.text_field :nickname, autofocus: true, placeholder: "Nickname"
+            = f.email_field :email, autofocus: true, placeholder: "email"
+            = f.password_field :password, autocomplete: "off", placeholder: "password"
+            = f.password_field :password_confirmation, autocomplete: "off", placeholder: "password(確認用)"
+            .Agreement
+              .Description
+                = link_to rule_users_path, style:"text-decoration:none" do
+                  利用規約
+                と
+                = link_to privacy_users_path, style:"text-decoration:none" do
+                  プライバシーポリシー
+                に同意する
+              = f.check_box :agreement, :as => :boolean, checked:false, class:"CheckBox"
+          .SubmitField
+            = f.submit "Create Account", class: "btn btn-primary submit"
+
+  .Link-container
+    .Link
+      パスワードを忘れた方は
+      = link_to new_user_password_path do
+        こちら
+    .Link
+      アカウント作成済みの方は
+      = link_to new_user_session_path do
+        こちら
+
+
+
 .Header
   .Header__title
     %h1 MyProfile
