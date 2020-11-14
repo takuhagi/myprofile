@@ -74,5 +74,21 @@ gem 'mini_magick'
 gem 'ransack'
 
 gem 'rqrcode'
+
 gem 'chunky_png'
+
+gem 'figaro'
+
+gem 'config'
+
+gem 'dotenv-rails'
+
 gem 'font-awesome-sass'
+
+gem 'font-awesome-sass'
+
+gem 'payjp'
+
+group :production do
+  gem 'unicorn', '5.4.1'
+end

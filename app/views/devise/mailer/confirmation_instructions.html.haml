@@ -1,0 +1,5 @@
+%p
+  ようこそ #{@email}!
+%p 以下のリンクからアカウントメールを確認できます。:
+%p
+  = link_to '自分のアカウントを確認する', confirmation_url(@resource, confirmation_token: @token)
