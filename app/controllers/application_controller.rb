@@ -10,13 +10,3 @@ class ApplicationController < ActionController::Base
 end
 
 
-#   protect_from_forgery except: :search # searchアクションを除外
-#     def index
-#     end
-
-#     def search
-#       @products = Product.where('name LIKE(?)', "%#{params[:keyword]}%")
-#       redirect_to 'index'
-#     end
-#   end  
-# end

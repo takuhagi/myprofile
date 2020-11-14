@@ -42,14 +42,12 @@
           .FormField__input--normal
             = f.password_field :password_confirmation, autocomplete: "off"
         = f.check_box :agreement, :as => :boolean, checked:false
-
-        -# #マージしたらこちらの変化を取り込みます。
-        -# = link_to rule_users_path, style:"text-decoration:none" do
-        -#   利用規約
-        -# と
-        -# = link_to privacy_users_path, style:"text-decoration:none" do
-        -#   プライバシーポリシー
-        -# に同意する
+        = link_to rule_users_path, style:"text-decoration:none" do
+          利用規約
+        と
+        = link_to privacy_users_path, style:"text-decoration:none" do
+          プライバシーポリシー
+        に同意する
 
 
         .actions.mt-3
