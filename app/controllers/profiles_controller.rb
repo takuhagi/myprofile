@@ -111,6 +111,25 @@ class ProfilesController < ApplicationController
       :twitter,              # Twitter
 
       :color,
+      :store_name,
+      :store_explanation,
+      :store_image,
+      :item_name,
+      :item_explanation,
+      :item_image,
+      :service_name,
+      :service_explanation,
+      :service_image,
+      :event_name,
+      :event_explanation,
+      :event_image,
+      :event_place,
+      :event_start,
+      :event_end,
+      :remove_store_image,
+      :remove_item_image,
+      :remove_service_image,
+      :remove_event_image,
 
       :sub_image,            # VR画像
       :catch_copy,           # キャッチコピー
