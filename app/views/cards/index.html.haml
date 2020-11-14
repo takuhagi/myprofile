@@ -12,4 +12,6 @@
       = exp_month + " / " + exp_year
       = form_tag(card_path(current_user.id), method: :delete, id: 'charge-form',  name: "inputForm") do
         %input{ type: "hidden", name: "card_id", value: "" }
-        %button 削除する
+        %button 退会する
+    .text-center.pb-3
+      ※ 有料会員を退会します
