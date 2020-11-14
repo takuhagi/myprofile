@@ -1,3 +1,4 @@
+- now = Time.zone.now
 .jumbotron.jumbotron-fluid.p-4
   .container
     -# .alert.alert-secondary.mt-4
@@ -195,149 +196,28 @@
                 - if @profile.persisted?
                   = i.check_box :_destroy, data: { index: i.index }
 
-
         = f.submit class: "btn btn-primary"
+
     #item2.tab-pane.fade{"aria-labelledby" => "item2-tab", role: "tabpanel"}
-      %label.mt-3.mb-4(for="") ---プロフィール---
+      %label.mt-3.mb-4(for="") ---店舗情報---
       = form_with(model: @profile, class: "form-horizontal mb-3", local: true) do |f|
         = render 'layouts/error_messages', model: f.object
         .form-group
           = f.label "メイン写真を設定する"
           %br/
           -# 編集前に画像が存在していれば編集画面に表示
-          - if current_user.profile.image?
-            = image_tag current_user.profile.image.url(:thumb), class: "thumb mb-2", style: "border:solid 1px #ccc;padding:4px"
-          = f.file_field :image, class: "form-control-file"
+          - if current_user.profile.store_image?
+            = image_tag current_user.profile.store_image.url(:thumb), class: "thumb mb-2", style: "border:solid 1px #ccc;padding:4px"
+          = f.file_field :store_image, class: "form-control-file"
           %p
-            = f.check_box :remove_image #画像を削除するチェックボックスremove_カラム名
+            = f.check_box :remove_store_image #画像を削除するチェックボックスremove_カラム名
             画像を削除する
         .form-group
-          = f.label :VR, "VR画像を設定する"
-          %br/
-          -# 編集前に画像が存在していれば編集画面に表示
-          - if current_user.profile.sub_image?
-            = image_tag current_user.profile.sub_image.url(:thumb), class: "thumb mb-2", style: "border:solid 1px #ccc;padding:4px"
-          = f.file_field :sub_image, class: "form-control-file"
-          %p
-            = f.check_box :remove_sub_image #画像を削除するチェックボックスremove_カラム名
-            画像を削除する
+          = f.label "店名"
+          = f.text_field :store_name, class: "form-control"
         .form-group
-          -# カラム追加済み
-          = f.label "キャッチコピー"
-          = f.text_field :catch_copy, class: "form-control"
-        .form-group
-          = f.label "名字"
-          = f.text_field :first_name, class: "form-control"
-        .form-group
-          = f.label "名前"
-          = f.text_field :family_name, class: "form-control"
-        .form-group
-          = f.label "名字（ふりがな）"
-          = f.text_field :first_name_kana, class: "form-control"
-        .form-group
-          = f.label "名前（ふりがな）"
-          = f.text_field :family_name_kana, class: "form-control"
-        .form-group
-          = f.label "password"
-          = f.text_field :password, class: "form-control"
-        .form-group
-          = f.label "郵便番号 ※半角数字のみ（ハイフンなし）"
-          -# 半角数字のみ（ハイフンなし）
-          = f.text_field :post_code, class: "form-control", pattern: "^[0-9]+$"
-        .form-group
-          = f.label "都道府県"
-          = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: "---"}, {class: "form-control"}
-        .form-group
-          = f.label "市区町村"
-          = f.text_field :city, class: "form-control"
-        .form-group
-          = f.label "以降の住所"
-          = f.text_field :address_number, class: "form-control"
-        .form-group
-          = f.label "建物"
-          = f.text_field :building, class: "form-control"
-        .form-group
-          = f.label "電話番号 ※半角数字のみ（ハイフンなし）"
-          = f.text_field :phone, class: "form-control", pattern: "^[0-9]+$"
-        .form-group
-          = f.label "生年月日"
-          = f.date_select :birth_date, {year_format: ->year { "#{Date.new(year, 12, 31).jisx0301.split('.').first}(#{year})" },use_month_numbers: true, start_year: 1950, end_year: Time.now.year, prompt: "---"}, {class: "form-control"}
-        .form-group
-          = f.label "小学校"
-          = f.text_field :primary_school, class: "form-control"
-        .form-group
-          = f.label "中学校"
-          = f.text_field :Junior_high_school, class: "form-control"
-        .form-group
-          = f.label "高校"
-          = f.text_field :high_school, class: "form-control"
-        .form-group
-          = f.label "大学"
-          = f.text_field :university, class: "form-control"
-        .form-group
-          = f.label "大学院"
-          = f.text_field :graduate_school, class: "form-control"
-        .form-group
-          = f.label "専門学校"
-          = f.text_field :vocational_school, class: "form-control"
-        .form-group
-          = f.label "その他学歴"
-          = f.text_field :other_school, class: "form-control"
-        .form-group
-          = f.label "職歴１"
-          = f.text_field :first_career, class: "form-control"
-        .form-group
-          = f.label "職歴２"
-          = f.text_field :second_career, class: "form-control"
-        .form-group
-          = f.label "職歴３"
-          = f.text_field :third_career, class: "form-control"
-        .form-group
-          = f.label "職歴４"
-          = f.text_field :fourth_career, class: "form-control"
-        .form-group
-          = f.label "職歴５"
-          = f.text_field :last_career, class: "form-control"
-        .form-group
-          = f.label "FaceBook"
-          = f.text_field :facebook, class: "form-control"
-        .form-group
-          = f.label "Twitter"
-          = f.text_field :twitter, class: "form-control"
-        .form-group
-          = f.label "ホームページ"
-          = f.text_field :hp, class: "form-control"
-
-        %label.mt-3.mb-4(for="") ---自己紹介---
-
-        .form-group
-          = f.label "タイトル"
-          -# カラム追加済み
-          = f.text_field :avatar_title, class: "form-control"
-        .form-group
-          = f.label "キャッチコピー"
-          -# カラム追加済み
-          = f.text_field :avatar_catch_copy, class: "form-control"
-        .form-group
-          = f.label "紹介文"
-          = f.text_area :introduction, class: "form-control", row: 5, maxlength: "500", placeholder: "500文字まで"
-        .form-group
-          = f.label "アバター写真"
-          %br/
-          -# 編集前に画像が存在していれば編集画面に表示
-          - if current_user.profile.avatar?
-            = image_tag current_user.profile.avatar.url(:thumb), class: "thumb mb-2", style: "border:solid 1px #ccc;padding:4px"
-          = f.file_field :avatar, class: "form-control-file"
-          %p
-            = f.check_box :remove_avatar #画像を削除するチェックボックスremove_カラム名
-            画像を削除する
-        .form-group
-          = f.label "写真についての説明文"
-          -# カラム追加済み
-          = f.text_area :avatar_about, class: "form-control", row: 5, maxlength: "500", placeholder: "500文字まで"
-
-        %button.btn.btn-secondary.mt-3.mb-4 自己紹介を追加する
-
+          = f.label "お店の紹介文"
+          = f.text_area :store_explanation, class: "form-control", row: 5, maxlength: "500", placeholder: "500文字まで"
         .form-group
           = f.label "タグ（複数つける場合は半角カンマで区切ってください）"
           = f.text_field :tag_ids, class: "form-control", id: "tag_ids", value: @tag_list, data: {role: "tagsinput"} 
@@ -371,149 +251,29 @@
                 - if @profile.persisted?
                   = i.check_box :_destroy, data: { index: i.index }
 
-
         = f.submit class: "btn btn-primary"
+
     #item3.tab-pane.fade{"aria-labelledby" => "item3-tab", role: "tabpanel"}
-      %label.mt-3.mb-4(for="") ---プロフィール---
+      %label.mt-3.mb-4(for="") ---商品情報---
       = form_with(model: @profile, class: "form-horizontal mb-3", local: true) do |f|
         = render 'layouts/error_messages', model: f.object
         .form-group
           = f.label "メイン写真を設定する"
           %br/
           -# 編集前に画像が存在していれば編集画面に表示
-          - if current_user.profile.image?
-            = image_tag current_user.profile.image.url(:thumb), class: "thumb mb-2", style: "border:solid 1px #ccc;padding:4px"
-          = f.file_field :image, class: "form-control-file"
+          - if current_user.profile.item_image?
+            = image_tag current_user.profile.item_image.url(:thumb), class: "thumb mb-2", style: "border:solid 1px #ccc;padding:4px"
+          = f.file_field :item_image, class: "form-control-file"
           %p
-            = f.check_box :remove_image #画像を削除するチェックボックスremove_カラム名
-            画像を削除する
-        .form-group
-          = f.label :VR, "VR画像を設定する"
-          %br/
-          -# 編集前に画像が存在していれば編集画面に表示
-          - if current_user.profile.sub_image?
-            = image_tag current_user.profile.sub_image.url(:thumb), class: "thumb mb-2", style: "border:solid 1px #ccc;padding:4px"
-          = f.file_field :sub_image, class: "form-control-file"
-          %p
-            = f.check_box :remove_sub_image #画像を削除するチェックボックスremove_カラム名
+            = f.check_box :remove_item_image #画像を削除するチェックボックスremove_カラム名
             画像を削除する
         .form-group
           -# カラム追加済み
-          = f.label "キャッチコピー"
-          = f.text_field :catch_copy, class: "form-control"
+          = f.label "商品名"
+          = f.text_field :item_name, class: "form-control"
         .form-group
-          = f.label "名字"
-          = f.text_field :first_name, class: "form-control"
-        .form-group
-          = f.label "名前"
-          = f.text_field :family_name, class: "form-control"
-        .form-group
-          = f.label "名字（ふりがな）"
-          = f.text_field :first_name_kana, class: "form-control"
-        .form-group
-          = f.label "名前（ふりがな）"
-          = f.text_field :family_name_kana, class: "form-control"
-        .form-group
-          = f.label "password"
-          = f.text_field :password, class: "form-control"
-        .form-group
-          = f.label "郵便番号 ※半角数字のみ（ハイフンなし）"
-          -# 半角数字のみ（ハイフンなし）
-          = f.text_field :post_code, class: "form-control", pattern: "^[0-9]+$"
-        .form-group
-          = f.label "都道府県"
-          = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: "---"}, {class: "form-control"}
-        .form-group
-          = f.label "市区町村"
-          = f.text_field :city, class: "form-control"
-        .form-group
-          = f.label "以降の住所"
-          = f.text_field :address_number, class: "form-control"
-        .form-group
-          = f.label "建物"
-          = f.text_field :building, class: "form-control"
-        .form-group
-          = f.label "電話番号 ※半角数字のみ（ハイフンなし）"
-          = f.text_field :phone, class: "form-control", pattern: "^[0-9]+$"
-        .form-group
-          = f.label "生年月日"
-          = f.date_select :birth_date, {year_format: ->year { "#{Date.new(year, 12, 31).jisx0301.split('.').first}(#{year})" },use_month_numbers: true, start_year: 1950, end_year: Time.now.year, prompt: "---"}, {class: "form-control"}
-        .form-group
-          = f.label "小学校"
-          = f.text_field :primary_school, class: "form-control"
-        .form-group
-          = f.label "中学校"
-          = f.text_field :Junior_high_school, class: "form-control"
-        .form-group
-          = f.label "高校"
-          = f.text_field :high_school, class: "form-control"
-        .form-group
-          = f.label "大学"
-          = f.text_field :university, class: "form-control"
-        .form-group
-          = f.label "大学院"
-          = f.text_field :graduate_school, class: "form-control"
-        .form-group
-          = f.label "専門学校"
-          = f.text_field :vocational_school, class: "form-control"
-        .form-group
-          = f.label "その他学歴"
-          = f.text_field :other_school, class: "form-control"
-        .form-group
-          = f.label "職歴１"
-          = f.text_field :first_career, class: "form-control"
-        .form-group
-          = f.label "職歴２"
-          = f.text_field :second_career, class: "form-control"
-        .form-group
-          = f.label "職歴３"
-          = f.text_field :third_career, class: "form-control"
-        .form-group
-          = f.label "職歴４"
-          = f.text_field :fourth_career, class: "form-control"
-        .form-group
-          = f.label "職歴５"
-          = f.text_field :last_career, class: "form-control"
-        .form-group
-          = f.label "FaceBook"
-          = f.text_field :facebook, class: "form-control"
-        .form-group
-          = f.label "Twitter"
-          = f.text_field :twitter, class: "form-control"
-        .form-group
-          = f.label "ホームページ"
-          = f.text_field :hp, class: "form-control"
-
-        %label.mt-3.mb-4(for="") ---自己紹介---
-
-        .form-group
-          = f.label "タイトル"
-          -# カラム追加済み
-          = f.text_field :avatar_title, class: "form-control"
-        .form-group
-          = f.label "キャッチコピー"
-          -# カラム追加済み
-          = f.text_field :avatar_catch_copy, class: "form-control"
-        .form-group
-          = f.label "紹介文"
-          = f.text_area :introduction, class: "form-control", row: 5, maxlength: "500", placeholder: "500文字まで"
-        .form-group
-          = f.label "アバター写真"
-          %br/
-          -# 編集前に画像が存在していれば編集画面に表示
-          - if current_user.profile.avatar?
-            = image_tag current_user.profile.avatar.url(:thumb), class: "thumb mb-2", style: "border:solid 1px #ccc;padding:4px"
-          = f.file_field :avatar, class: "form-control-file"
-          %p
-            = f.check_box :remove_avatar #画像を削除するチェックボックスremove_カラム名
-            画像を削除する
-        .form-group
-          = f.label "写真についての説明文"
-          -# カラム追加済み
-          = f.text_area :avatar_about, class: "form-control", row: 5, maxlength: "500", placeholder: "500文字まで"
-
-        %button.btn.btn-secondary.mt-3.mb-4 自己紹介を追加する
-
+          = f.label "商品の紹介文"
+          = f.text_area :item_explanation, class: "form-control", row: 5, maxlength: "500", placeholder: "500文字まで"
         .form-group
           = f.label "タグ（複数つける場合は半角カンマで区切ってください）"
           = f.text_field :tag_ids, class: "form-control", id: "tag_ids", value: @tag_list, data: {role: "tagsinput"} 
@@ -547,149 +307,28 @@
                 - if @profile.persisted?
                   = i.check_box :_destroy, data: { index: i.index }
 
-
         = f.submit class: "btn btn-primary"
+
     #item4.tab-pane.fade{"aria-labelledby" => "item4-tab", role: "tabpanel"}
-      %label.mt-3.mb-4(for="") ---プロフィール---
+      %label.mt-3.mb-4(for="") ---サービス---
       = form_with(model: @profile, class: "form-horizontal mb-3", local: true) do |f|
         = render 'layouts/error_messages', model: f.object
         .form-group
           = f.label "メイン写真を設定する"
           %br/
           -# 編集前に画像が存在していれば編集画面に表示
-          - if current_user.profile.image?
-            = image_tag current_user.profile.image.url(:thumb), class: "thumb mb-2", style: "border:solid 1px #ccc;padding:4px"
-          = f.file_field :image, class: "form-control-file"
+          - if current_user.profile.service_image?
+            = image_tag current_user.profile.service_image.url(:thumb), class: "thumb mb-2", style: "border:solid 1px #ccc;padding:4px"
+          = f.file_field :service_image, class: "form-control-file"
           %p
-            = f.check_box :remove_image #画像を削除するチェックボックスremove_カラム名
+            = f.check_box :remove_service_image #画像を削除するチェックボックスremove_カラム名
             画像を削除する
         .form-group
-          = f.label :VR, "VR画像を設定する"
-          %br/
-          -# 編集前に画像が存在していれば編集画面に表示
-          - if current_user.profile.sub_image?
-            = image_tag current_user.profile.sub_image.url(:thumb), class: "thumb mb-2", style: "border:solid 1px #ccc;padding:4px"
-          = f.file_field :sub_image, class: "form-control-file"
-          %p
-            = f.check_box :remove_sub_image #画像を削除するチェックボックスremove_カラム名
-            画像を削除する
+          = f.label "サービスの名称"
+          = f.text_field :service_name, class: "form-control"
         .form-group
-          -# カラム追加済み
-          = f.label "キャッチコピー"
-          = f.text_field :catch_copy, class: "form-control"
-        .form-group
-          = f.label "名字"
-          = f.text_field :first_name, class: "form-control"
-        .form-group
-          = f.label "名前"
-          = f.text_field :family_name, class: "form-control"
-        .form-group
-          = f.label "名字（ふりがな）"
-          = f.text_field :first_name_kana, class: "form-control"
-        .form-group
-          = f.label "名前（ふりがな）"
-          = f.text_field :family_name_kana, class: "form-control"
-        .form-group
-          = f.label "password"
-          = f.text_field :password, class: "form-control"
-        .form-group
-          = f.label "郵便番号 ※半角数字のみ（ハイフンなし）"
-          -# 半角数字のみ（ハイフンなし）
-          = f.text_field :post_code, class: "form-control", pattern: "^[0-9]+$"
-        .form-group
-          = f.label "都道府県"
-          = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: "---"}, {class: "form-control"}
-        .form-group
-          = f.label "市区町村"
-          = f.text_field :city, class: "form-control"
-        .form-group
-          = f.label "以降の住所"
-          = f.text_field :address_number, class: "form-control"
-        .form-group
-          = f.label "建物"
-          = f.text_field :building, class: "form-control"
-        .form-group
-          = f.label "電話番号 ※半角数字のみ（ハイフンなし）"
-          = f.text_field :phone, class: "form-control", pattern: "^[0-9]+$"
-        .form-group
-          = f.label "生年月日"
-          = f.date_select :birth_date, {year_format: ->year { "#{Date.new(year, 12, 31).jisx0301.split('.').first}(#{year})" },use_month_numbers: true, start_year: 1950, end_year: Time.now.year, prompt: "---"}, {class: "form-control"}
-        .form-group
-          = f.label "小学校"
-          = f.text_field :primary_school, class: "form-control"
-        .form-group
-          = f.label "中学校"
-          = f.text_field :Junior_high_school, class: "form-control"
-        .form-group
-          = f.label "高校"
-          = f.text_field :high_school, class: "form-control"
-        .form-group
-          = f.label "大学"
-          = f.text_field :university, class: "form-control"
-        .form-group
-          = f.label "大学院"
-          = f.text_field :graduate_school, class: "form-control"
-        .form-group
-          = f.label "専門学校"
-          = f.text_field :vocational_school, class: "form-control"
-        .form-group
-          = f.label "その他学歴"
-          = f.text_field :other_school, class: "form-control"
-        .form-group
-          = f.label "職歴１"
-          = f.text_field :first_career, class: "form-control"
-        .form-group
-          = f.label "職歴２"
-          = f.text_field :second_career, class: "form-control"
-        .form-group
-          = f.label "職歴３"
-          = f.text_field :third_career, class: "form-control"
-        .form-group
-          = f.label "職歴４"
-          = f.text_field :fourth_career, class: "form-control"
-        .form-group
-          = f.label "職歴５"
-          = f.text_field :last_career, class: "form-control"
-        .form-group
-          = f.label "FaceBook"
-          = f.text_field :facebook, class: "form-control"
-        .form-group
-          = f.label "Twitter"
-          = f.text_field :twitter, class: "form-control"
-        .form-group
-          = f.label "ホームページ"
-          = f.text_field :hp, class: "form-control"
-
-        %label.mt-3.mb-4(for="") ---自己紹介---
-
-        .form-group
-          = f.label "タイトル"
-          -# カラム追加済み
-          = f.text_field :avatar_title, class: "form-control"
-        .form-group
-          = f.label "キャッチコピー"
-          -# カラム追加済み
-          = f.text_field :avatar_catch_copy, class: "form-control"
-        .form-group
-          = f.label "紹介文"
-          = f.text_area :introduction, class: "form-control", row: 5, maxlength: "500", placeholder: "500文字まで"
-        .form-group
-          = f.label "アバター写真"
-          %br/
-          -# 編集前に画像が存在していれば編集画面に表示
-          - if current_user.profile.avatar?
-            = image_tag current_user.profile.avatar.url(:thumb), class: "thumb mb-2", style: "border:solid 1px #ccc;padding:4px"
-          = f.file_field :avatar, class: "form-control-file"
-          %p
-            = f.check_box :remove_avatar #画像を削除するチェックボックスremove_カラム名
-            画像を削除する
-        .form-group
-          = f.label "写真についての説明文"
-          -# カラム追加済み
-          = f.text_area :avatar_about, class: "form-control", row: 5, maxlength: "500", placeholder: "500文字まで"
-
-        %button.btn.btn-secondary.mt-3.mb-4 自己紹介を追加する
-
+          = f.label "サービスの紹介文"
+          = f.text_area :service_explanation, class: "form-control", row: 5, maxlength: "500", placeholder: "500文字まで"
         .form-group
           = f.label "タグ（複数つける場合は半角カンマで区切ってください）"
           = f.text_field :tag_ids, class: "form-control", id: "tag_ids", value: @tag_list, data: {role: "tagsinput"} 
@@ -722,150 +361,39 @@
                     削除
                 - if @profile.persisted?
                   = i.check_box :_destroy, data: { index: i.index }
-
-
         = f.submit class: "btn btn-primary"
+
     #item5.tab-pane.fade{"aria-labelledby" => "item5-tab", role: "tabpanel"}
-      %label.mt-3.mb-4(for="") ---プロフィール---
+      %label.mt-3.mb-4(for="") ---イベント---
       = form_with(model: @profile, class: "form-horizontal mb-3", local: true) do |f|
         = render 'layouts/error_messages', model: f.object
         .form-group
           = f.label "メイン写真を設定する"
           %br/
           -# 編集前に画像が存在していれば編集画面に表示
-          - if current_user.profile.image?
-            = image_tag current_user.profile.image.url(:thumb), class: "thumb mb-2", style: "border:solid 1px #ccc;padding:4px"
-          = f.file_field :image, class: "form-control-file"
+          - if current_user.profile.event_image?
+            = image_tag current_user.profile.event_image.url(:thumb), class: "thumb mb-2", style: "border:solid 1px #ccc;padding:4px"
+          = f.file_field :event_image, class: "form-control-file"
           %p
-            = f.check_box :remove_image #画像を削除するチェックボックスremove_カラム名
+            = f.check_box :remove_event_image #画像を削除するチェックボックスremove_カラム名
             画像を削除する
         .form-group
-          = f.label :VR, "VR画像を設定する"
+          = f.label "イベント名"
+          = f.text_field :event_name, class: "form-control"
+        .form-group
+          = f.label "開催場所"
+          = f.text_field :event_place, class: "form-control"
+        .form-group
+          = f.label "開催日時"
           %br/
-          -# 編集前に画像が存在していれば編集画面に表示
-          - if current_user.profile.sub_image?
-            = image_tag current_user.profile.sub_image.url(:thumb), class: "thumb mb-2", style: "border:solid 1px #ccc;padding:4px"
-          = f.file_field :sub_image, class: "form-control-file"
-          %p
-            = f.check_box :remove_sub_image #画像を削除するチェックボックスremove_カラム名
-            画像を削除する
+          = f.datetime_select :event_start, start_year: now.year, end_year: now.year + 1, use_month_numbers: true, include_blank: true, date_separator: " / "
         .form-group
-          -# カラム追加済み
-          = f.label "キャッチコピー"
-          = f.text_field :catch_copy, class: "form-control"
-        .form-group
-          = f.label "名字"
-          = f.text_field :first_name, class: "form-control"
-        .form-group
-          = f.label "名前"
-          = f.text_field :family_name, class: "form-control"
-        .form-group
-          = f.label "名字（ふりがな）"
-          = f.text_field :first_name_kana, class: "form-control"
-        .form-group
-          = f.label "名前（ふりがな）"
-          = f.text_field :family_name_kana, class: "form-control"
-        .form-group
-          = f.label "password"
-          = f.text_field :password, class: "form-control"
-        .form-group
-          = f.label "郵便番号 ※半角数字のみ（ハイフンなし）"
-          -# 半角数字のみ（ハイフンなし）
-          = f.text_field :post_code, class: "form-control", pattern: "^[0-9]+$"
-        .form-group
-          = f.label "都道府県"
-          = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: "---"}, {class: "form-control"}
-        .form-group
-          = f.label "市区町村"
-          = f.text_field :city, class: "form-control"
-        .form-group
-          = f.label "以降の住所"
-          = f.text_field :address_number, class: "form-control"
-        .form-group
-          = f.label "建物"
-          = f.text_field :building, class: "form-control"
-        .form-group
-          = f.label "電話番号 ※半角数字のみ（ハイフンなし）"
-          = f.text_field :phone, class: "form-control", pattern: "^[0-9]+$"
-        .form-group
-          = f.label "生年月日"
-          = f.date_select :birth_date, {year_format: ->year { "#{Date.new(year, 12, 31).jisx0301.split('.').first}(#{year})" },use_month_numbers: true, start_year: 1950, end_year: Time.now.year, prompt: "---"}, {class: "form-control"}
-        .form-group
-          = f.label "小学校"
-          = f.text_field :primary_school, class: "form-control"
-        .form-group
-          = f.label "中学校"
-          = f.text_field :Junior_high_school, class: "form-control"
-        .form-group
-          = f.label "高校"
-          = f.text_field :high_school, class: "form-control"
-        .form-group
-          = f.label "大学"
-          = f.text_field :university, class: "form-control"
-        .form-group
-          = f.label "大学院"
-          = f.text_field :graduate_school, class: "form-control"
-        .form-group
-          = f.label "専門学校"
-          = f.text_field :vocational_school, class: "form-control"
-        .form-group
-          = f.label "その他学歴"
-          = f.text_field :other_school, class: "form-control"
-        .form-group
-          = f.label "職歴１"
-          = f.text_field :first_career, class: "form-control"
-        .form-group
-          = f.label "職歴２"
-          = f.text_field :second_career, class: "form-control"
-        .form-group
-          = f.label "職歴３"
-          = f.text_field :third_career, class: "form-control"
-        .form-group
-          = f.label "職歴４"
-          = f.text_field :fourth_career, class: "form-control"
-        .form-group
-          = f.label "職歴５"
-          = f.text_field :last_career, class: "form-control"
-        .form-group
-          = f.label "FaceBook"
-          = f.text_field :facebook, class: "form-control"
-        .form-group
-          = f.label "Twitter"
-          = f.text_field :twitter, class: "form-control"
-        .form-group
-          = f.label "ホームページ"
-          = f.text_field :hp, class: "form-control"
-
-        %label.mt-3.mb-4(for="") ---自己紹介---
-
-        .form-group
-          = f.label "タイトル"
-          -# カラム追加済み
-          = f.text_field :avatar_title, class: "form-control"
-        .form-group
-          = f.label "キャッチコピー"
-          -# カラム追加済み
-          = f.text_field :avatar_catch_copy, class: "form-control"
-        .form-group
-          = f.label "紹介文"
-          = f.text_area :introduction, class: "form-control", row: 5, maxlength: "500", placeholder: "500文字まで"
-        .form-group
-          = f.label "アバター写真"
+          = f.label "終了日時"
           %br/
-          -# 編集前に画像が存在していれば編集画面に表示
-          - if current_user.profile.avatar?
-            = image_tag current_user.profile.avatar.url(:thumb), class: "thumb mb-2", style: "border:solid 1px #ccc;padding:4px"
-          = f.file_field :avatar, class: "form-control-file"
-          %p
-            = f.check_box :remove_avatar #画像を削除するチェックボックスremove_カラム名
-            画像を削除する
+          = f.datetime_select :event_end, start_year: now.year, end_year: now.year + 1, use_month_numbers: true, include_blank: true, date_separator: " / "
         .form-group
-          = f.label "写真についての説明文"
-          -# カラム追加済み
-          = f.text_area :avatar_about, class: "form-control", row: 5, maxlength: "500", placeholder: "500文字まで"
-
-        %button.btn.btn-secondary.mt-3.mb-4 自己紹介を追加する
-
+          = f.label "イベントの説明"
+          = f.text_area :event_explanation, class: "form-control", row: 5, maxlength: "500", placeholder: "500文字まで"
         .form-group
           = f.label "タグ（複数つける場合は半角カンマで区切ってください）"
           = f.text_field :tag_ids, class: "form-control", id: "tag_ids", value: @tag_list, data: {role: "tagsinput"} 
@@ -898,6 +426,4 @@
                     削除
                 - if @profile.persisted?
                   = i.check_box :_destroy, data: { index: i.index }
-
-
         = f.submit class: "btn btn-primary"
