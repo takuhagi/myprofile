@@ -13,14 +13,15 @@
   %ul.nav.nav-tabs.nav-justified{role: "tablist", style: "width: auto; overflow-y: scroll"}
     %li.nav-item
       %a#item1-tab.nav-link.active{"aria-controls" => "item1", "aria-selected" => "true", "data-toggle" => "tab", href: "#item1", role: "tab"} 人物
-    %li.nav-item
-      %a#item2-tab.nav-link{"aria-controls" => "item2", "aria-selected" => "false", "data-toggle" => "tab", href: "#item2", role: "tab"} 店舗
-    %li.nav-item
-      %a#item3-tab.nav-link{"aria-controls" => "item3", "aria-selected" => "false", "data-toggle" => "tab", href: "#item3", role: "tab"} 商品
-    %li.nav-item
-      %a#item4-tab.nav-link{"aria-controls" => "item4", "aria-selected" => "false", "data-toggle" => "tab", href: "#item4", role: "tab"} サービス
-    %li.nav-item
-      %a#item5-tab.nav-link{"aria-controls" => "item5", "aria-selected" => "false", "data-toggle" => "tab", href: "#item5", role: "tab"} イベント
+    - if current_user.card
+      %li.nav-item
+        %a#item2-tab.nav-link{"aria-controls" => "item2", "aria-selected" => "false", "data-toggle" => "tab", href: "#item2", role: "tab"} 店舗
+      %li.nav-item
+        %a#item3-tab.nav-link{"aria-controls" => "item3", "aria-selected" => "false", "data-toggle" => "tab", href: "#item3", role: "tab"} 商品
+      %li.nav-item
+        %a#item4-tab.nav-link{"aria-controls" => "item4", "aria-selected" => "false", "data-toggle" => "tab", href: "#item4", role: "tab"} サービス
+      %li.nav-item
+        %a#item5-tab.nav-link{"aria-controls" => "item5", "aria-selected" => "false", "data-toggle" => "tab", href: "#item5", role: "tab"} イベント
   .tab-content
     #item1.tab-pane.fade.show.active{"aria-labelledby" => "item1-tab", role: "tabpanel"}
       %label.mt-3.mb-4(for="") ---プロフィール---
