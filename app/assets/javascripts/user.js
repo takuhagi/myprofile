@@ -23,13 +23,15 @@ $(function() {
   $('.slider').slick({
       prevArrow: true,
       nextArrow: true,
-      dots: true,
-      autoplay: true,
-      autoplaySpeed: 4000,
-      speed: 800
+      dots: false,
   });
 
-  $('.slick-dots li').on('mouseover', function() {
-    $('.slider').slick('goTo', $(this).index());
+  $(function(){
+    var slick = $('#mainSlide').slick({
+        appendArrows: $('#arrows'),
+        autoplay: true,
+        autoplaySpeed: 4000,
+        speed: 800
+    });
   });
 });
