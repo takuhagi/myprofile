@@ -1,3 +1,3 @@
-class EventImagesController < ApplicationController
+class EventProfilesController < ApplicationController
  
 end
