@@ -1,3 +1,2 @@
 class EventProfilesController < ApplicationController
- 
 end
