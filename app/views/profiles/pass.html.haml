@@ -7,7 +7,7 @@
   
 
 .form-group.d-flex.justify-content-center
-  = form_with url: users_show_path(id: params[:profile_id]), class: "form-group",local: true do |f|
+  = form_with url: users_show_path(id: params[:profile_id], pv_link: "pv++"), class: "form-group",local: true do |f|
     .form-group.row
       %label.col-form-label{for: "pass-text"} password:
       = f.text_field :password, id: "pass-text", class: "form-control input-lg "

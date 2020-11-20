@@ -6,6 +6,8 @@ class ProfilesController < ApplicationController
   def index
     @profiles = Profile.all
     @user = User.all
+    @rank_profiles = @profiles.order(pv_count: "DESC").limit(5)
+    @new_profiles = @profiles.order(created_at: "DESC").limit(5)
   end
 
   def new
