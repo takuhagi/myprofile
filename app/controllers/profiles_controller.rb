@@ -3,7 +3,7 @@ class ProfilesController < ApplicationController
   # before_action :set_profile, except: [:index, :new, :create, :color, :pass]
   # before_action :set_user, except: [:index, :new, :create, :edit, :update]
   require "payjp"
-  before_action :pay
+  before_action :pay, only: [:index]
 
   def index
     @profiles = Profile.all
