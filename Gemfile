@@ -92,3 +92,7 @@ gem 'payjp'
 group :production do
   gem 'unicorn', '5.4.1'
 end
+
+gem 'jc-validates_timeliness'
+
+gem "bootstrap4-datetime-picker-rails"

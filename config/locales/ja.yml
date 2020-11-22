@@ -37,6 +37,8 @@ ja:
         avatar_title: アバター写真のタイトル
         avatar_catch_copy: アバター写真のキャッチコピー
         avatar_about: アバター写真の説明文
+        event_start: 開催日時
+        event_end: 終了日時
        
     errors:
       messages:
