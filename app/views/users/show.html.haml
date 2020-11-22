@@ -22,7 +22,7 @@
       #{@profile.introduction}
 .container
   -# タブ切り替え（プロフ、学歴、職歴）にしています
-  %ul.nav.nav-tabs.nav-justified{role: "tablist"}
+  %ul.nav.nav-tabs.nav-justified{role: "tablist", style: "width: auto"}
     %li.nav-item
       %a#item1-tab.nav-link.active{"aria-controls" => "item1", "aria-selected" => "true", "data-toggle" => "tab", href: "#item1", role: "tab"} プロフィール
     %li.nav-item

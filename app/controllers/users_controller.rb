@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   def index
     @user = User.find(params[:id])
     @profile = @user.profile
+    @card = Card.find_by(user_id: current_user.id)
     @comment = Comment.new
     @comments = @user.comments.includes(:user).all.order("id DESC")
     @check = @comments.where(check: [nil])
@@ -31,6 +32,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @profile = @user.profile
+    
     # パスワードが一致するか。 
     if @user.id == current_user.id || @profile.authenticate(params[:password])
       # 該当ユーザーのタグ名をpluckメソッドを使ってtag_nameカラムで取得。
@@ -44,7 +46,6 @@ class UsersController < ApplicationController
       if params[:pv_link] == "pv++" && @user.id != current_user.id
         @profile.pv_count += 1
         @profile.update(pv_count: @profile.pv_count)
-        redirect_to user_path(@user.id)
       end
     else
       redirect_back(fallback_location: profile_pass_path(params[:id]))

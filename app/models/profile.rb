@@ -46,8 +46,16 @@ class Profile < ApplicationRecord
   mount_uploader :avatar, ImageUploader
   # メイン写真
   mount_uploader :image, ImageUploader
-  # メイン写真
+  # VR写真
   mount_uploader :sub_image, ImageUploader
+  # 店舗写真
+  mount_uploader :store_image, ImageUploader
+  # 商品写真
+  mount_uploader :item_image, ImageUploader
+  # サービス写真
+  mount_uploader :service_image, ImageUploader
+  # イベント写真
+  mount_uploader :event_image, ImageUploader
   # fields_forメソッドを利用するため
   accepts_nested_attributes_for :images, allow_destroy: true
 

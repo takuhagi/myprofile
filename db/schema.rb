@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_07_144803) do
+ActiveRecord::Schema.define(version: 2020_11_12_130033) do
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -171,6 +171,21 @@ ActiveRecord::Schema.define(version: 2020_11_07_144803) do
     t.text "avatar_about"
     t.integer "pv_count", null: false
     t.string "password_digest"
+    t.string "store_name"
+    t.text "store_explanation"
+    t.string "store_image"
+    t.string "item_name"
+    t.text "item_explanation"
+    t.string "item_image"
+    t.string "service_name"
+    t.text "service_explanation"
+    t.string "service_image"
+    t.string "event_name"
+    t.text "event_explanation"
+    t.string "event_image"
+    t.string "event_place"
+    t.datetime "event_start"
+    t.datetime "event_end"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
