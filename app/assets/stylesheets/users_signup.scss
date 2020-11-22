@@ -1,10 +1,11 @@
-body{background: #eee url(http://subtlepatterns.com/patterns/sativa.png);}
 html,body{
-  position: relative;
   height: 100%;
-  z-index: -3;
 }
 .SignupPage {
+  z-index: -3;
+  height: 100%;
+  width: 100%;
+  background: #eee url(http://subtlepatterns.com/patterns/sativa.png);
 // ページタイトル、サイトロゴ部分
   .Title-container{
     text-align: center;
