@@ -108,6 +108,7 @@
               退会
     .mt-2.mobile_profile.shadow-sm
       .d-flex.justify-content-center.mt-2
+        -# - if @profile.email.present?   # email表示したくない場合を想定して、表示したい場合はprofileに連絡用email入力にした方がいいかも？
         %button.btn.btn-primary.mobile_btn{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
           email
         - if @profile.facebook.present?
