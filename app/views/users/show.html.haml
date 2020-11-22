@@ -19,7 +19,8 @@
 
     %hr.my-4
     %p
-      #{@profile.introduction}
+      = safe_join(@profile.introduction.split("\n"),tag(:br))
+      -# #{@profile.introduction}
 .container
   -# タブ切り替え（プロフ、学歴、職歴）にしています
   %ul.nav.nav-tabs.nav-justified{role: "tablist", style: "width: auto"}
