@@ -173,11 +173,13 @@
               = @profile.birth_date
           .introduction
             %p.ml-5.mr-5.pt-3 
-              = @profile.avatar_about
+              = safe_join(@profile.avatar_about.split("\n"),tag(:br))
+              -# = @profile.avatar_about
 
   .mt-5.text_area
     %p.text-break.ml-5.mr-5.pt-3.pb-3
-      = @profile.introduction
+      = safe_join(@profile.introduction.split("\n"),tag(:br)) 
+      -# = @profile.introduction
   
   .comment_field
     .pt-2.pl-2.pb-2
