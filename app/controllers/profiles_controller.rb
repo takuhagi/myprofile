@@ -4,6 +4,7 @@ class ProfilesController < ApplicationController
   # before_action :set_user, except: [:index, :new, :create, :edit, :update]
   require "payjp"
   before_action :pay, only: [:index]
+  before_action :correct_user, only: [:edit]
 
   def index
     @profiles = Profile.all
@@ -164,6 +165,13 @@ class ProfilesController < ApplicationController
           end
         end
       end
+    end
+  end
+
+  def correct_user
+    @prof = Profile.find(params[:id])
+    if @prof.user != current_user
+      redirect_to root_path
     end
   end
   # リファクタリング（いったんコメントアウト中）
