@@ -39,6 +39,8 @@ class StoreProfilesController < ApplicationController
     params.require(:store_profile).permit(
       :name,
       :explanation,
+      :image,
+      :remove_image,
       :profile_link,
       :item_link,
       :service_link,

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_12_130033) do
+ActiveRecord::Schema.define(version: 2020_11_23_060123) do
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2020_11_12_130033) do
     t.string "service_link"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image"
     t.index ["user_id"], name: "index_event_profiles_on_user_id"
   end
 
@@ -118,6 +119,7 @@ ActiveRecord::Schema.define(version: 2020_11_12_130033) do
     t.string "event_link"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image"
     t.index ["user_id"], name: "index_item_profiles_on_user_id"
   end
 
@@ -207,6 +209,7 @@ ActiveRecord::Schema.define(version: 2020_11_12_130033) do
     t.string "event_link"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image"
     t.index ["user_id"], name: "index_service_profiles_on_user_id"
   end
 
@@ -228,6 +231,7 @@ ActiveRecord::Schema.define(version: 2020_11_12_130033) do
     t.string "event_link"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image"
     t.index ["user_id"], name: "index_store_profiles_on_user_id"
   end
 

@@ -39,6 +39,8 @@ class ServiceProfilesController < ApplicationController
     params.require(:service_profile).permit(
       :name,
       :explanation,
+      :image,
+      :remove_image,
       :profile_link,
       :store_link,
       :item_link,

@@ -21,6 +21,16 @@
       = f.label "イベント名"
       = f.text_field :title, class: "form-control"
     .form-group
+      = f.label "メイン写真"
+      %br/
+      -# 編集前に画像が存在していれば編集画面に表示
+      - if @event_profile.image?
+        = image_tag @event_profile.image.url(:thumb), class: "thumb mb-2", style: "border:solid 1px #ccc;padding:4px"
+      = f.file_field :image, class: "form-control-file"
+      %p
+        = f.check_box :remove_image #画像を削除するチェックボックスremove_カラム名
+        画像を削除する
+    .form-group
       = f.label "開催日時"
       .row
         .col-sm-6

@@ -39,6 +39,8 @@ class EventProfilesController < ApplicationController
     params.require(:event_profile).permit(
       :title,
       :explanation,
+      :image,
+      :remove_image,
       :prefecture,
       :city,
       :prace,
