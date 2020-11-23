@@ -85,7 +85,7 @@ gem 'dotenv-rails'
 
 gem 'font-awesome-sass'
 
-gem 'font-awesome-sass'
+gem "font-awesome-rails"
 
 gem 'payjp'
 
@@ -96,3 +96,9 @@ end
 gem 'jc-validates_timeliness'
 
 gem "bootstrap4-datetime-picker-rails"
+
+gem 'momentjs-rails'
+
+gem 'jquery-datetimepicker-rails'
+
+gem 'bootstrap'
