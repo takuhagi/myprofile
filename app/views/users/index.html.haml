@@ -192,7 +192,7 @@
         .comment_info
           - user = User.find(comment.commenter_id)
           .comment_name
-            = user.name
+            = user.nickname
           .comment_date
             = comment.created_at.strftime("%Y-%m-%d %H:%M")
         .comment_content
@@ -220,7 +220,7 @@
             .comment_reply_info
               - user = User.find(re2.commenter_id)
               .comment_reply_name
-                = user.name
+                = user.nickname
               .comment_reply_date
                 = re2.created_at.strftime("%Y-%m-%d %H:%M")
             .comment_reply_content

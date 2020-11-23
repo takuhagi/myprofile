@@ -8,9 +8,9 @@
     = form_for(current_user) do |f|
       .FormField
         .FormField__label--normal
-          = f.label :name
+          = f.label :nickname
         .FormField__input--normal
-          = f.text_field :name, autofocus: true
+          = f.text_field :nickname, autofocus: true
       .FormField
         .FormField__label--normal
           = f.label :email
