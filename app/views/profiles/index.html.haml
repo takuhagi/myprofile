@@ -67,15 +67,13 @@
           PR画像
       .rankings
         .h4 アクセスランキング
-        .ranking ranking
-        .ranking ranking
-        .ranking ranking
-        .ranking ranking
-        .ranking ranking
+        -# 5つ表示
+        - @rank_profiles.each do |profile|
+          .ranking
+            = profile.user.nickname
       .new-arrivals
         .h4 新着 
-        .new-arrival new-arrival
-        .new-arrival new-arrival
-        .new-arrival new-arrival
-        .new-arrival new-arrival
-        .new-arrival new-arrival
+        - @new_profiles.each do |new_profile|
+          .new-arrival
+            = new_profile.user.nickname
+        

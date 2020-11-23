@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
 
+  require "payjp"
+  before_action :pay, only: [:index]
+  
   def index
     @user = User.find(params[:id])
     @profile = @user.profile
+    @card = Card.find_by(user_id: current_user.id)
     @comment = Comment.new
     @comments = @user.comments.includes(:user).all.order("id DESC")
     @check = @comments.where(check: [nil])
@@ -31,6 +35,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @profile = @user.profile
+    
     # パスワードが一致するか。 
     if @user.id == current_user.id || @profile.authenticate(params[:password])
       # 該当ユーザーのタグ名をpluckメソッドを使ってtag_nameカラムで取得。
@@ -44,7 +49,6 @@ class UsersController < ApplicationController
       if params[:pv_link] == "pv++" && @user.id != current_user.id
         @profile.pv_count += 1
         @profile.update(pv_count: @profile.pv_count)
-        redirect_to user_path(@user.id)
       end
     else
       redirect_back(fallback_location: profile_pass_path(params[:id]))
@@ -99,5 +103,21 @@ class UsersController < ApplicationController
     params.require(:q).permit(:sorts, :nickname_or_profile_first_name_or_profile_family_name_or_profile_first_name_kana_or_profile_family_name_kana_cont, :profile_primary_school_or_profile_Junior_high_school_or_profile_high_school_or_profile_vocational_school_or_profile_university_or_profile_graduate_school_or_profile_other_school_cont, :profile_first_career_or_profile_second_career_or_profile_third_career_or_profile_fourth_career_or_profile_last_career_cont, :profile_tags_tag_name_cont, profile_tags_id_eq_any:[], tag_ids:[])
   end
   
+  def pay
+    Payjp.api_key = Rails.application.credentials[:payjp][:secret_key]
+    @card = Card.all
+    subscription = Payjp::Subscription.all
+    subscription.each do |s|
+      if s.status == "paused"
+        customer = Payjp::Customer.retrieve(s.customer)
+        customer.delete
+        @card.each do |card|
+          if card.customer_id == customer.id
+            card.delete
+          end
+        end
+      end
+    end
+  end
 
 end

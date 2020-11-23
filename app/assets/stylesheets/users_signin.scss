@@ -1,0 +1,117 @@
+html,body{
+  height: 100%;
+}
+.SigninPage {
+  z-index: -3;
+  height: 100%;
+  width: 100%;
+  background: #eee url(http://subtlepatterns.com/patterns/sativa.png);
+  // ページタイトル、サイトロゴ部分
+  .Title-container{
+    text-align: center;
+    padding-top: 40px;
+    .SiteLogo {
+    width: 160px;
+    height: 160px;
+    margin: 24px auto;
+    border-radius: 100%;
+    border: 2px solid #aaa;
+    background-size: cover;
+    background-color: #ccc;
+    text-align: center;
+    padding: 64px 0 0 ;
+    color: #aaaaaa;
+    }
+    .Title {
+      font-size: 40px;
+      color: #aaaaaa;
+      font-weight: bold;
+    }
+    .Caption {
+      color: #aaaaaa;
+    }
+  }
+
+  // フォーム部分
+  .Signin-container {
+    position: relative;
+    width: 300px;
+    margin: 24px auto 24px;
+    padding: 40px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #ccc;
+    .FormBox {
+      .FormField {
+        .InputField {
+          background: #fafafa;
+        }
+        .SubmitField {
+          border-radius: 8px;
+          margin-top: 16px;
+        }
+      }
+    }
+  }
+
+  // 関連ページへのリンク部分
+  .Link-container{
+    width: 300px;
+    margin: 0 auto;
+    .Link{
+      text-align: right;
+      font-size: 12px;
+      margin: 4px 0;
+      color: gray;
+    }
+  }
+  
+
+
+  .Signin-container::before, .Signin-container::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 4px;
+    left: 0px;
+    background: #fff;
+    z-index: -1;
+    -webkit-transform: rotateZ(4deg);
+    -moz-transform: rotateZ(4deg);
+    -ms-transform: rotateZ(4deg);
+    border: 1px solid #ccc;
+  }
+
+  .Signin-container::after{
+    top: 5px;
+    z-index: -2;
+    -webkit-transform: rotateZ(-2deg);
+    -moz-transform: rotateZ(-2deg);
+      -ms-transform: rotateZ(-2deg);
+  }
+
+
+  .FormBox input{
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    height:40px;
+    border: 1px solid #ccc;;
+    transition:0.2s ease-in-out;
+  }
+  .FormBox input:focus{
+    outline: 0;
+    background: #eee;
+  }
+  .FormBox input[type="email"]{
+    text-transform: lowercase;
+  }
+  .FormBox input[type="password"]{
+    border-top: 0;
+  }
+
+  // .FormBox .submit {
+  //   border-radius: 8px;
+  // }
+}

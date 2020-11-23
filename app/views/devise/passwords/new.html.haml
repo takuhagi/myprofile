@@ -1,20 +1,49 @@
-.Header
-  .Header__title
-    %h1 MyProfile
+.PasswordPage
+  .Title-container
+    .SiteLogo
+      ここにロゴ
+    .Title
+      Reset Password
+    .Caption
+      登録済みメールアドレスにパスワード再設定用のURLをお送りします
+  .Password-container
+    .FormBox
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+        .FormField
+          .InputField
+            = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email"
+          .SubmitField
+            = f.submit "Reset Password", class: "btn btn-primary submit"
+
+  .Link-container
+    .Link
+      アカウント登録がまだの方は
+      = link_to new_user_registration_path do
+        こちら
+    .Link
+      アカウント作成済みの方は
+      = link_to new_user_session_path do
+        こちら
 
 
-%h2 パスワードを忘れましたか？
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .actions
-    = f.submit "パスワードリセットのためメールアドレスを送ってください"
 
-= render "devise/shared/links"
+-# .Header
+-#   .Header__title
+-#     %h1 MyProfile
 
-.Footer
-  .Copyright
-    %h3 Copyright © 2020 MyProfile, All Rights Reserved.
+
+-# %h2 パスワードを忘れましたか？
+-# = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+-#   = render "devise/shared/error_messages", resource: resource
+-#   .field
+-#     = f.label :email
+-#     %br/
+-#     = f.email_field :email, autofocus: true, autocomplete: "email"
+-#   .actions
+-#     = f.submit "パスワードリセットのためメールアドレスを送ってください"
+
+-# = render "devise/shared/links"
+
+-# .Footer
+-#   .Copyright
+-#     %h3 Copyright © 2020 MyProfile, All Rights Reserved.

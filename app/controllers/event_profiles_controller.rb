@@ -50,5 +50,4 @@ class EventProfilesController < ApplicationController
       :service_link
     ).merge(user_id: current_user.id)
   end
-
 end
