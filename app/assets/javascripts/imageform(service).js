@@ -5,8 +5,8 @@
 //     const html = `<div class="input-group">
 //                     <div class="js-file_group custom-file" data-index="${index}">
 //                       <input class="js-file custom-file-input" type="file"
-//                       name="profile[images_attributes][${index}][src]"
-//                       id="profile_images_attributes_${index}_src">
+//                       name="service_profile[service_images_attributes][${index}][src]"
+//                       id="service_profile_service_images_attributes_${index}_src">
 //                       <label class="custom-file-label" for="inputFile" data-browse="参照">
 //                         編集画面での画像追加用 data-index=${index}
 //                       </label>
@@ -117,7 +117,7 @@
 //     const targetIndex = $(this).parent().parent().parent().data('index');
 
 //     // クリックされた追加ボタンに対応したインプットを取得する
-//     const relatedInput = document.getElementById(`profile_images_attributes_${targetIndex}_src`);
+//     const relatedInput = document.getElementById(`service_profile_service_images_attributes_${targetIndex}_src`);
 //     $(relatedInput).parent().parent().remove();
 //   });
 
@@ -130,7 +130,7 @@
 //     // クリックされた追加ボタンのdata-indexを取得する
 //     const targetIndex = $(this).parent().data('index');
 //     // クリックされた追加ボタンに対応したインプットを取得する
-//     const relatedInput = document.getElementById(`profile_images_attributes_${targetIndex}_src`);
+//     const relatedInput = document.getElementById(`service_profile_service_images_attributes_${targetIndex}_src`);
 //     // ちゃんと存在していれば、クリックしたことにする
 //     if (relatedInput) {
 //       relatedInput.click();
@@ -158,7 +158,7 @@
 //     const targetIndex = $(this).parent().parent().parent().data('index');
     
 //     // クリックされた追加ボタンに対応したインプットを取得する
-//     const relatedInput = document.getElementById(`profile_images_attributes_${targetIndex}_src`);
+//     const relatedInput = document.getElementById(`service_profile_service_images_attributes_${targetIndex}_src`);
 //     // inputが存在すればクリックする（画像選択画面が表示される）
 //     if (relatedInput) {
 //       relatedInput.click();
