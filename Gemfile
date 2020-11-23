@@ -85,7 +85,7 @@ gem 'dotenv-rails'
 
 gem 'font-awesome-sass'
 
-gem 'font-awesome-sass'
+gem "font-awesome-rails"
 
 gem 'payjp'
 
@@ -93,6 +93,15 @@ group :production do
   gem 'unicorn', '5.4.1'
 end
 
+gem 'jc-validates_timeliness'
+
+gem "bootstrap4-datetime-picker-rails"
+
+gem 'momentjs-rails'
+
+gem 'jquery-datetimepicker-rails'
+
+gem 'bootstrap'
 group :development, :test do
   gem 'capistrano'
   gem 'capistrano-rbenv'

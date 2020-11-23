@@ -11,4 +11,9 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_one :card, dependent: :destroy
 
+  has_many :store_profiles, dependent: :destroy
+  has_many :item_profiles, dependent: :destroy
+  has_many :service_profiles, dependent: :destroy
+  has_many :event_profiles, dependent: :destroy
+
 end
