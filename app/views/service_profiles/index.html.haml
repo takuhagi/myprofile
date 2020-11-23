@@ -1,1 +1,32 @@
-service_profiles
+.jumbotron.jumbotron-fluid.p-4
+  .container
+    -# トップへ戻るボタン
+    .col.text-right
+      = link_to root_path  do
+        TOP
+    -# .alert.alert-secondary.mt-4
+    %h1.display-4
+      #{current_user.nickname}
+      %span.h5
+        さん
+    %p
+      おすすめのサービス紹介
+    %p
+      This is an introduction of recommended services.
+
+.container
+  .row
+    - @service_profiles.each do |service_profile|
+      .col-lg-4
+        .card.mb-3
+          - if service_profile.image.present?
+            = image_tag(service_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+          - else
+            %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+          .card-body{style: "height: 245px; position: relative;"}
+            %h5.card-title
+              = service_profile.name
+            %p.card-text{style: "height: 72px"}
+              = service_profile.explanation.truncate(45)
+            %div{style: "position: absolute; left: 20px; bottom: 20px"}
+              = link_to("クリックして詳細へ", service_profile_path(service_profile.id), { class: "btn btn-primary mt-3" })

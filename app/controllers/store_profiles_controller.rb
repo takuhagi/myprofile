@@ -1,6 +1,6 @@
 class StoreProfilesController < ApplicationController
   def index
-    @store_profiles = StoreProfile.all
+    @store_profiles = StoreProfile.includes(:user).order(id: :DESC)
   end
   def new
     @store_profile = StoreProfile.new
@@ -31,6 +31,10 @@ class StoreProfilesController < ApplicationController
         render 'edit'
       end
   end
+  def show
+    # @store_profile = StoreProfile.find(params[:id])
+  end
+  
   
   
   private

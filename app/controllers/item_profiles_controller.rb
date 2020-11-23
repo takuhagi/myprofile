@@ -1,6 +1,6 @@
 class ItemProfilesController < ApplicationController
   def index
-    @item_profiles = ItemProfile.all
+    @item_profiles = ItemProfile.includes(:user).order(id: :DESC)
   end
   def new
     @item_profile = ItemProfile.new
@@ -30,6 +30,9 @@ class ItemProfilesController < ApplicationController
         # flash[:error] = "Something went wrong"
         render 'edit'
       end
+  end
+  def show
+    # @item_profile = ItemProfile.find()
   end
   
   

@@ -1,6 +1,6 @@
 class ServiceProfilesController < ApplicationController
   def index
-    @service_profiles = ServiceProfile.all
+    @service_profiles = ServiceProfile.includes(:user).order(id: :DESC)
   end
   def new
     @service_profile = ServiceProfile.new
@@ -31,6 +31,10 @@ class ServiceProfilesController < ApplicationController
         render 'edit'
       end
   end
+  def show
+    # @service_profile = ServiceProfile.find()
+  end
+  
   
   
   private
