@@ -30,6 +30,7 @@
       #image-box
         = f.fields_for :store_images, @store_profile.store_images.build do |i|
           = i.file_field :src
+      #which-model store_
 
     -# ↓送信OK
     = f.submit class: "btn btn-primary"

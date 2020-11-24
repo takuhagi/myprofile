@@ -35,6 +35,7 @@
       #image-box
         = f.fields_for :service_images, @service_profile.service_images.build do |i|
           = i.file_field :src
+      #which-model service_
 
     -# ↓送信OK
     = f.submit class: "btn btn-primary"
