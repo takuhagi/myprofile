@@ -1,0 +1,36 @@
+.jumbotron.jumbotron-fluid.p-4
+  .container
+    -# トップへ戻るボタン
+    .col.text-right
+      = link_to root_path  do
+        TOP
+    -# .alert.alert-secondary.mt-4
+    %h1.display-4
+      #{current_user.nickname}
+      %span.h5
+        さん
+    %p
+      店舗情報入力画面
+
+.container
+  %label.mt-3.mb-4(for="") ---店舗情報---
+  = form_with(model: @store_profile, class: "form-horizontal mb-3", local: true) do |f|
+    = render 'layouts/error_messages', model: f.object
+
+    .form-group
+      = f.label "店名"
+      = f.text_field :name, class: "form-control"
+    .form-group
+      = f.label "紹介文"
+      = f.text_area :explanation, class: "form-control", row: 5, maxlength: "500", placeholder: "500文字まで"
+
+    .form-group
+      = f.label "ギャラリー写真（同時に10枚までアップロードできます）"
+      #image-previews
+      #image-box
+        = f.fields_for :store_images, @store_profile.store_images.build do |i|
+          = i.file_field :src
+      #which-model store_
+
+    -# ↓送信OK
+    = f.submit class: "btn btn-primary"

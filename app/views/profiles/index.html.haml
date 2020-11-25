@@ -69,11 +69,13 @@
         .h4 アクセスランキング
         -# 5つ表示
         - @rank_profiles.each do |profile|
-          .ranking
-            = profile.user.nickname
+          = link_to profile_pass_path(profile_id: profile.user.id, pv_link: "pv++") do
+            .ranking
+              = profile.user.nickname
       .new-arrivals
         .h4 新着 
         - @new_profiles.each do |new_profile|
-          .new-arrival
-            = new_profile.user.nickname
+          = link_to profile_pass_path(profile_id: new_profile.user.id, pv_link: "pv++") do
+            .new-arrival
+              = new_profile.user.nickname
         

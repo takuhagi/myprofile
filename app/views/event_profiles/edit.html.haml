@@ -1,0 +1,83 @@
+.jumbotron.jumbotron-fluid.p-4
+  .container
+    -# トップへ戻るボタン
+    .col.text-right
+      = link_to root_path  do
+        TOP
+    -# .alert.alert-secondary.mt-4
+    %h1.display-4
+      #{current_user.nickname}
+      %span.h5
+        さん
+    %p
+      イベント情報編集画面
+
+.container
+  %label.mt-3.mb-4(for="") ---イベント情報---
+  = form_with(model: @event_profile, class: "form-horizontal mb-3", local: true) do |f|
+    = render 'layouts/error_messages', model: f.object
+
+    .form-group
+      = f.label "イベント名"
+      = f.text_field :title, class: "form-control"
+    .form-group
+      = f.label "開催日時"
+      .row
+        .col-sm-6
+          -# datetimepickerで日時をカレンダーから選択可能
+          .input-group{"data-target-input" => "nearest"}
+            = f.text_field :start, id: "created_at", class: "form-control datetimepicker", data: { target: '#created_at'}
+            .input-group-append{"data-target" => "#created_at", "data-toggle" => "datetimepicker"}
+              .input-group-text
+                %i.fa.fa-calendar
+    .form-group
+      = f.label "終了日時"
+      .row
+        .col-sm-6
+          .input-group{"data-target-input" => "nearest"}
+            = f.text_field :end, id: "end", class: "form-control datetimepicker", data: { target: '#end'}
+            .input-group-append{"data-target" => "#end", "data-toggle" => "datetimepicker"}
+              .input-group-text
+                %i.fa.fa-calendar
+    .form-group
+      = f.label "場所"
+      = f.text_field :prace, class: "form-control"
+    .form-group
+      = f.label "紹介文"
+      = f.text_area :explanation, class: "form-control", row: 5, maxlength: "500", placeholder: "500文字まで"
+
+
+    -# .form-group
+    -#   = f.label "タグ（複数つける場合は半角カンマで区切ってください）"
+    -#   = f.text_field :tag_ids, class: "form-control", id: "tag_ids", data: {role: "tagsinput"} 
+
+    .form-group
+      = f.label "ギャラリー写真（同時に10枚までアップロードできます）"
+      #image-previews
+        - @event_profile.event_images.each_with_index do |image, i|
+          .preview( data-index = "#{i}" )
+            .preview__photo
+              = image_tag image.src.url, data: { index: i }, class: "image-size"
+            .preview__button
+              .preview__button--edit
+                %button.btn.btn-outline-secondary.change-img(type="button")
+                  変更
+              .preview__button--delete
+                %button.btn.btn-outline-secondary.delete-img(type="button")
+                  削除
+      #image-box
+        = f.fields_for :event_images do |i|
+          .input-group.hiddenEdit( data-index = "#{i.index}" )
+            .js-file_group.custom-file( data-index = "#{i.index}" )
+              = i.file_field :src, class: 'js-file custom-file-input'
+              %label.custom-file-label{ for: "inputFile" }( data-browse="参照" )
+                ここにファイル名
+            .input-group-append
+              %button.btn.btn-outline-secondary.input-group-text(type="button")
+                削除
+            - if @event_profile.persisted?
+              = i.check_box :_destroy, data: { index: i.index }
+      #which-model event_
+
+    -# ↓送信OK
+    = f.submit class: "btn btn-primary"

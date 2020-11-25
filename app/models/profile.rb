@@ -84,4 +84,8 @@ class Profile < ApplicationRecord
   # gem bcrypt関連
   has_secure_password
 
+  # validates_datetime :event_start, allow_blank: true
+  # validates_datetime :event_end, allow_blank: true
+  validates_datetime :event_start, timeliness: { on_or_after: :now,    format: '%Y/%m/%d %H:%M' }, allow_blank: true
+  validates_datetime :event_end,    timeliness: { after: :event_start, format: '%Y/%m/%d %H:%M' }, allow_blank: true
 end

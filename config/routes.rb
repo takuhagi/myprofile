@@ -31,5 +31,9 @@ Rails.application.routes.draw do
 
   post "users/show" => "users#show"
 
+  resources :store_profiles
+  resources :item_profiles
+  resources :service_profiles
+  resources :event_profiles
 
 end

@@ -1,14 +1,14 @@
 $(function(){
 
   // 画像用のinputを生成する関数
-  const buildFileField = ( index ) => {
+  const buildFileField = ( index, model ) => {
     const html = `<div class="input-group">
                     <div class="js-file_group custom-file" data-index="${index}">
                       <input class="js-file custom-file-input" type="file"
-                      name="profile[images_attributes][${index}][src]"
-                      id="profile_images_attributes_${index}_src">
+                      name="${model}profile[${model}images_attributes][${index}][src]"
+                      id="${model}profile_${model}images_attributes_${index}_src">
                       <label class="custom-file-label" for="inputFile" data-browse="参照">
-                        編集画面での画像追加用 data-index=${index}
+                        編集画面での画像追加用 ( data-index=${index}, 保存先=${model} )
                       </label>
                     </div>
                     <div class="input-group-append">
@@ -60,6 +60,12 @@ $(function(){
   let fileIndex = [1,2,3,4,5,6,7,8,9,10];
 
 
+  // 現在がどのテーブルに登録するページなのかを判別する（buildFileField関数で、動的にinputタグを変化させるため）
+  // 実際にWhichModelの中に入る文字列は以下
+  // 人物「null」  店舗「store_」 商品「item_」 サービス「service_」 イベント「event_」
+  let WhichModel = document.getElementById('which-model').textContent;
+
+
   // 初回アクセス時、「プレビュー画像 + 画像追加ボタン = 10個」
   // となるように画像追加ボタンを作成する
   let PreviewLength = $('.preview').length
@@ -67,13 +73,13 @@ $(function(){
     if (PreviewLength === 0) {
       // 新規画面用
       $('#image-previews').append(buildAddButton(fileIndex[PreviewLength]));
-      $('#image-box').append(buildFileField(fileIndex[PreviewLength]));
+      $('#image-box').append(buildFileField(fileIndex[PreviewLength], WhichModel));
       fileIndex.shift();
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
     } else {
       // 編集画面用
       $('#image-previews').append(buildAddButton(fileIndex[PreviewLength - 1]));
-      $('#image-box').append(buildFileField(fileIndex[PreviewLength - 1]));
+      $('#image-box').append(buildFileField(fileIndex[PreviewLength - 1], WhichModel ));
       fileIndex.shift();
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
     }
@@ -99,13 +105,13 @@ $(function(){
     if (PreviewLength === 0) {
       // 新規画面用
       $('#image-previews').append(buildAddButton(fileIndex[PreviewLength]));
-      $('#image-box').append(buildFileField(fileIndex[PreviewLength]));
+      $('#image-box').append(buildFileField(fileIndex[PreviewLength], WhichModel));
       fileIndex.shift();
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
     } else {
       // 編集画面用
       $('#image-previews').append(buildAddButton(fileIndex[PreviewLength - 1]));
-      $('#image-box').append(buildFileField(fileIndex[PreviewLength - 1]));
+      $('#image-box').append(buildFileField(fileIndex[PreviewLength - 1], WhichModel));
       fileIndex.shift();
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
     }
@@ -117,7 +123,7 @@ $(function(){
     const targetIndex = $(this).parent().parent().parent().data('index');
 
     // クリックされた追加ボタンに対応したインプットを取得する
-    const relatedInput = document.getElementById(`profile_images_attributes_${targetIndex}_src`);
+    const relatedInput = document.getElementById(`${WhichModel}profile_${WhichModel}images_attributes_${targetIndex}_src`);
     $(relatedInput).parent().parent().remove();
   });
 
@@ -127,10 +133,13 @@ $(function(){
   $('#image-previews').on('click', '.add-img', function(e) {
     // クリックされた追加ボタンを取得
     const clickedButton = e.target;
+
     // クリックされた追加ボタンのdata-indexを取得する
     const targetIndex = $(this).parent().data('index');
+
     // クリックされた追加ボタンに対応したインプットを取得する
-    const relatedInput = document.getElementById(`profile_images_attributes_${targetIndex}_src`);
+    const relatedInput = document.getElementById(`${WhichModel}profile_${WhichModel}images_attributes_${targetIndex}_src`);
+
     // ちゃんと存在していれば、クリックしたことにする
     if (relatedInput) {
       relatedInput.click();
@@ -151,14 +160,15 @@ $(function(){
 
   // 変更ボタン
   $('#image-previews').on('click', '.change-img', function(e) {
-    // クリックされた追加ボタンを取得
+    // クリックされた変更ボタンを取得
     const clickedButton = e.target;
 
-    // クリックされた追加ボタンに関するindexを取得
+    // クリックされた変更ボタンに関するindexを取得
     const targetIndex = $(this).parent().parent().parent().data('index');
-    
-    // クリックされた追加ボタンに対応したインプットを取得する
-    const relatedInput = document.getElementById(`profile_images_attributes_${targetIndex}_src`);
+
+    // クリックされた変更ボタンに対応したインプットを取得する
+    const relatedInput = document.getElementById(`${WhichModel}profile_${WhichModel}images_attributes_${targetIndex}_src`);
+
     // inputが存在すればクリックする（画像選択画面が表示される）
     if (relatedInput) {
       relatedInput.click();
