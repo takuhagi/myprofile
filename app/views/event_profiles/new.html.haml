@@ -21,6 +21,9 @@
       = f.label "イベント名"
       = f.text_field :title, class: "form-control"
     .form-group
+      = f.label "メイン写真"
+      = f.file_field :image, class: "form-control-file"
+    .form-group
       = f.label "開催日時"
       .row
         .col-sm-6

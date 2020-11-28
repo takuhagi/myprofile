@@ -21,6 +21,9 @@
       = f.label "サービス名"
       = f.text_field :name, class: "form-control"
     .form-group
+      = f.label "メイン写真"
+      = f.file_field :image, class: "form-control-file"
+    .form-group
       = f.label "紹介文"
       = f.text_area :explanation, class: "form-control", row: 5, maxlength: "500", placeholder: "500文字まで"
 
