@@ -63,7 +63,11 @@ $(function(){
   // 現在がどのテーブルに登録するページなのかを判別する（buildFileField関数で、動的にinputタグを変化させるため）
   // 実際にWhichModelの中に入る文字列は以下
   // 人物「null」  店舗「store_」 商品「item_」 サービス「service_」 イベント「event_」
-  let WhichModel = document.getElementById('which-model').textContent;
+  // （別ページとの兼ね合いでここだけ変数宣言にvarを使ってます）
+  if (document.getElementById('which-model')){
+    var WhichModel = document.getElementById('which-model').textContent;
+  }
+
 
 
   // 初回アクセス時、「プレビュー画像 + 画像追加ボタン = 10個」
