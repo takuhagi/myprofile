@@ -8,7 +8,7 @@ $(function(){
 $(function(){
   $(".fancybox").attr('rel', 'group').fancybox({
     transitionIn : 'elastic',
-    speedIn  : 700,
+    speedIn  : 200,
     transitionOut : 'elastic',
     speedOut  : 150,
     cyclic: true,
