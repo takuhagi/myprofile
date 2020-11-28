@@ -62,7 +62,7 @@
 
 server '3.114.61.191', user: 'ec2-user', roles: %w{app db web}
 
-#追記分 11月25日 カリキュラム
+#追記分 11月25日 
 set :stage, :production
 set :rails_env, 'production'
 set :branch, 'main'
