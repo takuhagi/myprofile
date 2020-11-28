@@ -1,1 +1,41 @@
-store_profiles
+.jumbotron.jumbotron-fluid.p-4
+  .container
+    -# トップへ戻るボタン
+    .col.text-right
+      = link_to root_path  do
+        TOP
+    -# .alert.alert-secondary.mt-4
+    %h1.display-4.mb-4
+      店舗一覧
+      -# %span.h5
+      -#   さん
+    %p
+      おすすめの店舗紹介
+    %p
+      This is an introduction of recommended stores.
+
+    -# = link_to("プロフィール", users_path(id: current_user.id), { class: "btn btn-info mt-3" })
+    = link_to("商品", item_profiles_path, { class: "btn btn-info mt-3" })
+    = link_to("サービス", service_profiles_path, { class: "btn btn-info mt-3" })
+    = link_to("イベント", event_profiles_path, { class: "btn btn-info mt-3" })
+
+.container
+  .row
+    - @store_profiles.each do |store_profile|
+      .col-lg-4
+        .card.mb-3
+          - if store_profile.image.present?
+            = image_tag(store_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+          - else
+            %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+          .card-body{style: "height: 276px; position: relative;"}
+            %h5.card-title
+              = store_profile.name
+            .small.text-muted
+              = "投稿者：#{store_profile.user.nickname}"
+            .small.text-muted{style: "margin-bottom: 12px"}
+              = "最終更新：#{time_ago_in_words(store_profile.updated_at)}前"
+            %p.card-text{style: "height: 72px"}
+              = store_profile.explanation.truncate(45)
+            %div{style: "position: absolute; left: 20px; bottom: 20px"}
+              = link_to("クリックして詳細へ", store_profile_path(store_profile.id), { class: "btn btn-primary mt-3" })
