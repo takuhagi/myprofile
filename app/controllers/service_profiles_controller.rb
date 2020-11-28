@@ -1,6 +1,6 @@
 class ServiceProfilesController < ApplicationController
   def index
-    @service_profiles = ServiceProfile.includes(:user).order(id: :DESC)
+    @service_profiles = ServiceProfile.includes(:user).order(updated_at: :DESC)
   end
   def new
     @service_profile = ServiceProfile.new
@@ -32,7 +32,17 @@ class ServiceProfilesController < ApplicationController
       end
   end
   def show
-    # @service_profile = ServiceProfile.find()
+    @service_profile = ServiceProfile.find(params[:id])
+  end
+  def destroy
+    @service_profile = ServiceProfile.find(params[:id])
+    if @service_profile.destroy
+      # flash[:success] = 'ServiceProfile was successfully deleted.'
+      redirect_to service_profiles_url
+    else
+      # flash[:error] = 'Something went wrong'
+      redirect_to service_profiles_url
+    end
   end
   
   

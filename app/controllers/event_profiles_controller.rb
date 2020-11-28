@@ -1,6 +1,6 @@
 class EventProfilesController < ApplicationController
   def index
-    @event_profiles = EventProfile.includes(:user).order(id: :DESC)
+    @event_profiles = EventProfile.includes(:user).order(updated_at: :DESC)
   end
   def new
     @event_profile = EventProfile.new
@@ -30,6 +30,19 @@ class EventProfilesController < ApplicationController
         # flash[:error] = "Something went wrong"
         render 'edit'
       end
+  end
+  def show
+    @event_profile = EventProfile.find(params[:id])
+  end
+  def destroy
+    @event_profile = EventProfile.find(params[:id])
+    if @event_profile.destroy
+      # flash[:success] = 'EventProfile was successfully deleted.'
+      redirect_to event_profiles_url
+    else
+      # flash[:error] = 'Something went wrong'
+      redirect_to event_profiles_url
+    end
   end
   
   

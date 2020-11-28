@@ -1,6 +1,6 @@
 class StoreProfilesController < ApplicationController
   def index
-    @store_profiles = StoreProfile.includes(:user).order(id: :DESC)
+    @store_profiles = StoreProfile.includes(:user).order(updated_at: :DESC)
   end
   def new
     @store_profile = StoreProfile.new
@@ -32,9 +32,18 @@ class StoreProfilesController < ApplicationController
       end
   end
   def show
-    # @store_profile = StoreProfile.find(params[:id])
+    @store_profile = StoreProfile.find(params[:id])
   end
-  
+  def destroy
+    @store_profile = StoreProfile.find(params[:id])
+    if @store_profile.destroy
+      # flash[:success] = 'StoreProfile was successfully deleted.'
+      redirect_to store_profiles_url
+    else
+      # flash[:error] = 'Something went wrong'
+      redirect_to store_profiles_url
+    end
+  end
   
   
   private

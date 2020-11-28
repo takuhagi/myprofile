@@ -1,6 +1,6 @@
 class ItemProfilesController < ApplicationController
   def index
-    @item_profiles = ItemProfile.includes(:user).order(id: :DESC)
+    @item_profiles = ItemProfile.includes(:user).order(updated_at: :DESC)
   end
   def new
     @item_profile = ItemProfile.new
@@ -32,9 +32,19 @@ class ItemProfilesController < ApplicationController
       end
   end
   def show
-    # @item_profile = ItemProfile.find()
+    @item_profile = ItemProfile.find(params[:id])
   end
-  
+  def destroy
+    @item_profile = ItemProfile.find(params[:id])
+    if @item_profile.destroy
+      # flash[:success] = 'ItemProfile was successfully deleted.'
+      redirect_to item_profiles_url
+    else
+      # flash[:error] = 'Something went wrong'
+      redirect_to item_profiles_url
+    end
+  end
+
   
   private
 

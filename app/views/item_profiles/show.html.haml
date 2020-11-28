@@ -1,1 +1,25 @@
-item_profiles
+.container
+  .jumbotron.jumbotron-fruid.p-4
+    -# 戻るボタン
+    .col.text-right.mb-3
+      = link_to item_profiles_path do
+        戻る
+    %h1.display-4
+      = @item_profile.name
+    .mt-4
+      = "投稿者：#{@item_profile.user.nickname}"
+    %div
+      = "最終更新：#{time_ago_in_words(@item_profile.updated_at)}前"
+    - if current_user.id == @item_profile.user_id
+      = link_to("編集する", edit_item_profile_path, { class: "btn btn-primary mt-4" })
+      -# = link_to "削除する", item_profile_path(@item_profile.id), class: "btn btn-primary mt-4", method: :delete
+      = link_to "削除する", item_profile_path(@item_profile.id), class: "btn btn-primary mt-4", method: :delete, data: {confirm: "本当に削除しますか？"}
+    = link_to("投稿者のプロフィール", user_path(@item_profile.user.id), { class: "btn btn-info mt-4" })
+    -# %p.text-muted.mb-2.mt-4 The description of the item is as follows.
+    %p.lead.mt-4
+      = @item_profile.explanation
+    %hr.my-4/
+    - if @item_profile.image.present?
+      = image_tag(@item_profile.image.url, alt: "メイン写真", class: "img-fruid", style: "width: 100%; height: auto;")
+    - else
+      %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/

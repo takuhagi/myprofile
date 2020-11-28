@@ -5,14 +5,19 @@
       = link_to root_path  do
         TOP
     -# .alert.alert-secondary.mt-4
-    %h1.display-4
-      #{current_user.nickname}
-      %span.h5
-        さん
+    %h1.display-4.mb-4
+      イベント一覧
+      -# %span.h5
+      -#   さん
     %p
       おすすめのイベント紹介
     %p
       This is an introduction of recommended events.
+    
+    -# = link_to("プロフィール", users_path(id: current_user.id), { class: "btn btn-info mt-3" })
+    = link_to("店舗", store_profiles_path, { class: "btn btn-info mt-3" })
+    = link_to("商品", item_profiles_path, { class: "btn btn-info mt-3" })
+    = link_to("サービス", service_profiles_path, { class: "btn btn-info mt-3" })
 
 .container
   .row
@@ -23,9 +28,13 @@
             = image_tag(event_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
           - else
             %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
-          .card-body{style: "height: 245px; position: relative;"}
+          .card-body{style: "height: 295px; position: relative;"}
             %h5.card-title
               = event_profile.title
+            .small.text-muted
+              = "投稿者：#{event_profile.user.nickname}"
+            .small.text-muted{style: "margin-bottom: 12px"}
+              = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
             %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
               = event_profile.explanation.truncate(45)
             - if event_profile.start.present?
