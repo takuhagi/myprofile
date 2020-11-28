@@ -58,7 +58,8 @@ class ServiceProfilesController < ApplicationController
       :profile_link,
       :store_link,
       :item_link,
-      :event_link
+      :event_link,
+      service_images_attributes: [:src, :_destroy, :id]
     ).merge(user_id: current_user.id)
   end
 end

@@ -42,6 +42,6 @@ config/settings/*.local.yml
 config/environments/*.local.yml
 
 #みんなで共通してignoreに入れる
-config/credentials.yml.enc
+config/credentials.yml.enc
 
 /.env

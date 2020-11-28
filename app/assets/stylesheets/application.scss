@@ -25,10 +25,9 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "tempusdominus-bootstrap-4.css";
-
+@import "jquery.fancybox-1.3.4";
 @import "flash";
-// @import "font-awesome-sprockets";
-// @import "font-awesome";
+
 
 
 select {
@@ -37,15 +36,15 @@ select {
   border-radius: .25rem;
 }
 
-// .no_image {
-//   background: image-url("no_image.png");
-//   height: -webkit-fill-available; 
-//   height: -moz-available; 
-//   width: -webkit-fill-available; 
-//   width: -moz-available; 
-//   border-radius: 4px; 
-//   width: 100%; 
-//   height: auto;
-//   background-size: cover;
-//   background-position:center ;
-// }
+body {
+  animation: fade 0.5s;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

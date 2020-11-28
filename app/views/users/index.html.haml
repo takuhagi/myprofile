@@ -129,7 +129,7 @@
               = @user.email
             .modal-footer
               %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
-      = link_to profile_pass_path(params[:id]) do
+      = link_to profile_pass_path(params[:id], pv_link: "pv++") do
         %h3.d-flex.justify-content-center.mt-3.mobile_name
           = @profile.family_name
         %h3.d-flex.justify-content-center.mt-3.mobile_name
@@ -158,7 +158,7 @@
       - if @profile.hp.present?
         = link_to "HP", @profile.hp, class: 'btn btn-primary ml-2 mt-1',  rel: "noopener noreferrer", target: "_blank"
         
-    = link_to profile_pass_path(params[:id]), style:"text-decoration:none" do
+    = link_to profile_pass_path(params[:id], pv_link: "pv++"), style:"text-decoration:none" do
       .prof_all.d-flex
         %img.prof_image.mt-3.ml-2.mb-2{:src => "#{@profile.avatar}"}
         .prof_contents
@@ -192,7 +192,7 @@
         .comment_info
           - user = User.find(comment.commenter_id)
           .comment_name
-            = user.name
+            = user.nickname
           .comment_date
             = comment.created_at.strftime("%Y-%m-%d %H:%M")
         .comment_content
@@ -220,7 +220,7 @@
             .comment_reply_info
               - user = User.find(re2.commenter_id)
               .comment_reply_name
-                = user.name
+                = user.nickname
               .comment_reply_date
                 = re2.created_at.strftime("%Y-%m-%d %H:%M")
             .comment_reply_content

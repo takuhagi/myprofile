@@ -62,7 +62,8 @@ class EventProfilesController < ApplicationController
       :profile_link,
       :store_link,
       :item_link,
-      :service_link
+      :service_link,
+      event_images_attributes: [:src, :_destroy, :id]
     ).merge(user_id: current_user.id)
   end
 end

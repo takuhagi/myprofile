@@ -57,7 +57,8 @@ class ItemProfilesController < ApplicationController
       :profile_link,
       :store_link,
       :service_link,
-      :event_link
+      :event_link,
+      item_images_attributes: [:src, :_destroy, :id]
     ).merge(user_id: current_user.id)
   end
 

@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
   
+  before_action :correct_user, only: [:show]
+
   def show
     
     @user = User.find(params[:id])
@@ -74,5 +76,12 @@ class CommentsController < ApplicationController
   end
   def check0_params
     params.permit(:check).merge(check: "0")
+  end
+
+  def correct_user
+    @users = User.find(params[:id])
+    if @users != current_user
+      redirect_to root_path
+    end
   end
 end
