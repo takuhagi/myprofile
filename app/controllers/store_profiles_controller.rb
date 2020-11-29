@@ -1,6 +1,6 @@
 class StoreProfilesController < ApplicationController
   def index
-    @store_profiles = StoreProfile.includes(:user).order(updated_at: :DESC)
+    @store_profiles = StoreProfile.includes(:user).order(updated_at: :DESC).page(params[:page]).per(9)
   end
   def new
     @store_profile = StoreProfile.new

@@ -65,3 +65,7 @@
             %span.show_tag
               = tag
         %hr.my-4{style: "width:97%; height:1px; background-color:#fefefe;"}/
+  %p
+    = page_entries_info @users
+  .paginate.mb-4
+    = paginate @users

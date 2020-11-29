@@ -93,8 +93,10 @@
                 = store_profile.explanation.truncate(45)
               %div{style: "position: absolute; left: 20px; bottom: 20px"}
                 = link_to("クリックして詳細へ", store_profile_path(store_profile.id), { class: "btn btn-primary mt-3" })
-    -# %div
-    -#   = paginate @store_profiles, theme: 'twitter-bootstrap-4'
+    %p
+      = page_entries_info @store_profiles
+    .paginate.mb-4
+      = paginate @store_profiles
   - if @item_profiles.present?
     %p.h5.text-center.m-4
       商品情報一覧
@@ -117,8 +119,10 @@
                 = item_profile.explanation.truncate(45)
               %div{style: "position: absolute; left: 20px; bottom: 20px"}
                 = link_to("クリックして詳細へ", item_profile_path(item_profile.id), { class: "btn btn-primary mt-3" })
-    -# %div
-    -#   = paginate @item_profiles, theme: 'twitter-bootstrap-4'
+    %p
+      = page_entries_info @item_profiles
+    .paginate.mb-4
+      = paginate @item_profiles
   - if @service_profiles.present?
     %p.h5.text-center.m-4
       サービス情報一覧
@@ -141,8 +145,10 @@
                 = service_profile.explanation.truncate(45)
               %div{style: "position: absolute; left: 20px; bottom: 20px"}
                 = link_to("クリックして詳細へ", service_profile_path(service_profile.id), { class: "btn btn-primary mt-3" })
-    -# %div
-    -#   = paginate @service_profiles, theme: 'twitter-bootstrap-4'
+    %p
+      = page_entries_info @service_profiles
+    .paginate.mb-4
+      = paginate @service_profiles
   - if @event_profiles.present?
     %p.h5.text-center.m-4
       イベント情報一覧
@@ -171,5 +177,7 @@
                     = event_profile.start.strftime("%Y-%m-%d %H:%M")
               %div{style: "position: absolute; left: 20px; bottom: 20px"}
                 = link_to("クリックして詳細へ", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
-    -# %div
-    -#   = paginate @event_profiles, theme: 'twitter-bootstrap-4'
+    %p
+      = page_entries_info @event_profiles
+    .paginate.mb-4
+      = paginate @event_profiles

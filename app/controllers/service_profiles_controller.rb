@@ -1,6 +1,6 @@
 class ServiceProfilesController < ApplicationController
   def index
-    @service_profiles = ServiceProfile.includes(:user).order(updated_at: :DESC)
+    @service_profiles = ServiceProfile.includes(:user).order(updated_at: :DESC).page(params[:page]).per(9)
   end
   def new
     @service_profile = ServiceProfile.new
