@@ -109,3 +109,6 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
 end
+
+gem 'kaminari'
+gem 'bootstrap4-kaminari-views'
