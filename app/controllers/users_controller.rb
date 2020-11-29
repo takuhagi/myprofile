@@ -57,6 +57,15 @@ class UsersController < ApplicationController
     # タグ全部取ってきます
     @tag_list = Tag.all
 
+    # @store_profiles = @user.store_profiles.order("created_at DESC").page(params[:page]).per(3)
+    # @item_profiles = @user.item_profiles.order("created_at DESC").page(params[:page]).per(3)
+    # @service_profiles = @user.service_profiles.order("created_at DESC").page(params[:page]).per(3)
+    # @event_profiles = @user.event_profiles.order("created_at DESC").page(params[:page]).per(3)
+    @store_profiles = @user.store_profiles.order("created_at DESC")
+    @item_profiles = @user.item_profiles.order("created_at DESC")
+    @service_profiles = @user.service_profiles.order("created_at DESC")
+    @event_profiles = @user.event_profiles.order("created_at DESC")
+
   end
   
   
