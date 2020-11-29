@@ -27,7 +27,7 @@ Rails.application.configure do
   
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
-
+  config.require_master_key = true
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
 
@@ -118,8 +118,8 @@ Rails.application.configure do
       port:                 587,
       address:              'smtp.gmail.com',
       domain:               'gmail.com',
-      user_name:             Rails.application.credentials[:gmail][:user_name],
-      password:              Rails.application.credentials[:gmail][:password],
+      user_name:             s80.hagiwara.takumi@gmail.com,
+      password:              takumi523197,
       authentication:       'login',
       enable_starttls_auto: true
     }  
