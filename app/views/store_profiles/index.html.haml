@@ -39,3 +39,7 @@
               = store_profile.explanation.truncate(45)
             %div{style: "position: absolute; left: 20px; bottom: 20px"}
               = link_to("クリックして詳細へ", store_profile_path(store_profile.id), { class: "btn btn-primary mt-3" })
+  %p
+    = page_entries_info @store_profiles
+  .paginate.mb-4
+    = paginate @store_profiles
