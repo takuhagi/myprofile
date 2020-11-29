@@ -138,6 +138,16 @@
 
 
 @media (max-width: 979px){
+  // ページネーション用
+  .paginate {
+    nav {
+      visibility: visible;
+      opacity: 1;
+      position: unset;
+    }
+  }
+  // ここまで
+
   .title {
     font-size: 40px;
   }

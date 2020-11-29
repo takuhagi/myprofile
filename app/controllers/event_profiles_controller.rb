@@ -1,6 +1,6 @@
 class EventProfilesController < ApplicationController
   def index
-    @event_profiles = EventProfile.includes(:user).order(updated_at: :DESC)
+    @event_profiles = EventProfile.includes(:user).order(updated_at: :DESC).page(params[:page]).per(9)
   end
   def new
     @event_profile = EventProfile.new

@@ -57,14 +57,14 @@ class UsersController < ApplicationController
     # タグ全部取ってきます
     @tag_list = Tag.all
 
-    # @store_profiles = @user.store_profiles.order("created_at DESC").page(params[:page]).per(3)
-    # @item_profiles = @user.item_profiles.order("created_at DESC").page(params[:page]).per(3)
-    # @service_profiles = @user.service_profiles.order("created_at DESC").page(params[:page]).per(3)
-    # @event_profiles = @user.event_profiles.order("created_at DESC").page(params[:page]).per(3)
-    @store_profiles = @user.store_profiles.order("created_at DESC")
-    @item_profiles = @user.item_profiles.order("created_at DESC")
-    @service_profiles = @user.service_profiles.order("created_at DESC")
-    @event_profiles = @user.event_profiles.order("created_at DESC")
+    @store_profiles = @user.store_profiles.order("created_at DESC").page(params[:page]).per(3)
+    @item_profiles = @user.item_profiles.order("created_at DESC").page(params[:page]).per(3)
+    @service_profiles = @user.service_profiles.order("created_at DESC").page(params[:page]).per(3)
+    @event_profiles = @user.event_profiles.order("created_at DESC").page(params[:page]).per(3)
+    # @store_profiles = @user.store_profiles.order("created_at DESC")
+    # @item_profiles = @user.item_profiles.order("created_at DESC")
+    # @service_profiles = @user.service_profiles.order("created_at DESC")
+    # @event_profiles = @user.event_profiles.order("created_at DESC")
 
   end
   
@@ -87,12 +87,12 @@ class UsersController < ApplicationController
     if params[:q].present?
       # 検索フォームからアクセスした時の処理
       @user_search = User.ransack(search_params)
-      @users = @user_search.result(distinct: true).includes(:profile)
+      @users = @user_search.result(distinct: true).includes(:profile).page(params[:page]).per(10)
     else
       # 検索フォーム外からアクセスした時の処理
       params[:q] = { sorts: 'id desc' }
       @user_search = User.ransack()
-      @users = User.all.includes(:profile)
+      @users = User.all.includes(:profile).page(params[:page]).per(10)
     end
 
   end

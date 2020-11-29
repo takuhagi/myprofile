@@ -39,3 +39,7 @@
               = service_profile.explanation.truncate(45)
             %div{style: "position: absolute; left: 20px; bottom: 20px"}
               = link_to("クリックして詳細へ", service_profile_path(service_profile.id), { class: "btn btn-primary mt-3" })
+  %p
+    = page_entries_info @service_profiles
+  .paginate.mb-4
+    = paginate @service_profiles

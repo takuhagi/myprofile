@@ -1,6 +1,6 @@
 class ItemProfilesController < ApplicationController
   def index
-    @item_profiles = ItemProfile.includes(:user).order(updated_at: :DESC)
+    @item_profiles = ItemProfile.includes(:user).order(updated_at: :DESC).page(params[:page]).per(9)
   end
   def new
     @item_profile = ItemProfile.new
