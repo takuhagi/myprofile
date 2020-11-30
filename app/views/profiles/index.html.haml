@@ -24,32 +24,93 @@
 -#   = link_to "マイページ",users_path(id: current_user.id)  #マイページへのリンク 仮置き
 
 
+-# - @profiles.first(1).each do |profile|
+-#   .col-lg-2
+-#     .card.mb-3
+-#       = image_tag(profile.image.url, alt: "", class: "card-img-top no_image")
+-#       .card-body{style: "height: 206px; position: relative;"}
+-#         %h5.card-title
+-#           = profile.catch_copy
+-#         .small.text-muted
+-#           = "投稿者：#{profile.user.nickname}"
+-#         .small.text-muted{style: "margin-bottom: 12px"}
+-#           = "最終更新：#{time_ago_in_words(profile.updated_at)}前"
+-#         -# %p.card-text{style: "height: 72px"}
+-#         -#   = item_profile.explanation.truncate(45)
+-#         %div{style: "position: absolute; left: 20px; bottom: 20px"}
+-#           = link_to("クリックして詳細へ", '#', { class: "btn btn-primary mt-3" })
+
 
 .TopPage
   .TopPage--container.row
-    .TopPage--container__left.col-lg-8.col-md-12
-      .wrap-content.row
-        - @profiles.first(1).each do |profile|
-          .large-content.col-lg-12.col-md-12.col-sm-12.col-xs-12
-            = image_tag profile.image.url, class: 'large-photo'
-            .large-text
-              = profile.catch_copy
+    .TopPage--container__left.col-lg-9.col-md-12
+
+      #carouselExampleIndicators.carousel.slide{"data-ride" => "carousel"}
+        %ol.carousel-indicators
+          %li.active{"data-slide-to" => "0", "data-target" => "#carouselExampleIndicators"}
+          %li.active{"data-slide-to" => "1", "data-target" => "#carouselExampleIndicators"}
+          %li.active{"data-slide-to" => "2", "data-target" => "#carouselExampleIndicators"}
+
+        .carousel-inner
+          .carousel-item.active
+            %svg.bd-placeholder-img.bd-placeholder-img-lg.d-block.w-100{"aria-label" => "Placeholder: First slide", :focusable => "false", :height => "400", :preserveaspectratio => "xMidYMid slice", :role => "img", :width => "800", :xmlns => "http://www.w3.org/2000/svg"}
+              %title Placeholder
+              %rect{:fill => "#777", :height => "100%", :width => "100%"}
+              %text{:dy => ".3em", :fill => "#555", :x => "50%", :y => "50%"} First slide
+          .carousel-item
+            %svg.bd-placeholder-img.bd-placeholder-img-lg.d-block.w-100{"aria-label" => "Placeholder: Second slide", :focusable => "false", :height => "400", :preserveaspectratio => "xMidYMid slice", :role => "img", :width => "800", :xmlns => "http://www.w3.org/2000/svg"}
+              %title Placeholder
+              %rect{:fill => "#666", :height => "100%", :width => "100%"}
+              %text{:dy => ".3em", :fill => "#444", :x => "50%", :y => "50%"} Second slide
+          .carousel-item
+            %svg.bd-placeholder-img.bd-placeholder-img-lg.d-block.w-100{"aria-label" => "Placeholder: Third slide", :focusable => "false", :height => "400", :preserveaspectratio => "xMidYMid slice", :role => "img", :width => "800", :xmlns => "http://www.w3.org/2000/svg"}
+              %title Placeholder
+              %rect{:fill => "#555", :height => "100%", :width => "100%"}
+              %text{:dy => ".3em", :fill => "#333", :x => "50%", :y => "50%"} Third slide
+
+        %a.carousel-control-prev{"data-slide" => "prev", :href => "#carouselExampleIndicators", :role => "button"}
+          %span.carousel-control-prev-icon{"aria-hidden" => "true"}
+          %span.sr-only Previous
+        %a.carousel-control-next{"data-slide" => "next", :href => "#carouselExampleIndicators", :role => "button"}
+          %span.carousel-control-next-icon{"aria-hidden" => "true"}
+          %span.sr-only Next
+
+      -# .wrap-content.row
+      -#   - @profiles.first(1).each do |profile|
+      -#     .large-content.col-lg-12.col-md-12.col-sm-12.col-xs-12
+      -#       = image_tag profile.image.url, class: 'large-photo'
+      -#       .large-text
+      -#         = profile.catch_copy
 
       .wrap-content.row
         - @profiles.first(6).each do |profile|
-          .middle-content.col-lg-4.col-md-4.col-xs-6
-            = image_tag profile.image.url, class: 'middle-photo'
-            .middle-text
-              = profile.catch_copy
+          .col-lg-4.col-md-4.col-sm-6.col-xs-4
+            .card.mb-3
+              = link_to '#' do
+                = image_tag(profile.image.url, alt: "", class: "card-img-top no_image")
+              .card-body{style: "height: 206px; position: relative;"}
+                %h5.card-title
+                  = profile.catch_copy
+                .small.text-muted
+                  = "投稿者：#{profile.user.nickname}"
+                .small.text-muted{style: "margin-bottom: 12px"}
+                  = "最終更新：#{time_ago_in_words(profile.updated_at)}前"
 
       .wrap-content.row
         - @profiles.first(8).each do |profile|
-          .small-content.col-lg-3.col-md-3.col-xs-4
-            = image_tag profile.image.url, class: 'small-photo'
-            .small-text
-              = profile.catch_copy
+          .col-lg-3.col-md-3.col-sm-4.col-xs-6
+            .card.mb-3
+              = link_to '#' do
+                = image_tag(profile.image.url, alt: "", class: "card-img-top no_image")
+              .card-body{style: "height: 206px; position: relative;"}
+                %h5.card-title
+                  = profile.catch_copy
+                .small.text-muted
+                  = "投稿者：#{profile.user.nickname}"
+                .small.text-muted{style: "margin-bottom: 12px"}
+                  = "最終更新：#{time_ago_in_words(profile.updated_at)}前"
 
-    .TopPage--container__right.col-lg-4.col-md-12
+    .TopPage--container__right.col-lg-3.col-md-12
       .promotions
         .promotion
           PR画像
@@ -68,4 +129,3 @@
           = link_to profile_pass_path(profile_id: new_profile.user.id, pv_link: "pv++") do
             .new-arrival
               = new_profile.user.nickname
-        
