@@ -14,13 +14,15 @@
     %script{ type: "text/javascript", src: "//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"}
     %script{src: "https://aframe.io/releases/1.0.4/aframe.min.js"}
     %script{src: "https://js.pay.jp/", type: "text/javascript"}
+
+    %script{:crossorigin => "anonymous", :integrity => "sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo", :src => "https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"}
+    %script{:crossorigin => "anonymous", :integrity => "sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI", :src => "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"}
+
   %body
     = render 'layouts/header'
     = render 'layouts/notifications'
     = yield
     = render 'layouts/footer'
-    -# ↓この記述必要でしょうか？？
-    -# %script{:crossorigin => "anonymous", :integrity => "sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN", :src => "https://code.jquery.com/jquery-3.2.1.slim.min.js"}
     %script{:crossorigin => "anonymous", :integrity => "sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4", :src => "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"}
     %script{:crossorigin => "anonymous", :integrity => "sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1", :src => "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"}
 
@@ -31,3 +33,4 @@
     %script{src: "https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"}
 
     = javascript_pack_tag 'script'
+

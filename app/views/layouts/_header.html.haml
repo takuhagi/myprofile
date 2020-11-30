@@ -1,12 +1,12 @@
 %header.header.sticky-top
-  %nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  %nav.navbar.navbar-expand-sm.navbar-dark.bg-dark
     = link_to root_path, class: "navbar-brand site-logo" do
       = image_tag 'logo.png'
 
-    %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", 
+    %button.navbar-toggler{ "aria-controls" => "navbarSupportedContent", 
                             "aria-expanded" => "false", "aria-label" => "Toggle navigation", 
                             "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", 
-                            :type => "button"}
+                            :type => "button" }
       %span.navbar-toggler-icon
 
     #navbarSupportedContent.collapse.navbar-collapse
@@ -47,41 +47,28 @@
           %li.nav-item.dropdown
             %a#navbarDropdown.nav-link.dropdown-toggle.active{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
               = current_user.nickname
-            .dropdown-menu.dropdown-menu-right{"aria-labelledby" => "navbarDropdown"}
-              .dropdown-item
+            .dropdown-menu.dropdown-menu-right.navbar-dark.bg-dark{"aria-labelledby" => "navbarDropdown"}
+              .dropdown-item.bg-dark
                 - if current_user.profile.nil?
                   = link_to new_profile_path, class: "nav-link" do
                     プロフィール登録
                 - elsif current_user.profile.user_id == current_user.id
                   = link_to  edit_profile_path(current_user.profile.id), class: "nav-link" do
                     プロフィール編集
-    
-
-              .dropdown-item
+              .dropdown-item.bg-dark
                 = link_to '#', class: "nav-link" do
                   店舗情報 投稿/編集
-    
-
-              .dropdown-item
+              .dropdown-item.bg-dark
                 = link_to '#', class: "nav-link" do
                   商品情報 投稿/編集
-    
-
-              .dropdown-item
+              .dropdown-item.bg-dark
                 = link_to '#', class: "nav-link" do
                   サービス情報 投稿/編集
-    
-
-              .dropdown-item
+              .dropdown-item.bg-dark
                 = link_to '#', class: "nav-link" do
                   イベント情報 投稿/編集
-    
               .dropdown-divider
-
-              .dropdown-item
+              .dropdown-item.bg-dark
                 = link_to destroy_user_session_path, method: :delete, class: "nav-link" do
                   ログアウト
     
-
-
-
