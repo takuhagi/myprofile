@@ -1,7 +1,7 @@
 %header.header.sticky-top
   %nav.navbar.navbar-expand-sm.navbar-dark.bg-dark
     = link_to root_path, class: "navbar-brand site-logo" do
-      = image_tag 'logo.png'
+      = image_tag 'logo.png', class: "site-logoPNG"
 
     %button.navbar-toggler{ "aria-controls" => "navbarSupportedContent", 
                             "aria-expanded" => "false", "aria-label" => "Toggle navigation", 
@@ -12,62 +12,65 @@
     #navbarSupportedContent.collapse.navbar-collapse
       %ul.navbar-nav.mr-auto
         %li.nav-item
-          = link_to store_profiles_path, class: "nav-link" do
+          = link_to store_profiles_path, class: "nav-link " do
             店舗一覧
 
         %li.nav-item
-          = link_to item_profiles_path, class: "nav-link" do
+          = link_to item_profiles_path, class: "nav-link " do
             商品一覧
 
         %li.nav-item
-          = link_to service_profiles_path, class: "nav-link" do
+          = link_to service_profiles_path, class: "nav-link " do
             サービス一覧
 
         %li.nav-item
-          = link_to event_profiles_path, class: "nav-link" do
+          = link_to event_profiles_path, class: "nav-link " do
             イベント一覧
 
         %li.nav-item
-          = link_to search_users_path, class: "nav-link" do
+          = link_to search_users_path, class: "nav-link " do
             検索
 
 
       - unless user_signed_in?
         %ul.navbar-nav
           %li.nav-item
-            = link_to new_user_registration_path, class: "nav-link" do
+            = link_to new_user_registration_path, class: "nav-link " do
               アカウント登録
   
           %li.nav-item
-            = link_to new_user_session_path, class: "nav-link" do
+            = link_to new_user_session_path, class: "nav-link " do
               ログイン
   
       - else
         %ul.navbar-nav
           %li.nav-item.dropdown
-            %a#navbarDropdown.nav-link.dropdown-toggle.active{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
               = current_user.nickname
             .dropdown-menu.dropdown-menu-right.navbar-dark.bg-dark{"aria-labelledby" => "navbarDropdown"}
               .dropdown-item.bg-dark
                 - if current_user.profile.nil?
-                  = link_to new_profile_path, class: "nav-link" do
+                  = link_to new_profile_path, class: "nav-link " do
                     プロフィール登録
                 - elsif current_user.profile.user_id == current_user.id
-                  = link_to  edit_profile_path(current_user.profile.id), class: "nav-link" do
+                  = link_to  edit_profile_path(current_user.profile.id), class: "nav-link " do
                     プロフィール編集
               .dropdown-item.bg-dark
-                = link_to '#', class: "nav-link" do
+                = link_to '#', class: "nav-link " do
                   店舗情報 投稿/編集
               .dropdown-item.bg-dark
-                = link_to '#', class: "nav-link" do
+                = link_to '#', class: "nav-link " do
                   商品情報 投稿/編集
               .dropdown-item.bg-dark
-                = link_to '#', class: "nav-link" do
+                = link_to '#', class: "nav-link " do
                   サービス情報 投稿/編集
               .dropdown-item.bg-dark
-                = link_to '#', class: "nav-link" do
+                = link_to '#', class: "nav-link " do
                   イベント情報 投稿/編集
               .dropdown-divider
+              .dropdown-item.bg-dark
+                = link_to users_path(id: current_user.id), class: "nav-link" do
+                  マイページ
               .dropdown-item.bg-dark
                 = link_to destroy_user_session_path, method: :delete, class: "nav-link" do
                   ログアウト

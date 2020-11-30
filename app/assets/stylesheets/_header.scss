@@ -4,7 +4,13 @@
   // background-color: #1c1c1c;
   box-shadow: 0 0px 16px 0 rgba(0, 0, 0, .5);
   margin-bottom: 24px;
-  .site-logo {
-    margin: 8px 16px 8px 8px;
+  .navbar {
+    padding: 0 8px;
+    .site-logo {
+      margin: 8px 16px 8px 8px;
+      .site-logoPNG {
+        width: 200px;
+      }
+    }
   }
 }
