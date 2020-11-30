@@ -23,7 +23,16 @@ $(function() {
     },
 
     autoplay: {
-      delay: 4000,
+      delay: 5000,
+    },
+
+    on: {
+      slideChange: function () {
+        jQuery('.swiper-slide-content').css('opacity', '1');
+        realIndex = this.realIndex + 1;
+        jQuery('.swiper-slide-content-' + realIndex).css('opacity', '0');
+      },
     },
   })
 })
+
