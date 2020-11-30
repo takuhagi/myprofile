@@ -1,27 +1,30 @@
--#   ユーザー表示、リンクテスト 仮置き
-- @user.each do |user|   
-  - if user.profile.present?
-    = link_to users_path(id: user.id) do
-      = user.nickname
+-# -#   ユーザー表示、リンクテスト 仮置き
+-# - @user.each do |user|   
+-#   - if user.profile.present?
+-#     = link_to users_path(id: user.id) do
+-#       = user.nickname
 
--# ログイン中のユーザーのプロフィールがない場合は登録画面へ、プロフィールのuser_idがログイン中のユーザーのidと一致する場合は編集画面へ
-- if current_user.profile.nil?
-  = link_to "プロフィール登録", new_profile_path
-- elsif current_user.profile.user_id == current_user.id
-  = link_to "プロフィール編集", edit_profile_path(current_user.profile.id)
+-# -# ログイン中のユーザーのプロフィールがない場合は登録画面へ、プロフィールのuser_idがログイン中のユーザーのidと一致する場合は編集画面へ
+-# - if current_user.profile.nil?
+-#   = link_to "プロフィール登録", new_profile_path
+-# - elsif current_user.profile.user_id == current_user.id
+-#   = link_to "プロフィール編集", edit_profile_path(current_user.profile.id)
 
--# 仮に各テーブルindexへのリンクを置きます
-= link_to "店舗一覧", store_profiles_path
-= link_to "商品一覧", item_profiles_path
-= link_to "サービス一覧", service_profiles_path
-= link_to "イベント一覧", event_profiles_path
+-# -# 仮に各テーブルindexへのリンクを置きます
+-# = link_to "店舗一覧", store_profiles_path
+-# = link_to "商品一覧", item_profiles_path
+-# = link_to "サービス一覧", service_profiles_path
+-# = link_to "イベント一覧", event_profiles_path
 
--# 検索画面へのリンク
-= link_to "ユーザー検索",search_users_path
+-# -# 検索画面へのリンク
+-# = link_to "ユーザー検索",search_users_path
 
-= link_to "ログアウト",destroy_user_session_path, method: :delete #ログアウト 仮置き
-- if current_user.profile.present?  #ログインユーザーがプロフページを持っているか(有料会員か？)
-  = link_to "マイページ",users_path(id: current_user.id)  #マイページへのリンク 仮置き
+-# = link_to "ログアウト",destroy_user_session_path, method: :delete #ログアウト 仮置き
+-# - if current_user.profile.present?  #ログインユーザーがプロフページを持っているか(有料会員か？)
+-#   = link_to "マイページ",users_path(id: current_user.id)  #マイページへのリンク 仮置き
+
+
+
 .TopPage
   .TopPage--container.row
     .TopPage--container__left.col-lg-8.col-md-12
