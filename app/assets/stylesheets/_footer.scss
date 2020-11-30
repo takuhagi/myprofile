@@ -1,0 +1,20 @@
+.footer{
+  width: 100%;
+  box-shadow: 0 0px 16px 0 rgba(0, 0, 0, .5);
+  text-align: center;
+  .site-logo {
+    color: white;
+    background-color: #282c30;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .copyright {
+    background-color: black;
+    color: lightgray;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    padding: 8px 0;
+  }
+}
