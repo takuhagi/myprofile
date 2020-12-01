@@ -64,9 +64,9 @@
         .swiper-button-next
 
 
-      .wrap-content.row
-        - @profiles.first(6).each do |profile|
-          .col-lg-4.col-md-4.col-sm-6.col-xs-4
+      .wrap-content.row.wow
+        - @profiles.first(6).each_with_index do |profile, index|
+          .col-lg-4.col-md-4.col-sm-6.col-xs-4.wow.animate__animated.animate__fadeInBottomRight{"data-wow-offset" => "#{index}", "data-wow-delay" => "#{index}00ms"}
             .card.mb-3
               = link_to '#' do
                 = image_tag(profile.image.url, alt: "", class: "card-img-top no_image")
@@ -79,8 +79,8 @@
                   = "最終更新：#{time_ago_in_words(profile.updated_at)}前"
 
       .wrap-content.row
-        - @profiles.first(8).each do |profile|
-          .col-lg-3.col-md-3.col-sm-4.col-xs-6
+        - @profiles.first(8).each_with_index do |profile, index|
+          .col-lg-3.col-md-3.col-sm-4.col-xs-6.wow.animate__animated.animate__fadeInBottomLeft{"data-wow-offset" => "#{index}", "data-wow-delay" => "#{index}00ms"}
             .card.mb-3
               = link_to '#' do
                 = image_tag(profile.image.url, alt: "", class: "card-img-top no_image")

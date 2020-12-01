@@ -22,7 +22,13 @@
     %link{:href => "https://unpkg.com/swiper/swiper-bundle.css", :rel => "stylesheet"}
     %script{:src => "https://unpkg.com/swiper/swiper-bundle.js"}
 
+    // animate.css
+    %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css", :rel => "stylesheet"}
+    // wow.js
+    %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"}
+
   %body
+    
     = render 'layouts/header'
     = render 'layouts/notifications'
     = yield
@@ -37,4 +43,5 @@
     %script{src: "https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"}
 
     = javascript_pack_tag 'script'
-
+    :javascript
+      new WOW().init();
