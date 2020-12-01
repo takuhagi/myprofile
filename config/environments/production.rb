@@ -110,7 +110,7 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
      
-     config.action_mailer.default_url_options = { host: '3.114.61.191' }
+     config.action_mailer.default_url_options = { host: 'http://3.114.61.191' }
      config.file_watcher = ActiveSupport::EventedFileUpdateChecker
      config.action_mailer.raise_delivery_errors = true
      config.action_mailer.delivery_method = :smtp
