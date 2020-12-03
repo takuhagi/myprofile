@@ -80,6 +80,9 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def inquiry
+  end
+
   private
 
 
