@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @profile = @user.profile
     @card = Card.find_by(user_id: current_user.id)
     @comment = Comment.new
-    @comments = @user.comments.includes(:user).all.order("id DESC")
+    @comments = @user.comments.all.order("id DESC")
     @check = @comments.where(check: [nil])
     @reply_array = []
     @re_array = []
