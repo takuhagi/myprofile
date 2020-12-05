@@ -24,37 +24,80 @@
 -#   = link_to "マイページ",users_path(id: current_user.id)  #マイページへのリンク 仮置き
 
 
+-# - @profiles.first(1).each do |profile|
+-#   .col-lg-2
+-#     .card.mb-3
+-#       = image_tag(profile.image.url, alt: "", class: "card-img-top no_image")
+-#       .card-body{style: "height: 206px; position: relative;"}
+-#         %h5.card-title
+-#           = profile.catch_copy
+-#         .small.text-muted
+-#           = "投稿者：#{profile.user.nickname}"
+-#         .small.text-muted{style: "margin-bottom: 12px"}
+-#           = "最終更新：#{time_ago_in_words(profile.updated_at)}前"
+-#         -# %p.card-text{style: "height: 72px"}
+-#         -#   = item_profile.explanation.truncate(45)
+-#         %div{style: "position: absolute; left: 20px; bottom: 20px"}
+-#           = link_to("クリックして詳細へ", '#', { class: "btn btn-primary mt-3" })
+
 
 .TopPage
   .TopPage--container.row
-    .TopPage--container__left.col-lg-8.col-md-12
-      .wrap-content.row
-        - @profiles.first(1).each do |profile|
-          .large-content.col-lg-12.col-md-12.col-sm-12.col-xs-12
-            = image_tag profile.image.url, class: 'large-photo'
-            .large-text
-              = profile.catch_copy
+    .TopPage--container__left.col-lg-9.col-md-12
+
+      .swiper-container
+        .swiper-wrapper
+          - @profiles.first(8).each_with_index do |profile, index|
+            .swiper-slide
+              = image_tag(profile.image.url, alt: "", class: "card-img-top no_image")
+              .swiper-slide-content{class: "swiper-slide-content-#{index}"}
+                .caption
+                  .captionTitle
+                    = profile.catch_copy
+                  .captionByAt
+                    .captionBy
+                      = "投稿者：#{profile.user.nickname}"
+                    .captionAt
+                      = "最終更新：#{time_ago_in_words(profile.updated_at)}前"
+        .swiper-pagination
+        .swiper-button-prev
+        .swiper-button-next
+
+
+      .wrap-content.row.wow
+        - @profiles.first(6).each_with_index do |profile, index|
+          .col-lg-4.col-md-4.col-sm-6.col-xs-4.wow.animate__animated.animate__fadeInBottomRight{"data-wow-offset" => "#{index}", "data-wow-delay" => "#{index}00ms"}
+            .card.mb-3
+              = link_to '#' do
+                = image_tag(profile.image.url, alt: "", class: "card-img-top no_image")
+              .card-body{style: "height: 206px; position: relative;"}
+                %h5.card-title
+                  = profile.catch_copy
+                .small.text-muted
+                  = "投稿者：#{profile.user.nickname}"
+                .small.text-muted{style: "margin-bottom: 12px"}
+                  = "最終更新：#{time_ago_in_words(profile.updated_at)}前"
 
       .wrap-content.row
-        - @profiles.first(6).each do |profile|
-          .middle-content.col-lg-4.col-md-4.col-xs-6
-            = image_tag profile.image.url, class: 'middle-photo'
-            .middle-text
-              = profile.catch_copy
+        - @profiles.first(8).each_with_index do |profile, index|
+          .col-lg-3.col-md-3.col-sm-4.col-xs-6.wow.animate__animated.animate__fadeInBottomLeft{"data-wow-offset" => "#{index}", "data-wow-delay" => "#{index}00ms"}
+            .card.mb-3
+              = link_to '#' do
+                = image_tag(profile.image.url, alt: "", class: "card-img-top no_image")
+              .card-body{style: "height: 206px; position: relative;"}
+                %h5.card-title
+                  = profile.catch_copy
+                .small.text-muted
+                  = "投稿者：#{profile.user.nickname}"
+                .small.text-muted{style: "margin-bottom: 12px"}
+                  = "最終更新：#{time_ago_in_words(profile.updated_at)}前"
 
-      .wrap-content.row
-        - @profiles.first(8).each do |profile|
-          .small-content.col-lg-3.col-md-3.col-xs-4
-            = image_tag profile.image.url, class: 'small-photo'
-            .small-text
-              = profile.catch_copy
-
-    .TopPage--container__right.col-lg-4.col-md-12
+    .TopPage--container__right.col-lg-3.col-md-12
       .promotions
         .promotion
-          PR画像
+          = image_tag 'pr1.jpg', class: 'pr-image'
         .promotion
-          PR画像
+          = image_tag 'pr2.jpg', class: 'pr-image'
       .rankings
         .h4 アクセスランキング
         -# 5つ表示
@@ -68,4 +111,3 @@
           = link_to profile_pass_path(profile_id: new_profile.user.id, pv_link: "pv++") do
             .new-arrival
               = new_profile.user.nickname
-        
