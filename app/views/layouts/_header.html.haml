@@ -55,18 +55,20 @@
                 - elsif current_user.profile.user_id == current_user.id
                   = link_to  edit_profile_path(current_user.profile.id), class: "nav-link " do
                     プロフィール編集
-              .dropdown-item.bg-dark
-                = link_to new_store_profile_path, class: "nav-link " do
-                  店舗情報 投稿
-              .dropdown-item.bg-dark
-                = link_to new_item_profile_path, class: "nav-link " do
-                  商品情報 投稿
-              .dropdown-item.bg-dark
-                = link_to new_service_profile_path, class: "nav-link " do
-                  サービス情報 投稿
-              .dropdown-item.bg-dark
-                = link_to new_event_profile_path, class: "nav-link " do
-                  イベント情報 投稿
+              -# カード情報登録の有無で表示非表示
+              - if current_user.card
+                .dropdown-item.bg-dark
+                  = link_to new_store_profile_path, class: "nav-link " do
+                    店舗情報 投稿
+                .dropdown-item.bg-dark
+                  = link_to new_item_profile_path, class: "nav-link " do
+                    商品情報 投稿
+                .dropdown-item.bg-dark
+                  = link_to new_service_profile_path, class: "nav-link " do
+                    サービス情報 投稿
+                .dropdown-item.bg-dark
+                  = link_to new_event_profile_path, class: "nav-link " do
+                    イベント情報 投稿
               .dropdown-divider
               .dropdown-item.bg-dark
                 = link_to users_path(id: current_user.id), class: "nav-link" do
