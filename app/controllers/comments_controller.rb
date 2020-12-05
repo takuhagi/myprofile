@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     
     @user = User.find(params[:id])
     
-    @comments = @user.comments.includes(:user).all
+    @comments = @user.comments.all
     @check = @comments.where(check: [nil]) #checkがNULLだけを表示
     
     
