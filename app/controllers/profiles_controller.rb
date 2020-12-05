@@ -7,8 +7,8 @@ class ProfilesController < ApplicationController
   before_action :correct_user, only: [:edit]
 
   def index
-    @profiles = Profile.all
-    @user = User.all
+    @profiles = Profile.all.includes([:user])
+    @user = User.all.includes([:profile])
     @rank_profiles = @profiles.order(pv_count: "DESC").limit(5)
     @new_profiles = @profiles.order(created_at: "DESC").limit(5)
   end
@@ -78,6 +78,9 @@ class ProfilesController < ApplicationController
     if @user.id == current_user.id
       redirect_to user_path(current_user.id)
     end
+  end
+
+  def inquiry
   end
 
   private
