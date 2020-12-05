@@ -40,7 +40,7 @@ FactoryBot.define do
   #   avatar_about {"sss"}
   #   sub_image {"aaa"}
   #   avatar_catch_copy {"aaa"}
-  #   pv_count {1}
+    pv_count {1}
     password_digest {"ahhhhaa"}
   #   color {"sss"}
   #   store_name {"aaa"}

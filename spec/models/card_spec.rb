@@ -1,3 +1,5 @@
+# テスト不可
+
 # require 'rails_helper'
 #   describe Card do
 #     describe '#create' do
