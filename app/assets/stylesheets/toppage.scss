@@ -35,6 +35,7 @@
           margin: 0 auto 1rem;
           .middle-photo {
             height: 147px;
+            // スマホサイズで右寄りになるのでwidth100%に変更しています
             // width: 220px;
             width: 100%;
             margin: 0 auto 0.5rem;
@@ -43,6 +44,7 @@
           }
           .middle-text {
             min-height: 80px;
+            // スマホサイズで右寄りになるのでwidth100%に変更しています
             // width: 220px;
             width: 100%;
             // box-shadow: 0 2px 5px rgba(0,0,0,0.26);
@@ -53,6 +55,7 @@
           margin: 0 auto 1rem;
           .small-photo {
             height: 107px;
+            // スマホサイズで右寄りになるのでwidth100%に変更しています
             // width: 160px;
             width: 100%;
             margin: 0 auto 0.5rem;
@@ -61,6 +64,7 @@
           }
           .small-text {
             min-height: 80px;
+            // スマホサイズで右寄りになるのでwidth100%に変更しています
             // width: 160px;
             width: 100%;
             // margin: 0 auto;
