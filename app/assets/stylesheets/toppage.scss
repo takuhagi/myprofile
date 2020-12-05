@@ -35,14 +35,16 @@
           margin: 0 auto 1rem;
           .middle-photo {
             height: 147px;
-            width: 220px;
+            // width: 220px;
+            width: 100%;
             margin: 0 auto 0.5rem;
             object-fit: cover;
             box-shadow: 0 2px 5px rgba(0,0,0,0.26);
           }
           .middle-text {
             min-height: 80px;
-            width: 220px;
+            // width: 220px;
+            width: 100%;
             // box-shadow: 0 2px 5px rgba(0,0,0,0.26);
           }
         }
@@ -51,14 +53,16 @@
           margin: 0 auto 1rem;
           .small-photo {
             height: 107px;
-            width: 160px;
+            // width: 160px;
+            width: 100%;
             margin: 0 auto 0.5rem;
             object-fit: cover;
             box-shadow: 0 2px 5px rgba(0,0,0,0.26);
           }
           .small-text {
             min-height: 80px;
-            width: 160px;
+            // width: 160px;
+            width: 100%;
             // margin: 0 auto;
             // box-shadow: 0 2px 5px rgba(0,0,0,0.26);
           }
