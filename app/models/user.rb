@@ -16,4 +16,7 @@ class User < ApplicationRecord
   has_many :service_profiles, dependent: :destroy
   has_many :event_profiles, dependent: :destroy
 
+
+  # テスト
+  # validates :nickname ,presence: true
 end
