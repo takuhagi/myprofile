@@ -127,8 +127,8 @@ gem 'bullet', :group => :development
 
 gem 'spring-watcher-listen', '~> 2.0.0' 
 
+gem 'capistrano-rails-console'
 
-
-
+gem 'fog-aws'
 
 
