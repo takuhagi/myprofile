@@ -11,7 +11,7 @@ Rails.application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local       = true
   config.action_controller.perform_caching = true
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
@@ -109,8 +109,8 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
-     
-     config.action_mailer.default_url_options = { host: 'https://3.114.61.191' }
+  # config.action_mailer.default_url_options = {  :host => 'http://ipアドレス'or'ドメイン名' }
+     config.action_mailer.default_url_options = { :host =>'http://3.114.61.191' }
      config.file_watcher = ActiveSupport::EventedFileUpdateChecker
      config.action_mailer.raise_delivery_errors = true
      config.action_mailer.delivery_method = :smtp
