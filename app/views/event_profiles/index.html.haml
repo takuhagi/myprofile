@@ -15,9 +15,11 @@
       This is an introduction of recommended events.
     
     -# = link_to("プロフィール", users_path(id: current_user.id), { class: "btn btn-info mt-3" })
+    = link_to("人物", profiles_path, { class: "btn btn-info mt-3" })
     = link_to("店舗", store_profiles_path, { class: "btn btn-info mt-3" })
     = link_to("商品", item_profiles_path, { class: "btn btn-info mt-3" })
     = link_to("サービス", service_profiles_path, { class: "btn btn-info mt-3" })
+    -# = link_to("イベント", event_profiles_path, { class: "btn btn-info mt-3" })
 
 .container
   .row

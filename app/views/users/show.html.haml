@@ -93,7 +93,10 @@
               %p.card-text{style: "height: 72px"}
                 = store_profile.explanation.truncate(45)
               %div{style: "position: absolute; left: 20px; bottom: 20px"}
-                = link_to("クリックして詳細へ", store_profile_path(store_profile.id), { class: "btn btn-primary mt-3" })
+                = link_to("詳細", store_profile_path(store_profile.id), { class: "btn btn-primary mt-3" })
+                = link_to("編集", edit_store_profile_path(store_profile.id), { class: "btn btn-primary mt-3" })
+                = link_to "削除", edit_store_profile_path(store_profile.id), class: "btn btn-primary mt-3", method: :delete, data: {confirm: "本当に削除しますか？"}
+
     %p
       = page_entries_info @store_profiles
     .paginate.mb-4
@@ -119,7 +122,10 @@
               %p.card-text{style: "height: 72px"}
                 = item_profile.explanation.truncate(45)
               %div{style: "position: absolute; left: 20px; bottom: 20px"}
-                = link_to("クリックして詳細へ", item_profile_path(item_profile.id), { class: "btn btn-primary mt-3" })
+                = link_to("詳細", item_profile_path(item_profile.id), { class: "btn btn-primary mt-3" })
+                = link_to("編集", edit_item_profile_path(item_profile.id), { class: "btn btn-primary mt-3" })
+                = link_to "削除", edit_item_profile_path(item_profile.id), class: "btn btn-primary mt-3", method: :delete, data: {confirm: "本当に削除しますか？"}
+
     %p
       = page_entries_info @item_profiles
     .paginate.mb-4
@@ -145,7 +151,10 @@
               %p.card-text{style: "height: 72px"}
                 = service_profile.explanation.truncate(45)
               %div{style: "position: absolute; left: 20px; bottom: 20px"}
-                = link_to("クリックして詳細へ", service_profile_path(service_profile.id), { class: "btn btn-primary mt-3" })
+                = link_to("詳細", service_profile_path(service_profile.id), { class: "btn btn-primary mt-3" })
+                = link_to("編集", edit_service_profile_path(service_profile.id), { class: "btn btn-primary mt-3" })
+                = link_to "削除", edit_service_profile_path(service_profile.id), class: "btn btn-primary mt-3", method: :delete, data: {confirm: "本当に削除しますか？"}
+
     %p
       = page_entries_info @service_profiles
     .paginate.mb-4
@@ -177,7 +186,10 @@
                   %small.text-muted
                     = event_profile.start.strftime("%Y-%m-%d %H:%M")
               %div{style: "position: absolute; left: 20px; bottom: 20px"}
-                = link_to("クリックして詳細へ", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
+                = link_to("詳細", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
+                = link_to("編集", edit_event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
+                = link_to "削除", edit_event_profile_path(event_profile.id), class: "btn btn-primary mt-3", method: :delete, data: {confirm: "本当に削除しますか？"}
+
     %p
       = page_entries_info @event_profiles
     .paginate.mb-4

@@ -11,6 +11,7 @@ class ProfilesController < ApplicationController
     @user = User.all.includes([:profile])
     @rank_profiles = @profiles.order(pv_count: "DESC").limit(5)
     @new_profiles = @profiles.order(created_at: "DESC").limit(5)
+    @profiles = Profile.includes(:user).order(updated_at: :DESC).page(params[:page]).per(9)
   end
 
   def new
@@ -36,6 +37,10 @@ class ProfilesController < ApplicationController
       render 'new'
     end
 
+  end
+
+  def show
+    @profile = Profile.find(params[:id])
   end
 
   def edit
