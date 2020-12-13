@@ -28,7 +28,7 @@
 -#   .col-lg-2
 -#     .card.mb-3
 -#       = image_tag(profile.image.url, alt: "", class: "card-img-top no_image")
--#       .card-body{style: "height: 206px; position: relative;"}
+-#       .card-body{style: "position: relative;"}
 -#         %h5.card-title
 -#           = profile.catch_copy
 -#         .small.text-muted
@@ -45,16 +45,16 @@
   .TopPage--container.row
     .TopPage--container__left.col-lg-9.col-md-12
       - @profiles.first(1).each_with_index do |profile, index|
-        .card
-          = link_to '#' do
+        = link_to '#' do
+          .card.toppage-hover
             = image_tag(profile.image.url, alt: "", class: "card-img-top no_image")
-          .card-body{style: "height: 206px; position: relative;"}
-            %h5.card-title
-              = profile.catch_copy
-            .small.text-muted
-              = "投稿者：#{profile.user.nickname}"
-            .small.text-muted{style: "margin-bottom: 12px"}
-              = "最終更新：#{time_ago_in_words(profile.updated_at)}前"
+            .card-body{style: "position: relative;"}
+              %h5.card-title
+                = profile.catch_copy
+              .small.text-muted
+                = "投稿者：#{profile.user.nickname}"
+              .small.text-muted{style: "margin-bottom: 12px"}
+                = "最終更新：#{time_ago_in_words(profile.updated_at)}前"
       -# .swiper-container
       -#   .swiper-wrapper
       -#     - @profiles.first(8).each_with_index do |profile, index|
@@ -77,47 +77,57 @@
       .wrap-content.row.wow
         - @profiles.first(6).each_with_index do |profile, index|
           .col-lg-4.col-md-4.col-sm-6.col-xs-4
-            .card.mb-3
-              = link_to '#' do
+            = link_to '#' do
+              .card.mb-3.toppage-hover
                 = image_tag(profile.image.url, alt: "", class: "card-img-top no_image")
-              .card-body{style: "height: 206px; position: relative;"}
-                %h5.card-title
-                  = profile.catch_copy
-                .small.text-muted
-                  = "投稿者：#{profile.user.nickname}"
-                .small.text-muted{style: "margin-bottom: 12px"}
-                  = "最終更新：#{time_ago_in_words(profile.updated_at)}前"
+                .card-body{style: "height: 180px; position: relative;"}
+                  %h5.card-title
+                    = profile.catch_copy
+                  .small.text-mutedz
+                    = "投稿者：#{profile.user.nickname}"
+                  .small.text-muted{style: "margin-bottom: 12px"}
+                    = "最終更新：#{time_ago_in_words(profile.updated_at)}前"
 
       .wrap-content.row
         - @profiles.first(8).each_with_index do |profile, index|
           .col-lg-3.col-md-3.col-sm-4.col-xs-6
-            .card.mb-3
-              = link_to '#' do
+            = link_to '#' do
+              .card.mb-3.toppage-hover
                 = image_tag(profile.image.url, alt: "", class: "card-img-top no_image")
-              .card-body{style: "height: 206px; position: relative;"}
-                %h5.card-title
-                  = profile.catch_copy
-                .small.text-muted
-                  = "投稿者：#{profile.user.nickname}"
-                .small.text-muted{style: "margin-bottom: 12px"}
-                  = "最終更新：#{time_ago_in_words(profile.updated_at)}前"
+                .card-body{style: "height: 206px; position: relative;"}
+                  %h5.card-title
+                    = profile.catch_copy
+                  .small.text-muted
+                    = "投稿者：#{profile.user.nickname}"
+                  .small.text-muted{style: "margin-bottom: 12px"}
+                    = "最終更新：#{time_ago_in_words(profile.updated_at)}前"
 
     .TopPage--container__right.col-lg-3.col-md-12
       .promotions
-        .promotion
+        .promotion.card.toppage-hover
           = image_tag 'pr1.jpg', class: 'pr-image'
-        .promotion
+        .promotion.card.toppage-hover
           = image_tag 'pr2.jpg', class: 'pr-image'
       .rankings
         .h4 アクセスランキング
         -# 5つ表示
         - @rank_profiles.each do |profile|
           = link_to users_path(id: profile.user.id) do
-            .ranking
-              = profile.user.nickname
+            .ranking.card.toppage-hover
+              - if profile.avatar.present?
+                = image_tag(profile.avatar.url, alt: "", class: "rounded-circle minisize-icon")
+              - else
+                = image_tag('no_image.png', class: "rounded-circle minisize-icon")
+              .name
+                = profile.user.nickname
       .new-arrivals
         .h4 新着 
         - @new_profiles.each do |new_profile|
           = link_to users_path(id: new_profile.user.id) do
-            .new-arrival
-              = new_profile.user.nickname
+            .new-arrival.card.toppage-hover
+              - if new_profile.avatar.present?
+                = image_tag(new_profile.avatar.url, alt: "", class: "rounded-circle minisize-icon")
+              - else
+                = image_tag('no_image.png', class: "rounded-circle minisize-icon")
+              .name
+                = new_profile.user.nickname

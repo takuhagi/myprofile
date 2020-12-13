@@ -11,26 +11,26 @@
 
     #navbarSupportedContent.collapse.navbar-collapse
       %ul.navbar-nav.mr-auto
-        %li.nav-item{"data-wow-delay" => "0.1s"}
+        %li.nav-item
           = link_to profiles_path, class: "nav-link " do
             人物
-        %li.nav-item{"data-wow-delay" => "0.1s"}
+        %li.nav-item
           = link_to store_profiles_path, class: "nav-link " do
             店舗
 
-        %li.nav-item{"data-wow-delay" => "0.2s"}
+        %li.nav-item
           = link_to item_profiles_path, class: "nav-link " do
             商品
 
-        %li.nav-item{"data-wow-delay" => "0.3s"}
+        %li.nav-item
           = link_to service_profiles_path, class: "nav-link " do
             サービス
 
-        %li.nav-item{"data-wow-delay" => "0.4s"}
+        %li.nav-item
           = link_to event_profiles_path, class: "nav-link " do
             イベント
 
-        %li.nav-item{"data-wow-delay" => "0.5s"}
+        %li.nav-item
           = link_to search_users_path, class: "nav-link " do
             検索
 
@@ -50,7 +50,7 @@
           %li.nav-item.dropdown
             %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
               - if current_user.profile.avatar.present?
-                = image_tag(current_user.profile.avatar.url, alt: "", class: "rounded-circle heade-icon")
+                = image_tag(current_user.profile.avatar.url, alt: "", class: "rounded-circle minisize-icon")
               = current_user.nickname
             .dropdown-menu.dropdown-menu-right.navbar-dark.bg-dark{"aria-labelledby" => "navbarDropdown"}
               .dropdown-item.bg-dark
