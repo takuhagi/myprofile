@@ -49,6 +49,8 @@
         %ul.navbar-nav
           %li.nav-item.dropdown
             %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              - if current_user.profile.avatar.present?
+                = image_tag(current_user.profile.avatar.url, alt: "", class: "rounded-circle heade-icon")
               = current_user.nickname
             .dropdown-menu.dropdown-menu-right.navbar-dark.bg-dark{"aria-labelledby" => "navbarDropdown"}
               .dropdown-item.bg-dark

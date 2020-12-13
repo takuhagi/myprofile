@@ -3,7 +3,7 @@
   // color: white;
   // background-color: #1c1c1c;
   box-shadow: 0 0px 16px 0 rgba(0, 0, 0, .5);
-  margin-bottom: 24px;
+  // margin-bottom: 24px;
   .navbar {
     padding: 0 8px;
     .site-logo {
@@ -12,5 +12,10 @@
         width: 200px;
       }
     }
+  }
+  .heade-icon {
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
   }
 }
