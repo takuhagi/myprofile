@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_23_060123) do
+ActiveRecord::Schema.define(version: 2020_12_13_084020) do
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -65,6 +65,8 @@ ActiveRecord::Schema.define(version: 2020_11_23_060123) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "image"
+    t.integer "priority_number"
+    t.index ["priority_number"], name: "index_event_profiles_on_priority_number", unique: true
     t.index ["user_id"], name: "index_event_profiles_on_user_id"
   end
 
@@ -120,6 +122,8 @@ ActiveRecord::Schema.define(version: 2020_11_23_060123) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "image"
+    t.integer "priority_number"
+    t.index ["priority_number"], name: "index_item_profiles_on_priority_number", unique: true
     t.index ["user_id"], name: "index_item_profiles_on_user_id"
   end
 
@@ -191,6 +195,13 @@ ActiveRecord::Schema.define(version: 2020_11_23_060123) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
+  create_table "prs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "src"
+    t.string "pr_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "service_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "service_profile_id"
     t.string "src"
@@ -210,6 +221,8 @@ ActiveRecord::Schema.define(version: 2020_11_23_060123) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "image"
+    t.integer "priority_number"
+    t.index ["priority_number"], name: "index_service_profiles_on_priority_number", unique: true
     t.index ["user_id"], name: "index_service_profiles_on_user_id"
   end
 
@@ -232,6 +245,8 @@ ActiveRecord::Schema.define(version: 2020_11_23_060123) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "image"
+    t.integer "priority_number"
+    t.index ["priority_number"], name: "index_store_profiles_on_priority_number", unique: true
     t.index ["user_id"], name: "index_store_profiles_on_user_id"
   end
 

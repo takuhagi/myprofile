@@ -109,6 +109,7 @@ class UsersController < ApplicationController
   end
 
   def entire
+    
   end
 
 
