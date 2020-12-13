@@ -1,0 +1,133 @@
+-# -#   ユーザー表示、リンクテスト 仮置き
+-# - @user.each do |user|   
+-#   - if user.profile.present?
+-#     = link_to users_path(id: user.id) do
+-#       = user.nickname
+
+-# -# ログイン中のユーザーのプロフィールがない場合は登録画面へ、プロフィールのuser_idがログイン中のユーザーのidと一致する場合は編集画面へ
+-# - if current_user.profile.nil?
+-#   = link_to "プロフィール登録", new_profile_path
+-# - elsif current_user.profile.user_id == current_user.id
+-#   = link_to "プロフィール編集", edit_profile_path(current_user.profile.id)
+
+-# -# 仮に各テーブルindexへのリンクを置きます
+-# = link_to "店舗一覧", store_profiles_path
+-# = link_to "商品一覧", item_profiles_path
+-# = link_to "サービス一覧", service_profiles_path
+-# = link_to "イベント一覧", event_profiles_path
+
+-# -# 検索画面へのリンク
+-# = link_to "ユーザー検索",search_users_path
+
+-# = link_to "ログアウト",destroy_user_session_path, method: :delete #ログアウト 仮置き
+-# - if current_user.profile.present?  #ログインユーザーがプロフページを持っているか(有料会員か？)
+-#   = link_to "マイページ",users_path(id: current_user.id)  #マイページへのリンク 仮置き
+
+
+-# - @profiles.first(1).each do |profile|
+-#   .col-lg-2
+-#     .card.mb-3
+-#       = image_tag(profile.image.url, alt: "", class: "card-img-top no_image")
+-#       .card-body{style: "position: relative;"}
+-#         %h5.card-title
+-#           = profile.catch_copy
+-#         .small.text-muted
+-#           = "投稿者：#{profile.user.nickname}"
+-#         .small.text-muted{style: "margin-bottom: 12px"}
+-#           = "最終更新：#{time_ago_in_words(profile.updated_at)}前"
+-#         -# %p.card-text{style: "height: 72px"}
+-#         -#   = item_profile.explanation.truncate(45)
+-#         %div{style: "position: absolute; left: 20px; bottom: 20px"}
+-#           = link_to("クリックして詳細へ", '#', { class: "btn btn-primary mt-3" })
+
+
+.TopPage
+  .TopPage--container.row
+    .TopPage--container__left.col-lg-9.col-md-12
+      - @profiles.first(1).each_with_index do |profile, index|
+        = link_to '#' do
+          .card.toppage-hover
+            = image_tag(profile.image.url, alt: "", class: "card-img-top no_image")
+            .card-body{style: "position: relative;"}
+              %h5.card-title
+                = profile.catch_copy
+              .small.text-muted
+                = "投稿者：#{profile.user.nickname}"
+              .small.text-muted{style: "margin-bottom: 12px"}
+                = "最終更新：#{time_ago_in_words(profile.updated_at)}前"
+      -# .swiper-container
+      -#   .swiper-wrapper
+      -#     - @profiles.first(8).each_with_index do |profile, index|
+      -#       .swiper-slide
+      -#         = image_tag(profile.image.url, alt: "", class: "card-img-top no_image")
+      -#         .swiper-slide-content{class: "swiper-slide-content-#{index}"}
+      -#           .caption
+      -#             .captionTitle
+      -#               = profile.catch_copy
+      -#             .captionByAt
+      -#               .captionBy
+      -#                 = "投稿者：#{profile.user.nickname}"
+      -#               .captionAt
+      -#                 = "最終更新：#{time_ago_in_words(profile.updated_at)}前"
+      -#   .swiper-pagination
+      -#   .swiper-button-prev
+      -#   .swiper-button-next
+
+
+      .wrap-content.row.wow
+        - @profiles.first(6).each_with_index do |profile, index|
+          .col-lg-4.col-md-4.col-sm-6.col-xs-4
+            = link_to '#' do
+              .card.mb-3.toppage-hover
+                = image_tag(profile.image.url, alt: "", class: "card-img-top no_image")
+                .card-body{style: "height: 180px; position: relative;"}
+                  %h5.card-title
+                    = profile.catch_copy
+                  .small.text-mutedz
+                    = "投稿者：#{profile.user.nickname}"
+                  .small.text-muted{style: "margin-bottom: 12px"}
+                    = "最終更新：#{time_ago_in_words(profile.updated_at)}前"
+
+      .wrap-content.row
+        - @profiles.first(8).each_with_index do |profile, index|
+          .col-lg-3.col-md-3.col-sm-4.col-xs-6
+            = link_to '#' do
+              .card.mb-3.toppage-hover
+                = image_tag(profile.image.url, alt: "", class: "card-img-top no_image")
+                .card-body{style: "height: 206px; position: relative;"}
+                  %h5.card-title
+                    = profile.catch_copy
+                  .small.text-muted
+                    = "投稿者：#{profile.user.nickname}"
+                  .small.text-muted{style: "margin-bottom: 12px"}
+                    = "最終更新：#{time_ago_in_words(profile.updated_at)}前"
+
+    .TopPage--container__right.col-lg-3.col-md-12
+      .promotions
+        .promotion.card.toppage-hover
+          = image_tag 'pr1.jpg', class: 'pr-image'
+        .promotion.card.toppage-hover
+          = image_tag 'pr2.jpg', class: 'pr-image'
+      .rankings
+        .h4 アクセスランキング
+        -# 5つ表示
+        - @rank_profiles.each do |profile|
+          = link_to users_path(id: profile.user.id) do
+            .ranking.card.toppage-hover
+              - if profile.avatar.present?
+                = image_tag(profile.avatar.url, alt: "", class: "rounded-circle minisize-icon")
+              - else
+                = image_tag('no_image.png', class: "rounded-circle minisize-icon")
+              .name
+                = profile.user.nickname
+      .new-arrivals
+        .h4 新着 
+        - @new_profiles.each do |new_profile|
+          = link_to users_path(id: new_profile.user.id) do
+            .new-arrival.card.toppage-hover
+              - if new_profile.avatar.present?
+                = image_tag(new_profile.avatar.url, alt: "", class: "rounded-circle minisize-icon")
+              - else
+                = image_tag('no_image.png', class: "rounded-circle minisize-icon")
+              .name
+                = new_profile.user.nickname
