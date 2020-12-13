@@ -1,6 +1,6 @@
 %header.header.sticky-top
   %nav.navbar.navbar-expand-sm.navbar-dark.bg-dark
-    = link_to root_path, class: "navbar-brand site-logo animate__animated animate__zoomIn" do
+    = link_to root_path, class: "navbar-brand site-logo" do
       = image_tag 'logo.png', class: "site-logoPNG"
 
     %button.navbar-toggler{ "aria-controls" => "navbarSupportedContent", 
@@ -11,23 +11,26 @@
 
     #navbarSupportedContent.collapse.navbar-collapse
       %ul.navbar-nav.mr-auto
-        %li.nav-item.wow.animate__animated.animate__zoomIn{"data-wow-delay" => "0.1s"}
+        %li.nav-item{"data-wow-delay" => "0.1s"}
+          = link_to profiles_path, class: "nav-link " do
+            人物
+        %li.nav-item{"data-wow-delay" => "0.1s"}
           = link_to store_profiles_path, class: "nav-link " do
-            店舗一覧
+            店舗
 
-        %li.nav-item.wow.animate__animated.animate__zoomIn{"data-wow-delay" => "0.2s"}
+        %li.nav-item{"data-wow-delay" => "0.2s"}
           = link_to item_profiles_path, class: "nav-link " do
-            商品一覧
+            商品
 
-        %li.nav-item.wow.animate__animated.animate__zoomIn{"data-wow-delay" => "0.3s"}
+        %li.nav-item{"data-wow-delay" => "0.3s"}
           = link_to service_profiles_path, class: "nav-link " do
-            サービス一覧
+            サービス
 
-        %li.nav-item.wow.animate__animated.animate__zoomIn{"data-wow-delay" => "0.4s"}
+        %li.nav-item{"data-wow-delay" => "0.4s"}
           = link_to event_profiles_path, class: "nav-link " do
-            イベント一覧
+            イベント
 
-        %li.nav-item.wow.animate__animated.animate__zoomIn{"data-wow-delay" => "0.5s"}
+        %li.nav-item{"data-wow-delay" => "0.5s"}
           = link_to search_users_path, class: "nav-link " do
             検索
 
