@@ -4,66 +4,71 @@
       .p-2.pl-5.flex-grow-1.bd-highlight.title 
         %img{:height => "auto", :src => "logo.png"}
       .notice
-        - if current_user.id == @user.id && @check.present?
-          = link_to user_comment_path(current_user.id,@user.id) do
-            %img.message{:height => "auto", :src => "info.png"}
-            .notice_count
-              = @check.length
+        - if user_signed_in?
+          - if current_user.id == @user.id && @check.present? 
+            = link_to user_comment_path(current_user.id,@user.id) do
+              %img.message{:height => "auto", :src => "info.png"}
+              .notice_count
+                = @check.length
       .p-3.bd-highlight.m-auto.top_page
         = link_to "TOP",root_path
       -# ログイン中のユーザーのプロフィールがない場合は登録画面へ、プロフィールのuser_idがログイン中のユーザーのidと一致する場合は編集画面へ
-      - if current_user.profile.nil?
-        .p-3.bd-highlight.m-auto.new_profile_page
-          = link_to "プロフィール登録", new_profile_path
-      - elsif current_user.profile.user_id == current_user.id
-        .p-3.bd-highlight.m-auto.edit_profile_page
-          = link_to "プロフィール編集", edit_profile_path(current_user.profile.id)
+      - if user_signed_in?
+        - if current_user.profile.nil?
+          .p-3.bd-highlight.m-auto.new_profile_page
+            = link_to "プロフィール登録", new_profile_path
+        - elsif current_user.profile.user_id == current_user.id
+          .p-3.bd-highlight.m-auto.edit_profile_page
+            = link_to "プロフィール編集", edit_profile_path(current_user.profile.id)
       -# 検索画面へのリンク
       .p-3.bd-highlight.m-auto.search
         = link_to "ユーザー検索",search_users_path
-      .p-3.bd-highlight.m-auto.log_out
-        = link_to "ログアウト",destroy_user_session_path, method: :delete
-      - if current_user.id == @user.id 
+      - if user_signed_in?
         .p-3.bd-highlight.m-auto.log_out
-          %a{"data-target" => "#exampleModalLong", "data-toggle" => "modal", :type => "button"} color
-        #exampleModalLong.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLongTitle", role: "dialog", tabindex: "-1"}
-          .modal-dialog{role: "document"}
-            .modal-content
-              .modal-header
-                %h5#exampleModalLongTitle.modal-title Select Color 
-                %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
-                  %span{"aria-hidden" => "true"} ×
-              = form_with model: @profile, url: profile_color_path(profile_id: current_user.id), class: "modal-body", local: true do |f|
-                #app{":style" => "bindStyle"}
-                  %p
-                    %span.text-primary.mt-1.ml-1 赤：
-                    %input{max: "255", min: "0", type: "range", "v-model" => "red"}/
-                  %p
-                    %span.text-danger.ml-1 緑：
-                    %input{max: "255", min: "0", type: "range", "v-model" => "green"}/
-                  %p
-                    %span.text-success.ml-1 青：
-                    %input{max: "255", min: "0", type: "range", "v-model" => "blue"}/
-                    = f.text_field :color, type: "hidden", "v-model" => "bindStyle"
-                    
-                  .modal-footer
-                    %button.btn.btn-secondary{"data-dismiss" => "modal", type: "button"} Close
-                    
-                    = f.submit class: "btn btn-primary"
+          = link_to "ログアウト",destroy_user_session_path, method: :delete
+      - if user_signed_in?
+        - if current_user.id == @user.id 
+          .p-3.bd-highlight.m-auto.log_out
+            %a{"data-target" => "#exampleModalLong", "data-toggle" => "modal", :type => "button"} color
+          #exampleModalLong.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLongTitle", role: "dialog", tabindex: "-1"}
+            .modal-dialog{role: "document"}
+              .modal-content
+                .modal-header
+                  %h5#exampleModalLongTitle.modal-title Select Color 
+                  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
+                    %span{"aria-hidden" => "true"} ×
+                = form_with model: @profile, url: profile_color_path(profile_id: current_user.id), class: "modal-body", local: true do |f|
+                  #app{":style" => "bindStyle"}
+                    %p
+                      %span.text-primary.mt-1.ml-1 赤：
+                      %input{max: "255", min: "0", type: "range", "v-model" => "red"}/
+                    %p
+                      %span.text-danger.ml-1 緑：
+                      %input{max: "255", min: "0", type: "range", "v-model" => "green"}/
+                    %p
+                      %span.text-success.ml-1 青：
+                      %input{max: "255", min: "0", type: "range", "v-model" => "blue"}/
+                      = f.text_field :color, type: "hidden", "v-model" => "bindStyle"
+                      
+                    .modal-footer
+                      %button.btn.btn-secondary{"data-dismiss" => "modal", type: "button"} Close
+                      
+                      = f.submit class: "btn btn-primary"
       - url = request.url
       .p-3.bd-highlight.m-auto.qr_code
         = link_to "#qr_img", class:"modaal" do
           QRコード
         .modal-hidden(id = "qr_img")
           = image_tag qrcode_tag "#{url}"
-      - if @card.blank?
-        .p-3.bd-highlight.m-auto.payjp
-          = link_to cards_path do
-            会員登録
-      - else
-        .p-3.bd-highlight.m-auto.payjp
-          = link_to cards_path do
-            退会
+      - if user_signed_in?
+        - if @card.blank?
+          .p-3.bd-highlight.m-auto.payjp
+            = link_to cards_path do
+              会員登録
+        - else
+          .p-3.bd-highlight.m-auto.payjp
+            = link_to cards_path do
+              退会
       %span.nav_toggle
         %i
         %i
@@ -72,41 +77,46 @@
         %ul.nav_menu_ul.d-flex
           %li.nav_menu_li
             .mobile_notice
-              - if current_user.id == @user.id && @check.present?
-                = link_to user_comment_path(current_user.id,@user.id) do
-                  %img.mobile_message{:height => "auto", :src => "info.png"}
-                  .mobile_notice_count
-                    = @check.length
+              - if user_signed_in?
+                - if current_user.id == @user.id && @check.present?
+                  = link_to user_comment_path(current_user.id,@user.id) do
+                    %img.mobile_message{:height => "auto", :src => "info.png"}
+                    .mobile_notice_count
+                      = @check.length
           %li.nav_menu_li.mt-1
             = link_to "TOP",root_path
           -# ログイン中のユーザーのプロフィールがない場合は登録画面へ、プロフィールのuser_idがログイン中のユーザーのidと一致する場合は編集画面へ
-          - if current_user.profile.nil?
-            %li.nav_menu_li.mt-1.ml-2
-              = link_to "プロフィール登録", new_profile_path
-          - elsif current_user.profile.user_id == current_user.id
-            %li.nav_menu_li.mt-1.ml-2
-              = link_to "プロフィール編集", edit_profile_path(current_user.profile.id)
+          - if user_signed_in?
+            - if current_user.profile.nil?
+              %li.nav_menu_li.mt-1.ml-2
+                = link_to "プロフィール登録", new_profile_path
+            - elsif current_user.profile.user_id == current_user.id
+              %li.nav_menu_li.mt-1.ml-2
+                = link_to "プロフィール編集", edit_profile_path(current_user.profile.id)
           -# 検索画面へのリンク
           %li.nav_menu_li.mt-1.ml-2
             = link_to "ユーザー検索",search_users_path
-          %li.nav_menu_li.ml-2.mt-1
-            = link_to "ログアウト",destroy_user_session_path, method: :delete
+          - if user_signed_in?
+            %li.nav_menu_li.ml-2.mt-1
+              = link_to "ログアウト",destroy_user_session_path, method: :delete
           %li.nav_menu_li.mt-1.ml-2.mobile_color
-            - if current_user.id == @user.id 
-              %a{"data-target" => "#exampleModalLong", "data-toggle" => "modal", :type => "button"} color
+            - if user_signed_in?
+              - if current_user.id == @user.id 
+                %a{"data-target" => "#exampleModalLong", "data-toggle" => "modal", :type => "button"} color
 
           - url = request.url
           %li.nav_menu_li.mt-1.ml-2.mobile_qr
             = link_to "#qr_img", class:"modaal" do
               QRコード
-          - if @card.blank?
-            %li.nav_menu_li.mt-1.ml-2.mr-2.mobile_payjp
-              = link_to cards_path do
-                会員登録
-          - else
-            %li.nav_menu_li.mt-1.ml-2.mr-2.mobile_payjp
-              = link_to cards_path do
-                退会
+          - if user_signed_in?
+            - if @card.blank?
+              %li.nav_menu_li.mt-1.ml-2.mr-2.mobile_payjp
+                = link_to cards_path do
+                  会員登録
+            - else
+              %li.nav_menu_li.mt-1.ml-2.mr-2.mobile_payjp
+                = link_to cards_path do
+                  退会
       .mt-2.mobile_profile.shadow-sm
         .d-flex.justify-content-center.mt-2
           -# - if @profile.email.present?   # email表示したくない場合を想定して、表示したい場合はprofileに連絡用email入力にした方がいいかも？

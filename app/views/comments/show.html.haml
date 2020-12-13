@@ -11,6 +11,8 @@
     %label{for: "all"}
     %input#all{name: "allChecked", type: "checkbox"}>/
     全選択
+    -# %input#all{name: "allChecked", type: "checkbox"}>/
+    -# test
     .boxes.d-flex.flex-column.bd-highlight.mb-3.mt-3
       - @check.each do |comment|
         
@@ -20,4 +22,3 @@
             = comment.comment
       .d-flex.justify-content-center.mt-5
         = f.submit class: "btn btn-primary mt-3 release_btn", value: "公開"
-

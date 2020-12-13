@@ -6,7 +6,9 @@ class UsersController < ApplicationController
   def index
     @user = User.find(params[:id])
     @profile = @user.profile
-    @card = Card.find_by(user_id: current_user.id)
+    if user_signed_in?
+      @card = Card.find_by(user_id: current_user.id)
+    end
     @comment = Comment.new
     @comments = @user.comments.all.order("id DESC")
     @check = @comments.where(check: [nil])
