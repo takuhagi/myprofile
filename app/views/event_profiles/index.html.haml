@@ -6,7 +6,7 @@
     -#     TOP
     -# .alert.alert-secondary.mt-4
     %h1.display-4.mb-4
-      イベント一覧
+      イベント
       -# %span.h5
       -#   さん
     %p
@@ -21,6 +21,205 @@
 
 .container
   .row
+
+
+    -# ここから佐久間さん指定の6枚
+    .col-lg-4
+      .card.mb-3
+        -# - if event_profile.image.present?
+        -#   = image_tag(event_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+        -# - else
+        %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+        .card-body{style: "height: 295px; position: relative;"}
+          %h5.card-title
+            -# = event_profile.title
+            カードタイトル１
+          .small.text-muted
+            -# = "投稿者：#{event_profile.user.nickname}"
+            投稿者の名前
+          .small.text-muted{style: "margin-bottom: 12px"}
+            -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
+            最終更新日時
+          %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
+            -# = event_profile.explanation.truncate(45)
+            カードの説明文です
+          -# - if event_profile.start.present?
+          %p.card-text{style: "margin-bottom: 0.75rem;"}
+            %small.text-muted
+              開始予定 :◯◯:◯◯
+              -# %small.text-muted
+              -#   = event_profile.start.strftime("%Y-%m-%d %H:%M")
+          %div{style: "position: absolute; left: 20px; bottom: 20px"}
+            .btn.btn-primary.mt-3
+              クリックして詳細へ
+          %div{style: "position: absolute; right: 32px; bottom: 28px"}
+            %p.text-muted
+              ★PR
+            -# = link_to("クリックして詳細へ", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
+    .col-lg-4
+      .card.mb-3
+        -# - if event_profile.image.present?
+        -#   = image_tag(event_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+        -# - else
+        %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+        .card-body{style: "height: 295px; position: relative;"}
+          %h5.card-title
+            -# = event_profile.title
+            カードタイトル２
+          .small.text-muted
+            -# = "投稿者：#{event_profile.user.nickname}"
+            投稿者の名前
+          .small.text-muted{style: "margin-bottom: 12px"}
+            -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
+            最終更新日時
+          %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
+            -# = event_profile.explanation.truncate(45)
+            カードの説明文です
+          -# - if event_profile.start.present?
+          %p.card-text{style: "margin-bottom: 0.75rem;"}
+            %small.text-muted
+              開始予定 :◯◯:◯◯
+              -# %small.text-muted
+              -#   = event_profile.start.strftime("%Y-%m-%d %H:%M")
+          %div{style: "position: absolute; left: 20px; bottom: 20px"}
+            .btn.btn-primary.mt-3
+              クリックして詳細へ
+          %div{style: "position: absolute; right: 32px; bottom: 28px"}
+            %p.text-muted
+              ★PR
+            -# = link_to("クリックして詳細へ", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
+    .col-lg-4
+      .card.mb-3
+        -# - if event_profile.image.present?
+        -#   = image_tag(event_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+        -# - else
+        %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+        .card-body{style: "height: 295px; position: relative;"}
+          %h5.card-title
+            -# = event_profile.title
+            カードタイトル３
+          .small.text-muted
+            -# = "投稿者：#{event_profile.user.nickname}"
+            投稿者の名前
+          .small.text-muted{style: "margin-bottom: 12px"}
+            -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
+            最終更新日時
+          %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
+            -# = event_profile.explanation.truncate(45)
+            カードの説明文です
+          -# - if event_profile.start.present?
+          %p.card-text{style: "margin-bottom: 0.75rem;"}
+            %small.text-muted
+              開始予定 :◯◯:◯◯
+              -# %small.text-muted
+              -#   = event_profile.start.strftime("%Y-%m-%d %H:%M")
+          %div{style: "position: absolute; left: 20px; bottom: 20px"}
+            .btn.btn-primary.mt-3
+              クリックして詳細へ
+          %div{style: "position: absolute; right: 32px; bottom: 28px"}
+            %p.text-muted
+              ★PR
+            -# = link_to("クリックして詳細へ", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
+    .col-lg-4
+      .card.mb-3
+        -# - if event_profile.image.present?
+        -#   = image_tag(event_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+        -# - else
+        %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+        .card-body{style: "height: 295px; position: relative;"}
+          %h5.card-title
+            -# = event_profile.title
+            カードタイトル４
+          .small.text-muted
+            -# = "投稿者：#{event_profile.user.nickname}"
+            投稿者の名前
+          .small.text-muted{style: "margin-bottom: 12px"}
+            -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
+            最終更新日時
+          %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
+            -# = event_profile.explanation.truncate(45)
+            カードの説明文です
+          -# - if event_profile.start.present?
+          %p.card-text{style: "margin-bottom: 0.75rem;"}
+            %small.text-muted
+              開始予定 :◯◯:◯◯
+              -# %small.text-muted
+              -#   = event_profile.start.strftime("%Y-%m-%d %H:%M")
+          %div{style: "position: absolute; left: 20px; bottom: 20px"}
+            .btn.btn-primary.mt-3
+              クリックして詳細へ
+          %div{style: "position: absolute; right: 32px; bottom: 28px"}
+            %p.text-muted
+              ★PR
+            -# = link_to("クリックして詳細へ", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
+    .col-lg-4
+      .card.mb-3
+        -# - if event_profile.image.present?
+        -#   = image_tag(event_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+        -# - else
+        %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+        .card-body{style: "height: 295px; position: relative;"}
+          %h5.card-title
+            -# = event_profile.title
+            カードタイトル５
+          .small.text-muted
+            -# = "投稿者：#{event_profile.user.nickname}"
+            投稿者の名前
+          .small.text-muted{style: "margin-bottom: 12px"}
+            -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
+            最終更新日時
+          %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
+            -# = event_profile.explanation.truncate(45)
+            カードの説明文です
+          -# - if event_profile.start.present?
+          %p.card-text{style: "margin-bottom: 0.75rem;"}
+            %small.text-muted
+              開始予定 :◯◯:◯◯
+              -# %small.text-muted
+              -#   = event_profile.start.strftime("%Y-%m-%d %H:%M")
+          %div{style: "position: absolute; left: 20px; bottom: 20px"}
+            .btn.btn-primary.mt-3
+              クリックして詳細へ
+          %div{style: "position: absolute; right: 32px; bottom: 28px"}
+            %p.text-muted
+              ★PR
+            -# = link_to("クリックして詳細へ", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
+    .col-lg-4
+      .card.mb-3
+        -# - if event_profile.image.present?
+        -#   = image_tag(event_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+        -# - else
+        %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+        .card-body{style: "height: 295px; position: relative;"}
+          %h5.card-title
+            -# = event_profile.title
+            カードタイトル６
+          .small.text-muted
+            -# = "投稿者：#{event_profile.user.nickname}"
+            投稿者の名前
+          .small.text-muted{style: "margin-bottom: 12px"}
+            -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
+            最終更新日時
+          %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
+            -# = event_profile.explanation.truncate(45)
+            カードの説明文です
+          -# - if event_profile.start.present?
+          %p.card-text{style: "margin-bottom: 0.75rem;"}
+            %small.text-muted
+              開始予定 :◯◯:◯◯
+              -# %small.text-muted
+              -#   = event_profile.start.strftime("%Y-%m-%d %H:%M")
+          %div{style: "position: absolute; left: 20px; bottom: 20px"}
+            .btn.btn-primary.mt-3
+              クリックして詳細へ
+          %div{style: "position: absolute; right: 32px; bottom: 28px"}
+            %p.text-muted
+              ★PR
+            -# = link_to("クリックして詳細へ", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
+            -# ここまで佐久間さん指定の6枚
+
+
+
     - @event_profiles.each do |event_profile|
       .col-lg-4
         .card.mb-3
