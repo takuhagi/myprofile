@@ -6,7 +6,7 @@
     -#     TOP
     -# .alert.alert-secondary.mt-4
     %h1.display-4.mb-4
-      サービス一覧
+      サービス
       -# %span.h5
       -#   さん
     %p
@@ -23,6 +23,168 @@
 
 .container
   .row
+
+
+    -# ここから佐久間さん指定の6枚
+    .col-lg-4
+      .card.mb-3
+        -# - if service_profile.image.present?
+        -#   = image_tag(service_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+        -# - else
+        %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+        .card-body{style: "height: 276px; position: relative;"}
+          %h5.card-title
+            -# = service_profile.name
+            カードタイトル１
+          .small.text-muted
+            -# = "投稿者：#{service_profile.user.nickname}"
+            投稿者の名前
+          .small.text-muted{style: "margin-bottom: 12px"}
+            -# = "最終更新：#{time_ago_in_words(service_profile.updated_at)}前"
+            最終更新日時
+          %p.card-text{style: "height: 72px"}
+            -# = service_profile.explanation.truncate(45)
+            カードの説明文です
+          %div{style: "position: absolute; left: 20px; bottom: 20px"}
+            .btn.btn-primary.mt-3
+              クリックして詳細へ
+          %div{style: "position: absolute; right: 32px; bottom: 28px"}
+            %p.text-muted
+              ★PR
+            -# = link_to("クリックして詳細へ", service_profile_path(service_profile.id), { class: "btn btn-primary mt-3" })
+    .col-lg-4
+      .card.mb-3
+        -# - if service_profile.image.present?
+        -#   = image_tag(service_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+        -# - else
+        %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+        .card-body{style: "height: 276px; position: relative;"}
+          %h5.card-title
+            -# = service_profile.name
+            カードタイトル２
+          .small.text-muted
+            -# = "投稿者：#{service_profile.user.nickname}"
+            投稿者の名前
+          .small.text-muted{style: "margin-bottom: 12px"}
+            -# = "最終更新：#{time_ago_in_words(service_profile.updated_at)}前"
+            最終更新日時
+          %p.card-text{style: "height: 72px"}
+            -# = service_profile.explanation.truncate(45)
+            カードの説明文です
+          %div{style: "position: absolute; left: 20px; bottom: 20px"}
+            .btn.btn-primary.mt-3
+              クリックして詳細へ
+          %div{style: "position: absolute; right: 32px; bottom: 28px"}
+            %p.text-muted
+              ★PR
+            -# = link_to("クリックして詳細へ", service_profile_path(service_profile.id), { class: "btn btn-primary mt-3" })
+    .col-lg-4
+      .card.mb-3
+        -# - if service_profile.image.present?
+        -#   = image_tag(service_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+        -# - else
+        %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+        .card-body{style: "height: 276px; position: relative;"}
+          %h5.card-title
+            -# = service_profile.name
+            カードタイトル３
+          .small.text-muted
+            -# = "投稿者：#{service_profile.user.nickname}"
+            投稿者の名前
+          .small.text-muted{style: "margin-bottom: 12px"}
+            -# = "最終更新：#{time_ago_in_words(service_profile.updated_at)}前"
+            最終更新日時
+          %p.card-text{style: "height: 72px"}
+            -# = service_profile.explanation.truncate(45)
+            カードの説明文です
+          %div{style: "position: absolute; left: 20px; bottom: 20px"}
+            .btn.btn-primary.mt-3
+              クリックして詳細へ
+          %div{style: "position: absolute; right: 32px; bottom: 28px"}
+            %p.text-muted
+              ★PR
+            -# = link_to("クリックして詳細へ", service_profile_path(service_profile.id), { class: "btn btn-primary mt-3" })
+    .col-lg-4
+      .card.mb-3
+        -# - if service_profile.image.present?
+        -#   = image_tag(service_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+        -# - else
+        %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+        .card-body{style: "height: 276px; position: relative;"}
+          %h5.card-title
+            -# = service_profile.name
+            カードタイトル４
+          .small.text-muted
+            -# = "投稿者：#{service_profile.user.nickname}"
+            投稿者の名前
+          .small.text-muted{style: "margin-bottom: 12px"}
+            -# = "最終更新：#{time_ago_in_words(service_profile.updated_at)}前"
+            最終更新日時
+          %p.card-text{style: "height: 72px"}
+            -# = service_profile.explanation.truncate(45)
+            カードの説明文です
+          %div{style: "position: absolute; left: 20px; bottom: 20px"}
+            .btn.btn-primary.mt-3
+              クリックして詳細へ
+          %div{style: "position: absolute; right: 32px; bottom: 28px"}
+            %p.text-muted
+              ★PR
+            -# = link_to("クリックして詳細へ", service_profile_path(service_profile.id), { class: "btn btn-primary mt-3" })
+    .col-lg-4
+      .card.mb-3
+        -# - if service_profile.image.present?
+        -#   = image_tag(service_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+        -# - else
+        %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+        .card-body{style: "height: 276px; position: relative;"}
+          %h5.card-title
+            -# = service_profile.name
+            カードタイトル５
+          .small.text-muted
+            -# = "投稿者：#{service_profile.user.nickname}"
+            投稿者の名前
+          .small.text-muted{style: "margin-bottom: 12px"}
+            -# = "最終更新：#{time_ago_in_words(service_profile.updated_at)}前"
+            最終更新日時
+          %p.card-text{style: "height: 72px"}
+            -# = service_profile.explanation.truncate(45)
+            カードの説明文です
+          %div{style: "position: absolute; left: 20px; bottom: 20px"}
+            .btn.btn-primary.mt-3
+              クリックして詳細へ
+          %div{style: "position: absolute; right: 32px; bottom: 28px"}
+            %p.text-muted
+              ★PR
+            -# = link_to("クリックして詳細へ", service_profile_path(service_profile.id), { class: "btn btn-primary mt-3" })
+    .col-lg-4
+      .card.mb-3
+        -# - if service_profile.image.present?
+        -#   = image_tag(service_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+        -# - else
+        %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+        .card-body{style: "height: 276px; position: relative;"}
+          %h5.card-title
+            -# = service_profile.name
+            カードタイトル６
+          .small.text-muted
+            -# = "投稿者：#{service_profile.user.nickname}"
+            投稿者の名前
+          .small.text-muted{style: "margin-bottom: 12px"}
+            -# = "最終更新：#{time_ago_in_words(service_profile.updated_at)}前"
+            最終更新日時
+          %p.card-text{style: "height: 72px"}
+            -# = service_profile.explanation.truncate(45)
+            カードの説明文です
+          %div{style: "position: absolute; left: 20px; bottom: 20px"}
+            .btn.btn-primary.mt-3
+              クリックして詳細へ
+          %div{style: "position: absolute; right: 32px; bottom: 28px"}
+            %p.text-muted
+              ★PR
+            -# = link_to("クリックして詳細へ", service_profile_path(service_profile.id), { class: "btn btn-primary mt-3" })
+            -# ここまで佐久間さん指定の6枚
+
+
     - @service_profiles.each do |service_profile|
       .col-lg-4
         .card.mb-3
