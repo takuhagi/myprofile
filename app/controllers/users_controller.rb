@@ -102,6 +102,21 @@ class UsersController < ApplicationController
     @profile = @user.profile
   end
 
+  def select
+  end
+
+  def pr
+  end
+
+  def entire
+  end
+
+
+
+
+
+
+
   private
 
   def user_params
