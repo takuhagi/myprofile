@@ -83,8 +83,36 @@ class ProfilesController < ApplicationController
   def inquiry
   end
 
-  private
+  def select
+    @profile = Profile.all.includes([:user])
+  end
 
+  def check
+    @profile = Profile.all.includes([:user])
+    @profiles = Profile.where(id: params[:profile][:top_ids]).includes([:user])
+    @prof = Profile.where(id: params[:profile][:middle_ids]).includes([:user])
+    @pr = Profile.where(id: params[:profile][:bottom_ids]).includes([:user])
+    if @profile.update(check_params)
+      @profiles.update(top_params)
+      @prof.update(middle_params)
+      @pr.update(bottom_params)
+    end
+  end
+
+  private
+  
+  def top_params
+    params.permit(:top).merge(top: "1")
+  end
+  def middle_params
+    params.permit(:middle).merge(middle: "1")
+  end
+  def bottom_params
+    params.permit(:bottom).merge(bottom: "1")
+  end
+  def check_params
+    params.permit(:top,:middle,:bottom).merge(top: "0", middle: "0", bottom: "0")
+  end
 
   def profile_params
     params.require(:profile).permit(

@@ -36,14 +36,48 @@ $(function() {
   });
 });
 
+$(function() {
+  $('input[class=top]').on('click',function(){
+    var $count = $("input[class=top]:checked").length;
+    var $not = $('input[class=top]').not(':checked')
+    if($count >= 1) {
+        $not.attr("disabled",true);
+    }else{
+        $not.attr("disabled",false);
+    }
+  })
+});
+
+$(function() {
+  $('input[class=middle]').on('click',function(){
+    var $count = $("input[class=middle]:checked").length;
+    var $not = $('input[class=middle]').not(':checked')
+    if($count >= 6) {
+        $not.attr("disabled",true);
+    }else{
+        $not.attr("disabled",false);
+    }
+  })
+});
+
+$(function() {
+  $('input[class=bottom]').on('click',function(){
+    var $count = $("input[class=bottom]:checked").length;
+    var $not = $('input[class=bottom]').not(':checked')
+    if($count >= 4) {
+        $not.attr("disabled",true);
+    }else{
+        $not.attr("disabled",false);
+    }
+  })
+});
 // $(function() {
-//   $('#all').on('click',function(){
-//     var $count = $("input[type=checkbox]:checked").length;
-//     var $not = $('input[type=checkbox]').not(':checked')
-//     if($count >= 3) {
-//         $not.attr("disabled",true);
-//     }else{
-//         $not.attr("disabled",false);
+//   $('input[class=bottom]').change(function(){
+//     if ( $(this).is(':checked')) {
+//       $('#bottom_list').append(this.value);
+//     } else {
+//       $('#bottom_list').empty(this.value);
 //     }
-//   });
+//   })
 // });
+

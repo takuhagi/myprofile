@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_23_060123) do
+ActiveRecord::Schema.define(version: 2020_12_13_084233) do
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -188,6 +188,9 @@ ActiveRecord::Schema.define(version: 2020_11_23_060123) do
     t.string "event_place"
     t.datetime "event_start"
     t.datetime "event_end"
+    t.boolean "top", default: false
+    t.boolean "middle", default: false
+    t.boolean "bottom", default: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 

@@ -1,0 +1,23 @@
+.d-flex.justify-content-center.mt-5
+  = form_with model: @profile, url: profile_check_path, method: "patch", class: "select_user",local: true do |f|
+    
+    .boxes.d-flex.flex-column.bd-highlight.mb-3.mt-3
+      - @profile.each do |profile|
+        .profile_name
+          = f.check_box :top_ids, {multiple: true, class: "top"}, profile[:id]
+          = profile.user.nickname
+      %ul#top_list
+      - @profile.each do |profile|
+        .profile_name
+          = f.check_box :middle_ids, {multiple: true, class: "middle"}, profile[:id]
+          = profile.user.nickname
+      %ul#middle_list
+      - @profile.each do |profile|
+        .profile_name
+          = f.check_box :bottom_ids, {multiple: true, class: "bottom"}, profile[:id]
+          = profile.user.nickname
+      %ul#bottom_list
+    = f.submit "公開"
+        
+
+
