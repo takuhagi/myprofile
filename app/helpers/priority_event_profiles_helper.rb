@@ -1,0 +1,2 @@
+module PriorityEventProfilesHelper
+end

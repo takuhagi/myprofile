@@ -40,5 +40,8 @@ Rails.application.routes.draw do
   resources :event_profiles
 
   resources :priority_store_profiles
+  resources :priority_item_profiles
+  resources :priority_service_profiles
+  resources :priority_event_profiles
 
 end

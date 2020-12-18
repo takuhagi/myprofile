@@ -1,0 +1,2 @@
+class PriorityServiceProfile < ApplicationRecord
+end

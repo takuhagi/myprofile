@@ -1,0 +1,2 @@
+class PriorityEventProfile < ApplicationRecord
+end

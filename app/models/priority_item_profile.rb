@@ -1,0 +1,2 @@
+class PriorityItemProfile < ApplicationRecord
+end

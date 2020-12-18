@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_13_141329) do
+ActiveRecord::Schema.define(version: 2020_12_18_141419) do
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -125,6 +125,30 @@ ActiveRecord::Schema.define(version: 2020_12_13_141329) do
     t.integer "priority_number"
     t.index ["priority_number"], name: "index_item_profiles_on_priority_number", unique: true
     t.index ["user_id"], name: "index_item_profiles_on_user_id"
+  end
+
+  create_table "priority_event_profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "event_profile_id"
+    t.integer "priority_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_profile_id"], name: "index_priority_event_profiles_on_event_profile_id"
+  end
+
+  create_table "priority_item_profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "item_profile_id"
+    t.integer "priority_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_profile_id"], name: "index_priority_item_profiles_on_item_profile_id"
+  end
+
+  create_table "priority_service_profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "service_profile_id"
+    t.integer "priority_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["service_profile_id"], name: "index_priority_service_profiles_on_service_profile_id"
   end
 
   create_table "priority_store_profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
