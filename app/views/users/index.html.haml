@@ -3,6 +3,8 @@
     .d-flex.bd-highlight.bg-light.header
       .p-2.pl-5.flex-grow-1.bd-highlight.title 
         %img{:height => "auto", :src => "logo.png"}
+        = link_to profile_select_path(1) do
+          select
       .notice
         - if user_signed_in?
           - if current_user.id == @user.id && @check.present? 
