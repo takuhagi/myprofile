@@ -6,6 +6,7 @@ class PriorityStoreProfilesController < ApplicationController
     @service_profiles = ServiceProfile.all
     @item_profiles = ItemProfile.all
     @event_profiles = EventProfile.all
+    
     @store_profiles_select_array = []
     @item_profiles_select_array = []
     @service_profiles_select_array = []
@@ -27,6 +28,18 @@ class PriorityStoreProfilesController < ApplicationController
     @event_profiles.each do |event_profile|
       @event_profiles_select_array << [event_profile.title, event_profile.id]
     end
+
+
+    # eventのカラムが、titleではなくnameなら下が良い
+    # array4 = [[@store_profiles, @store_profiles_select_array],
+    # [@service_profiles, @service_profiles_select_array],
+    # [@item_profiles, @item_profiles_select_array],
+    # [@event_profiles, @event_profiles_select_array]]
+    #   array4.each do |element|
+    #       element[0].each do |each_profile_array|
+    #         element[1] << [each_profile_array.name, each_profile_array.id]
+    #     end
+    #   end
   end
 
   def create
