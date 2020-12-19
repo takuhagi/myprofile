@@ -43,9 +43,10 @@
               = @priority_event_profile1.title
             - else
               イベント名未定
-          .small.text-muted
-            -# = "投稿者：#{event_profile.user.nickname}"
-            投稿者の名前
+          - if @priority_event_profile1 != nil
+            .small.text-muted
+              = "投稿者：#{@priority_event_profile1.user.nickname}"
+              -# 投稿者の名前
           .small.text-muted{style: "margin-bottom: 12px"}
             -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
             最終更新日時
@@ -91,9 +92,10 @@
               = @priority_event_profile2.title
             - else
               イベント名未定
-          .small.text-muted
-            -# = "投稿者：#{event_profile.user.nickname}"
-            投稿者の名前
+          - if @priority_event_profile2 != nil
+            .small.text-muted
+              = "投稿者：#{@priority_event_profile2.user.nickname}"
+              -# 投稿者の名前
           .small.text-muted{style: "margin-bottom: 12px"}
             -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
             最終更新日時
@@ -139,9 +141,10 @@
               = @priority_event_profile3.title
             - else
               イベント名未定
-          .small.text-muted
-            -# = "投稿者：#{event_profile.user.nickname}"
-            投稿者の名前
+          - if @priority_event_profile3 != nil
+            .small.text-muted
+              = "投稿者：#{@priority_event_profile3.user.nickname}"
+              -# 投稿者の名前
           .small.text-muted{style: "margin-bottom: 12px"}
             -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
             最終更新日時
@@ -187,9 +190,10 @@
               = @priority_event_profile4.title
             - else
               イベント名未定
-          .small.text-muted
-            -# = "投稿者：#{event_profile.user.nickname}"
-            投稿者の名前
+          - if @priority_event_profile4 != nil
+            .small.text-muted
+              = "投稿者：#{@priority_event_profile4.user.nickname}"
+              -# 投稿者の名前
           .small.text-muted{style: "margin-bottom: 12px"}
             -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
             -# 最終更新日時
@@ -238,9 +242,10 @@
               = @priority_event_profile5.title
             - else
               イベント名未定
-          .small.text-muted
-            -# = "投稿者：#{event_profile.user.nickname}"
-            投稿者の名前
+          - if @priority_event_profile5 != nil
+            .small.text-muted
+              = "投稿者：#{@priority_event_profile5.user.nickname}"
+              -# 投稿者の名前
           .small.text-muted{style: "margin-bottom: 12px"}
             -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
             -# 最終更新日時
@@ -289,9 +294,10 @@
               = @priority_event_profile6.title
             - else
               イベント名未定
-          .small.text-muted
-            -# = "投稿者：#{event_profile.user.nickname}"
-            投稿者の名前
+          - if @priority_event_profile6 != nil
+            .small.text-muted
+              = "投稿者：#{@priority_event_profile6.user.nickname}"
+              -# 投稿者の名前
           .small.text-muted{style: "margin-bottom: 12px"}
             -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
             最終更新日時
