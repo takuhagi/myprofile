@@ -34,6 +34,11 @@
           = link_to search_users_path, class: "nav-link " do
             検索
 
+        -# 管理画面を一時的に表示
+        %li.nav-item
+          = link_to priority_store_profiles_path, class: "nav-link " do
+            管理画面
+
 
       - unless user_signed_in?
         %ul.navbar-nav
