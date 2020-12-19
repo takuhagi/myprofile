@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  root 'profiles#index'
+  # get 'home/index'
+  root 'home#index'
   get 'inquiry' => 'profiles#inquiry'
 
   devise_for :users
@@ -20,10 +21,15 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :show, :update] do
       post 'reply'
     end
+    get 'entire'
+    patch 'entire_update'
+    patch 'entire_delete_priority_number'
   end
   resources :profiles do
     patch 'color'
     get 'pass'
+    get 'select'
+    patch 'check'
   end
 
   resources :cards, only: [:new, :index, :create, :destroy] do
@@ -35,5 +41,10 @@ Rails.application.routes.draw do
   resources :item_profiles
   resources :service_profiles
   resources :event_profiles
+
+  resources :priority_store_profiles
+  resources :priority_item_profiles
+  resources :priority_service_profiles
+  resources :priority_event_profiles
 
 end

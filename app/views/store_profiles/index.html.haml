@@ -6,7 +6,7 @@
     -#     TOP
     -# .alert.alert-secondary.mt-4
     %h1.display-4.mb-4
-      店舗一覧
+      店舗
       -# %span.h5
       -#   さん
     %p
@@ -15,12 +15,250 @@
       This is an introduction of recommended stores.
 
     -# = link_to("プロフィール", users_path(id: current_user.id), { class: "btn btn-info mt-3" })
+    = link_to("人物", profiles_path, { class: "btn btn-info mt-3" })
+    -# = link_to("店舗", store_profiles_path, { class: "btn btn-info mt-3" })
     = link_to("商品", item_profiles_path, { class: "btn btn-info mt-3" })
     = link_to("サービス", service_profiles_path, { class: "btn btn-info mt-3" })
     = link_to("イベント", event_profiles_path, { class: "btn btn-info mt-3" })
 
 .container
   .row
+
+
+
+
+
+    -# ここから佐久間さん指定の6枚
+    .col-lg-4
+      .card.mb-3
+        -# - if store_profile.image.present?
+        -#   = image_tag(store_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+        -# - else
+        -if @priority_store_profile1 != nil
+          = image_tag(@priority_store_profile1.image.url)
+        - else
+          %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+        .card-body{style: "height: 276px; position: relative;"}
+          %h5.card-title
+            カードのタイトル１
+            - if @priority_store_profile1 != nil
+              = @priority_store_profile1.name
+            -# = store_profile.name
+          .small.text-muted
+            投稿者の名前
+            - if @priority_store1_user != nil
+              = @priority_store1_user.nickname
+
+            -# = "投稿者：#{store_profile.user.nickname}"
+          .small.text-muted{style: "margin-bottom: 12px"}
+            最終更新日時
+            - if @priority_store_profile1 != nil
+              = @priority_store_profile1.updated_at
+            -# = "最終更新：#{time_ago_in_words(store_profile.updated_at)}前"
+          %p.card-text{style: "height: 72px"}
+            カードの説明文です
+            - if @priority_store_profile1 != nil
+              = @priority_store_profile1.explanation
+            -# = store_profile.explanation.truncate(45)
+          %div{style: "position: absolute; left: 20px; bottom: 20px"}
+            .btn.btn-primary.mt-3
+              クリックして詳細へ
+          %div{style: "position: absolute; right: 32px; bottom: 28px"}
+            %p.text-muted
+              ★PR
+            -# = link_to("クリックして詳細へ", store_profile_path(store_profile.id), { class: "btn btn-primary mt-3" })
+    .col-lg-4
+      .card.mb-3
+        -# - if store_profile.image.present?
+        -#   = image_tag(store_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+        -# - else
+        -if @priority_store_profile2 != nil
+          = image_tag(@priority_store_profile2.image.url)
+        - else
+          %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+        .card-body{style: "height: 276px; position: relative;"}
+          %h5.card-title
+            カードのタイトル２
+            - if @priority_store_profile2 != nil
+              = @priority_store_profile2.name
+            -# = store_profile.name
+          .small.text-muted
+            投稿者の名前
+            - if @priority_store2_user != nil
+              = @priority_store2_user.nickname
+            -# = "投稿者：#{store_profile.user.nickname}"
+          .small.text-muted{style: "margin-bottom: 12px"}
+            最終更新日時
+            - if @priority_store_profile2 != nil
+              = @priority_store_profile2.updated_at
+            -# = "最終更新：#{time_ago_in_words(store_profile.updated_at)}前"
+          %p.card-text{style: "height: 72px"}
+            カードの説明文です
+            - if @priority_store_profile2 != nil
+              = @priority_store_profile2.explanation
+            -# = store_profile.explanation.truncate(45)
+          %div{style: "position: absolute; left: 20px; bottom: 20px"}
+            .btn.btn-primary.mt-3
+              クリックして詳細へ
+          %div{style: "position: absolute; right: 32px; bottom: 28px"}
+            %p.text-muted
+              ★PR
+            -# = link_to("クリックして詳細へ", store_profile_path(store_profile.id), { class: "btn btn-primary mt-3" })
+    .col-lg-4
+      .card.mb-3
+        -# - if store_profile.image.present?
+        -#   = image_tag(store_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+        -# - else
+        -if @priority_store_profile3 != nil
+          = image_tag(@priority_store_profile3.image.url)
+        - else
+          %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+        .card-body{style: "height: 276px; position: relative;"}
+          %h5.card-title
+            カードのタイトル３
+            - if @priority_store_profile3 != nil
+              = @priority_store_profile3.name
+            -# = store_profile.name
+          .small.text-muted
+            投稿者の名前
+            - if @priority_store3_user != nil
+              = @priority_store3_user.nickname
+            -# = "投稿者：#{store_profile.user.nickname}"
+          .small.text-muted{style: "margin-bottom: 12px"}
+            最終更新日時
+            - if @priority_store_profile3 != nil
+              = @priority_store_profile3.updated_at
+            -# = "最終更新：#{time_ago_in_words(store_profile.updated_at)}前"
+          %p.card-text{style: "height: 72px"}
+            カードの説明文です
+            - if @priority_store_profile3 != nil
+              = @priority_store_profile3.explanation
+            -# = store_profile.explanation.truncate(45)
+          %div{style: "position: absolute; left: 20px; bottom: 20px"}
+            .btn.btn-primary.mt-3
+              クリックして詳細へ
+          %div{style: "position: absolute; right: 32px; bottom: 28px"}
+            %p.text-muted
+              ★PR
+            -# = link_to("クリックして詳細へ", store_profile_path(store_profile.id), { class: "btn btn-primary mt-3" })
+    .col-lg-4
+      .card.mb-3
+        -# - if store_profile.image.present?
+        -#   = image_tag(store_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+        -# - else
+        -if @priority_store_profile4 != nil
+          = image_tag(@priority_store_profile4.image.url)
+        - else
+          %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+        .card-body{style: "height: 276px; position: relative;"}
+          %h5.card-title
+            カードのタイトル４
+            - if @priority_store_profile4 != nil
+              = @priority_store_profile4.name
+            -# = store_profile.name
+          .small.text-muted
+            投稿者の名前
+            - if @priority_store4_user != nil
+              = @priority_store4_user.nickname
+            -# = "投稿者：#{store_profile.user.nickname}"
+          .small.text-muted{style: "margin-bottom: 12px"}
+            最終更新日時
+            - if @priority_store_profile4 != nil
+              = @priority_store_profile4.updated_at
+            -# = "最終更新：#{time_ago_in_words(store_profile.updated_at)}前"
+          %p.card-text{style: "height: 72px"}
+            カードの説明文です
+            - if @priority_store_profile4 != nil
+              = @priority_store_profile4.explanation
+            -# = store_profile.explanation.truncate(45)
+          %div{style: "position: absolute; left: 20px; bottom: 20px"}
+            .btn.btn-primary.mt-3
+              クリックして詳細へ
+          %div{style: "position: absolute; right: 32px; bottom: 28px"}
+            %p.text-muted
+              ★PR
+            -# = link_to("クリックして詳細へ", store_profile_path(store_profile.id), { class: "btn btn-primary mt-3" })
+    .col-lg-4
+      .card.mb-3
+        -# - if store_profile.image.present?
+        -#   = image_tag(store_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+        -# - else
+        -if @priority_store_profile5 != nil
+          = image_tag(@priority_store_profile5.image.url)
+        - else
+          %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+        .card-body{style: "height: 276px; position: relative;"}
+          %h5.card-title
+            カードのタイトル５
+            - if @priority_store_profile5 != nil
+              = @priority_store_profile5.name
+            -# = store_profile.name
+          .small.text-muted
+            投稿者の名前
+            - if @priority_store5_user != nil
+              = @priority_store5_user.nickname
+            -# = "投稿者：#{store_profile.user.nickname}"
+          .small.text-muted{style: "margin-bottom: 12px"}
+            最終更新日時
+            - if @priority_store_profile5 != nil
+              = @priority_store_profile5.updated_at
+            -# = "最終更新：#{time_ago_in_words(store_profile.updated_at)}前"
+          %p.card-text{style: "height: 72px"}
+            カードの説明文です
+            - if @priority_store_profile5 != nil
+              = @priority_store_profile5.explanation
+            -# = store_profile.explanation.truncate(45)
+          %div{style: "position: absolute; left: 20px; bottom: 20px"}
+            .btn.btn-primary.mt-3
+              クリックして詳細へ
+          %div{style: "position: absolute; right: 32px; bottom: 28px"}
+            %p.text-muted
+              ★PR
+            -# = link_to("クリックして詳細へ", store_profile_path(store_profile.id), { class: "btn btn-primary mt-3" })
+    .col-lg-4
+      .card.mb-3
+        -# - if store_profile.image.present?
+        -#   = image_tag(store_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+        -# - else
+        -if @priority_store_profile6 != nil
+          = image_tag(@priority_store_profile6.image.url)
+        - else
+          %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+        .card-body{style: "height: 276px; position: relative;"}
+          %h5.card-title
+            カードのタイトル６
+            - if @priority_store_profile6 != nil
+              = @priority_store_profile6.name
+            -# = store_profile.name
+          .small.text-muted
+            投稿者の名前
+            - if @priority_store6_user != nil
+              = @priority_store6_user.nickname
+            -# = "投稿者：#{store_profile.user.nickname}"
+          .small.text-muted{style: "margin-bottom: 12px"}
+            最終更新日時
+            - if @priority_store_profile6 != nil
+              = @priority_store_profile6.updated_at
+            -# = "最終更新：#{time_ago_in_words(store_profile.updated_at)}前"
+          %p.card-text{style: "height: 72px"}
+            カードの説明文です
+            - if @priority_store_profile6 != nil
+              = @priority_store_profile6.explanation
+            -# = store_profile.explanation.truncate(45)
+          %div{style: "position: absolute; left: 20px; bottom: 20px"}
+            .btn.btn-primary.mt-3
+              クリックして詳細へ
+          %div{style: "position: absolute; right: 32px; bottom: 28px"}
+            %p.text-muted
+              ★PR
+            -# = link_to("クリックして詳細へ", store_profile_path(store_profile.id), { class: "btn btn-primary mt-3" })
+            
+            -# ここまで佐久間さん指定の6枚
+
+
+
+
+
     - @store_profiles.each do |store_profile|
       .col-lg-4
         .card.mb-3

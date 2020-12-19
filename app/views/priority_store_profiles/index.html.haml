@@ -1,0 +1,69 @@
+店舗
+%br
+= form_with url: priority_store_profiles_path, method: :post do |f|
+  = f.select :store_profile_id, @store_profiles_select_array, include_blank: "店舗を選択してください"
+  = f.select :priority_number, @priority_number_array, include_blank: "優先順位を選択してください"
+  -# = f.collection_select :id, @store_profiles, :id, :name, inculde_blank: "選択してください"
+  -# = f.collection_select :priority_number, @store_profiles, :priority_number, :name, inculde_blank: "選択してください"
+  = f.submit "選択"
+  %br
+
+店舗の現在の順位
+%br
+- PriorityStoreProfile.all.each do |store_profile|
+  - StoreProfile.where(id: store_profile.store_profile_id).each do |s_profile|
+    = s_profile.name
+    = store_profile.priority_number
+    = form_with url: priority_store_profile_path(id: store_profile.id), method: :delete do |f|
+      = f.submit "選び直す"
+    %br
+"----------------------"
+%br
+サービス
+%br
+= form_with url: priority_service_profiles_path, method: :post do |f|
+  = f.select :service_profile_id, @service_profiles_select_array, include_blank: "店舗を選択してください"
+  = f.select :priority_number, @priority_number_array, include_blank: "優先順位を選択してください"
+  = f.submit "選択"
+%br
+- PriorityServiceProfile.all.each do |service_profile|
+  - ServiceProfile.where(id: service_profile.service_profile_id).each do |ser_profile|
+    = ser_profile.name
+    = service_profile.priority_number
+    = form_with url: priority_service_profile_path(id: service_profile.id), method: :delete do |f|
+      = f.submit "選び直す"
+      %br
+"----------------------"
+%br
+商品
+%br
+= form_with url: priority_item_profiles_path, method: :post do |f|
+  = f.select :item_profile_id, @item_profiles_select_array, include_blank: "商品を選択してください"
+  = f.select :priority_number, @priority_number_array, include_blank: "優先順位を選択してください"
+  = f.submit "選択"
+%br
+- PriorityItemProfile.all.each do |item_profile|
+  - ItemProfile.where(id: item_profile.item_profile_id).each do |i_profile|
+    = i_profile.name
+    = item_profile.priority_number
+    = form_with url: priority_item_profile_path(id: item_profile.id), method: :delete do |f|
+      = f.submit "選び直す"
+      %br
+
+"----------------------"
+%br
+イベント
+%br
+= form_with url: priority_event_profiles_path, method: :post do |f|
+  = f.select :event_profile_id, @event_profiles_select_array, include_blank: "イベントを選択してください"
+  = f.select :priority_number, @priority_number_array, include_blank: "優先順位を選択してください"
+  = f.submit "選択"
+%br
+- PriorityEventProfile.all.each do |event_profile|
+  - EventProfile.where(id: event_profile.event_profile_id).each do |e_profile|
+    = e_profile.title
+    = event_profile.priority_number
+    = form_with url: priority_event_profile_path(id: event_profile.id), method: :delete do |f|
+      = f.submit "選び直す"
+
+

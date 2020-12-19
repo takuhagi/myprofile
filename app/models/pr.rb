@@ -1,0 +1,2 @@
+class Pr < ApplicationRecord
+end

@@ -6,7 +6,9 @@ class UsersController < ApplicationController
   def index
     @user = User.find(params[:id])
     @profile = @user.profile
-    @card = Card.find_by(user_id: current_user.id)
+    if user_signed_in?
+      @card = Card.find_by(user_id: current_user.id)
+    end
     @comment = Comment.new
     @comments = @user.comments.all.order("id DESC")
     @check = @comments.where(check: [nil])
@@ -102,6 +104,52 @@ class UsersController < ApplicationController
     @profile = @user.profile
   end
 
+  def select
+  end
+
+  def pr
+  end
+
+  def entire
+    @counter = 0
+    @priority_number_array =[[1,1],[2,2],[3,3],[4,4],[5,5],[6,6]]
+    @store_profiles = StoreProfile.all
+    @store_profiles_select_array = []
+    @store_profiles.each do |store_profile|
+      @store_profiles_select_array << [store_profile.name, store_profile.id]
+    end
+    @store_profile_1 =  @store_profiles.where(priority_number: 1)
+    
+
+
+    # @item_profiles = ItemProfiles.all
+    # @service_profiles = ServiceProfiles.all
+    # @event_profiles = EventProfiles.all
+  end
+
+  def entire_update
+    binding.pry
+    if StoreProfile.update(entire_store_profile_params)
+      redirect_to 'users/1/entire'
+    else
+      render 'users/1/entire_update'
+    end
+  end
+
+  def entire_delete_priority_number
+    if StoreProfile.update(entire_store_profile_params)
+      redirect_to 'users/1/entire'
+    else
+      render 'entire_update'
+    end
+  end
+
+
+
+
+
+
+
   private
 
   def user_params
@@ -111,6 +159,22 @@ class UsersController < ApplicationController
   def search_params
     params.require(:q).permit(:sorts, :nickname_or_profile_first_name_or_profile_family_name_or_profile_first_name_kana_or_profile_family_name_kana_cont, :profile_primary_school_or_profile_Junior_high_school_or_profile_high_school_or_profile_vocational_school_or_profile_university_or_profile_graduate_school_or_profile_other_school_cont, :profile_first_career_or_profile_second_career_or_profile_third_career_or_profile_fourth_career_or_profile_last_career_cont, :profile_tags_tag_name_cont, profile_tags_id_eq_any:[], tag_ids:[])
   end
+
+  def entire_store_profile_params
+    params.permit(
+      :name,
+      :explanation,
+      :image,
+      :remove_image,
+      :profile_link,
+      :item_link,
+      :service_link,
+      :event_link,
+      :priority_number,
+      store_images_attributes: [:src, :_destroy, :id]
+    )
+  end
+
   
   def pay
     Payjp.api_key = Rails.application.credentials[:payjp][:secret_key]
