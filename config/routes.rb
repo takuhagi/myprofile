@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  root 'profiles#index'
+  # get 'home/index'
+  root 'home#index'
   get 'inquiry' => 'profiles#inquiry'
 
   devise_for :users
@@ -27,6 +28,8 @@ Rails.application.routes.draw do
   resources :profiles do
     patch 'color'
     get 'pass'
+    get 'select'
+    patch 'check'
   end
 
   resources :cards, only: [:new, :index, :create, :destroy] do
