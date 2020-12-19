@@ -31,20 +31,32 @@
         -# - if service_profile.image.present?
         -#   = image_tag(service_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
         -# - else
-        %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+        - if @priority_service_profile1 != nil
+          = image_tag(@priority_service_profile1.image.url)
+        - else
+          %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
         .card-body{style: "height: 276px; position: relative;"}
           %h5.card-title
             -# = service_profile.name
             カードタイトル１
+            %br
+            - if @priority_service_profile1 != nil
+              = @priority_service_profile1.name
           .small.text-muted
             -# = "投稿者：#{service_profile.user.nickname}"
             投稿者の名前
+            - if @priority_service1_user != nil
+              = @priority_service1_user.nickname
           .small.text-muted{style: "margin-bottom: 12px"}
             -# = "最終更新：#{time_ago_in_words(service_profile.updated_at)}前"
             最終更新日時
+            - if @priority_service_profile1 != nil
+              = @priority_service_profile1.updated_at
           %p.card-text{style: "height: 72px"}
             -# = service_profile.explanation.truncate(45)
             カードの説明文です
+            - if @priority_service_profile1 != nil
+              = @priority_service_profile1.explanation
           %div{style: "position: absolute; left: 20px; bottom: 20px"}
             .btn.btn-primary.mt-3
               クリックして詳細へ
@@ -57,20 +69,31 @@
         -# - if service_profile.image.present?
         -#   = image_tag(service_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
         -# - else
-        %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+        - if @priority_service_profile2 != nil
+          = image_tag(@priority_service_profile2.image.url)
+        - else
+          %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
         .card-body{style: "height: 276px; position: relative;"}
           %h5.card-title
             -# = service_profile.name
             カードタイトル２
+            - if @priority_service_profile2 != nil
+              = @priority_service_profile2.name
           .small.text-muted
             -# = "投稿者：#{service_profile.user.nickname}"
             投稿者の名前
+            - if @priority_service2_user != nil
+              = @priority_service2_user.nickname
           .small.text-muted{style: "margin-bottom: 12px"}
             -# = "最終更新：#{time_ago_in_words(service_profile.updated_at)}前"
             最終更新日時
+            - if @priority_service_profile2 != nil
+              = @priority_service_profile2.updated_at
           %p.card-text{style: "height: 72px"}
             -# = service_profile.explanation.truncate(45)
             カードの説明文です
+            - if @priority_service_profile2 != nil
+              = @priority_service_profile2.explanation
           %div{style: "position: absolute; left: 20px; bottom: 20px"}
             .btn.btn-primary.mt-3
               クリックして詳細へ
@@ -83,20 +106,31 @@
         -# - if service_profile.image.present?
         -#   = image_tag(service_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
         -# - else
-        %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+        - if @priority_service_profile3 != nil
+          = image_tag(@priority_service_profile3.image.url)
+        - else
+          %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
         .card-body{style: "height: 276px; position: relative;"}
           %h5.card-title
             -# = service_profile.name
             カードタイトル３
+            - if @priority_service_profile3 != nil
+              = @priority_service_profile3.name
           .small.text-muted
             -# = "投稿者：#{service_profile.user.nickname}"
             投稿者の名前
+            - if @priority_service3_user != nil
+              = @priority_service3_user.nickname
           .small.text-muted{style: "margin-bottom: 12px"}
             -# = "最終更新：#{time_ago_in_words(service_profile.updated_at)}前"
             最終更新日時
+            - if @priority_service_profile3 != nil
+              = @priority_service_profile3.updated_at
           %p.card-text{style: "height: 72px"}
             -# = service_profile.explanation.truncate(45)
             カードの説明文です
+            - if @priority_service_profile3 != nil
+              = @priority_service_profile3.explanation
           %div{style: "position: absolute; left: 20px; bottom: 20px"}
             .btn.btn-primary.mt-3
               クリックして詳細へ
@@ -109,20 +143,31 @@
         -# - if service_profile.image.present?
         -#   = image_tag(service_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
         -# - else
-        %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+        - if @priority_service_profile4 != nil
+          = image_tag(@priority_service_profile4.image.url)
+        - else
+          %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
         .card-body{style: "height: 276px; position: relative;"}
           %h5.card-title
             -# = service_profile.name
             カードタイトル４
+            - if @priority_service_profile4 != nil
+              = @priority_service_profile4.name
           .small.text-muted
             -# = "投稿者：#{service_profile.user.nickname}"
             投稿者の名前
+            - if @priority_service4_user != nil
+              = @priority_service4_user.nickname
           .small.text-muted{style: "margin-bottom: 12px"}
             -# = "最終更新：#{time_ago_in_words(service_profile.updated_at)}前"
             最終更新日時
+            - if @priority_service_profile4 != nil
+              = @priority_service_profile4.updated_at
           %p.card-text{style: "height: 72px"}
             -# = service_profile.explanation.truncate(45)
             カードの説明文です
+            - if @priority_service_profile4 != nil
+              = @priority_service_profile4.explanation
           %div{style: "position: absolute; left: 20px; bottom: 20px"}
             .btn.btn-primary.mt-3
               クリックして詳細へ
@@ -135,20 +180,31 @@
         -# - if service_profile.image.present?
         -#   = image_tag(service_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
         -# - else
-        %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+        - if @priority_service_profile5 != nil
+          = image_tag(@priority_service_profile5.image.url)
+        - else
+          %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
         .card-body{style: "height: 276px; position: relative;"}
           %h5.card-title
             -# = service_profile.name
             カードタイトル５
+            - if @priority_service_profile5 != nil
+              = @priority_service_profile5.name
           .small.text-muted
             -# = "投稿者：#{service_profile.user.nickname}"
             投稿者の名前
+            - if @priority_service5_user != nil
+              = @priority_service5_user.nickname
           .small.text-muted{style: "margin-bottom: 12px"}
             -# = "最終更新：#{time_ago_in_words(service_profile.updated_at)}前"
             最終更新日時
+            - if @priority_service_profile5 != nil
+              = @priority_service_profile5.updated_at
           %p.card-text{style: "height: 72px"}
             -# = service_profile.explanation.truncate(45)
             カードの説明文です
+            - if @priority_service_profile5 != nil
+              = @priority_service_profile5.explanation
           %div{style: "position: absolute; left: 20px; bottom: 20px"}
             .btn.btn-primary.mt-3
               クリックして詳細へ
@@ -161,20 +217,31 @@
         -# - if service_profile.image.present?
         -#   = image_tag(service_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
         -# - else
-        %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+        - if @priority_service_profile6 != nil
+          = image_tag(@priority_service_profile6.image.url)
+        - else
+          %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
         .card-body{style: "height: 276px; position: relative;"}
           %h5.card-title
             -# = service_profile.name
             カードタイトル６
+            - if @priority_service_profile6 != nil
+              = @priority_service_profile6.name
           .small.text-muted
             -# = "投稿者：#{service_profile.user.nickname}"
             投稿者の名前
+            - if @priority_service6_user != nil
+              = @priority_service6_user.nickname
           .small.text-muted{style: "margin-bottom: 12px"}
             -# = "最終更新：#{time_ago_in_words(service_profile.updated_at)}前"
             最終更新日時
+            - if @priority_service_profile6 != nil
+              = @priority_service_profile6.updated_at
           %p.card-text{style: "height: 72px"}
             -# = service_profile.explanation.truncate(45)
             カードの説明文です
+            - if @priority_service_profile6 != nil
+              = @priority_service_profile6.explanation
           %div{style: "position: absolute; left: 20px; bottom: 20px"}
             .btn.btn-primary.mt-3
               クリックして詳細へ
