@@ -1,7 +1,44 @@
 class ServiceProfilesController < ApplicationController
   def index
     @service_profiles = ServiceProfile.includes(:user).order(updated_at: :DESC).page(params[:page]).per(9)
+
+    num_id1 = PriorityServiceProfile.where(priority_number: 1)
+    if num_id1[0] != nil
+      @priority_service_profile1 = ServiceProfile.find(num_id1[0].service_profile_id)
+      @priority_service1_user = User.find(@priority_service_profile1.user_id)
+    end
+
+    num_id2 = PriorityServiceProfile.where(priority_number: 2)
+    if num_id2[0]!= nil
+      @priority_service_profile2 = ServiceProfile.find(num_id2[0].service_profile_id)
+      @priority_service2_user = User.find(@priority_service_profile2.user_id)
+    end
+
+    num_id3 = PriorityServiceProfile.where(priority_number: 3)
+    if num_id3[0]!= nil
+      @priority_service_profile3 = ServiceProfile.find(num_id3[0].service_profile_id)
+      @priority_service3_user = User.find(@priority_service_profile3.user_id)
+    end
+
+    num_id4 = PriorityServiceProfile.where(priority_number: 4)
+    if num_id4[0]!= nil
+      @priority_service_profile4 = ServiceProfile.find(num_id4[0].service_profile_id)
+      @priority_service4_user = User.find(@priority_service_profile4.user_id)
+    end
+
+    num_id5 = PriorityServiceProfile.where(priority_number: 5)
+    if num_id5[0]!= nil
+      @priority_service_profile5 = ServiceProfile.find(num_id5[0].service_profile_id)
+      @priority_service5_user = User.find(@priority_service_profile5.user_id)
+    end
+
+    num_id6 = PriorityServiceProfile.where(priority_number: 6)
+    if num_id6[0]!= nil
+      @priority_service_profile6 = ServiceProfile.find(num_id6[0].service_profile_id)
+      @priority_service6_user = User.find(@priority_service_profile6.user_id)
+    end
   end
+
   def new
     @service_profile = ServiceProfile.new
   end
