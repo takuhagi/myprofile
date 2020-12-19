@@ -49,9 +49,10 @@
               -# 投稿者の名前
           .small.text-muted{style: "margin-bottom: 12px"}
             -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
-            最終更新日時
+            -# 最終更新日時
             - if @priority_event_profile1 != nil
-              = @priority_event_profile1.updated_at
+              = "最終更新：#{time_ago_in_words(@priority_event_profile5.updated_at)}前"
+              -# = @priority_event_profile1.updated_at
           %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
             -# = event_profile.explanation.truncate(45)
             -# カードの説明文です
@@ -68,9 +69,11 @@
                     -#   開始予定 :◯◯:◯◯
                     -# %small.text-muted
                     -#   = event_profile.start.strftime("%Y-%m-%d %H:%M")
-          %div{style: "position: absolute; left: 20px; bottom: 20px"}
-            .btn.btn-primary.mt-3
-              クリックして詳細へ
+          - if @priority_event_profile1 != nil
+            %div{style: "position: absolute; left: 20px; bottom: 20px"}
+              = link_to("クリックして詳細へ", event_profile_path(@priority_event_profile1.id), { class: "btn btn-primary mt-3" })
+              -# .btn.btn-primary.mt-3
+              -#   クリックして詳細へ
           %div{style: "position: absolute; right: 32px; bottom: 28px"}
             %p.text-muted
               ★PR
@@ -98,9 +101,10 @@
               -# 投稿者の名前
           .small.text-muted{style: "margin-bottom: 12px"}
             -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
-            最終更新日時
+            -# 最終更新日時
             - if @priority_event_profile2 != nil
-              = @priority_event_profile2.updated_at
+              = "最終更新：#{time_ago_in_words(@priority_event_profile2.updated_at)}前"
+              -# = @priority_event_profile2.updated_at
           %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
             -# = event_profile.explanation.truncate(45)
             -# カードの説明文です
@@ -117,9 +121,11 @@
                     -#   開始予定 :◯◯:◯◯
                     -# %small.text-muted
                     -#   = event_profile.start.strftime("%Y-%m-%d %H:%M")
-          %div{style: "position: absolute; left: 20px; bottom: 20px"}
-            .btn.btn-primary.mt-3
-              クリックして詳細へ
+          - if @priority_event_profile2 != nil
+            %div{style: "position: absolute; left: 20px; bottom: 20px"}
+              = link_to("クリックして詳細へ", event_profile_path(@priority_event_profile2.id), { class: "btn btn-primary mt-3" })
+              -# .btn.btn-primary.mt-3
+              -#   クリックして詳細へ
           %div{style: "position: absolute; right: 32px; bottom: 28px"}
             %p.text-muted
               ★PR
@@ -147,9 +153,10 @@
               -# 投稿者の名前
           .small.text-muted{style: "margin-bottom: 12px"}
             -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
-            最終更新日時
+            -# 最終更新日時
             - if @priority_event_profile3 != nil
-              = @priority_event_profile3.updated_at
+              = "最終更新：#{time_ago_in_words(@priority_event_profile3.updated_at)}前"
+              -# = @priority_event_profile3.updated_at
           %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
             -# = event_profile.explanation.truncate(45)
             -# カードの説明文です
@@ -166,9 +173,11 @@
                     -#   開始予定 :◯◯:◯◯
                     -# %small.text-muted
                     -#   = event_profile.start.strftime("%Y-%m-%d %H:%M")
-          %div{style: "position: absolute; left: 20px; bottom: 20px"}
-            .btn.btn-primary.mt-3
-              クリックして詳細へ
+          - if @priority_event_profile3 != nil
+            %div{style: "position: absolute; left: 20px; bottom: 20px"}
+              = link_to("クリックして詳細へ", event_profile_path(@priority_event_profile3.id), { class: "btn btn-primary mt-3" })
+              -# .btn.btn-primary.mt-3
+              -#   クリックして詳細へ
           %div{style: "position: absolute; right: 32px; bottom: 28px"}
             %p.text-muted
               ★PR
@@ -200,8 +209,6 @@
             - if @priority_event_profile4 != nil
               = "最終更新：#{time_ago_in_words(@priority_event_profile4.updated_at)}前"
               -# = @priority_event_profile4.updated_at
-            - else
-              最終更新日時
           %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
             -# = event_profile.explanation.truncate(45)
             -# カードの説明文です
@@ -218,9 +225,11 @@
                     -#   開始予定 :◯◯:◯◯
                     -# %small.text-muted
                     -#   = event_profile.start.strftime("%Y-%m-%d %H:%M")
-          %div{style: "position: absolute; left: 20px; bottom: 20px"}
-            .btn.btn-primary.mt-3
-              クリックして詳細へ
+          - if @priority_event_profile4 != nil
+            %div{style: "position: absolute; left: 20px; bottom: 20px"}
+              = link_to("クリックして詳細へ", event_profile_path(@priority_event_profile4.id), { class: "btn btn-primary mt-3" })
+              -# .btn.btn-primary.mt-3
+              -#   クリックして詳細へ
           %div{style: "position: absolute; right: 32px; bottom: 28px"}
             %p.text-muted
               ★PR
@@ -252,8 +261,6 @@
             - if @priority_event_profile5 != nil
               = "最終更新：#{time_ago_in_words(@priority_event_profile5.updated_at)}前"
               -# = @priority_event_profile5.updated_at
-            - else
-              最終更新：
           %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
             -# = event_profile.explanation.truncate(45)
             -# カードの説明文です
@@ -270,9 +277,11 @@
                     -#   開始予定 :◯◯:◯◯
                     -# %small.text-muted
                     -#   = event_profile.start.strftime("%Y-%m-%d %H:%M")
-          %div{style: "position: absolute; left: 20px; bottom: 20px"}
-            .btn.btn-primary.mt-3
-              クリックして詳細へ
+          - if @priority_event_profile5 != nil
+            %div{style: "position: absolute; left: 20px; bottom: 20px"}
+              = link_to("クリックして詳細へ", event_profile_path(@priority_event_profile5.id), { class: "btn btn-primary mt-3" })
+              -# .btn.btn-primary.mt-3
+              -#   クリックして詳細へ
           %div{style: "position: absolute; right: 32px; bottom: 28px"}
             %p.text-muted
               ★PR
@@ -300,9 +309,10 @@
               -# 投稿者の名前
           .small.text-muted{style: "margin-bottom: 12px"}
             -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
-            最終更新日時
+            -# 最終更新日時
             - if @priority_event_profile6 != nil
-              = @priority_event_profile6.updated_at
+              = "最終更新：#{time_ago_in_words(@priority_event_profile6.updated_at)}前"
+              -# = @priority_event_profile6.updated_at
           %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
             -# = event_profile.explanation.truncate(45)
             -# カードの説明文です
@@ -319,9 +329,11 @@
                     -#   開始予定 :◯◯:◯◯
                     -# %small.text-muted
                     -#   = event_profile.start.strftime("%Y-%m-%d %H:%M")
-          %div{style: "position: absolute; left: 20px; bottom: 20px"}
-            .btn.btn-primary.mt-3
-              クリックして詳細へ
+          - if @priority_event_profile6 != nil
+            %div{style: "position: absolute; left: 20px; bottom: 20px"}
+              = link_to("クリックして詳細へ", event_profile_path(@priority_event_profile6.id), { class: "btn btn-primary mt-3" })
+              -# .btn.btn-primary.mt-3
+              -#   クリックして詳細へ
           %div{style: "position: absolute; right: 32px; bottom: 28px"}
             %p.text-muted
               ★PR
