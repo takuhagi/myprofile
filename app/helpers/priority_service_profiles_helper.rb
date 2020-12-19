@@ -1,0 +1,2 @@
+module PriorityServiceProfilesHelper
+end
