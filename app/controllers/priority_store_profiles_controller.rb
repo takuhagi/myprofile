@@ -44,10 +44,12 @@ class PriorityStoreProfilesController < ApplicationController
 
   def create
     PriorityStoreProfile.create(priority_store_profile_params)
+    redirect_to store_profiles_path
   end
 
   def destroy
     PriorityStoreProfile.find(params[:id]).destroy
+    redirect_to store_profiles_path
   end
 
   private
