@@ -1,15 +1,17 @@
 .jumbotron.jumbotron-fluid.p-4
   .container
-    .col.text-right
-      = link_to '戻る', :back
-    .col.text-right
-      = link_to profile_selectm_path(1) do
-        middle
-    .col.text-right
-      = link_to profile_selectb_path(1) do
-        bottom
+    .d-flex
+      .text-right
+        = link_to profile_selectm_path(1) do
+          中段
+      .text-right.ml-4
+        = link_to profile_selectb_path(1) do
+          下段
+      .col.text-right
+        = link_to '戻る', :back
+      
     .h3.text-center
-      topユーザー選択
+      上段ユーザー選択
 .select_users.mt-5.container-fuild
   = form_with model: @profile, url: profile_top_path, method: "patch", class: "select_user",local: true do |f|
     .boxes.d-flex.top_candidate.row
