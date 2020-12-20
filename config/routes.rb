@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       get 'vr'
       get 'rule'
       get 'privacy'
+      get 'intro'
     end
     resources :comments, only: [:create, :show, :update] do
       post 'reply'
