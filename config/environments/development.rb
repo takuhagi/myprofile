@@ -35,6 +35,7 @@ Rails.application.configure do
     Bullet.console = true
     Bullet.rails_logger = true
   end
+ 
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local

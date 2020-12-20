@@ -3,24 +3,21 @@
     .col.text-right
       = link_to '戻る', :back
     .col.text-right
-      = link_to profile_selectm_path(1) do
-        middle
+      = link_to profile_select_path(1) do
+        top
     .col.text-right
       = link_to profile_selectb_path(1) do
         bottom
     .h3.text-center
-      topユーザー選択
+      middleユーザー選択
 .select_users.mt-5.container-fuild
-  = form_with model: @profile, url: profile_top_path, method: "patch", class: "select_user",local: true do |f|
-    .boxes.d-flex.top_candidate.row
+  = form_with model: @profile, url: profile_middle_path, method: "patch", class: "select_user",local: true do |f|
+    .boxes.d-flex.middle_candidate.row
       - @profile.each do |profile|
         .profile_name.m-3
-          = f.check_box :top_ids, {multiple: true, class: "top"}, profile[:id]
+          = f.check_box :middle_ids, {multiple: true, class: "middle"}, profile[:id]
           = image_tag(profile.avatar.url, alt: "", class: "rounded-circle minisize-icon")
           = profile.user.nickname
-      %ul#top_list
+      %ul#middle_list
     .btn_all.m-3.pt-3.pb-3
-      = f.submit "選択" 
-        
-
-
+      = f.submit "選択"

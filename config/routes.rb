@@ -30,7 +30,11 @@ Rails.application.routes.draw do
     patch 'color'
     get 'pass'
     get 'select'
-    patch 'check'
+    get 'selectm'
+    get 'selectb'
+    patch 'top'
+    patch 'middle'
+    patch 'bottom'
   end
 
   resources :cards, only: [:new, :index, :create, :destroy] do

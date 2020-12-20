@@ -91,18 +91,35 @@ class ProfilesController < ApplicationController
   def select
     @profile = Profile.all.includes([:user])
   end
+  def selectm
+    @profile = Profile.all.includes([:user])
+  end
+  def selectb
+    @profile = Profile.all.includes([:user])
+  end
 
-  def check
+  def top
     @profile = Profile.all.includes([:user])
     @profiles = Profile.where(id: params[:profile][:top_ids]).includes([:user])
-    @prof = Profile.where(id: params[:profile][:middle_ids]).includes([:user])
-    @pr = Profile.where(id: params[:profile][:bottom_ids]).includes([:user])
-    if @profile.update(check_params)
+    if @profile.update(top0_params)
       @profiles.update(top_params)
+    end
+  end
+  def middle
+    @profile = Profile.all.includes([:user])
+    @prof = Profile.where(id: params[:profile][:middle_ids]).includes([:user])
+    if @profile.update(middle0_params)
       @prof.update(middle_params)
+    end
+  end
+  def bottom
+    @profile = Profile.all.includes([:user])
+    @pr = Profile.where(id: params[:profile][:bottom_ids]).includes([:user])
+    if @profile.update(bottom0_params)
       @pr.update(bottom_params)
     end
   end
+
 
   private
   
@@ -115,9 +132,17 @@ class ProfilesController < ApplicationController
   def bottom_params
     params.permit(:bottom).merge(bottom: "1")
   end
-  def check_params
-    params.permit(:top,:middle,:bottom).merge(top: "0", middle: "0", bottom: "0")
+
+  def top0_params
+    params.permit(:top).merge(top: "0")
   end
+  def middle0_params
+    params.permit(:middle).merge(middle: "0")
+  end
+  def bottom0_params
+    params.permit(:bottom).merge(bottom: "0")
+  end
+  
 
   def profile_params
     params.require(:profile).permit(
