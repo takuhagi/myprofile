@@ -26,319 +26,325 @@
 
 
     -# ここから佐久間さん指定の6枚
-    .col-lg-4
-      .card.mb-3
-        -# - if event_profile.image.present?
-        -#   = image_tag(event_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
-        -# - else
-        - if @priority_event_profile1 != nil
-          = image_tag(@priority_event_profile1.image.url, class: "card-img-top")
-        - else
-          %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
-        .card-body{style: "height: 295px; position: relative;"}
-          %h5.card-title
-            -# = event_profile.title
-            -# カードタイトル１
+    - if @priority_event_profile1 != nil
+      .col-lg-4
+        .card.mb-3
+          -# - if event_profile.image.present?
+          -#   = image_tag(event_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+          -# - else
+          - if @priority_event_profile1.image.present?
+            = image_tag(@priority_event_profile1.image.url, class: "card-img-top")
+          - else
+            %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+          .card-body{style: "height: 295px; position: relative;"}
+            %h5.card-title
+              -# = event_profile.title
+              -# カードタイトル１
+              - if @priority_event_profile1 != nil
+                = @priority_event_profile1.title
+              - else
+                イベント名未定
             - if @priority_event_profile1 != nil
-              = @priority_event_profile1.title
-            - else
-              イベント名未定
-          - if @priority_event_profile1 != nil
-            .small.text-muted
-              = "投稿者：#{@priority_event_profile1.user.nickname}"
-              -# 投稿者の名前
-          .small.text-muted{style: "margin-bottom: 12px"}
-            -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
-            -# 最終更新日時
+              .small.text-muted
+                = "投稿者：#{@priority_event_profile1.user.nickname}"
+                -# 投稿者の名前
+            .small.text-muted{style: "margin-bottom: 12px"}
+              -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
+              -# 最終更新日時
+              - if @priority_event_profile1 != nil
+                = "最終更新：#{time_ago_in_words(@priority_event_profile1.updated_at)}前"
+                -# = @priority_event_profile1.updated_at
+            %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
+              -# = event_profile.explanation.truncate(45)
+              -# カードの説明文です
+              - if @priority_event_profile1 != nil
+                = @priority_event_profile1.explanation.truncate(45)
+                -# - if event_profile.start.present?
+                - if @priority_event_profile1.start.present?
+                  %p.card-text{style: "margin-bottom: 0.75rem;"}
+                    %small.text-muted
+                      - if @priority_event_profile1 != nil
+                        開始予定 :
+                        = @priority_event_profile1.start.strftime("%Y-%m-%d %H:%M")
+                      -# - else
+                      -#   開始予定 :◯◯:◯◯
+                      -# %small.text-muted
+                      -#   = event_profile.start.strftime("%Y-%m-%d %H:%M")
             - if @priority_event_profile1 != nil
-              = "最終更新：#{time_ago_in_words(@priority_event_profile5.updated_at)}前"
-              -# = @priority_event_profile1.updated_at
-          %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
-            -# = event_profile.explanation.truncate(45)
-            -# カードの説明文です
-            - if @priority_event_profile1 != nil
-              = @priority_event_profile1.explanation.truncate(45)
-              -# - if event_profile.start.present?
-              - if @priority_event_profile1.start.present?
-                %p.card-text{style: "margin-bottom: 0.75rem;"}
-                  %small.text-muted
-                    - if @priority_event_profile1 != nil
-                      開始予定 :
-                      = @priority_event_profile1.start.strftime("%Y-%m-%d %H:%M")
-                    -# - else
-                    -#   開始予定 :◯◯:◯◯
-                    -# %small.text-muted
-                    -#   = event_profile.start.strftime("%Y-%m-%d %H:%M")
-          - if @priority_event_profile1 != nil
-            %div{style: "position: absolute; left: 20px; bottom: 20px"}
-              = link_to("クリックして詳細へ", event_profile_path(@priority_event_profile1.id), { class: "btn btn-primary mt-3" })
-              -# .btn.btn-primary.mt-3
-              -#   クリックして詳細へ
-          %div{style: "position: absolute; right: 32px; bottom: 28px"}
-            %p.text-muted
-              ★PR
-            -# = link_to("クリックして詳細へ", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
-    .col-lg-4
-      .card.mb-3
-        -# - if event_profile.image.present?
-        -#   = image_tag(event_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
-        -# - else
-        - if @priority_event_profile2 != nil
-          = image_tag(@priority_event_profile2.image.url, class: "card-img-top")
-        - else
-          %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
-        .card-body{style: "height: 295px; position: relative;"}
-          %h5.card-title
-            -# = event_profile.title
-            -# カードタイトル２
+              %div{style: "position: absolute; left: 20px; bottom: 20px"}
+                = link_to("クリックして詳細へ", event_profile_path(@priority_event_profile1.id), { class: "btn btn-primary mt-3" })
+                -# .btn.btn-primary.mt-3
+                -#   クリックして詳細へ
+            %div{style: "position: absolute; right: 32px; bottom: 28px"}
+              %p.text-muted
+                ★PR
+              -# = link_to("クリックして詳細へ", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
+    - if @priority_event_profile2 != nil
+      .col-lg-4
+        .card.mb-3
+          -# - if event_profile.image.present?
+          -#   = image_tag(event_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+          -# - else
+          - if @priority_event_profile2.image.present?
+            = image_tag(@priority_event_profile2.image.url, class: "card-img-top")
+          - else
+            %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+          .card-body{style: "height: 295px; position: relative;"}
+            %h5.card-title
+              -# = event_profile.title
+              -# カードタイトル２
+              - if @priority_event_profile2 != nil
+                = @priority_event_profile2.title
+              - else
+                イベント名未定
             - if @priority_event_profile2 != nil
-              = @priority_event_profile2.title
-            - else
-              イベント名未定
-          - if @priority_event_profile2 != nil
-            .small.text-muted
-              = "投稿者：#{@priority_event_profile2.user.nickname}"
-              -# 投稿者の名前
-          .small.text-muted{style: "margin-bottom: 12px"}
-            -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
-            -# 最終更新日時
+              .small.text-muted
+                = "投稿者：#{@priority_event_profile2.user.nickname}"
+                -# 投稿者の名前
+            .small.text-muted{style: "margin-bottom: 12px"}
+              -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
+              -# 最終更新日時
+              - if @priority_event_profile2 != nil
+                = "最終更新：#{time_ago_in_words(@priority_event_profile2.updated_at)}前"
+                -# = @priority_event_profile2.updated_at
+            %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
+              -# = event_profile.explanation.truncate(45)
+              -# カードの説明文です
+              - if @priority_event_profile2 != nil
+                = @priority_event_profile2.explanation.truncate(45)
+                -# - if event_profile.start.present?
+                - if @priority_event_profile2.start.present?
+                  %p.card-text{style: "margin-bottom: 0.75rem;"}
+                    %small.text-muted
+                      - if @priority_event_profile2 != nil
+                        開始予定 :
+                        = @priority_event_profile2.start.strftime("%Y-%m-%d %H:%M")
+                      -# - else
+                      -#   開始予定 :◯◯:◯◯
+                      -# %small.text-muted
+                      -#   = event_profile.start.strftime("%Y-%m-%d %H:%M")
             - if @priority_event_profile2 != nil
-              = "最終更新：#{time_ago_in_words(@priority_event_profile2.updated_at)}前"
-              -# = @priority_event_profile2.updated_at
-          %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
-            -# = event_profile.explanation.truncate(45)
-            -# カードの説明文です
-            - if @priority_event_profile2 != nil
-              = @priority_event_profile2.explanation.truncate(45)
-              -# - if event_profile.start.present?
-              - if @priority_event_profile2.start.present?
-                %p.card-text{style: "margin-bottom: 0.75rem;"}
-                  %small.text-muted
-                    - if @priority_event_profile2 != nil
-                      開始予定 :
-                      = @priority_event_profile2.start.strftime("%Y-%m-%d %H:%M")
-                    -# - else
-                    -#   開始予定 :◯◯:◯◯
-                    -# %small.text-muted
-                    -#   = event_profile.start.strftime("%Y-%m-%d %H:%M")
-          - if @priority_event_profile2 != nil
-            %div{style: "position: absolute; left: 20px; bottom: 20px"}
-              = link_to("クリックして詳細へ", event_profile_path(@priority_event_profile2.id), { class: "btn btn-primary mt-3" })
-              -# .btn.btn-primary.mt-3
-              -#   クリックして詳細へ
-          %div{style: "position: absolute; right: 32px; bottom: 28px"}
-            %p.text-muted
-              ★PR
-            -# = link_to("クリックして詳細へ", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
-    .col-lg-4
-      .card.mb-3
-        -# - if event_profile.image.present?
-        -#   = image_tag(event_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
-        -# - else
-        - if @priority_event_profile3 != nil
-          = image_tag(@priority_event_profile3.image.url, class: "card-img-top")
-        - else
-          %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
-        .card-body{style: "height: 295px; position: relative;"}
-          %h5.card-title
-            -# = event_profile.title
-            -# カードタイトル３
+              %div{style: "position: absolute; left: 20px; bottom: 20px"}
+                = link_to("クリックして詳細へ", event_profile_path(@priority_event_profile2.id), { class: "btn btn-primary mt-3" })
+                -# .btn.btn-primary.mt-3
+                -#   クリックして詳細へ
+            %div{style: "position: absolute; right: 32px; bottom: 28px"}
+              %p.text-muted
+                ★PR
+              -# = link_to("クリックして詳細へ", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
+    - if @priority_event_profile3 != nil
+      .col-lg-4
+        .card.mb-3
+          -# - if event_profile.image.present?
+          -#   = image_tag(event_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+          -# - else
+          - if @priority_event_profile3.image.present?
+            = image_tag(@priority_event_profile3.image.url, class: "card-img-top")
+          - else
+            %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+          .card-body{style: "height: 295px; position: relative;"}
+            %h5.card-title
+              -# = event_profile.title
+              -# カードタイトル３
+              - if @priority_event_profile3 != nil
+                = @priority_event_profile3.title
+              - else
+                イベント名未定
             - if @priority_event_profile3 != nil
-              = @priority_event_profile3.title
-            - else
-              イベント名未定
-          - if @priority_event_profile3 != nil
-            .small.text-muted
-              = "投稿者：#{@priority_event_profile3.user.nickname}"
-              -# 投稿者の名前
-          .small.text-muted{style: "margin-bottom: 12px"}
-            -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
-            -# 最終更新日時
+              .small.text-muted
+                = "投稿者：#{@priority_event_profile3.user.nickname}"
+                -# 投稿者の名前
+            .small.text-muted{style: "margin-bottom: 12px"}
+              -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
+              -# 最終更新日時
+              - if @priority_event_profile3 != nil
+                = "最終更新：#{time_ago_in_words(@priority_event_profile3.updated_at)}前"
+                -# = @priority_event_profile3.updated_at
+            %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
+              -# = event_profile.explanation.truncate(45)
+              -# カードの説明文です
+              - if @priority_event_profile3 != nil
+                = @priority_event_profile3.explanation.truncate(45)
+                -# - if event_profile.start.present?
+                - if @priority_event_profile3.start.present?
+                  %p.card-text{style: "margin-bottom: 0.75rem;"}
+                    %small.text-muted
+                      - if @priority_event_profile3 != nil
+                        開始予定 :
+                        = @priority_event_profile3.start.strftime("%Y-%m-%d %H:%M")
+                      -# - else
+                      -#   開始予定 :◯◯:◯◯
+                      -# %small.text-muted
+                      -#   = event_profile.start.strftime("%Y-%m-%d %H:%M")
             - if @priority_event_profile3 != nil
-              = "最終更新：#{time_ago_in_words(@priority_event_profile3.updated_at)}前"
-              -# = @priority_event_profile3.updated_at
-          %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
-            -# = event_profile.explanation.truncate(45)
-            -# カードの説明文です
-            - if @priority_event_profile3 != nil
-              = @priority_event_profile3.explanation.truncate(45)
-              -# - if event_profile.start.present?
-              - if @priority_event_profile3.start.present?
-                %p.card-text{style: "margin-bottom: 0.75rem;"}
-                  %small.text-muted
-                    - if @priority_event_profile3 != nil
-                      開始予定 :
-                      = @priority_event_profile3.start.strftime("%Y-%m-%d %H:%M")
-                    -# - else
-                    -#   開始予定 :◯◯:◯◯
-                    -# %small.text-muted
-                    -#   = event_profile.start.strftime("%Y-%m-%d %H:%M")
-          - if @priority_event_profile3 != nil
-            %div{style: "position: absolute; left: 20px; bottom: 20px"}
-              = link_to("クリックして詳細へ", event_profile_path(@priority_event_profile3.id), { class: "btn btn-primary mt-3" })
-              -# .btn.btn-primary.mt-3
-              -#   クリックして詳細へ
-          %div{style: "position: absolute; right: 32px; bottom: 28px"}
-            %p.text-muted
-              ★PR
-            -# = link_to("クリックして詳細へ", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
-    .col-lg-4
-      .card.mb-3
-        -# - if event_profile.image.present?
-        -#   = image_tag(event_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
-        -# - else
-        - if @priority_event_profile4 != nil
-          = image_tag(@priority_event_profile4.image.url, class: "card-img-top")
-        - else
-          %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
-        .card-body{style: "height: 295px; position: relative;"}
-          %h5.card-title
-            -# = event_profile.title
-            -# カードタイトル４
+              %div{style: "position: absolute; left: 20px; bottom: 20px"}
+                = link_to("クリックして詳細へ", event_profile_path(@priority_event_profile3.id), { class: "btn btn-primary mt-3" })
+                -# .btn.btn-primary.mt-3
+                -#   クリックして詳細へ
+            %div{style: "position: absolute; right: 32px; bottom: 28px"}
+              %p.text-muted
+                ★PR
+              -# = link_to("クリックして詳細へ", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
+    - if @priority_event_profile4 != nil
+      .col-lg-4
+        .card.mb-3
+          -# - if event_profile.image.present?
+          -#   = image_tag(event_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+          -# - else
+          - if @priority_event_profile4.image.present?
+            = image_tag(@priority_event_profile4.image.url, class: "card-img-top")
+          - else
+            %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+          .card-body{style: "height: 295px; position: relative;"}
+            %h5.card-title
+              -# = event_profile.title
+              -# カードタイトル４
+              - if @priority_event_profile4 != nil
+                = @priority_event_profile4.title
+              - else
+                イベント名未定
             - if @priority_event_profile4 != nil
-              = @priority_event_profile4.title
-            - else
-              イベント名未定
-          - if @priority_event_profile4 != nil
-            .small.text-muted
-              = "投稿者：#{@priority_event_profile4.user.nickname}"
-              -# 投稿者の名前
-          .small.text-muted{style: "margin-bottom: 12px"}
-            -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
-            -# 最終更新日時
-            - if @priority_event_profile4 != nil
-              = "最終更新：#{time_ago_in_words(@priority_event_profile4.updated_at)}前"
-              -# = @priority_event_profile4.updated_at
-          %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
-            -# = event_profile.explanation.truncate(45)
-            -# カードの説明文です
-            - if @priority_event_profile4 != nil
-              = @priority_event_profile4.explanation.truncate(45)
-              -# - if event_profile.start.present?
-              - if @priority_event_profile4.start.present?
-                %p.card-text{style: "margin-bottom: 0.75rem;"}
-                  %small.text-muted
-                    - if @priority_event_profile4 != nil
-                      開始予定 :
-                      = @priority_event_profile4.start.strftime("%Y-%m-%d %H:%M")
-                    -# - else
-                    -#   開始予定 :◯◯:◯◯
-                    -# %small.text-muted
-                    -#   = event_profile.start.strftime("%Y-%m-%d %H:%M")
-          - if @priority_event_profile4 != nil
-            %div{style: "position: absolute; left: 20px; bottom: 20px"}
-              = link_to("クリックして詳細へ", event_profile_path(@priority_event_profile4.id), { class: "btn btn-primary mt-3" })
-              -# .btn.btn-primary.mt-3
-              -#   クリックして詳細へ
-          %div{style: "position: absolute; right: 32px; bottom: 28px"}
-            %p.text-muted
-              ★PR
-            -# = link_to("クリックして詳細へ", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
-    .col-lg-4
-      .card.mb-3
-        -# - if event_profile.image.present?
-        -#   = image_tag(event_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
-        -# - else
-        - if @priority_event_profile5 != nil
-          = image_tag(@priority_event_profile5.image.url, class: "card-img-top")
-        - else
-          %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
-        .card-body{style: "height: 295px; position: relative;"}
-          %h5.card-title
-            -# = event_profile.title
-            -# カードタイトル５
-            - if @priority_event_profile5 != nil
-              = @priority_event_profile5.title
-            - else
-              イベント名未定
+              .small.text-muted
+                = "投稿者：#{@priority_event_profile4.user.nickname}"
+                -# 投稿者の名前
+            .small.text-muted{style: "margin-bottom: 12px"}
+              -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
+              -# 最終更新日時
+              - if @priority_event_profile4 != nil
+                = "最終更新：#{time_ago_in_words(@priority_event_profile4.updated_at)}前"
+                -# = @priority_event_profile4.updated_at
+            %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
+              -# = event_profile.explanation.truncate(45)
+              -# カードの説明文です
+              - if @priority_event_profile4 != nil
+                = @priority_event_profile4.explanation.truncate(45)
+                -# - if event_profile.start.present?
+                - if @priority_event_profile4.start.present?
+                  %p.card-text{style: "margin-bottom: 0.75rem;"}
+                    %small.text-muted
+                      - if @priority_event_profile4 != nil
+                        開始予定 :
+                        = @priority_event_profile4.start.strftime("%Y-%m-%d %H:%M")
+                      -# - else
+                      -#   開始予定 :◯◯:◯◯
+                      -# %small.text-muted
+                      -#   = event_profile.start.strftime("%Y-%m-%d %H:%M")
+            - if @priority_event_profile4.image.present?
+              %div{style: "position: absolute; left: 20px; bottom: 20px"}
+                = link_to("クリックして詳細へ", event_profile_path(@priority_event_profile4.id), { class: "btn btn-primary mt-3" })
+                -# .btn.btn-primary.mt-3
+                -#   クリックして詳細へ
+            %div{style: "position: absolute; right: 32px; bottom: 28px"}
+              %p.text-muted
+                ★PR
+              -# = link_to("クリックして詳細へ", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
+    - if @priority_event_profile5 != nil
+      .col-lg-4
+        .card.mb-3
+          -# - if event_profile.image.present?
+          -#   = image_tag(event_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+          -# - else
           - if @priority_event_profile5 != nil
-            .small.text-muted
-              = "投稿者：#{@priority_event_profile5.user.nickname}"
-              -# 投稿者の名前
-          .small.text-muted{style: "margin-bottom: 12px"}
-            -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
-            -# 最終更新日時
+            = image_tag(@priority_event_profile5.image.url, class: "card-img-top")
+          - else
+            %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+          .card-body{style: "height: 295px; position: relative;"}
+            %h5.card-title
+              -# = event_profile.title
+              -# カードタイトル５
+              - if @priority_event_profile5.image.present?
+                = @priority_event_profile5.title
+              - else
+                イベント名未定
             - if @priority_event_profile5 != nil
-              = "最終更新：#{time_ago_in_words(@priority_event_profile5.updated_at)}前"
-              -# = @priority_event_profile5.updated_at
-          %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
-            -# = event_profile.explanation.truncate(45)
-            -# カードの説明文です
-            - if @priority_event_profile5 != nil
-              = @priority_event_profile5.explanation.truncate(45)
-              -# - if event_profile.start.present?
-              - if @priority_event_profile5.start.present?
-                %p.card-text{style: "margin-bottom: 0.75rem;"}
-                  %small.text-muted
-                    - if @priority_event_profile5 != nil
-                      開始予定 :
-                      = @priority_event_profile5.start.strftime("%Y-%m-%d %H:%M")
-                    -# - else
-                    -#   開始予定 :◯◯:◯◯
-                    -# %small.text-muted
-                    -#   = event_profile.start.strftime("%Y-%m-%d %H:%M")
-          - if @priority_event_profile5 != nil
-            %div{style: "position: absolute; left: 20px; bottom: 20px"}
-              = link_to("クリックして詳細へ", event_profile_path(@priority_event_profile5.id), { class: "btn btn-primary mt-3" })
-              -# .btn.btn-primary.mt-3
-              -#   クリックして詳細へ
-          %div{style: "position: absolute; right: 32px; bottom: 28px"}
-            %p.text-muted
-              ★PR
-            -# = link_to("クリックして詳細へ", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
-    .col-lg-4
-      .card.mb-3
-        -# - if event_profile.image.present?
-        -#   = image_tag(event_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
-        -# - else
-        - if @priority_event_profile6 != nil
-          = image_tag(@priority_event_profile6.image.url, class: "card-img-top")
-        - else
-          %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
-        .card-body{style: "height: 295px; position: relative;"}
-          %h5.card-title
-            -# = event_profile.title
-            -# カードタイトル６
-            - if @priority_event_profile6 != nil
-              = @priority_event_profile6.title
-            - else
-              イベント名未定
+              .small.text-muted
+                = "投稿者：#{@priority_event_profile5.user.nickname}"
+                -# 投稿者の名前
+            .small.text-muted{style: "margin-bottom: 12px"}
+              -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
+              -# 最終更新日時
+              - if @priority_event_profile5 != nil
+                = "最終更新：#{time_ago_in_words(@priority_event_profile5.updated_at)}前"
+                -# = @priority_event_profile5.updated_at
+            %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
+              -# = event_profile.explanation.truncate(45)
+              -# カードの説明文です
+              - if @priority_event_profile5 != nil
+                = @priority_event_profile5.explanation.truncate(45)
+                -# - if event_profile.start.present?
+                - if @priority_event_profile5.start.present?
+                  %p.card-text{style: "margin-bottom: 0.75rem;"}
+                    %small.text-muted
+                      - if @priority_event_profile5 != nil
+                        開始予定 :
+                        = @priority_event_profile5.start.strftime("%Y-%m-%d %H:%M")
+                      -# - else
+                      -#   開始予定 :◯◯:◯◯
+                      -# %small.text-muted
+                      -#   = event_profile.start.strftime("%Y-%m-%d %H:%M")
+            - if @priority_event_profile5.image.present?
+              %div{style: "position: absolute; left: 20px; bottom: 20px"}
+                = link_to("クリックして詳細へ", event_profile_path(@priority_event_profile5.id), { class: "btn btn-primary mt-3" })
+                -# .btn.btn-primary.mt-3
+                -#   クリックして詳細へ
+            %div{style: "position: absolute; right: 32px; bottom: 28px"}
+              %p.text-muted
+                ★PR
+              -# = link_to("クリックして詳細へ", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
+    - if @priority_event_profile6 != nil
+      .col-lg-4
+        .card.mb-3
+          -# - if event_profile.image.present?
+          -#   = image_tag(event_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+          -# - else
           - if @priority_event_profile6 != nil
-            .small.text-muted
-              = "投稿者：#{@priority_event_profile6.user.nickname}"
-              -# 投稿者の名前
-          .small.text-muted{style: "margin-bottom: 12px"}
-            -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
-            -# 最終更新日時
+            = image_tag(@priority_event_profile6.image.url, class: "card-img-top")
+          - else
+            %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+          .card-body{style: "height: 295px; position: relative;"}
+            %h5.card-title
+              -# = event_profile.title
+              -# カードタイトル６
+              - if @priority_event_profile6.image.present?
+                = @priority_event_profile6.title
+              - else
+                イベント名未定
             - if @priority_event_profile6 != nil
-              = "最終更新：#{time_ago_in_words(@priority_event_profile6.updated_at)}前"
-              -# = @priority_event_profile6.updated_at
-          %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
-            -# = event_profile.explanation.truncate(45)
-            -# カードの説明文です
+              .small.text-muted
+                = "投稿者：#{@priority_event_profile6.user.nickname}"
+                -# 投稿者の名前
+            .small.text-muted{style: "margin-bottom: 12px"}
+              -# = "最終更新：#{time_ago_in_words(event_profile.updated_at)}前"
+              -# 最終更新日時
+              - if @priority_event_profile6 != nil
+                = "最終更新：#{time_ago_in_words(@priority_event_profile6.updated_at)}前"
+                -# = @priority_event_profile6.updated_at
+            %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
+              -# = event_profile.explanation.truncate(45)
+              -# カードの説明文です
+              - if @priority_event_profile6 != nil
+                = @priority_event_profile6.explanation.truncate(45)
+                -# - if event_profile.start.present?
+                - if @priority_event_profile6.start.present?
+                  %p.card-text{style: "margin-bottom: 0.75rem;"}
+                    %small.text-muted
+                      - if @priority_event_profile6 != nil
+                        開始予定 :
+                        = @priority_event_profile6.start.strftime("%Y-%m-%d %H:%M")
+                      -# - else
+                      -#   開始予定 :◯◯:◯◯
+                      -# %small.text-muted
+                      -#   = event_profile.start.strftime("%Y-%m-%d %H:%M")
             - if @priority_event_profile6 != nil
-              = @priority_event_profile6.explanation.truncate(45)
-              -# - if event_profile.start.present?
-              - if @priority_event_profile6.start.present?
-                %p.card-text{style: "margin-bottom: 0.75rem;"}
-                  %small.text-muted
-                    - if @priority_event_profile6 != nil
-                      開始予定 :
-                      = @priority_event_profile6.start.strftime("%Y-%m-%d %H:%M")
-                    -# - else
-                    -#   開始予定 :◯◯:◯◯
-                    -# %small.text-muted
-                    -#   = event_profile.start.strftime("%Y-%m-%d %H:%M")
-          - if @priority_event_profile6 != nil
-            %div{style: "position: absolute; left: 20px; bottom: 20px"}
-              = link_to("クリックして詳細へ", event_profile_path(@priority_event_profile6.id), { class: "btn btn-primary mt-3" })
-              -# .btn.btn-primary.mt-3
-              -#   クリックして詳細へ
-          %div{style: "position: absolute; right: 32px; bottom: 28px"}
-            %p.text-muted
-              ★PR
-            -# = link_to("クリックして詳細へ", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
-            -# ここまで佐久間さん指定の6枚
+              %div{style: "position: absolute; left: 20px; bottom: 20px"}
+                = link_to("クリックして詳細へ", event_profile_path(@priority_event_profile6.id), { class: "btn btn-primary mt-3" })
+                -# .btn.btn-primary.mt-3
+                -#   クリックして詳細へ
+            %div{style: "position: absolute; right: 32px; bottom: 28px"}
+              %p.text-muted
+                ★PR
+              -# = link_to("クリックして詳細へ", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
+              -# ここまで佐久間さん指定の6枚
 
 
 
