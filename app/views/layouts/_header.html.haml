@@ -39,6 +39,9 @@
           = link_to priority_store_profiles_path, class: "nav-link " do
             管理画面
 
+        %li.nav-item
+          = link_to profile_select_path(1), class: "nav-link " do
+            Top管理画面
 
       - unless user_signed_in?
         %ul.navbar-nav
