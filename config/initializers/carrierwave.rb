@@ -20,7 +20,7 @@ CarrierWave.configure do |config|
       region: 'ap-northeast-1'
     }
 
-    config.fog_directory  = 'myprofile-gazou'
-    config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/myprofile-gazou'
+    config.fog_directory  = 'mystory-s3-production'
+    config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/mystory-s3-production'
   end
 end
