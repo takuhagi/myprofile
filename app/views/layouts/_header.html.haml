@@ -64,7 +64,7 @@
         %ul.navbar-nav
           %li.nav-item.dropdown
             %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-              - if current_user.profile.avatar.present?
+              - if current_user.profile.present?
                 = image_tag(current_user.profile.avatar.url, alt: "", class: "rounded-circle minisize-icon")
               = current_user.nickname
             .dropdown-menu.dropdown-menu-right.navbar-dark.bg-dark{"aria-labelledby" => "navbarDropdown"}
@@ -90,9 +90,10 @@
                   = link_to new_event_profile_path, class: "nav-link " do
                     イベント情報 投稿
               .dropdown-divider
-              .dropdown-item.bg-dark
-                = link_to users_path(id: current_user.id), class: "nav-link" do
-                  マイページ
+              - if current_user.profile != nil
+                .dropdown-item.bg-dark
+                  = link_to users_path(id: current_user.id), class: "nav-link" do
+                    マイページ
               .dropdown-item.bg-dark
                 = link_to destroy_user_session_path, method: :delete, class: "nav-link" do
                   ログアウト
