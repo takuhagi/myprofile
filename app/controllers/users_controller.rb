@@ -17,7 +17,6 @@ class UsersController < ApplicationController
     @comments.each do |com|
       if com.reply_id != nil
         @reply_array << Comment.where(id: com.reply_id)
-        
       end
     end
     @reply_array1 = @reply_array.flatten

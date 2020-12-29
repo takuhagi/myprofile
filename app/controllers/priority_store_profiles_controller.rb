@@ -43,8 +43,12 @@ class PriorityStoreProfilesController < ApplicationController
   end
 
   def create
-    PriorityStoreProfile.create(priority_store_profile_params)
-    redirect_to store_profiles_path
+    if PriorityStoreProfile.create(priority_store_profile_params)
+    # redirect_to store_profiles_path
+      redirect_to priority_store_profiles_path
+    else
+      render "index"
+    end
   end
 
   def destroy
