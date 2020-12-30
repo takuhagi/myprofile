@@ -21,6 +21,15 @@
     = link_to("サービス", service_profiles_path, { class: "btn btn-info mt-3" })
     = link_to("イベント", event_profiles_path, { class: "btn btn-info mt-3" })
 
+    %hr.my-4
+    = search_form_for @q do |f|
+      = f.select( :sorts, { '名前順': 'name asc', '名前逆順': 'name desc', '更新の古い順': 'updated_at asc', '更新の新しい順': 'updated_at desc' } , { selected: params[:q][:sorts] }, { onchange: 'this.form.submit()', class: 'form-control'} ) 
+      .form-group
+        = f.label :name_or_explanation, "キーワード検索", class: "mt-2"
+        = f.text_field :name_or_explanation_cont, class: "form-control"
+      .form-group.mt-4.mb-4
+        = f.submit "検索", class: "btn btn-primary"
+
 .container
   .row
 

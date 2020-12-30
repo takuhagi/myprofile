@@ -1,41 +1,87 @@
 class StoreProfilesController < ApplicationController
   def index
-    @store_profiles = StoreProfile.includes(:user).order(updated_at: :DESC).page(params[:page]).per(9)
-    num_id1 = PriorityStoreProfile.where(priority_number: 1)
-    if num_id1[0] != nil
-      @priority_store_profile1 = StoreProfile.find(num_id1[0].store_profile_id)
-      @priority_store1_user = User.find(@priority_store_profile1.user_id)
+
+    if params[:q].present?
+      @q = StoreProfile.ransack(params[:q])
+      @store_profiles = @q.result.includes(:user).order(updated_at: :DESC).page(params[:page]).per(9)
+      num_id1 = PriorityStoreProfile.where(priority_number: 1)
+      if num_id1[0] != nil
+        @priority_store_profile1 = StoreProfile.find(num_id1[0].store_profile_id)
+        @priority_store1_user = User.find(@priority_store_profile1.user_id)
+      end
+  
+      num_id2 = PriorityStoreProfile.where(priority_number: 2)
+      if num_id2[0]!= nil
+        @priority_store_profile2 = StoreProfile.find(num_id2[0].store_profile_id)
+        @priority_store2_user = User.find(@priority_store_profile2.user_id)
+      end
+  
+      num_id3 = PriorityStoreProfile.where(priority_number: 3)
+      if num_id3[0]!= nil
+        @priority_store_profile3 = StoreProfile.find(num_id3[0].store_profile_id)
+        @priority_store3_user = User.find(@priority_store_profile3.user_id)
+      end
+  
+      num_id4 = PriorityStoreProfile.where(priority_number: 4)
+      if num_id4[0]!= nil
+        @priority_store_profile4 = StoreProfile.find(num_id4[0].store_profile_id)
+        @priority_store4_user = User.find(@priority_store_profile4.user_id)
+      end
+  
+      num_id5 = PriorityStoreProfile.where(priority_number: 5)
+      if num_id5[0]!= nil
+        @priority_store_profile5 = StoreProfile.find(num_id5[0].store_profile_id)
+        @priority_store5_user = User.find(@priority_store_profile5.user_id)
+      end
+  
+      num_id6 = PriorityStoreProfile.where(priority_number: 6)
+      if num_id6[0]!= nil
+        @priority_store_profile6 = StoreProfile.find(num_id6[0].store_profile_id)
+        @priority_store6_user = User.find(@priority_store_profile6.user_id)
+      end
+
+    else
+      params[:q] = { sorts: 'updated_at desc' }
+      @q = StoreProfile.ransack(params[:q])
+      @store_profiles = @q.result.includes(:user).order(updated_at: :DESC).page(params[:page]).per(9)
+      num_id1 = PriorityStoreProfile.where(priority_number: 1)
+      if num_id1[0] != nil
+        @priority_store_profile1 = StoreProfile.find(num_id1[0].store_profile_id)
+        @priority_store1_user = User.find(@priority_store_profile1.user_id)
+      end
+  
+      num_id2 = PriorityStoreProfile.where(priority_number: 2)
+      if num_id2[0]!= nil
+        @priority_store_profile2 = StoreProfile.find(num_id2[0].store_profile_id)
+        @priority_store2_user = User.find(@priority_store_profile2.user_id)
+      end
+  
+      num_id3 = PriorityStoreProfile.where(priority_number: 3)
+      if num_id3[0]!= nil
+        @priority_store_profile3 = StoreProfile.find(num_id3[0].store_profile_id)
+        @priority_store3_user = User.find(@priority_store_profile3.user_id)
+      end
+  
+      num_id4 = PriorityStoreProfile.where(priority_number: 4)
+      if num_id4[0]!= nil
+        @priority_store_profile4 = StoreProfile.find(num_id4[0].store_profile_id)
+        @priority_store4_user = User.find(@priority_store_profile4.user_id)
+      end
+  
+      num_id5 = PriorityStoreProfile.where(priority_number: 5)
+      if num_id5[0]!= nil
+        @priority_store_profile5 = StoreProfile.find(num_id5[0].store_profile_id)
+        @priority_store5_user = User.find(@priority_store_profile5.user_id)
+      end
+  
+      num_id6 = PriorityStoreProfile.where(priority_number: 6)
+      if num_id6[0]!= nil
+        @priority_store_profile6 = StoreProfile.find(num_id6[0].store_profile_id)
+        @priority_store6_user = User.find(@priority_store_profile6.user_id)
+      end
+
     end
 
-    num_id2 = PriorityStoreProfile.where(priority_number: 2)
-    if num_id2[0]!= nil
-      @priority_store_profile2 = StoreProfile.find(num_id2[0].store_profile_id)
-      @priority_store2_user = User.find(@priority_store_profile2.user_id)
-    end
-
-    num_id3 = PriorityStoreProfile.where(priority_number: 3)
-    if num_id3[0]!= nil
-      @priority_store_profile3 = StoreProfile.find(num_id3[0].store_profile_id)
-      @priority_store3_user = User.find(@priority_store_profile3.user_id)
-    end
-
-    num_id4 = PriorityStoreProfile.where(priority_number: 4)
-    if num_id4[0]!= nil
-      @priority_store_profile4 = StoreProfile.find(num_id4[0].store_profile_id)
-      @priority_store4_user = User.find(@priority_store_profile4.user_id)
-    end
-
-    num_id5 = PriorityStoreProfile.where(priority_number: 5)
-    if num_id5[0]!= nil
-      @priority_store_profile5 = StoreProfile.find(num_id5[0].store_profile_id)
-      @priority_store5_user = User.find(@priority_store_profile5.user_id)
-    end
-
-    num_id6 = PriorityStoreProfile.where(priority_number: 6)
-    if num_id6[0]!= nil
-      @priority_store_profile6 = StoreProfile.find(num_id6[0].store_profile_id)
-      @priority_store6_user = User.find(@priority_store_profile6.user_id)
-    end
   end
   def new
     @store_profile = StoreProfile.new
