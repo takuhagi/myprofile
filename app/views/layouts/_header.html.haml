@@ -1,7 +1,7 @@
 %header.header.sticky-top
   %nav.navbar.navbar-expand-sm.navbar-dark.bg-dark
     = link_to root_path, class: "navbar-brand site-logo" do
-      = image_tag 'logo.png', class: "site-logoPNG"
+      = image_tag 'mystory_logo.png', class: "site-logoPNG"
 
     %button.navbar-toggler{ "aria-controls" => "navbarSupportedContent", 
                             "aria-expanded" => "false", "aria-label" => "Toggle navigation", 
@@ -64,8 +64,9 @@
         %ul.navbar-nav
           %li.nav-item.dropdown
             %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-              - if current_user.profile.avatar.present?
-                = image_tag(current_user.profile.avatar.url, alt: "", class: "rounded-circle minisize-icon")
+              - if current_user.profile.present?
+                - if current_user.profile.avatar.present?
+                  = image_tag(current_user.profile.avatar.url, alt: "", class: "rounded-circle minisize-icon")
               = current_user.nickname
             .dropdown-menu.dropdown-menu-right.navbar-dark.bg-dark{"aria-labelledby" => "navbarDropdown"}
               .dropdown-item.bg-dark
