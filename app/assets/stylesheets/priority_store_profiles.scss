@@ -1,3 +1,120 @@
-// Place all the styles related to the priority_store_profiles controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// 4つの管理画面
+// 全体
+.main-management4 {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.left-management4{
+  width: 15%;
+  background-color: aqua;
+}
+
+.management4-title {
+  margin: 20px;
+  font-size: 25px;
+}
+
+.management4-sidebar {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.store-side-show {
+  margin: 20px;
+  cursor: pointer;
+}
+
+.store-side-hide {
+  display: none;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.item-side-show {
+  margin: 20px;
+  cursor: pointer;
+}
+
+.item-side-hide {
+  display: none;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.service-side-show {
+  margin: 20px;
+  cursor: pointer;
+}
+
+.service-side-hide {
+  display: none;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.event-side-show {
+  margin: 20px;
+  cursor: pointer;
+}
+
+.event-side-hide {
+  display: none;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.all-side-show {
+  margin: 20px;
+  cursor: pointer;
+}
+
+.all-side-hide {
+  margin: 20px;
+  cursor: pointer; 
+}
+
+.right-management4 {
+  width: 85%;
+  background-color: aquamarine;
+  overflow: scroll;
+}
+
+.right-management4:hover{
+  background-color: azure;
+}
+
+.priority-store-profiles {
+  display: none;
+}
+
+.priority-item-profiles {
+  display: none;
+}
+
+.priority-service-profiles {
+  display: none;
+}
+
+.priority-event-profiles {
+  display: none;
+}
+
+
+// 部分テンプレート
+.management4-content {
+  width: 100%;
+  display: flex;
+  &__form{
+    text-align: left;
+    background-color: bisque;
+  }
+  &__list{
+    width: 50%;
+    background-color: brown;
+  }
+}
+.management4-select {
+  text-align: left;
+}

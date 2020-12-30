@@ -60,7 +60,7 @@
 #     # password: "please use keys"
 #   }
 
-server '3.114.61.191', user: 'ec2-user', roles: %w{app db web}
+server '18.181.137.19', user: 'ec2-user', roles: %w{app db web}
 
 #追記分 11月25日 
 set :stage, :production
