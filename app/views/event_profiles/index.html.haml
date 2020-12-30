@@ -21,6 +21,15 @@
     = link_to("サービス", service_profiles_path, { class: "btn btn-info mt-3" })
     -# = link_to("イベント", event_profiles_path, { class: "btn btn-info mt-3" })
 
+    %hr.my-4
+    = search_form_for @q do |f|
+      = f.select( :sorts, { '名前順': 'title asc', '名前逆順': 'title desc', '更新の古い順': 'updated_at asc', '更新の新しい順': 'updated_at desc' } , { selected: params[:q][:sorts] }, { onchange: 'this.form.submit()', class: 'form-control'} ) 
+      .form-group
+        = f.label :title_or_explanation, "キーワード検索", class: "mt-2"
+        = f.text_field :title_or_explanation_cont, class: "form-control"
+      .form-group.mt-4.mb-4
+        = f.submit "検索", class: "btn btn-primary"
+
 .container
   .row
 
@@ -79,22 +88,22 @@
               %p.text-muted
                 ★PR
               -# = link_to("クリックして詳細へ", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
-    - else 
-      .col-lg-4
-        .card.mb-3
-          %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
-          .card-body{style: "height: 295px; position: relative;"}
-            %h5.card-title
-              イベント名未定
-              .small.text-muted
-            .small.text-muted{style: "margin-bottom: 12px"}
-            %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
-            %p.card-text{style: "margin-bottom: 0.75rem;"}
-              %small.text-muted
-              %div{style: "position: absolute; left: 20px; bottom: 20px"}
-            %div{style: "position: absolute; right: 32px; bottom: 28px"}
-              %p.text-muted
-                ★PR
+    -# - else 
+    -#   .col-lg-4
+    -#     .card.mb-3
+    -#       %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+    -#       .card-body{style: "height: 295px; position: relative;"}
+    -#         %h5.card-title
+    -#           イベント名未定
+    -#           .small.text-muted
+    -#         .small.text-muted{style: "margin-bottom: 12px"}
+    -#         %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
+    -#         %p.card-text{style: "margin-bottom: 0.75rem;"}
+    -#           %small.text-muted
+    -#           %div{style: "position: absolute; left: 20px; bottom: 20px"}
+    -#         %div{style: "position: absolute; right: 32px; bottom: 28px"}
+    -#           %p.text-muted
+    -#             ★PR
     
     - if @priority_event_profile2 != nil
       .col-lg-4
@@ -149,22 +158,22 @@
               %p.text-muted
                 ★PR
               -# = link_to("クリックして詳細へ", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
-    - else 
-      .col-lg-4
-        .card.mb-3
-          %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
-          .card-body{style: "height: 295px; position: relative;"}
-            %h5.card-title
-              イベント名未定
-              .small.text-muted
-            .small.text-muted{style: "margin-bottom: 12px"}
-            %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
-            %p.card-text{style: "margin-bottom: 0.75rem;"}
-              %small.text-muted
-              %div{style: "position: absolute; left: 20px; bottom: 20px"}
-            %div{style: "position: absolute; right: 32px; bottom: 28px"}
-              %p.text-muted
-                ★PR
+    -# - else 
+    -#   .col-lg-4
+    -#     .card.mb-3
+    -#       %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+    -#       .card-body{style: "height: 295px; position: relative;"}
+    -#         %h5.card-title
+    -#           イベント名未定
+    -#           .small.text-muted
+    -#         .small.text-muted{style: "margin-bottom: 12px"}
+    -#         %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
+    -#         %p.card-text{style: "margin-bottom: 0.75rem;"}
+    -#           %small.text-muted
+    -#           %div{style: "position: absolute; left: 20px; bottom: 20px"}
+    -#         %div{style: "position: absolute; right: 32px; bottom: 28px"}
+    -#           %p.text-muted
+    -#             ★PR
 
     - if @priority_event_profile3 != nil
       .col-lg-4
@@ -219,22 +228,22 @@
               %p.text-muted
                 ★PR
               -# = link_to("クリックして詳細へ", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
-    - else 
-      .col-lg-4
-        .card.mb-3
-          %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
-          .card-body{style: "height: 295px; position: relative;"}
-            %h5.card-title
-              イベント名未定
-              .small.text-muted
-            .small.text-muted{style: "margin-bottom: 12px"}
-            %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
-            %p.card-text{style: "margin-bottom: 0.75rem;"}
-              %small.text-muted
-              %div{style: "position: absolute; left: 20px; bottom: 20px"}
-            %div{style: "position: absolute; right: 32px; bottom: 28px"}
-              %p.text-muted
-                ★PR
+    -# - else 
+    -#   .col-lg-4
+    -#     .card.mb-3
+    -#       %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+    -#       .card-body{style: "height: 295px; position: relative;"}
+    -#         %h5.card-title
+    -#           イベント名未定
+    -#           .small.text-muted
+    -#         .small.text-muted{style: "margin-bottom: 12px"}
+    -#         %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
+    -#         %p.card-text{style: "margin-bottom: 0.75rem;"}
+    -#           %small.text-muted
+    -#           %div{style: "position: absolute; left: 20px; bottom: 20px"}
+    -#         %div{style: "position: absolute; right: 32px; bottom: 28px"}
+    -#           %p.text-muted
+    -#             ★PR
 
     - if @priority_event_profile4 != nil
       .col-lg-4
@@ -289,22 +298,22 @@
               %p.text-muted
                 ★PR
               -# = link_to("クリックして詳細へ", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
-    - else 
-      .col-lg-4
-        .card.mb-3
-          %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
-          .card-body{style: "height: 295px; position: relative;"}
-            %h5.card-title
-              イベント名未定
-              .small.text-muted
-            .small.text-muted{style: "margin-bottom: 12px"}
-            %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
-            %p.card-text{style: "margin-bottom: 0.75rem;"}
-              %small.text-muted
-              %div{style: "position: absolute; left: 20px; bottom: 20px"}
-            %div{style: "position: absolute; right: 32px; bottom: 28px"}
-              %p.text-muted
-                ★PR
+    -# - else 
+    -#   .col-lg-4
+    -#     .card.mb-3
+    -#       %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+    -#       .card-body{style: "height: 295px; position: relative;"}
+    -#         %h5.card-title
+    -#           イベント名未定
+    -#           .small.text-muted
+    -#         .small.text-muted{style: "margin-bottom: 12px"}
+    -#         %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
+    -#         %p.card-text{style: "margin-bottom: 0.75rem;"}
+    -#           %small.text-muted
+    -#           %div{style: "position: absolute; left: 20px; bottom: 20px"}
+    -#         %div{style: "position: absolute; right: 32px; bottom: 28px"}
+    -#           %p.text-muted
+    -#             ★PR
 
     - if @priority_event_profile5 != nil
       .col-lg-4
@@ -359,22 +368,22 @@
               %p.text-muted
                 ★PR
               -# = link_to("クリックして詳細へ", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
-    - else 
-      .col-lg-4
-        .card.mb-3
-          %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
-          .card-body{style: "height: 295px; position: relative;"}
-            %h5.card-title
-              イベント名未定
-              .small.text-muted
-            .small.text-muted{style: "margin-bottom: 12px"}
-            %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
-            %p.card-text{style: "margin-bottom: 0.75rem;"}
-              %small.text-muted
-              %div{style: "position: absolute; left: 20px; bottom: 20px"}
-            %div{style: "position: absolute; right: 32px; bottom: 28px"}
-              %p.text-muted
-                ★PR
+    -# - else 
+    -#   .col-lg-4
+    -#     .card.mb-3
+    -#       %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+    -#       .card-body{style: "height: 295px; position: relative;"}
+    -#         %h5.card-title
+    -#           イベント名未定
+    -#           .small.text-muted
+    -#         .small.text-muted{style: "margin-bottom: 12px"}
+    -#         %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
+    -#         %p.card-text{style: "margin-bottom: 0.75rem;"}
+    -#           %small.text-muted
+    -#           %div{style: "position: absolute; left: 20px; bottom: 20px"}
+    -#         %div{style: "position: absolute; right: 32px; bottom: 28px"}
+    -#           %p.text-muted
+    -#             ★PR
 
     - if @priority_event_profile6 != nil
       .col-lg-4
@@ -429,22 +438,22 @@
               %p.text-muted
                 ★PR
               -# = link_to("クリックして詳細へ", event_profile_path(event_profile.id), { class: "btn btn-primary mt-3" })
-    - else 
-      .col-lg-4
-        .card.mb-3
-          %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
-          .card-body{style: "height: 295px; position: relative;"}
-            %h5.card-title
-              イベント名未定
-              .small.text-muted
-            .small.text-muted{style: "margin-bottom: 12px"}
-            %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
-            %p.card-text{style: "margin-bottom: 0.75rem;"}
-              %small.text-muted
-              %div{style: "position: absolute; left: 20px; bottom: 20px"}
-            %div{style: "position: absolute; right: 32px; bottom: 28px"}
-              %p.text-muted
-                ★PR
+    -# - else 
+    -#   .col-lg-4
+    -#     .card.mb-3
+    -#       %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+    -#       .card-body{style: "height: 295px; position: relative;"}
+    -#         %h5.card-title
+    -#           イベント名未定
+    -#           .small.text-muted
+    -#         .small.text-muted{style: "margin-bottom: 12px"}
+    -#         %p.card-text{style: "height: 72px; margin-bottom: 0.75rem;"}
+    -#         %p.card-text{style: "margin-bottom: 0.75rem;"}
+    -#           %small.text-muted
+    -#           %div{style: "position: absolute; left: 20px; bottom: 20px"}
+    -#         %div{style: "position: absolute; right: 32px; bottom: 28px"}
+    -#           %p.text-muted
+    -#             ★PR
 
               -# ここまで佐久間さん指定の6枚
 

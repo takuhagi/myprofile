@@ -1,41 +1,87 @@
 class ItemProfilesController < ApplicationController
   def index
-    @item_profiles = ItemProfile.includes(:user).order(updated_at: :DESC).page(params[:page]).per(9)
-    
-    num_id1 = PriorityItemProfile.where(priority_number: 1)
-    if num_id1[0] != nil
-      @priority_item_profile1 = ItemProfile.find(num_id1[0].item_profile_id)
-      @priority_item1_user = User.find(@priority_item_profile1.user_id)
-    end
 
-    num_id2 = PriorityItemProfile.where(priority_number: 2)
-    if num_id2[0]!= nil
-      @priority_item_profile2 = ItemProfile.find(num_id2[0].item_profile_id)
-      @priority_item2_user = User.find(@priority_item_profile2.user_id)
-    end
+    if params[:q].present?
+      @q = ItemProfile.ransack(params[:q])
+      @item_profiles = @q.result.includes(:user).order(updated_at: :DESC).page(params[:page]).per(9)
+      
+      num_id1 = PriorityItemProfile.where(priority_number: 1)
+      if num_id1[0] != nil
+        @priority_item_profile1 = ItemProfile.find(num_id1[0].item_profile_id)
+        @priority_item1_user = User.find(@priority_item_profile1.user_id)
+      end
+  
+      num_id2 = PriorityItemProfile.where(priority_number: 2)
+      if num_id2[0]!= nil
+        @priority_item_profile2 = ItemProfile.find(num_id2[0].item_profile_id)
+        @priority_item2_user = User.find(@priority_item_profile2.user_id)
+      end
+  
+      num_id3 = PriorityItemProfile.where(priority_number: 3)
+      if num_id3[0]!= nil
+        @priority_item_profile3 = ItemProfile.find(num_id3[0].item_profile_id)
+        @priority_item3_user = User.find(@priority_item_profile3.user_id)
+      end
+  
+      num_id4 = PriorityItemProfile.where(priority_number: 4)
+      if num_id4[0]!= nil
+        @priority_item_profile4 = ItemProfile.find(num_id4[0].item_profile_id)
+        @priority_item4_user = User.find(@priority_item_profile4.user_id)
+      end
+  
+      num_id5 = PriorityItemProfile.where(priority_number: 5)
+      if num_id5[0]!= nil
+        @priority_item_profile5 = ItemProfile.find(num_id5[0].item_profile_id)
+        @priority_item5_user = User.find(@priority_item_profile5.user_id)
+      end
+  
+      num_id6 = PriorityItemProfile.where(priority_number: 6)
+      if num_id6[0]!= nil
+        @priority_item_profile6 = ItemProfile.find(num_id6[0].item_profile_id)
+        @priority_item6_user = User.find(@priority_item_profile6.user_id)
+      end
 
-    num_id3 = PriorityItemProfile.where(priority_number: 3)
-    if num_id3[0]!= nil
-      @priority_item_profile3 = ItemProfile.find(num_id3[0].item_profile_id)
-      @priority_item3_user = User.find(@priority_item_profile3.user_id)
-    end
+    else
+      params[:q] = { sorts: 'updated_at desc' }
+      @q = ItemProfile.ransack(params[:q])
+      @item_profiles = @q.result.includes(:user).order(updated_at: :DESC).page(params[:page]).per(9)
+      
+      num_id1 = PriorityItemProfile.where(priority_number: 1)
+      if num_id1[0] != nil
+        @priority_item_profile1 = ItemProfile.find(num_id1[0].item_profile_id)
+        @priority_item1_user = User.find(@priority_item_profile1.user_id)
+      end
+  
+      num_id2 = PriorityItemProfile.where(priority_number: 2)
+      if num_id2[0]!= nil
+        @priority_item_profile2 = ItemProfile.find(num_id2[0].item_profile_id)
+        @priority_item2_user = User.find(@priority_item_profile2.user_id)
+      end
+  
+      num_id3 = PriorityItemProfile.where(priority_number: 3)
+      if num_id3[0]!= nil
+        @priority_item_profile3 = ItemProfile.find(num_id3[0].item_profile_id)
+        @priority_item3_user = User.find(@priority_item_profile3.user_id)
+      end
+  
+      num_id4 = PriorityItemProfile.where(priority_number: 4)
+      if num_id4[0]!= nil
+        @priority_item_profile4 = ItemProfile.find(num_id4[0].item_profile_id)
+        @priority_item4_user = User.find(@priority_item_profile4.user_id)
+      end
+  
+      num_id5 = PriorityItemProfile.where(priority_number: 5)
+      if num_id5[0]!= nil
+        @priority_item_profile5 = ItemProfile.find(num_id5[0].item_profile_id)
+        @priority_item5_user = User.find(@priority_item_profile5.user_id)
+      end
+  
+      num_id6 = PriorityItemProfile.where(priority_number: 6)
+      if num_id6[0]!= nil
+        @priority_item_profile6 = ItemProfile.find(num_id6[0].item_profile_id)
+        @priority_item6_user = User.find(@priority_item_profile6.user_id)
+      end
 
-    num_id4 = PriorityItemProfile.where(priority_number: 4)
-    if num_id4[0]!= nil
-      @priority_item_profile4 = ItemProfile.find(num_id4[0].item_profile_id)
-      @priority_item4_user = User.find(@priority_item_profile4.user_id)
-    end
-
-    num_id5 = PriorityItemProfile.where(priority_number: 5)
-    if num_id5[0]!= nil
-      @priority_item_profile5 = ItemProfile.find(num_id5[0].item_profile_id)
-      @priority_item5_user = User.find(@priority_item_profile5.user_id)
-    end
-
-    num_id6 = PriorityItemProfile.where(priority_number: 6)
-    if num_id6[0]!= nil
-      @priority_item_profile6 = ItemProfile.find(num_id6[0].item_profile_id)
-      @priority_item6_user = User.find(@priority_item_profile6.user_id)
     end
   end
   def new
