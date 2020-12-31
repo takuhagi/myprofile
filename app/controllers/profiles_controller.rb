@@ -91,9 +91,11 @@ class ProfilesController < ApplicationController
   def select
     @profile = Profile.all.includes([:user])
   end
+
   def selectm
     @profile = Profile.all.includes([:user])
   end
+  
   def selectb
     @profile = Profile.all.includes([:user])
   end
@@ -103,20 +105,25 @@ class ProfilesController < ApplicationController
     @profiles = Profile.where(id: params[:profile][:top_ids]).includes([:user])
     if @profile.update(top0_params)
       @profiles.update(top_params)
+      redirect_to profile_selectm_path(1)
     end
   end
+
   def middle
     @profile = Profile.all.includes([:user])
     @prof = Profile.where(id: params[:profile][:middle_ids]).includes([:user])
     if @profile.update(middle0_params)
       @prof.update(middle_params)
+      redirect_to profile_selectb_path(1)
     end
   end
+
   def bottom
     @profile = Profile.all.includes([:user])
     @pr = Profile.where(id: params[:profile][:bottom_ids]).includes([:user])
     if @profile.update(bottom0_params)
       @pr.update(bottom_params)
+      redirect_to root_path
     end
   end
 
