@@ -1,46 +1,42 @@
-.jumbotron.jumbotron-fluid.p-4
-  .container
-    -# トップへ戻るボタン
-    -# .col.text-right
-    -#   = link_to root_path  do
-    -#     TOP
-    -# .alert.alert-secondary.mt-4
-    %h1.display-4.mb-4
-      人物一覧
-      -# %span.h5
-      -#   さん
-    %p
-      おすすめの人物紹介
-    %p
-      This is an introduction of recommended peoples.
-
-    -# = link_to("プロフィール", users_path(id: current_user.id), { class: "btn btn-info mt-3" })
-    = link_to("店舗", store_profiles_path, { class: "btn btn-info mt-3" })
-    = link_to("商品", item_profiles_path, { class: "btn btn-info mt-3" })
-    = link_to("サービス", service_profiles_path, { class: "btn btn-info mt-3" })
-    = link_to("イベント", event_profiles_path, { class: "btn btn-info mt-3" })
-
-.container
-  .row
-    - @profiles.each do |profile|
-      .col-lg-4
-        .card.mb-3
-          - if profile.image.present?
-            = image_tag(profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
-          - else
-            %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
-          .card-body{style: "height: 276px; position: relative;"}
-            %h5.card-title
-              = profile.user.nickname
-            .small.text-muted
-              = "投稿者：#{profile.user.nickname}"
-            .small.text-muted{style: "margin-bottom: 12px"}
-              = "最終更新：#{time_ago_in_words(profile.updated_at)}前"
-            %p.card-text{style: "height: 72px"}
-              = profile.catch_copy.truncate(45)
-            %div{style: "position: absolute; left: 20px; bottom: 20px"}
-              = link_to("クリックして詳細へ", profile_path(profile.id), { class: "btn btn-primary mt-3" })
-  %p
-    = page_entries_info @profiles
-  .paginate.mb-4
-    = paginate @profiles
+.item-list
+  .jumbotron.jumbotron-fluid.p-4
+    .container
+      %h1.display-4.mb-3
+        人物一覧
+      -# %p
+      -#   おすすめの人物紹介
+      %p
+        This is an introduction of recommended peoples.
+  
+      -# = link_to("プロフィール", users_path(id: current_user.id), { class: "btn btn-info mt-3" })
+      -# = link_to("店舗", store_profiles_path, { class: "btn btn-info mt-3" })
+      -# = link_to("商品", item_profiles_path, { class: "btn btn-info mt-3" })
+      -# = link_to("サービス", service_profiles_path, { class: "btn btn-info mt-3" })
+      -# = link_to("イベント", event_profiles_path, { class: "btn btn-info mt-3" })
+  
+  %section.container
+    .row
+      - @profiles.each do |profile|
+        .col-lg-4.mb-3
+          = link_to profile_path(profile.id) do
+            .card.commonButton
+              .card-image
+                - if profile.image.present?
+                  = image_tag(profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+                - else
+                  %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+              
+              .card-body
+                %h5.card-title
+                  = profile.user.nickname
+                .small.text-muted
+                  = "投稿者：#{profile.user.nickname}"
+                .small.text-muted{style: "margin-bottom: 12px"}
+                  = "最終更新：#{time_ago_in_words(profile.updated_at)}前"
+                %p.card-text{style: "height: 64px"}
+                  = profile.catch_copy.truncate(45)
+    %section
+      %p
+        = page_entries_info @profiles
+      .paginate.mb-4
+        = paginate @profiles

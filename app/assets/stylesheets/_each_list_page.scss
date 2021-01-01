@@ -1,0 +1,30 @@
+
+// 人物、店舗・・・の一覧ページの共通styling
+
+.item-list {
+  color: black;
+  .jumbotron{
+    color: gray;
+    letter-spacing: 0.1em;
+    h1{
+      font-weight: 500;
+    }
+    p {
+      font-size: 14px;
+      letter-spacing: 0.2em;
+      font-family: 'Noto Serif JP', serif;
+    }
+  }
+  .card-image {
+    height: 240px;
+  }
+  .card-img-top {
+    height: 240px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .card-body {
+    color: black;
+  }
+}
