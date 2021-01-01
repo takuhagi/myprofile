@@ -1,42 +1,89 @@
 class EventProfilesController < ApplicationController
   def index
-    @event_profiles = EventProfile.includes(:user).order(updated_at: :DESC).page(params[:page]).per(9)
-    
-    num_id1 = PriorityEventProfile.where(priority_number: 1)
-    if num_id1[0] != nil
-      @priority_event_profile1 = EventProfile.find(num_id1[0].event_profile_id)
-      @priority_event1_user = User.find(@priority_event_profile1.user_id)
+
+    if params[:q].present?
+      @q = EventProfile.ransack(params[:q])
+      @event_profiles = @q.result.includes(:user).order(updated_at: :DESC).page(params[:page]).per(9)
+      
+      num_id1 = PriorityEventProfile.where(priority_number: 1)
+      if num_id1[0] != nil
+        @priority_event_profile1 = EventProfile.find(num_id1[0].event_profile_id)
+        @priority_event1_user = User.find(@priority_event_profile1.user_id)
+      end
+  
+      num_id2 = PriorityEventProfile.where(priority_number: 2)
+      if num_id2[0]!= nil
+        @priority_event_profile2 = EventProfile.find(num_id2[0].event_profile_id)
+        @priority_event2_user = User.find(@priority_event_profile2.user_id)
+      end
+  
+      num_id3 = PriorityEventProfile.where(priority_number: 3)
+      if num_id3[0]!= nil
+        @priority_event_profile3 = EventProfile.find(num_id3[0].event_profile_id)
+        @priority_event3_user = User.find(@priority_event_profile3.user_id)
+      end
+  
+      num_id4 = PriorityEventProfile.where(priority_number: 4)
+      if num_id4[0]!= nil
+        @priority_event_profile4 = EventProfile.find(num_id4[0].event_profile_id)
+        @priority_event4_user = User.find(@priority_event_profile4.user_id)
+      end
+  
+      num_id5 = PriorityEventProfile.where(priority_number: 5)
+      if num_id5[0]!= nil
+        @priority_event_profile5 = EventProfile.find(num_id5[0].event_profile_id)
+        @priority_event5_user = User.find(@priority_event_profile5.user_id)
+      end
+  
+      num_id6 = PriorityEventProfile.where(priority_number: 6)
+      if num_id6[0]!= nil
+        @priority_event_profile6 = EventProfile.find(num_id6[0].event_profile_id)
+        @priority_event6_user = User.find(@priority_event_profile6.user_id)
+      end
+
+    else
+      params[:q] = { sorts: 'updated_at desc' }
+      @q = EventProfile.ransack(params[:q])
+      @event_profiles = EventProfile.includes(:user).order(updated_at: :DESC).page(params[:page]).per(9)
+      
+      num_id1 = PriorityEventProfile.where(priority_number: 1)
+      if num_id1[0] != nil
+        @priority_event_profile1 = EventProfile.find(num_id1[0].event_profile_id)
+        @priority_event1_user = User.find(@priority_event_profile1.user_id)
+      end
+  
+      num_id2 = PriorityEventProfile.where(priority_number: 2)
+      if num_id2[0]!= nil
+        @priority_event_profile2 = EventProfile.find(num_id2[0].event_profile_id)
+        @priority_event2_user = User.find(@priority_event_profile2.user_id)
+      end
+  
+      num_id3 = PriorityEventProfile.where(priority_number: 3)
+      if num_id3[0]!= nil
+        @priority_event_profile3 = EventProfile.find(num_id3[0].event_profile_id)
+        @priority_event3_user = User.find(@priority_event_profile3.user_id)
+      end
+  
+      num_id4 = PriorityEventProfile.where(priority_number: 4)
+      if num_id4[0]!= nil
+        @priority_event_profile4 = EventProfile.find(num_id4[0].event_profile_id)
+        @priority_event4_user = User.find(@priority_event_profile4.user_id)
+      end
+  
+      num_id5 = PriorityEventProfile.where(priority_number: 5)
+      if num_id5[0]!= nil
+        @priority_event_profile5 = EventProfile.find(num_id5[0].event_profile_id)
+        @priority_event5_user = User.find(@priority_event_profile5.user_id)
+      end
+  
+      num_id6 = PriorityEventProfile.where(priority_number: 6)
+      if num_id6[0]!= nil
+        @priority_event_profile6 = EventProfile.find(num_id6[0].event_profile_id)
+        @priority_event6_user = User.find(@priority_event_profile6.user_id)
+      end
+
     end
 
-    num_id2 = PriorityEventProfile.where(priority_number: 2)
-    if num_id2[0]!= nil
-      @priority_event_profile2 = EventProfile.find(num_id2[0].event_profile_id)
-      @priority_event2_user = User.find(@priority_event_profile2.user_id)
-    end
-
-    num_id3 = PriorityEventProfile.where(priority_number: 3)
-    if num_id3[0]!= nil
-      @priority_event_profile3 = EventProfile.find(num_id3[0].event_profile_id)
-      @priority_event3_user = User.find(@priority_event_profile3.user_id)
-    end
-
-    num_id4 = PriorityEventProfile.where(priority_number: 4)
-    if num_id4[0]!= nil
-      @priority_event_profile4 = EventProfile.find(num_id4[0].event_profile_id)
-      @priority_event4_user = User.find(@priority_event_profile4.user_id)
-    end
-
-    num_id5 = PriorityEventProfile.where(priority_number: 5)
-    if num_id5[0]!= nil
-      @priority_event_profile5 = EventProfile.find(num_id5[0].event_profile_id)
-      @priority_event5_user = User.find(@priority_event_profile5.user_id)
-    end
-
-    num_id6 = PriorityEventProfile.where(priority_number: 6)
-    if num_id6[0]!= nil
-      @priority_event_profile6 = EventProfile.find(num_id6[0].event_profile_id)
-      @priority_event6_user = User.find(@priority_event_profile6.user_id)
-    end
   end
   def new
     @event_profile = EventProfile.new
