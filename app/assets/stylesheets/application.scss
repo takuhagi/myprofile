@@ -16,42 +16,25 @@
  */
 @import "reset";
 @import "toppage";
-@import "users_signin";
-@import "users_signup";
-@import "users_show";
-@import "users_reset_password";
-@import "bootstrap-tagsinput";
-@import "users_search";
-@import "font-awesome-sprockets";
-@import "font-awesome";
-@import "tempusdominus-bootstrap-4.css";
-@import "jquery.fancybox-1.3.4";
-@import "flash";
-@import "intro";
-@import "priority_store_profiles";
 
+// users
+@import '_users/_users_reset_password';
+@import '_users/_users_search';
+@import '_users/_users_show';
+@import '_users/_users_signin';
+@import '_users/_users_signup';
+@import '_users/_users';
 
-select {
-  border: 1px solid #ced4da;
-  height: calc(1.5em + .75rem + 2px);
-  border-radius: .25rem;
-}
+@import 'bootstrap-tagsinput';
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+@import 'tempusdominus-bootstrap-4.css';
+@import 'jquery.fancybox-1.3.4';
+@import 'flash';
+@import 'intro';
 
-body {
-  animation: fade 0.5s;
-}
+// priority
+@import '_priority/_priority_store_profiles';
 
-@keyframes fade {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.minisize-icon {
-  height: 40px;
-  width: 40px;
-  object-fit: cover;
-}
+// Common Styling
+@import 'common';
