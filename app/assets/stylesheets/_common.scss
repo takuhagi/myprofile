@@ -51,3 +51,27 @@ a {
     text-decoration: none;
   }
 }
+
+
+
+// 各一覧ページの検索・ソート部分
+.search-list-page {
+  .sorts {
+    display: flex;
+    justify-content: space-between;
+    .sort {
+      width: 15%;
+      min-width: 160px;
+    }
+    .keyword {
+      width: 100%;
+      margin: 0 8px;
+    }
+    .form-control {
+      color: gray;
+    }
+  }
+  input::placeholder {
+    color: gray;
+  }
+}

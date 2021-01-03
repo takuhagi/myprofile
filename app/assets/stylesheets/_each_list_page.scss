@@ -1,7 +1,7 @@
 
 // 人物、店舗・・・の一覧ページの共通styling
 
-.item-list {
+.list-page {
   color: black;
   .jumbotron{
     color: gray;
@@ -26,5 +26,8 @@
 
   .card-body {
     color: black;
+  }
+  .card-text {
+    height: 64px;
   }
 }

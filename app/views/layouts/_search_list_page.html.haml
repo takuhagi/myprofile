@@ -1,0 +1,13 @@
+
+// 各一覧ページの検索・ソートセクションの部分テンプレート。
+// （イベントのみカラム名が違うためrenderしてない）
+.search-list-page
+  %hr.my-4
+    = search_form_for @q do |f|
+      .sorts
+        = f.select( :sorts, { '名前順': 'name asc', '名前逆順': 'name desc', '更新の古い順': 'updated_at asc', '更新の新しい順': 'updated_at desc' }, { selected: params[:q][:sorts] }, { onchange: 'this.form.submit()', class: 'form-control sort'} ) 
+        .form-group.keyword
+          -# = f.label :name_or_explanation, "キーワード検索", class: "mt-2"
+          = f.text_field :name_or_explanation_cont, class: "form-control ", placeholder: "キーワード検索"
+        .form-group
+          = f.submit "検索", class: "btn btn-primary"
