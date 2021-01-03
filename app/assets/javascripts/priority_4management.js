@@ -52,6 +52,8 @@ $(function(){
 
 $(function(){
   $('.all-side-show').click(() => {
+    $('.all-side-hide').show();
+    $('.all-side-show').hide();
     $('.priority-store-profiles').show();
     $('.priority-item-profiles').show();
     $('.priority-service-profiles').show();
@@ -70,6 +72,8 @@ $(function(){
 
 $(function(){
   $('.all-side-hide').click(() => {
+    $('.all-side-show').show();
+    $('.all-side-hide').hide();
     $('.priority-store-profiles').hide();
     $('.priority-item-profiles').hide();
     $('.priority-service-profiles').hide();
