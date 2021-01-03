@@ -1,7 +1,7 @@
 class PriorityStoreProfilesController < ApplicationController
   def index
     @counter = 0
-    @priority_number_array =[[1,1],[2,2],[3,3],[4,4],[5,5],[6,6]]
+    @priority_number_array =[[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8]]
     @store_profiles = StoreProfile.all
     @service_profiles = ServiceProfile.all
     @item_profiles = ItemProfile.all

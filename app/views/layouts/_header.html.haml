@@ -48,14 +48,16 @@
           = link_to search_users_path, class: "nav-link " do
             検索
         %li.nav-item
-          = link_to intro_users_path, class: "nav-link " do
+          = link_to intro_home_index_path, class: "nav-link " do
             使い方
 
         %li.nav-item
-          = link_to intro_users_path, class: "nav-link " do
+          = link_to intro_home_index_path, class: "nav-link " do
             コース
             
-        - unless user_signed_in?
+      - unless user_signed_in?
+        %ul.navbar-nav
+
           %li.nav-item
             = link_to new_user_registration_path, class: "nav-link " do
               アカウント登録

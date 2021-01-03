@@ -5,6 +5,7 @@ class ProfilesController < ApplicationController
   require "payjp"
   before_action :pay, only: [:index]
   before_action :correct_user, only: [:edit]
+  before_action :logged_in_user, only: [:pass]
 
   def index
     @profiles = Profile.all.includes([:user])
@@ -105,7 +106,7 @@ class ProfilesController < ApplicationController
     @profiles = Profile.where(id: params[:profile][:top_ids]).includes([:user])
     if @profile.update(top0_params)
       @profiles.update(top_params)
-      redirect_to profile_selectm_path(1)
+      redirect_to selectm_profiles_path
     end
   end
 
@@ -114,7 +115,7 @@ class ProfilesController < ApplicationController
     @prof = Profile.where(id: params[:profile][:middle_ids]).includes([:user])
     if @profile.update(middle0_params)
       @prof.update(middle_params)
-      redirect_to profile_selectb_path(1)
+      redirect_to selectb_profiles_path
     end
   end
 
@@ -239,6 +240,13 @@ class ProfilesController < ApplicationController
   def correct_user
     @prof = Profile.find(params[:id])
     if @prof.user != current_user
+      redirect_to root_path
+    end
+  end
+
+  def logged_in_user
+    unless user_signed_in?
+      flash[:notice] = "ログインまたはアカウント登録をしてください"
       redirect_to root_path
     end
   end

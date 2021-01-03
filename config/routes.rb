@@ -7,17 +7,20 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  resources :users do
+  resources :home do
     collection do
-      # searchアクションへのパス
-
-      # 検索フォーム以外からのアクセスはGETになるため、GETでもPOSTでも表示できるようにルーティングを設定
-      match 'search' => 'users#search', via: [:get, :post], as: :search
-
-      get 'vr'
       get 'rule'
       get 'privacy'
       get 'intro'
+    end
+  end
+  resources :users do
+    collection do
+      # searchアクションへのパス
+      # 検索フォーム以外からのアクセスはGETになるため、GETでもPOSTでも表示できるようにルーティングを設定
+      match 'search' => 'users#search', via: [:get, :post], as: :search
+      get 'vr'
+      
     end
     resources :comments, only: [:create, :show, :update] do
       post 'reply'
@@ -29,12 +32,15 @@ Rails.application.routes.draw do
   resources :profiles do
     patch 'color'
     get 'pass'
-    get 'select'
-    get 'selectm'
-    get 'selectb'
-    patch 'top'
-    patch 'middle'
-    patch 'bottom'
+    collection do
+      get 'select'
+      get 'selectm'
+      get 'selectb'
+      patch 'top'
+      patch 'middle'
+      patch 'bottom'
+    end
+    
   end
 
   resources :cards, only: [:new, :index, :create, :destroy] do
