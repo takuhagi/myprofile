@@ -1,11 +1,9 @@
 = render 'layouts/header'
-.item-list
+.list-page
   .jumbotron.jumbotron-fluid.p-4
     .container
       %h1.display-4.mb-3
         人物一覧
-      -# %p
-      -#   おすすめの人物紹介
       %p
         This is an introduction of recommended peoples.
   
@@ -14,11 +12,14 @@
       -# = link_to("商品", item_profiles_path, { class: "btn btn-info mt-3" })
       -# = link_to("サービス", service_profiles_path, { class: "btn btn-info mt-3" })
       -# = link_to("イベント", event_profiles_path, { class: "btn btn-info mt-3" })
-  
+
+      -# = render 'layouts/search_list_page'
+
+
   %section.container
     .row
       - @profiles.each do |profile|
-        .col-lg-4.mb-3
+        .col-lg-3.col-md-4.col-sm-6.col-xs-2.mb-4
           = link_to profile_path(profile.id) do
             .card.commonButton
               .card-image
@@ -34,8 +35,8 @@
                   = "投稿者：#{profile.user.nickname}"
                 .small.text-muted{style: "margin-bottom: 12px"}
                   = "最終更新：#{time_ago_in_words(profile.updated_at)}前"
-                %p.card-text{style: "height: 64px"}
-                  = profile.catch_copy.truncate(45)
+                %p.card-text
+                  = profile.catch_copy.truncate(30)
     %section
       %p
         = page_entries_info @profiles

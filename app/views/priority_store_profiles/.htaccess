@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "My Profile 管理画面"
+AuthUserFile "/app/views/priority_store_profiles/.htpasswd"
+require valid-user
