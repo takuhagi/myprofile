@@ -1,3 +1,4 @@
+= render 'layouts/header'
 .SignupPage
   .Title-container
     .Title
@@ -15,10 +16,10 @@
             = f.password_field :password_confirmation, autocomplete: "off", placeholder: "password(確認用)"
             .Agreement
               .Description
-                = link_to rule_users_path, style:"text-decoration:none" do
+                = link_to rule_home_index_path, style:"text-decoration:none" do
                   利用規約
                 と
-                = link_to privacy_users_path, style:"text-decoration:none" do
+                = link_to privacy_home_index_path, style:"text-decoration:none" do
                   プライバシーポリシー
                 に同意する
               = f.check_box :agreement, :as => :boolean, checked:false, class:"CheckBox"

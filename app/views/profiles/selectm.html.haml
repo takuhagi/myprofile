@@ -1,11 +1,12 @@
+= render 'layouts/header'
 .jumbotron.jumbotron-fluid.p-4
   .container
     .d-flex
       .text-right
-        = link_to profile_select_path(1) do
+        = link_to select_profiles_path do
           上段
       .text-right.ml-4
-        = link_to profile_selectb_path(1) do
+        = link_to selectb_profiles_path do
           下段
       .col.text-right
         = link_to '戻る', :back
@@ -13,7 +14,7 @@
     .h3.text-center
       中段ユーザー選択
 .select_users.mt-5.container-fuild
-  = form_with model: @profile, url: profile_middle_path, method: "patch", class: "select_user",local: true do |f|
+  = form_with model: @profile, url: middle_profiles_path, method: "patch", class: "select_user",local: true do |f|
     .boxes.d-flex.middle_candidate.row
       - @profile.each do |profile|
         .profile_name.m-3
