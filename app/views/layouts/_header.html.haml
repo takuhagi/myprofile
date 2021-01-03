@@ -10,6 +10,7 @@
       %span.navbar-toggler-icon
 
     #navbarSupportedContent.collapse.navbar-collapse
+
       %ul.navbar-nav.mr-auto
         %li.nav-item
           = link_to profiles_path, class: "nav-link " do
@@ -30,14 +31,22 @@
           = link_to event_profiles_path, class: "nav-link " do
             イベント
 
-        %li.nav-item
-          = link_to search_users_path, class: "nav-link " do
-            検索
+        
 
         -# 管理画面を一時的に表示
         %li.nav-item
           = link_to priority_store_profiles_path, class: "nav-link " do
             管理画面
+        
+        %li.nav-item
+          = link_to profile_select_path(1), class: "nav-link " do
+            Top管理画面
+
+
+      %ul.navbar-nav
+        %li.nav-item
+          = link_to search_users_path, class: "nav-link " do
+            検索
         %li.nav-item
           = link_to intro_users_path, class: "nav-link " do
             使い方
@@ -45,23 +54,16 @@
         %li.nav-item
           = link_to intro_users_path, class: "nav-link " do
             コース
-        %li.nav-item
-          = link_to profile_select_path(1), class: "nav-link " do
-            Top管理画面
-
-
-      - unless user_signed_in?
-        %ul.navbar-nav
+            
+        - unless user_signed_in?
           %li.nav-item
             = link_to new_user_registration_path, class: "nav-link " do
               アカウント登録
-  
           %li.nav-item
             = link_to new_user_session_path, class: "nav-link " do
               ログイン
   
-      - else
-        %ul.navbar-nav
+        - else
           %li.nav-item.dropdown
             %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
               - if current_user.profile.present? && current_user.profile.avatar.present?
