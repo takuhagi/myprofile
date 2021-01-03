@@ -2,15 +2,18 @@
   .all {
     // max-width: 1200px;
     // margin: 0 auto;
-    padding: 8px 0 24px;
+    padding: 0 0 24px;
   }
   @media (min-width: 980px){
     // .header {
     //   max-width: 1200px;
     //   margin: 0 auto;
     // }
-    .title {
-      font-size: 50px;
+    a.head_link{
+      color: rgba(255,255,255,.5);
+    }
+    a.head_link:hover{
+      color:#f8f9fabf;
     }
     .notice {
       margin: auto 10px;
@@ -157,10 +160,13 @@
       font-size: 40px;
     }
     
-    .top_page {
+    .header_service_list {
       display: none;
     }
-    .log_out {
+    .etc {
+      display: none;
+    }
+    .color {
       display: none;
     }
     .nav {
@@ -171,10 +177,16 @@
       overflow-x: scroll;
       white-space: nowrap;
     }
+    a.head_link{
+      color: rgba(255,255,255,.5);
+    }
     .notice {
       display: none;
     }
     .notice_count {
+      display: none;
+    }
+    .dropdown {
       display: none;
     }
     .mobile_notice {
@@ -214,12 +226,7 @@
       right:30px !important;
     }
 
-    .new_profile_page {
-      display: none;
-    }
-    .edit_profile_page {
-      display: none;
-    }
+    
     .search {
       display: none;
     }
@@ -234,13 +241,13 @@
       position: relative;
       width: 25px;
       height: 25px;
-      margin: 20px 20px 0 0;
+      
     }
     .nav_toggle i {
       display: block;
       width: 100%;
       height: 2px;
-      background-color: #333;
+      background-color: rgba(255,255,255,.5);
       position: absolute;
       transition: transform .5s, opacity .5s;
     }
@@ -268,7 +275,7 @@
 
     nav {
       position: absolute;
-      top: 70px;
+      top: 63px;
       right: 0;
       opacity: 0;
       visibility: hidden;
