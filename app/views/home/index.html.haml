@@ -42,11 +42,11 @@
 
 
 .TopPage
-  .TopPage--container.row
-    .TopPage--container__left.col-lg-9.col-md-12
+  .TopPage__container.row
+    .TopPage__container__left.col-lg-9.col-md-12
       - @profilet.first(1).each_with_index do |profile, index|
         = link_to '#' do
-          .card.toppage-hover
+          .card.commonButton
             = image_tag(profile.image.url, alt: "", class: "card-img-top no_image")
             .card-body{style: "position: relative;"}
               %h5.card-title
@@ -78,7 +78,7 @@
         - @profilem.first(6).each_with_index do |profile, index|
           .col-lg-4.col-md-4.col-sm-6.col-xs-4
             = link_to '#' do
-              .card.mb-3.toppage-hover
+              .card.mb-3.commonButton
                 = image_tag(profile.image.url, alt: "", class: "card-img-top no_image")
                 .card-body{style: "height: 180px; position: relative;"}
                   %h5.card-title
@@ -92,7 +92,7 @@
         - @profileb.first(4).each_with_index do |profile, index|
           .col-lg-3.col-md-3.col-sm-4.col-xs-6
             = link_to '#' do
-              .card.mb-3.toppage-hover
+              .card.mb-3.commonButton
                 = image_tag(profile.image.url, alt: "", class: "card-img-top no_image")
                 .card-body{style: "height: 206px; position: relative;"}
                   %h5.card-title
@@ -107,7 +107,7 @@
           - if profile.bottom == false
             .col-lg-3.col-md-3.col-sm-4.col-xs-6
               = link_to '#' do
-                .card.mb-3.toppage-hover
+                .card.mb-3.commonButton
                   = image_tag(profile.image.url, alt: "", class: "card-img-top no_image")
                   .card-body{style: "height: 206px; position: relative;"}
                     %h5.card-title
@@ -117,18 +117,18 @@
                     .small.text-muted{style: "margin-bottom: 12px"}
                       = "最終更新：#{time_ago_in_words(profile.updated_at)}前"
 
-    .TopPage--container__right.col-lg-3.col-md-12
+    .TopPage__container__right.col-lg-3.col-md-12
       .promotions
-        .promotion.card.toppage-hover
+        .promotion.card.commonButton
           = image_tag 'pr1.jpg', class: 'pr-image'
-        .promotion.card.toppage-hover
+        .promotion.card.commonButton
           = image_tag 'pr2.jpg', class: 'pr-image'
       .rankings
         .h4 アクセスランキング
         -# 5つ表示
         - @rank_profiles.each do |profile|
           = link_to users_path(id: profile.user.id) do
-            .ranking.card.toppage-hover
+            .ranking.card.commonButton
               - if profile.avatar.present?
                 = image_tag(profile.avatar.url, alt: "", class: "rounded-circle minisize-icon")
               - else
@@ -139,7 +139,7 @@
         .h4 新着 
         - @new_profiles.each do |new_profile|
           = link_to users_path(id: new_profile.user.id) do
-            .new-arrival.card.toppage-hover
+            .new-arrival.card.commonButton
               - if new_profile.avatar.present?
                 = image_tag(new_profile.avatar.url, alt: "", class: "rounded-circle minisize-icon")
               - else
