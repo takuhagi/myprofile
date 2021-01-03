@@ -1,8 +1,20 @@
 .users-index
   .all{style: "#{@profile.color}"}
-    .d-flex.bd-highlight.bg-light.header
-      .p-2.pl-5.flex-grow-1.bd-highlight.title 
-        %img{:height => 60,:width => 280 ,:src => "mystory.png"}
+    .d-flex.bg-dark.header.navbar.navbar-expand-sm
+      = link_to root_path, class: "navbar-brand site-logo" do
+        = image_tag 'mystory.png', :size =>'200x43', class: "site-logoPNG"
+      
+      .p-3.bd-highlight.mr-auto.header_service_list
+        = link_to profiles_path, class: "head_link mr-2" do
+          人物
+        = link_to store_profiles_path, class: "head_link mr-2" do
+          店舗
+        = link_to item_profiles_path, class: "head_link mr-2" do
+          商品
+        = link_to service_profiles_path, class: "head_link mr-2" do
+          サービス
+        = link_to event_profiles_path, class: "head_link mr-2" do
+          イベント
       .notice
         - if user_signed_in?
           - if current_user.id == @user.id && @check.present? 
@@ -10,26 +22,20 @@
               %img.message{:height => "auto", :src => "info.png"}
               .notice_count
                 = @check.length
-      .p-3.bd-highlight.m-auto.top_page
-        = link_to "TOP",root_path
-      -# ログイン中のユーザーのプロフィールがない場合は登録画面へ、プロフィールのuser_idがログイン中のユーザーのidと一致する場合は編集画面へ
-      - if user_signed_in?
-        - if current_user.profile.nil?
-          .p-3.bd-highlight.m-auto.new_profile_page
-            = link_to "プロフィール登録", new_profile_path
-        - elsif current_user.profile.user_id == current_user.id
-          .p-3.bd-highlight.m-auto.edit_profile_page
-            = link_to "プロフィール編集", edit_profile_path(current_user.profile.id)
+      
+      
       -# 検索画面へのリンク
-      .p-3.bd-highlight.m-auto.search
-        = link_to "ユーザー検索",search_users_path
-      - if user_signed_in?
-        .p-3.bd-highlight.m-auto.log_out
-          = link_to "ログアウト",destroy_user_session_path, method: :delete
+      .p-3.etc
+        = link_to search_users_path, class: "head_link pr-3" do
+          検索
+        = link_to intro_home_index_path, class: "head_link pr-3" do
+          使い方
+        = link_to intro_home_index_path, class: "head_link " do
+          コース
       - if user_signed_in?
         - if current_user.id == @user.id 
-          .p-3.bd-highlight.m-auto.log_out
-            %a{"data-target" => "#exampleModalLong", "data-toggle" => "modal", :type => "button"} color
+          .pr-3.color
+            %a{"data-target" => "#exampleModalLong", "data-toggle" => "modal", :type => "button", :class => "head_link"} color
           #exampleModalLong.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLongTitle", role: "dialog", tabindex: "-1"}
             .modal-dialog{role: "document"}
               .modal-content
@@ -55,25 +61,75 @@
                       
                       = f.submit class: "btn btn-primary"
       - url = request.url
-      .p-3.bd-highlight.m-auto.qr_code
-        = link_to "#qr_img", class:"modaal" do
+      .pr-3.qr_code
+        = link_to "#qr_img", class:"modaal qr_code head_link" do
           QRコード
         .modal-hidden(id = "qr_img")
           = image_tag qrcode_tag "#{url}"
-      - if user_signed_in?
-        - if @card.blank?
-          .p-3.bd-highlight.m-auto.payjp
-            = link_to cards_path do
-              会員登録
-        - else
-          .p-3.bd-highlight.m-auto.payjp
-            = link_to cards_path do
-              退会
+      -# #navbarSupportedContent.collapse.navbar-collapse
+      - unless user_signed_in?
+        %ul.navbar-nav
+          %li.nav-item
+            = link_to new_user_registration_path, class: "head_link " do
+              アカウント登録
+  
+          %li.nav-item
+            = link_to new_user_session_path, class: "head_link " do
+              ログイン
+      - else
+        %ul.navbar-nav
+          %li.nav-item.dropdown
+            %a#navbarDropdown.head_link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              - if current_user.profile.present? && current_user.profile.avatar.present?
+                = image_tag(current_user.profile.avatar.url, alt: "", class: "rounded-circle minisize-icon")
+
+              = current_user.nickname
+            .dropdown-menu.dropdown-menu-right.navbar-dark.bg-dark{"aria-labelledby" => "navbarDropdown"}
+              .dropdown-item.bg-dark.pt-3
+                - if current_user.profile.nil?
+                  = link_to new_profile_path, class: "head_link " do
+                    プロフィール登録
+                - elsif current_user.profile.user_id == current_user.id
+                  = link_to  edit_profile_path(current_user.profile.id), class: "head_link " do
+                    プロフィール編集
+              -# カード情報登録の有無で表示非表示
+              - if current_user.card
+                .dropdown-item.bg-dark.pt-3
+                  = link_to new_store_profile_path, class: "head_link " do
+                    店舗情報 投稿
+                .dropdown-item.bg-dark.pt-3
+                  = link_to new_item_profile_path, class: "head_link " do
+                    商品情報 投稿
+                .dropdown-item.bg-dark.pt-3
+                  = link_to new_service_profile_path, class: "head_link " do
+                    サービス情報 投稿
+                .dropdown-item.bg-dark.pt-3
+                  = link_to new_event_profile_path, class: "head_link " do
+                    イベント情報 投稿
+              .dropdown-divider
+              - if current_user.profile != nil
+                .dropdown-item.bg-dark.pt-3
+                  = link_to users_path(id: current_user.id), class: "head_link" do
+                    マイページ
+              - if user_signed_in?
+                - if @card.blank?
+                  .dropdown-item.bg-darkml-1.pt-3.payjp
+                    = link_to cards_path, class: "head_link"do
+                      会員登録
+                - else
+                  .dropdown-item.bg-dark.ml-1.pt-3.payjp
+                    = link_to cards_path, class: "head_link"do
+                      退会
+              .dropdown-item.bg-dark.pt-3
+                = link_to destroy_user_session_path, method: :delete, class: "head_link" do
+                  ログアウト
+
+        
       %span.nav_toggle
         %i
         %i
         %i
-      %nav.nav
+      %nav.nav.bg-dark.pt-2
         %ul.nav_menu_ul.d-flex
           %li.nav_menu_li
             .mobile_notice
@@ -83,40 +139,50 @@
                     %img.mobile_message{:height => "auto", :src => "info.png"}
                     .mobile_notice_count
                       = @check.length
-          %li.nav_menu_li.mt-1
-            = link_to "TOP",root_path
+          %li.nav_menu_li.mt-1.ml-2
+            = link_to profiles_path, class: "head_link mr-3" do
+              人物
+            = link_to store_profiles_path, class: "head_link mr-3" do
+              店舗
+            = link_to item_profiles_path, class: "head_link mr-3" do
+              商品
+            = link_to service_profiles_path, class: "head_link mr-3" do
+              サービス
+            = link_to event_profiles_path, class: "head_link mr-3" do
+              イベント
           -# ログイン中のユーザーのプロフィールがない場合は登録画面へ、プロフィールのuser_idがログイン中のユーザーのidと一致する場合は編集画面へ
           - if user_signed_in?
             - if current_user.profile.nil?
-              %li.nav_menu_li.mt-1.ml-2
-                = link_to "プロフィール登録", new_profile_path
+              %li.nav_menu_li.mt-1.mr-3
+                = link_to "プロフィール登録", new_profile_path, class: "head_link mr-2"
             - elsif current_user.profile.user_id == current_user.id
-              %li.nav_menu_li.mt-1.ml-2
-                = link_to "プロフィール編集", edit_profile_path(current_user.profile.id)
+              %li.nav_menu_li.mt-1.mr-3
+                = link_to "プロフィール編集", edit_profile_path(current_user.profile.id), class: "head_link mr-2"
           -# 検索画面へのリンク
-          %li.nav_menu_li.mt-1.ml-2
-            = link_to "ユーザー検索",search_users_path
-          - if user_signed_in?
-            %li.nav_menu_li.ml-2.mt-1
-              = link_to "ログアウト",destroy_user_session_path, method: :delete
-          %li.nav_menu_li.mt-1.ml-2.mobile_color
+          %li.nav_menu_li.mt-1.mr-3
+            = link_to "検索",search_users_path, class: "head_link mr-2"
+          
+          %li.nav_menu_li.mt-1.mr-3.mobile_color
             - if user_signed_in?
               - if current_user.id == @user.id 
-                %a{"data-target" => "#exampleModalLong", "data-toggle" => "modal", :type => "button"} color
+                %a{"data-target" => "#exampleModalLong", "data-toggle" => "modal", :type => "button", :class => "head_link"} color
 
           - url = request.url
-          %li.nav_menu_li.mt-1.ml-2.mobile_qr
-            = link_to "#qr_img", class:"modaal" do
+          %li.nav_menu_li.mt-1.mr-3.mobile_qr
+            = link_to "#qr_img", class:"modaal head_link" do
               QRコード
           - if user_signed_in?
             - if @card.blank?
-              %li.nav_menu_li.mt-1.ml-2.mr-2.mobile_payjp
-                = link_to cards_path do
+              %li.nav_menu_li.mt-1.mr-3.mobile_payjp
+                = link_to cards_path, class: "head_link mr-2" do
                   会員登録
             - else
-              %li.nav_menu_li.mt-1.ml-2.mr-2.mobile_payjp
-                = link_to cards_path do
+              %li.nav_menu_li.mt-1.mr-3.mobile_payjp
+                = link_to cards_path, class: "head_link mr-2"do
                   退会
+          - if user_signed_in?
+            %li.nav_menu_li.mr-3.mt-1
+              = link_to "ログアウト",destroy_user_session_path, class: "head_link mr-2", method: :delete
       .mt-2.mobile_profile.shadow-sm
         .d-flex.justify-content-center.mt-2
           -# - if @profile.email.present?   # email表示したくない場合を想定して、表示したい場合はprofileに連絡用email入力にした方がいいかも？
