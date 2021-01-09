@@ -2,7 +2,7 @@
   商品
 .management4-content
   .management4-content__form
-    = form_with url: priority_item_profiles_path, method: :post do |f|
+    = form_with url: priority_item_profiles_path, method: :post, local: true do |f|
       = f.select :item_profile_id, @item_profiles_select_array, include_blank: "商品を選択してください", class:"management4-select"
       = f.select :priority_number, @priority_number_array, include_blank: "優先順位を選択してください"
       = f.submit "選択"
@@ -11,6 +11,6 @@
       - ItemProfile.where(id: item_profile.item_profile_id).each do |i_profile|
         = i_profile.name
         = item_profile.priority_number
-        = form_with url: priority_item_profile_path(id: item_profile.id), method: :delete do |f|
+        = form_with url: priority_item_profile_path(id: item_profile.id), method: :delete, local: true do |f|
           = f.submit "選び直す"
           %br

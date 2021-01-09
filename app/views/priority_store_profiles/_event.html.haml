@@ -3,7 +3,7 @@
 %br
 イベント
 %br
-= form_with url: priority_event_profiles_path, method: :post do |f|
+= form_with url: priority_event_profiles_path, method: :post, local: true do |f|
   = f.select :event_profile_id, @event_profiles_select_array, include_blank: "イベントを選択してください"
   = f.select :priority_number, @priority_number_array, include_blank: "優先順位を選択してください"
   = f.submit "選択"
@@ -12,6 +12,6 @@
   - EventProfile.where(id: event_profile.event_profile_id).each do |e_profile|
     = e_profile.title
     = event_profile.priority_number
-    = form_with url: priority_event_profile_path(id: event_profile.id), method: :delete do |f|
+    = form_with url: priority_event_profile_path(id: event_profile.id), method: :delete, local: true do |f|
       = f.submit "選び直す"
       %br

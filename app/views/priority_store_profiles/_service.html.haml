@@ -2,7 +2,7 @@
 %br
 サービス
 %br
-= form_with url: priority_service_profiles_path, method: :post do |f|
+= form_with url: priority_service_profiles_path, method: :post, local: true do |f|
   = f.select :service_profile_id, @service_profiles_select_array, include_blank: "店舗を選択してください"
   = f.select :priority_number, @priority_number_array, include_blank: "優先順位を選択してください"
   = f.submit "選択"
@@ -11,7 +11,7 @@
   - ServiceProfile.where(id: service_profile.service_profile_id).each do |ser_profile|
     = ser_profile.name
     = service_profile.priority_number
-    = form_with url: priority_service_profile_path(id: service_profile.id), method: :delete do |f|
+    = form_with url: priority_service_profile_path(id: service_profile.id), method: :delete, local: true do |f|
       = f.submit "選び直す"
       %br
 %br
