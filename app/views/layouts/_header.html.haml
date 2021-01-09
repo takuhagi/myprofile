@@ -39,7 +39,7 @@
             管理画面
         
         %li.nav-item
-          = link_to profile_select_path(1), class: "nav-link " do
+          = link_to select_profiles_path(1), class: "nav-link " do
             Top管理画面
 
 
@@ -65,41 +65,41 @@
             = link_to new_user_session_path, class: "nav-link " do
               ログイン
   
-        - else
-          %li.nav-item.dropdown
-            %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-              - if current_user.profile.present? && current_user.profile.avatar.present?
-                = image_tag(current_user.profile.avatar.url, alt: "", class: "rounded-circle minisize-icon")
+      - else
+        %li.nav-item.dropdown
+          %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            - if current_user.profile.present? && current_user.profile.avatar.present?
+              = image_tag(current_user.profile.avatar.url, alt: "", class: "rounded-circle minisize-icon")
 
-              = current_user.nickname
-            .dropdown-menu.dropdown-menu-right.navbar-dark.bg-dark{"aria-labelledby" => "navbarDropdown"}
+            = current_user.nickname
+          .dropdown-menu.dropdown-menu-right.navbar-dark.bg-dark{"aria-labelledby" => "navbarDropdown"}
+            .dropdown-item.bg-dark
+              - if current_user.profile.nil?
+                = link_to new_profile_path, class: "nav-link " do
+                  プロフィール登録
+              - elsif current_user.profile.user_id == current_user.id
+                = link_to  edit_profile_path(current_user.profile.id), class: "nav-link " do
+                  プロフィール編集
+            -# カード情報登録の有無で表示非表示
+            - if current_user.card
               .dropdown-item.bg-dark
-                - if current_user.profile.nil?
-                  = link_to new_profile_path, class: "nav-link " do
-                    プロフィール登録
-                - elsif current_user.profile.user_id == current_user.id
-                  = link_to  edit_profile_path(current_user.profile.id), class: "nav-link " do
-                    プロフィール編集
-              -# カード情報登録の有無で表示非表示
-              - if current_user.card
-                .dropdown-item.bg-dark
-                  = link_to new_store_profile_path, class: "nav-link " do
-                    店舗情報 投稿
-                .dropdown-item.bg-dark
-                  = link_to new_item_profile_path, class: "nav-link " do
-                    商品情報 投稿
-                .dropdown-item.bg-dark
-                  = link_to new_service_profile_path, class: "nav-link " do
-                    サービス情報 投稿
-                .dropdown-item.bg-dark
-                  = link_to new_event_profile_path, class: "nav-link " do
-                    イベント情報 投稿
-              .dropdown-divider
-              - if current_user.profile != nil
-                .dropdown-item.bg-dark
-                  = link_to users_path(id: current_user.id), class: "nav-link" do
-                    マイページ
+                = link_to new_store_profile_path, class: "nav-link " do
+                  店舗情報 投稿
               .dropdown-item.bg-dark
-                = link_to destroy_user_session_path, method: :delete, class: "nav-link" do
-                  ログアウト
+                = link_to new_item_profile_path, class: "nav-link " do
+                  商品情報 投稿
+              .dropdown-item.bg-dark
+                = link_to new_service_profile_path, class: "nav-link " do
+                  サービス情報 投稿
+              .dropdown-item.bg-dark
+                = link_to new_event_profile_path, class: "nav-link " do
+                  イベント情報 投稿
+            .dropdown-divider
+            - if current_user.profile != nil
+              .dropdown-item.bg-dark
+                = link_to users_path(id: current_user.id), class: "nav-link" do
+                  マイページ
+            .dropdown-item.bg-dark
+              = link_to destroy_user_session_path, method: :delete, class: "nav-link" do
+                ログアウト
     
