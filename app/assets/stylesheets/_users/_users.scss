@@ -236,6 +236,10 @@
     .payjp {
       display: none;
     }
+    .header {
+      display: flex;
+      justify-content: space-between;
+    }
     .nav_toggle {
       display: block;
       position: relative;
