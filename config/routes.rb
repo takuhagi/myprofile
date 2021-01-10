@@ -53,7 +53,11 @@ Rails.application.routes.draw do
   resources :service_profiles
   resources :event_profiles
 
-  resources :priority_store_profiles
+  resources :priority_store_profiles do
+    collection do
+      get 'link'
+    end
+  end
   resources :priority_item_profiles
   resources :priority_service_profiles
   resources :priority_event_profiles

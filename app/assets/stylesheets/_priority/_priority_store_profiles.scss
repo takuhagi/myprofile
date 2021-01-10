@@ -119,3 +119,20 @@
 .management4-select {
   text-align: left;
 }
+
+//管理画面リンク
+.main_management_link {
+  height: 100%;
+  padding: 20px;
+  text-align: center;
+  &__title{
+    font-size: 20px;
+    margin: 20px;
+  }
+  &__top{
+    margin: 20px;
+  }
+  &__four{
+    margin: 20px;
+  }
+}
