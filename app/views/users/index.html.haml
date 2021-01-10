@@ -69,11 +69,11 @@
       -# #navbarSupportedContent.collapse.navbar-collapse
       - unless user_signed_in?
         %ul.navbar-nav
-          %li.nav-item
+          %li.nav-item.dropdown.pr-3
             = link_to new_user_registration_path, class: "head_link " do
               アカウント登録
   
-          %li.nav-item
+          %li.nav-item.dropdown
             = link_to new_user_session_path, class: "head_link " do
               ログイン
       - else
@@ -139,50 +139,62 @@
                     %img.mobile_message{:height => "auto", :src => "info.png"}
                     .mobile_notice_count
                       = @check.length
-          %li.nav_menu_li.mt-1.ml-2
-            = link_to profiles_path, class: "head_link mr-3" do
+          %li.nav_menu_li.mt-1.pl-2
+            = link_to profiles_path, class: "head_link pr-3" do
               人物
-            = link_to store_profiles_path, class: "head_link mr-3" do
+            = link_to store_profiles_path, class: "head_link pr-3" do
               店舗
-            = link_to item_profiles_path, class: "head_link mr-3" do
+            = link_to item_profiles_path, class: "head_link pr-3" do
               商品
-            = link_to service_profiles_path, class: "head_link mr-3" do
+            = link_to service_profiles_path, class: "head_link pr-3" do
               サービス
-            = link_to event_profiles_path, class: "head_link mr-3" do
+            = link_to event_profiles_path, class: "head_link pr-3" do
               イベント
           -# ログイン中のユーザーのプロフィールがない場合は登録画面へ、プロフィールのuser_idがログイン中のユーザーのidと一致する場合は編集画面へ
           - if user_signed_in?
             - if current_user.profile.nil?
-              %li.nav_menu_li.mt-1.mr-3
+              %li.nav_menu_li.mt-1.pr-3
                 = link_to "プロフィール登録", new_profile_path, class: "head_link mr-2"
             - elsif current_user.profile.user_id == current_user.id
-              %li.nav_menu_li.mt-1.mr-3
+              %li.nav_menu_li.mt-1.pr-3
                 = link_to "プロフィール編集", edit_profile_path(current_user.profile.id), class: "head_link mr-2"
           -# 検索画面へのリンク
-          %li.nav_menu_li.mt-1.mr-3
-            = link_to "検索",search_users_path, class: "head_link mr-2"
+          %li.nav_menu_li.mt-1
+            = link_to "検索",search_users_path, class: "head_link pr-3"
           
-          %li.nav_menu_li.mt-1.mr-3.mobile_color
+          %li.nav_menu_li.mt-1.pr-3.mobile_color
             - if user_signed_in?
               - if current_user.id == @user.id 
                 %a{"data-target" => "#exampleModalLong", "data-toggle" => "modal", :type => "button", :class => "head_link"} color
 
+          %li.nav_menu_li.mt-1
+            = link_to intro_home_index_path, class: "head_link pr-3" do
+              使い方
+            = link_to intro_home_index_path, class: "head_link pr-3" do
+              コース
           - url = request.url
-          %li.nav_menu_li.mt-1.mr-3.mobile_qr
-            = link_to "#qr_img", class:"modaal head_link" do
+          %li.nav_menu_li.mt-1.mobile_qr
+            = link_to "#qr_img", class:"modaal head_link pr-3" do
               QRコード
           - if user_signed_in?
             - if @card.blank?
-              %li.nav_menu_li.mt-1.mr-3.mobile_payjp
-                = link_to cards_path, class: "head_link mr-2" do
+              %li.nav_menu_li.mt-1.mobile_payjp
+                = link_to cards_path, class: "head_link pr-3" do
                   会員登録
             - else
-              %li.nav_menu_li.mt-1.mr-3.mobile_payjp
-                = link_to cards_path, class: "head_link mr-2"do
+              %li.nav_menu_li.mt-1.mobile_payjp
+                = link_to cards_path, class: "head_link pr-3"do
                   退会
           - if user_signed_in?
-            %li.nav_menu_li.mr-3.mt-1
-              = link_to "ログアウト",destroy_user_session_path, class: "head_link mr-2", method: :delete
+            %li.nav_menu_li.mt-1
+              = link_to "ログアウト",destroy_user_session_path, class: "head_link pr-3", method: :delete
+          - else
+            %li.nav_menu_li.mt-1
+              = link_to new_user_registration_path, class: "head_link pr-3" do
+                アカウント登録
+            %li.nav_menu_li.mt-1
+              = link_to new_user_session_path, class: "head_link pr-3" do
+                ログイン
       .mt-2.mobile_profile.shadow-sm
         .d-flex.justify-content-center.mt-2
           -# - if @profile.email.present?   # email表示したくない場合を想定して、表示したい場合はprofileに連絡用email入力にした方がいいかも？
@@ -274,23 +286,24 @@
               = comment.created_at.strftime("%Y-%m-%d %H:%M")
           .comment_content
             = comment.comment
-          %button.btn.btn-outline-dark.reply_btn{"data-toggle" => "modal", "data-target" => "#exampleModalMessage#{comment.id}", type: "button"} 返信
-          .modal.fade{id: "exampleModalMessage#{comment.id}", "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", tabindex: "-1"}
-            .modal-dialog{role: "document"}
-              .modal-content
-                .modal-header
-                  %h5#exampleModalLabel.modal-title New message
-                  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
-                    %span{"aria-hidden" => "true"} ×
-                .modal-body
-                  = form_with model: @comment,url: user_comment_reply_path(user_id: (params[:id]),comment_id: comment.id), class: "form-group",local: true do |f|
-                    .form-group
-                      %label.col-form-label{for: "message-text"} 返信:
-                      = f.text_area :comment, id: "message-text", class: "form-control"
-                    .modal-footer
-                      %button.btn.btn-secondary{"data-dismiss" => "modal", type: "button"} Close
-                      = f.submit "Send", class: "btn btn-primary"
-            
+          - if user_signed_in?
+            %button.btn.btn-outline-dark.reply_btn{"data-toggle" => "modal", "data-target" => "#exampleModalMessage#{comment.id}", type: "button"} 返信
+            .modal.fade{id: "exampleModalMessage#{comment.id}", "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", tabindex: "-1"}
+              .modal-dialog{role: "document"}
+                .modal-content
+                  .modal-header
+                    %h5#exampleModalLabel.modal-title New message
+                    %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
+                      %span{"aria-hidden" => "true"} ×
+                  .modal-body
+                    = form_with model: @comment,url: user_comment_reply_path(user_id: (params[:id]),comment_id: comment.id), class: "form-group",local: true do |f|
+                      .form-group
+                        %label.col-form-label{for: "message-text"} 返信:
+                        = f.text_area :comment, id: "message-text", class: "form-control"
+                      .modal-footer
+                        %button.btn.btn-secondary{"data-dismiss" => "modal", type: "button"} Close
+                        = f.submit "Send", class: "btn btn-primary"
+              
         - @reply_array2.first(1).each do |re|
           - @re_array2.each do |re2|
             - if re2.reply_id == comment.id && re2.check == (1)
@@ -302,8 +315,8 @@
                   = re2.created_at.strftime("%Y-%m-%d %H:%M")
               .comment_reply_content
                 = re2.comment
-      
-    = render "comments/form"
+    - if user_signed_in?
+      = render "comments/form"
       
     = render "photogallery"
     
