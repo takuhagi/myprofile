@@ -1,7 +1,7 @@
 class StoreProfile < ApplicationRecord
   has_many :store_images, dependent: :destroy
   belongs_to :user
-  belongs_to :priority_store_profile
+  belongs_to :priority_store_profile, optional:true
 
   # image_uploader
   mount_uploader :image, ImageUploader
