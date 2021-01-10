@@ -13,7 +13,7 @@
       = "投稿者：#{@event_profile.user.nickname}"
     %div
       = "最終更新：#{time_ago_in_words(@event_profile.updated_at)}前"
-    - if current_user.id == @event_profile.user_id
+    - if user_signed_in? && current_user.id == @event_profile.user_id
       = link_to("編集する", edit_event_profile_path, { class: "btn btn-primary mt-4" })
       -# = link_to "削除する", event_profile_path(@event_profile.id), class: "btn btn-primary mt-4", method: :delete
       = link_to "削除する", event_profile_path(@event_profile.id), class: "btn btn-primary mt-4", method: :delete, data: {confirm: "本当に削除しますか？"}
