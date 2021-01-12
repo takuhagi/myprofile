@@ -1,8 +1,10 @@
 = render 'layouts/header'
+.container
+.row
 .main-management4
-  .left-management4
+  .left-management4.col-md-3.bg-light
     .management4-title
-      管理画面です
+      管理画面
     .management4-sidebar
       .store-side-show
         店舗を表示する
@@ -25,14 +27,14 @@
       .all-side-hide
         全項目を非表示にする
     
-  .right-management4
-    .priority-store-profiles
+  .right-management4.col-md-9
+    .priority-store-profiles.m-4
       = render partial: 'store', locals: {'@store_profiles_select_array': @store_profiles_select_array, '@priority_number_array': @priority_number_array}
-    .priority-item-profiles
+    .priority-item-profiles.m-4
       = render partial: 'item', locals: {'@item_profiles_select_array': @item_profiles_select_array, '@priority_number_array': @priority_number_array}
-    .priority-service-profiles
+    .priority-service-profiles.m-4
       = render partial: 'service', locals: {'@service_profiles_select_array': @service_profiles_select_array,'@priority_number_array': @priority_number_array}
-    .priority-event-profiles
+    .priority-event-profiles.m-4
       = render partial: 'event', locals: {'@event_profiles_select_array': @event_profiles_select_array, '@priority_number_array': @priority_number_array}
 
 
