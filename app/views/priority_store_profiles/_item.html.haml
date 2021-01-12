@@ -1,16 +1,31 @@
-.management4-content-title
-  商品
-.management4-content
-  .management4-content__form
-    = form_with url: priority_item_profiles_path, method: :post, local: true do |f|
-      = f.select :item_profile_id, @item_profiles_select_array, include_blank: "商品を選択してください", class:"management4-select"
-      = f.select :priority_number, @priority_number_array, include_blank: "優先順位を選択してください"
-      = f.submit "選択"
-  .management4-content__list
-    - PriorityItemProfile.all.each do |item_profile|
-      - ItemProfile.where(id: item_profile.item_profile_id).each do |i_profile|
-        = i_profile.name
-        = item_profile.priority_number
+= form_with url: priority_item_profiles_path, method: :post, local: true do |f|
+  .form-group
+    = f.label "商品"
+    = f.select :item_profile_id, @item_profiles_select_array, {include_blank: "商品を選択してください"}, {class: 'form-control mb-2'}
+    = f.select :priority_number, @priority_number_array, {include_blank: "優先順位を選択してください"}, {class: 'form-control mb-2'}
+    = f.submit "決定" ,class: "btn btn-info"
+
+
+%p.mb-2
+  選択中の店舗と順位
+.row
+  - PriorityItemProfile.all.each do |item_profile|
+    - ItemProfile.where(id: item_profile.item_profile_id).each do |i_profile|
+      .col-lg-3.col-md-4.col-sm-6.col-xs-2.mb-4
+        .card.mb-2
+          .card-image
+            - if i_profile.image.present?
+              = image_tag(i_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+            - else
+              %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+          .card-body
+            %h5.card-title
+              = i_profile.name
+            .small.text-muted
+              = "投稿者：#{i_profile.user.nickname}"
+            .small.text-muted{style: "margin-bottom: 12px"}
+              = "最終更新：#{time_ago_in_words(i_profile.updated_at)}前"
+            %p.card-text
+              = item_profile.priority_number
         = form_with url: priority_item_profile_path(id: item_profile.id), method: :delete, local: true do |f|
-          = f.submit "選び直す"
-          %br
+          = f.submit "解除する", class: "btn btn-danger"
