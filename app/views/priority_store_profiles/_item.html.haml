@@ -7,7 +7,7 @@
 
 
 %p.mb-2
-  選択中の店舗と順位
+  選択中の商品と順位
 .row
   - PriorityItemProfile.all.each do |item_profile|
     - ItemProfile.where(id: item_profile.item_profile_id).each do |i_profile|
