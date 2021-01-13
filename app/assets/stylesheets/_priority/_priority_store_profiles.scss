@@ -9,6 +9,7 @@
 .left-management4{
   // width: 15%;
   // background-color: aqua;
+  overflow: scroll;
 }
 
 .management4-title {
@@ -102,6 +103,12 @@
   display: none;
 }
 
+// PC画面サイズのときの管理画面右側
+@media (min-width: 1200px) {
+  .maxsize {
+    max-width: 100%;
+  }
+}
 
 // 部分テンプレート
 .management4-content {
