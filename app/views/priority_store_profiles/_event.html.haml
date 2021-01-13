@@ -1,17 +1,31 @@
-%br
-"------------------------------------------------------------------------------------------------------------------------------------------"
-%br
-イベント
-%br
 = form_with url: priority_event_profiles_path, method: :post, local: true do |f|
-  = f.select :event_profile_id, @event_profiles_select_array, include_blank: "イベントを選択してください"
-  = f.select :priority_number, @priority_number_array, include_blank: "優先順位を選択してください"
-  = f.submit "選択"
-%br
-- PriorityEventProfile.all.each do |event_profile|
-  - EventProfile.where(id: event_profile.event_profile_id).each do |e_profile|
-    = e_profile.title
-    = event_profile.priority_number
-    = form_with url: priority_event_profile_path(id: event_profile.id), method: :delete, local: true do |f|
-      = f.submit "選び直す"
-      %br
+  .form-group
+    = f.label "イベント"
+    = f.select :event_profile_id, @event_profiles_select_array, {include_blank: "イベントを選択してください"}, {class: 'form-control mb-2'}
+    = f.select :priority_number, @priority_number_array, {include_blank: "優先順位を選択してください"}, {class: 'form-control mb-2'}
+    = f.submit "決定" ,class: "btn btn-info"
+
+
+%p.mb-2
+  選択中のイベントと順位
+.row
+  - PriorityEventProfile.all.each do |event_profile|
+    - EventProfile.where(id: event_profile.event_profile_id).each do |e_profile|
+      .col-lg-3.col-md-4.col-sm-6.col-xs-2.mb-4
+        .card.mb-2
+          .card-image
+            - if e_profile.image.present?
+              = image_tag(e_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
+            - else
+              %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
+          .card-body
+            %h5.card-title
+              = e_profile.title
+            .small.text-muted
+              = "投稿者：#{e_profile.user.nickname}"
+            .small.text-muted{style: "margin-bottom: 12px"}
+              = "最終更新：#{time_ago_in_words(e_profile.updated_at)}前"
+            %p.card-text
+              = event_profile.priority_number
+        = form_with url: priority_event_profile_path(id: event_profile.id), method: :delete, local: true do |f|
+          = f.submit "解除する", class: "btn btn-danger"

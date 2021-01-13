@@ -7,8 +7,9 @@
 }
 
 .left-management4{
-  width: 15%;
-  background-color: aqua;
+  // width: 15%;
+  // background-color: aqua;
+  overflow: scroll;
 }
 
 .management4-title {
@@ -77,13 +78,13 @@
 }
 
 .right-management4 {
-  width: 85%;
-  background-color: aquamarine;
+  // width: 85%;
+  // background-color: aquamarine;
   overflow: scroll;
 }
 
 .right-management4:hover{
-  background-color: azure;
+  // background-color: azure;
 }
 
 .priority-store-profiles {
@@ -102,6 +103,12 @@
   display: none;
 }
 
+// PC画面サイズのときの管理画面右側
+@media (min-width: 1200px) {
+  .maxsize {
+    max-width: 100%;
+  }
+}
 
 // 部分テンプレート
 .management4-content {

@@ -1,39 +1,41 @@
 = render 'layouts/header'
-.main-management4
-  .left-management4
-    .management4-title
-      管理画面です
-    .management4-sidebar
-      .store-side-show
-        店舗を表示する
-      .store-side-hide
-        店舗を非表示にする
-      .item-side-show
-        商品を表示する
-      .item-side-hide
-        商品を非表示にする
-      .service-side-show
-        サービスを表示する
-      .service-side-hide
-        サービスを非表示にする
-      .event-side-show
-        イベントを表示する
-      .event-side-hide
-        イベントを非表示にする
-      .all-side-show
-        全項目を表示する
-      .all-side-hide
-        全項目を非表示にする
-    
-  .right-management4
-    .priority-store-profiles
-      = render partial: 'store', locals: {'@store_profiles_select_array': @store_profiles_select_array, '@priority_number_array': @priority_number_array}
-    .priority-item-profiles
-      = render partial: 'item', locals: {'@item_profiles_select_array': @item_profiles_select_array, '@priority_number_array': @priority_number_array}
-    .priority-service-profiles
-      = render partial: 'service', locals: {'@service_profiles_select_array': @service_profiles_select_array,'@priority_number_array': @priority_number_array}
-    .priority-event-profiles
-      = render partial: 'event', locals: {'@event_profiles_select_array': @event_profiles_select_array, '@priority_number_array': @priority_number_array}
+.container.ml-0.maxsize
+  .row
+    .main-management4
+    .left-management4.col-md-3.bg-light
+      .management4-title
+        管理画面
+      .management4-sidebar
+        .store-side-show
+          店舗を表示する
+        .store-side-hide
+          店舗を非表示にする
+        .item-side-show
+          商品を表示する
+        .item-side-hide
+          商品を非表示にする
+        .service-side-show
+          サービスを表示する
+        .service-side-hide
+          サービスを非表示にする
+        .event-side-show
+          イベントを表示する
+        .event-side-hide
+          イベントを非表示にする
+        .all-side-show
+          全項目を表示する
+        .all-side-hide
+          全項目を非表示にする
+      
+    .right-management4.col-md-9
+      .priority-store-profiles.m-4
+        = render partial: 'store', locals: {'@store_profiles_select_array': @store_profiles_select_array, '@priority_number_array': @priority_number_array}
+      .priority-item-profiles.m-4
+        = render partial: 'item', locals: {'@item_profiles_select_array': @item_profiles_select_array, '@priority_number_array': @priority_number_array}
+      .priority-service-profiles.m-4
+        = render partial: 'service', locals: {'@service_profiles_select_array': @service_profiles_select_array,'@priority_number_array': @priority_number_array}
+      .priority-event-profiles.m-4
+        = render partial: 'event', locals: {'@event_profiles_select_array': @event_profiles_select_array, '@priority_number_array': @priority_number_array}
 
 
 
