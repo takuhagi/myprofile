@@ -113,12 +113,12 @@
                     マイページ
               - if user_signed_in?
                 - if @card.blank?
-                  .dropdown-item.bg-darkml-1.pt-3.payjp
-                    = link_to cards_path, class: "head_link"do
+                  .dropdown-item.bg-dark.ml-1.pt-3.payjp
+                    = link_to cards_path, class: "head_link" do
                       会員登録
                 - else
                   .dropdown-item.bg-dark.ml-1.pt-3.payjp
-                    = link_to cards_path, class: "head_link"do
+                    = link_to cards_path, class: "head_link" do
                       退会
               .dropdown-item.bg-dark.pt-3
                 = link_to destroy_user_session_path, method: :delete, class: "head_link" do
