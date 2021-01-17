@@ -41,6 +41,18 @@ class EventProfilesController < ApplicationController
         @priority_event6_user = User.find(@priority_event_profile6.user_id)
       end
 
+      num_id7 = PriorityEventProfile.where(priority_number: 7)
+      if num_id7[0]!= nil
+        @priority_event_profile7 = EventProfile.find(num_id7[0].event_profile_id)
+        @priority_event7_user = User.find(@priority_event_profile7.user_id)
+      end
+
+      num_id8 = PriorityEventProfile.where(priority_number: 8)
+      if num_id8[0]!= nil
+        @priority_event_profile8 = EventProfile.find(num_id8[0].event_profile_id)
+        @priority_event8_user = User.find(@priority_event_profile8.user_id)
+      end
+
     else
       params[:q] = { sorts: 'updated_at desc' }
       @q = EventProfile.ransack(params[:q])
@@ -82,6 +94,18 @@ class EventProfilesController < ApplicationController
         @priority_event6_user = User.find(@priority_event_profile6.user_id)
       end
 
+      num_id7 = PriorityEventProfile.where(priority_number: 7)
+      if num_id7[0]!= nil
+        @priority_event_profile7 = EventProfile.find(num_id7[0].event_profile_id)
+        @priority_event7_user = User.find(@priority_event_profile7.user_id)
+      end
+
+      num_id8 = PriorityEventProfile.where(priority_number: 8)
+      if num_id8[0]!= nil
+        @priority_event_profile8 = EventProfile.find(num_id8[0].event_profile_id)
+        @priority_event8_user = User.find(@priority_event_profile8.user_id)
+      end
+      
     end
 
   end

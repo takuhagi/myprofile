@@ -297,7 +297,7 @@
                 -# - if event_profile.image.present?
                 -#   = image_tag(event_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
                 -# - else
-                - if @priority_event_profile5 != nil
+                - if @priority_event_profile5.image.present?
                   = image_tag(@priority_event_profile5.image.url, class: "card-img-top")
                 - else
                   %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
@@ -305,7 +305,7 @@
                 %h5.card-title
                   -# = event_profile.title
                   -# カードタイトル５
-                  - if @priority_event_profile5.image.present?
+                  - if @priority_event_profile5 != nil
                     = @priority_event_profile5.title
                   - else
                     イベント名未定
@@ -364,7 +364,7 @@
                 -# - if event_profile.image.present?
                 -#   = image_tag(event_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
                 -# - else
-                - if @priority_event_profile6 != nil
+                - if @priority_event_profile6.image.present?
                   = image_tag(@priority_event_profile6.image.url, class: "card-img-top")
                 - else
                   %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
@@ -372,7 +372,7 @@
                 %h5.card-title
                   -# = event_profile.title
                   -# カードタイトル６
-                  - if @priority_event_profile6.image.present?
+                  - if @priority_event_profile6 != nil
                     = @priority_event_profile6.title
                   - else
                     イベント名未定
@@ -413,7 +413,7 @@
                 -# - if event_profile.image.present?
                 -#   = image_tag(event_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
                 -# - else
-                - if @priority_event_profile7 != nil
+                - if @priority_event_profile7.image.present?
                   = image_tag(@priority_event_profile7.image.url, class: "card-img-top")
                 - else
                   %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
@@ -421,7 +421,7 @@
                 %h5.card-title
                   -# = event_profile.title
                   -# カードタイトル６
-                  - if @priority_event_profile7.image.present?
+                  - if @priority_event_profile7 != nil
                     = @priority_event_profile7.title
                   - else
                     イベント名未定
@@ -462,7 +462,7 @@
                 -# - if event_profile.image.present?
                 -#   = image_tag(event_profile.image.url, alt: "メイン写真", class: "card-img-top no_image")
                 -# - else
-                - if @priority_event_profile8 != nil
+                - if @priority_event_profile8.image.present?
                   = image_tag(@priority_event_profile8.image.url, class: "card-img-top")
                 - else
                   %img.card-img-top{alt: "...", src: "/assets/no_image.png"}/
@@ -470,7 +470,7 @@
                 %h5.card-title
                   -# = event_profile.title
                   -# カードタイトル６
-                  - if @priority_event_profile8.image.present?
+                  - if @priority_event_profile8 != nil
                     = @priority_event_profile8.title
                   - else
                     イベント名未定
