@@ -41,6 +41,18 @@ class ItemProfilesController < ApplicationController
         @priority_item6_user = User.find(@priority_item_profile6.user_id)
       end
 
+      num_id7 = PriorityItemProfile.where(priority_number: 7)
+      if num_id7[0]!= nil
+        @priority_item_profile7 = ItemProfile.find(num_id7[0].item_profile_id)
+        @priority_item7_user = User.find(@priority_item_profile7.user_id)
+      end
+
+      num_id8 = PriorityItemProfile.where(priority_number: 8)
+      if num_id8[0]!= nil
+        @priority_item_profile8 = ItemProfile.find(num_id8[0].item_profile_id)
+        @priority_item8_user = User.find(@priority_item_profile8.user_id)
+      end
+
     else
       params[:q] = { sorts: 'updated_at desc' }
       @q = ItemProfile.ransack(params[:q])
@@ -80,6 +92,18 @@ class ItemProfilesController < ApplicationController
       if num_id6[0]!= nil
         @priority_item_profile6 = ItemProfile.find(num_id6[0].item_profile_id)
         @priority_item6_user = User.find(@priority_item_profile6.user_id)
+      end
+
+      num_id7 = PriorityItemProfile.where(priority_number: 7)
+      if num_id7[0]!= nil
+        @priority_item_profile7 = ItemProfile.find(num_id7[0].item_profile_id)
+        @priority_item7_user = User.find(@priority_item_profile7.user_id)
+      end
+
+      num_id8 = PriorityItemProfile.where(priority_number: 8)
+      if num_id8[0]!= nil
+        @priority_item_profile8 = ItemProfile.find(num_id8[0].item_profile_id)
+        @priority_item8_user = User.find(@priority_item_profile8.user_id)
       end
 
     end

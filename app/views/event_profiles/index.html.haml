@@ -37,7 +37,7 @@
                 %h5.card-title
                   -# = event_profile.title
                   -# カードタイトル１
-                  - if @priority_event_profile1 != nil
+                  - if @priority_event_profile1.title.present?
                     = @priority_event_profile1.title
                   - else
                     イベント名未定
@@ -104,7 +104,7 @@
                 %h5.card-title
                   -# = event_profile.title
                   -# カードタイトル２
-                  - if @priority_event_profile2 != nil
+                  - if @priority_event_profile2.title.present?
                     = @priority_event_profile2.title
                   - else
                     イベント名未定
@@ -171,7 +171,7 @@
                 %h5.card-title
                   -# = event_profile.title
                   -# カードタイトル３
-                  - if @priority_event_profile3 != nil
+                  - if @priority_event_profile3.title.present?
                     = @priority_event_profile3.title
                   - else
                     イベント名未定
@@ -238,7 +238,7 @@
                 %h5.card-title
                   -# = event_profile.title
                   -# カードタイトル４
-                  - if @priority_event_profile4 != nil
+                  - if @priority_event_profile4.title.present?
                     = @priority_event_profile4.title
                   - else
                     イベント名未定
@@ -305,7 +305,7 @@
                 %h5.card-title
                   -# = event_profile.title
                   -# カードタイトル５
-                  - if @priority_event_profile5 != nil
+                  - if @priority_event_profile5.title.present?
                     = @priority_event_profile5.title
                   - else
                     イベント名未定
@@ -372,7 +372,7 @@
                 %h5.card-title
                   -# = event_profile.title
                   -# カードタイトル６
-                  - if @priority_event_profile6 != nil
+                  - if @priority_event_profile6.title.present?
                     = @priority_event_profile6.title
                   - else
                     イベント名未定
@@ -421,7 +421,7 @@
                 %h5.card-title
                   -# = event_profile.title
                   -# カードタイトル６
-                  - if @priority_event_profile7 != nil
+                  - if @priority_event_profile7.title.present?
                     = @priority_event_profile7.title
                   - else
                     イベント名未定
@@ -470,7 +470,7 @@
                 %h5.card-title
                   -# = event_profile.title
                   -# カードタイトル６
-                  - if @priority_event_profile8 != nil
+                  - if @priority_event_profile8.title.present?
                     = @priority_event_profile8.title
                   - else
                     イベント名未定

@@ -40,6 +40,18 @@ class StoreProfilesController < ApplicationController
         @priority_store6_user = User.find(@priority_store_profile6.user_id)
       end
 
+      num_id7 = PriorityStoreProfile.where(priority_number: 7)
+      if num_id7[0]!= nil
+        @priority_store_profile7 = StoreProfile.find(num_id7[0].store_profile_id)
+        @priority_store7_user = User.find(@priority_store_profile7.user_id)
+      end
+
+      num_id8 = PriorityStoreProfile.where(priority_number: 8)
+      if num_id8[0]!= nil
+        @priority_store_profile8 = StoreProfile.find(num_id8[0].store_profile_id)
+        @priority_store8_user = User.find(@priority_store_profile8.user_id)
+      end
+
     else
       params[:q] = { sorts: 'updated_at desc' }
       @q = StoreProfile.ransack(params[:q])
@@ -78,6 +90,18 @@ class StoreProfilesController < ApplicationController
       if num_id6[0]!= nil
         @priority_store_profile6 = StoreProfile.find(num_id6[0].store_profile_id)
         @priority_store6_user = User.find(@priority_store_profile6.user_id)
+      end
+
+      num_id7 = PriorityStoreProfile.where(priority_number: 7)
+      if num_id7[0]!= nil
+        @priority_store_profile7 = StoreProfile.find(num_id7[0].store_profile_id)
+        @priority_store7_user = User.find(@priority_store_profile7.user_id)
+      end
+
+      num_id8 = PriorityStoreProfile.where(priority_number: 8)
+      if num_id8[0]!= nil
+        @priority_store_profile8 = StoreProfile.find(num_id8[0].store_profile_id)
+        @priority_store8_user = User.find(@priority_store_profile8.user_id)
       end
 
     end
