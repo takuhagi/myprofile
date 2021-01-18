@@ -41,6 +41,18 @@ class ServiceProfilesController < ApplicationController
         @priority_service6_user = User.find(@priority_service_profile6.user_id)
       end
 
+      num_id7 = PriorityServiceProfile.where(priority_number: 7)
+      if num_id7[0]!= nil
+        @priority_service_profile7 = ServiceProfile.find(num_id7[0].service_profile_id)
+        @priority_service7_user = User.find(@priority_service_profile7.user_id)
+      end
+
+      num_id8 = PriorityServiceProfile.where(priority_number: 8)
+      if num_id8[0]!= nil
+        @priority_service_profile8 = ServiceProfile.find(num_id8[0].service_profile_id)
+        @priority_service8_user = User.find(@priority_service_profile8.user_id)
+      end
+
     else
       params[:q] = { sorts: 'updated_at desc' }
       @q = ServiceProfile.ransack(params[:q])
@@ -80,6 +92,18 @@ class ServiceProfilesController < ApplicationController
       if num_id6[0]!= nil
         @priority_service_profile6 = ServiceProfile.find(num_id6[0].service_profile_id)
         @priority_service6_user = User.find(@priority_service_profile6.user_id)
+      end
+
+      num_id7 = PriorityServiceProfile.where(priority_number: 7)
+      if num_id7[0]!= nil
+        @priority_service_profile7 = ServiceProfile.find(num_id7[0].service_profile_id)
+        @priority_service7_user = User.find(@priority_service_profile7.user_id)
+      end
+
+      num_id8 = PriorityServiceProfile.where(priority_number: 8)
+      if num_id8[0]!= nil
+        @priority_service_profile8 = ServiceProfile.find(num_id8[0].service_profile_id)
+        @priority_service8_user = User.find(@priority_service_profile8.user_id)
       end
 
     end
