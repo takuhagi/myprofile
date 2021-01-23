@@ -220,21 +220,24 @@
                 %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
         = link_to profile_pass_path(params[:id], pv_link: "pv++") do
           %h3.d-flex.justify-content-center.mt-3.mobile_name
-            = @profile.family_name
-          %h3.d-flex.justify-content-center.mt-3.mobile_name
-            = @profile.first_name
+            = @profile.user.nickname
+          -# %h3.d-flex.justify-content-center.mt-3.mobile_name
+          -#   = @profile.first_name
           %h5.d-flex.justify-content-center.mt-3.mobile_birth
             = @profile.prefecture.name
-          %img.prof_image.mt-2.mobile_img{:height => "auto", :src => "#{@profile.avatar}", :width => "40%"}
+          .prof_image.mobile_img
+            = image_tag(@profile.avatar.url, alt: "", class: "prof_image mt-2 mobile_img")
             %p.text-break.ml-5.mr-5.mb-3.pt-5.mobile_text 
               = @profile.avatar_about
             
     .slider.mt-5.d-flex.justify-content-center
       #mainSlide
-        %img.top_image{:src => "#{@profile.image}"}
+        -# %img.top_image{:src => "#{@profile.image}"}
+        = image_tag(@profile.image.url, alt: "", class: "top_image")
         - if @profile.sub_image.present?
           = link_to vr_users_path(user_id: params[:id]) do
-            %img.top_image{:src => "#{@profile.sub_image}"}
+            -# %img.top_image{:src => "#{@profile.sub_image}"}
+            = image_tag(@profile.sub_image.url, alt: "", class: "top_image")
     #arrows
     .mt-5.mb-5.profile
       .d-flex.justify-content-center
@@ -249,17 +252,18 @@
           
       = link_to profile_pass_path(params[:id], pv_link: "pv++"), style:"text-decoration:none" do
         .prof_all.d-flex
-          %img.prof_image.mt-3.ml-2.mb-2{:src => "#{@profile.avatar}"}
+          -# %img.prof_image.mt-3.ml-2.mb-2{:src => "#{@profile.avatar}"}
+          = image_tag(@profile.avatar.url, alt: "", class: "prof_image mt-3 ml-2 mb-2")
           .prof_contents
             .prof.d-flex
               %h3.mt-3.ml-3
-                = @profile.family_name
-              %h3.mt-3.ml-1
-                = @profile.first_name
+                = @profile.user.nickname
+              -# %h3.mt-3.ml-1
+              -#   = @profile.first_name
               %h5.mt-3.ml-3
                 = @profile.prefecture.name
-              %h5.mt-3.ml-3
-                = @profile.birth_date
+              -# %h5.mt-3.ml-3
+              -#   = @profile.birth_date
             .introduction
               %p.ml-5.mr-5.pt-3 
                 = safe_join(@profile.avatar_about.split("\n"),tag(:br))
