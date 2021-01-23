@@ -21,7 +21,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # 画像入れなかった時のデフォルト画像
   def default_url  
-    'avatar.png'
+    'no_image.png'
   end
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
