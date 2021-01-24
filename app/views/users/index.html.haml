@@ -201,23 +201,12 @@
           %button.btn.btn-primary.mobile_btn{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
             email
           - if @profile.facebook.present?
-            = link_to "Facabook", @profile.facebook, class: 'btn btn-primary ml-2 mobile_btn', rel: "noopener noreferrer", target: "_blank"
+            = link_to "Facabook", @profile.facebook, class: 'btn btn-primary ml-2 mobile_btn text-light', rel: "noopener noreferrer", target: "_blank"
           - if @profile.twitter.present?
-            = link_to "Twitter", @profile.twitter, class: 'btn btn-primary ml-2 mobile_btn',  rel: "noopener noreferrer", target: "_blank"
+            = link_to "Twitter", @profile.twitter, class: 'btn btn-primary ml-2 mobile_btn text-light',  rel: "noopener noreferrer", target: "_blank"
           - if @profile.hp.present?
-            = link_to "HP", @profile.hp, class: 'btn btn-primary ml-2 mobile_btn',  rel: "noopener noreferrer", target: "_blank"
+            = link_to "HP", @profile.hp, class: 'btn btn-primary ml-2 mobile_btn text-light',  rel: "noopener noreferrer", target: "_blank"
             
-        #exampleModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
-          .modal-dialog{:role => "document"}
-            .modal-content
-              .modal-header
-                %h5#exampleModalLabel.modal-title e-mail address
-                %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-                  %span{"aria-hidden" => "true"}
-              .modal-body
-                = @user.email
-              .modal-footer
-                %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
         = link_to profile_pass_path(params[:id], pv_link: "pv++") do
           %h3.d-flex.justify-content-center.mt-3.mobile_name
             = @profile.user.nickname
@@ -229,7 +218,19 @@
             = image_tag(@profile.avatar.url, alt: "", class: "prof_image mt-2 mobile_img")
             %p.text-break.ml-5.mr-5.mb-3.pt-5.mobile_text 
               = @profile.avatar_about
-            
+
+    #exampleModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
+      .modal-dialog{:role => "document"}
+        .modal-content
+          .modal-header
+            %h5#exampleModalLabel.modal-title e-mail address
+            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+              %span{"aria-hidden" => "true"}
+          .modal-body
+            = @user.email
+          .modal-footer
+            %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
+
     .slider.mt-5.d-flex.justify-content-center
       #mainSlide
         -# %img.top_image{:src => "#{@profile.image}"}
@@ -244,11 +245,11 @@
         %button.btn.btn-primary.mt-1{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
           email
         - if @profile.facebook.present?
-          = link_to "Facabook", @profile.facebook, class: 'btn btn-primary ml-2 mt-1',  rel: "noopener noreferrer", target: "_blank"
+          = link_to "Facabook", @profile.facebook, class: 'btn btn-primary ml-2 mt-1 text-light',  rel: "noopener noreferrer", target: "_blank"
         - if @profile.twitter.present?
-          = link_to "Twitter", @profile.twitter, class: 'btn btn-primary ml-2 mt-1',  rel: "noopener noreferrer", target: "_blank"
+          = link_to "Twitter", @profile.twitter, class: 'btn btn-primary ml-2 mt-1 text-light',  rel: "noopener noreferrer", target: "_blank"
         - if @profile.hp.present?
-          = link_to "HP", @profile.hp, class: 'btn btn-primary ml-2 mt-1',  rel: "noopener noreferrer", target: "_blank"
+          = link_to "HP", @profile.hp, class: 'btn btn-primary ml-2 mt-1 text-light',  rel: "noopener noreferrer", target: "_blank"
           
       = link_to profile_pass_path(params[:id], pv_link: "pv++"), style:"text-decoration:none" do
         .prof_all.d-flex
