@@ -1,4 +1,7 @@
 class ItemProfilesController < ApplicationController
+
+  before_action :correct_user, only: [:edit]
+
   def index
 
     if params[:q].present?
@@ -168,4 +171,10 @@ class ItemProfilesController < ApplicationController
     ).merge(user_id: current_user.id)
   end
 
+  def correct_user
+    @item = ItemProfile.find(params[:id])
+    if @item.user != current_user
+      redirect_to root_path
+    end
+  end
 end
