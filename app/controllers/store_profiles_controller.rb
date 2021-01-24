@@ -1,4 +1,6 @@
 class StoreProfilesController < ApplicationController
+
+  before_action :correct_user, only: [:edit]
   def index
 
     if params[:q].present?
@@ -167,4 +169,10 @@ class StoreProfilesController < ApplicationController
     ).merge(user_id: current_user.id)
   end
   
+  def correct_user
+    @store = StoreProfile.find(params[:id])
+    if @store.user != current_user
+      redirect_to root_path
+    end
+  end
 end

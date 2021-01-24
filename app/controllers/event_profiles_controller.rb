@@ -1,4 +1,7 @@
 class EventProfilesController < ApplicationController
+
+  before_action :correct_user, only: [:edit]
+
   def index
 
     if params[:q].present?
@@ -172,5 +175,12 @@ class EventProfilesController < ApplicationController
       :service_link,
       event_images_attributes: [:src, :_destroy, :id]
     ).merge(user_id: current_user.id)
+  end
+
+  def correct_user
+    @event = EventProfile.find(params[:id])
+    if @event.user != current_user
+      redirect_to root_path
+    end
   end
 end

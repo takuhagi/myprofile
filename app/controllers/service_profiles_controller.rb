@@ -1,4 +1,6 @@
 class ServiceProfilesController < ApplicationController
+
+  before_action :correct_user, only: [:edit]
   def index
 
     if params[:q].present?
@@ -169,5 +171,12 @@ class ServiceProfilesController < ApplicationController
       :event_link,
       service_images_attributes: [:src, :_destroy, :id]
     ).merge(user_id: current_user.id)
+  end
+
+  def correct_user
+    @service = ServiceProfile.find(params[:id])
+    if @service.user != current_user
+      redirect_to root_path
+    end
   end
 end
