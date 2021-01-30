@@ -8,11 +8,23 @@ class ProfilesController < ApplicationController
   before_action :logged_in_user, only: [:pass]
 
   def index
-    @profiles = Profile.all.includes([:user])
-    @user = User.all.includes([:profile])
-    @rank_profiles = @profiles.order(pv_count: "DESC").limit(5)
-    @new_profiles = @profiles.order(created_at: "DESC").limit(5)
-    @profiles = Profile.includes(:user).order(updated_at: :DESC).page(params[:page]).per(9)
+    if params[:q].present?
+      @q = Profile.ransack(params[:q])
+      @profiles = Profile.all.includes([:user])
+      @user = User.all.includes([:profile])
+      @rank_profiles = @profiles.order(pv_count: "DESC").limit(5)
+      @new_profiles = @profiles.order(created_at: "DESC").limit(5)
+      @profiles = @q.result.includes(:user).order(updated_at: :DESC).page(params[:page]).per(9)
+    else
+      params[:q] = { sorts: 'updated_at desc' }
+      @q = Profile.ransack(params[:q])
+      @profiles = Profile.all.includes([:user])
+      @user = User.all.includes([:profile])
+      @rank_profiles = @profiles.order(pv_count: "DESC").limit(5)
+      @new_profiles = @profiles.order(created_at: "DESC").limit(5)
+      @profiles = Profile.includes(:user).order(updated_at: :DESC).page(params[:page]).per(9)
+    end
+
   end
 
   def new
