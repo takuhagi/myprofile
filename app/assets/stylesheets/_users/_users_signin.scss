@@ -1,27 +1,15 @@
+@import '../_mixin/devise';
+
 html,body{
   height: 100%;
 }
 .SigninPage {
-  z-index: -3;
-  height: 100%;
-  width: 100%;
-  background: #eee url(http://subtlepatterns.com/patterns/sativa.png);
+  @include deviseWrapper();
+
   // ページタイトル、サイトロゴ部分
   .Title-container{
     text-align: center;
     padding-top: 40px;
-    .SiteLogo {
-    width: 160px;
-    height: 160px;
-    margin: 24px auto;
-    border-radius: 100%;
-    border: 2px solid #aaa;
-    background-size: cover;
-    background-color: #ccc;
-    text-align: center;
-    padding: 64px 0 0 ;
-    color: #aaaaaa;
-    }
     .Title {
       font-size: 40px;
       color: #aaaaaa;

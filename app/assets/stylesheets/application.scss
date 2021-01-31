@@ -17,14 +17,14 @@
 @import "reset";
 @import "toppage";
 
+
 // users
-@import '_users/_users_reset_password';
 @import '_users/_users_search';
 @import '_users/_users_show';
 @import '_users/_users_signin';
 @import '_users/_users_signup';
 @import '_users/_users';
-
+@import '_users/_users_reset_password';
 
 @import 'bootstrap-tagsinput';
 @import 'font-awesome-sprockets';
